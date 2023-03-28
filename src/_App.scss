@@ -1,0 +1,52 @@
+@use "./styles/partials/fonts" as *;
+@use "./styles/partials/variables" as *;
+@use "./styles/partials/mixins" as *;
+
+*,
+*::before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+body,
+html,
+div,
+span,
+header,
+footer,
+section,
+nav,
+ul,
+li,
+a,
+blockquote,
+textarea, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-style: normal;
+    font-weight: normal;
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+ul,
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: $blue-green;
+}

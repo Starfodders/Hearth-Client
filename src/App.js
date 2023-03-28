@@ -1,9 +1,7 @@
-
+import "./_App.scss";
 
 function App() {
-  return (
-<></>     
-  );
+  return <>Test</>;
 }
 
 export default App;
