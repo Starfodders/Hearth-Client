@@ -1,0 +1,26 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.error {
+
+&__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+&__icon {
+    color: rgba(210, 15, 15, 0.6);
+    font-size: 1rem;
+}
+&__message {
+    color: rgba(210, 15, 15, 0.6);
+    font-size: 0.8rem
+}
+}
+
+.hidden {
+    visibility: hidden;
+}
