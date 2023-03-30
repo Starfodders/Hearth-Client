@@ -1,14 +1,14 @@
 import React from "react";
 import "../styles/LandingPage.scss";
 import bgWaves from "../assets/images/waves.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 
-const LandingPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const LandingPage = ({isLoggedIn, setIsLoggedIn}) => {
+  const navigate = useNavigate()
   const [SignUpPage, setSignUpPage] = useState(false);
-
   const [newSignUp, setNewSignUp] = useState({});
 
   function toggleState() {
@@ -19,6 +19,13 @@ const LandingPage = () => {
     setNewSignUp(user);
   }
 
+  //if already logged in, redirect to home
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/home')
+    }
+  }, [isLoggedIn])
+
   return (
     <div className="wrapper">
       <div className="landing__container">
@@ -27,7 +34,7 @@ const LandingPage = () => {
         {SignUpPage ? (
           <SignUp toggle={toggleState} getUser={getNewUserSignUp} />
         ) : (
-          <Login toggle={toggleState} newUser={newSignUp} />
+          <Login toggle={toggleState} newUser={newSignUp} setIsLoggedIn={setIsLoggedIn} />
         )}
         <img src={bgWaves} className="bg-wrapper" alt="background waves" />
       </div>

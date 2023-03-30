@@ -1,11 +1,14 @@
+import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 import passwordHide from "../../assets/icons/passwordHide.svg"
 import passwordShow from "../../assets/icons/passwordShow.svg"
 import "./Login.scss"
 
 
-const Login = ({toggle, newUser}) => {
+const Login = ({toggle, newUser, setIsLoggedIn}) => {
+    const navigate = useNavigate();
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
 
@@ -22,6 +25,7 @@ const Login = ({toggle, newUser}) => {
        
     }
 
+    //handles if the user is new, populates the fields with the new account details
     useEffect(() => {
         if (Object.keys(newUser).length > 0) {
             console.log(newUser);
@@ -34,9 +38,28 @@ const Login = ({toggle, newUser}) => {
         setInputFields({...inputFields, [e.target.name] : e.target.value})
     }
 
+    function handleLogin(e) {
+        e.preventDefault()
+        const {email, password} = inputFields;
+        //login, posts to back end to check for an exisiting account
+        axios.post('http://localhost:8080/users/login', {
+            email,
+            password
+        })
+        //once successful, set token, set logged in to true, go to home page
+        .then(({data}) => {
+            sessionStorage.setItem('authToken', data.token)
+            setIsLoggedIn(true)
+            navigate('/home')
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
 
     return (
-        <form className = "login__container">
+        <form className = "login__container" onSubmit = {(e) => handleLogin(e) }>
             <label htmlFor = "email" className = "login__container--label">Email Address</label>
             <input type = "text" name = "email" className = "login__email" value = {inputFields.email} onChange = {(e) => handleInput(e)}></input>
             <label htmlFor = "password" className = "login__container--label">Password</label>
