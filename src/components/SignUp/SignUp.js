@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useState } from "react";
 import passwordHide from "../../assets/icons/passwordHide.svg"
@@ -7,6 +8,12 @@ import passwordShow from "../../assets/icons/passwordShow.svg"
 const SignUp = ({toggle}) => {
         const [passwordHidden, setPasswordHidden] = useState(true)
         const [passwordType, setPasswordType] = useState('password')
+
+        const [inputFields, setInputFields] = useState({given_name: '', email: '', password: ''})
+
+        function handleInput(e) {
+            setInputFields({...inputFields, [e.target.name] : e.target.value})
+        }
     
         function toggleShowState() {
             if (!passwordHidden) {
@@ -18,15 +25,31 @@ const SignUp = ({toggle}) => {
            
         }
 
+        function handleSubmit(e) {
+            e.preventDefault();
+            const {given_name, email, password} = inputFields
+            axios.post('http://localhost:8080/users/signup', {
+                given_name,
+                email,
+                password
+            })
+            .then((response) => {
+                console.log(response.data[0]);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+
     return (
-        <form className = "sign__container">
+        <form className = "sign__container" onSubmit = {(e) => handleSubmit(e)}>
             <label htmlFor = "given_name" className = "sign__container--label">First Name</label>
-            <input type = "text" name = "given_name" className = "sign__given-name"></input>
+            <input type = "text" name = "given_name" className = "sign__given-name" value = {inputFields.given_name} onChange = {(e)=> handleInput(e)}></input>
             <label htmlFor = "email" className = "sign__container--label">Email Address</label>
-            <input type = "text" name = "email" className = "sign__email"></input>
+            <input type = "text" name = "email" className = "sign__email" value = {inputFields.email} onChange = {(e) => handleInput(e)}></input>
             <label htmlFor = "password" className = "sign__container--label">Password</label>
             <div className = "sign-pw-box">
-            <input type = {passwordType} name = "password" className = "sign__password"></input>
+            <input type = {passwordType} name = "password" className = "sign__password" value = {inputFields.password} onChange = {(e) => handleInput(e)}></input>
             {passwordHidden ? <img src = {passwordShow} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/> : <img src = {passwordHide} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/>}
             </div>
             <button className = "sign__btn">Sign Up</button>
