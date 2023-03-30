@@ -2,3 +2,38 @@
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
 
+.bg-wrapper {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -10;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.landing {
+    &__container {
+        margin-top: 10rem;
+    }
+
+    &__title {
+        font-family:'Paytone One', sans-serif;
+        color: white;
+        font-size: 7rem;
+        text-align: right;
+    }
+
+    &__slogan {
+        color: white;
+        font-size: 1.5rem;
+        text-align: right;
+        margin-top: -1rem;
+    }
+}

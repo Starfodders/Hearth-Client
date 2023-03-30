@@ -5,10 +5,12 @@ import passwordHide from "../../assets/icons/passwordHide.svg"
 import passwordShow from "../../assets/icons/passwordShow.svg"
 
 
-const SignUp = ({toggle}) => {
+const SignUp = ({toggle, getUser}) => {
         const [passwordHidden, setPasswordHidden] = useState(true)
         const [passwordType, setPasswordType] = useState('password')
 
+//need to build form validation on front end
+        const [formValid, setFormValid] = useState(false)
         const [inputFields, setInputFields] = useState({given_name: '', email: '', password: ''})
 
         function handleInput(e) {
@@ -34,7 +36,9 @@ const SignUp = ({toggle}) => {
                 password
             })
             .then((response) => {
-                console.log(response.data[0]);
+                //sends the new user data up to parent, toggle to login page and populate the fields
+                getUser(response.data[0]);
+                toggle();
             })
             .catch((error) => {
                 console.log(error);
