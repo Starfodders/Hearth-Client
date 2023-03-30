@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from "react";
 import passwordHide from "../../assets/icons/passwordHide.svg"
 import passwordShow from "../../assets/icons/passwordShow.svg"
+import "./SignUp.scss"
 
 
 const SignUp = ({toggle, getUser}) => {
@@ -52,7 +53,7 @@ const SignUp = ({toggle, getUser}) => {
             <label htmlFor = "email" className = "sign__container--label">Email Address</label>
             <input type = "text" name = "email" className = "sign__email" value = {inputFields.email} onChange = {(e) => handleInput(e)}></input>
             <label htmlFor = "password" className = "sign__container--label">Password</label>
-            <div className = "sign-pw-box">
+            <div className = "sign__pw-box">
             <input type = {passwordType} name = "password" className = "sign__password" value = {inputFields.password} onChange = {(e) => handleInput(e)}></input>
             {passwordHidden ? <img src = {passwordShow} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/> : <img src = {passwordHide} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/>}
             </div>
