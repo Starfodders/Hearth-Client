@@ -59,7 +59,6 @@ const SignUp = ({toggle, getUser}) => {
                     toggle();
                 })
                 .catch((error) => {
-                    console.log(error);
                     console.log(error.response.data.message);
                 })
             }

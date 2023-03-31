@@ -13,7 +13,7 @@ const Login = ({toggle, newUser, setIsLoggedIn}) => {
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
 
-    const [formValid, setFormValid] = useState(false)
+    const [formValid, setFormValid] = useState(true)
     const [inputFields, setInputFields] = useState({email: '', password: '', blank: ''})
     const [errorFields, setErrorFields] = useState({email: true, password: true, blank: true})
 
