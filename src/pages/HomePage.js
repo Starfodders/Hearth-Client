@@ -19,7 +19,6 @@ const HomePage = ({isLoggedIn}) => {
             <div className = "home__image">
                 <img src = {fireBase}/>
             </div>
-            <BotNav/>
             {currToken}
         </div>
     );

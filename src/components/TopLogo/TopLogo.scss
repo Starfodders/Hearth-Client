@@ -1,0 +1,19 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.top {
+    &__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    }
+    &__link {
+        color: $off-white;
+    }
+    &__title {
+        font-family: 'Paytone One', sans-serif;
+        font-size: 1.5rem;
+    }
+}

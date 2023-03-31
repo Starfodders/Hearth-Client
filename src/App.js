@@ -7,6 +7,7 @@ import TopLogo from "./components/TopLogo/TopLogo";
 import ChaptersPage from "./pages/ChaptersPage";
 import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
+import BotNav from "./components/BotNav/BotNav";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             <>
               <TopLogo />
               <HomePage isLoggedIn={isLoggedIn} />
+              <BotNav/>
             </>
           }
         ></Route>
@@ -38,6 +40,7 @@ function App() {
             <>
               <TopLogo />
               <ChaptersPage isLoggedIn={isLoggedIn} />
+              <BotNav/>
             </>
           }
         ></Route>
@@ -47,6 +50,8 @@ function App() {
             <>
               <TopLogo />
               <MeditationPage isLoggedIn={isLoggedIn} />
+              <BotNav/>
+
             </>
           }
         ></Route>
@@ -56,6 +61,8 @@ function App() {
             <>
               <TopLogo />
               <CollectionPage isLoggedIn={isLoggedIn} />
+              <BotNav/>
+
             </>
           }
         ></Route>
