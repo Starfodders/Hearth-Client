@@ -8,11 +8,11 @@ const HomePage = ({isLoggedIn}) => {
     const navigate = useNavigate()
     const currToken = sessionStorage.getItem('authToken')
     
-    useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('/')
-        }
-    }, [isLoggedIn])
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         navigate('/')
+    //     }
+    // }, [isLoggedIn])
     
     return (
         <div className = "home__container">
