@@ -30,7 +30,7 @@ function App() {
             <>
               <TopLogo />
               <HomePage isLoggedIn={isLoggedIn} />
-              <BotNav/>
+              <BotNav />
             </>
           }
         ></Route>
@@ -40,29 +40,37 @@ function App() {
             <>
               <TopLogo />
               <ChaptersPage isLoggedIn={isLoggedIn} />
-              <BotNav/>
+              <BotNav />
             </>
           }
         ></Route>
-         <Route
+        <Route
+          path="/chapters/:id"
+          element={
+            <>
+              <TopLogo />
+              <ChaptersPage isLoggedIn={isLoggedIn} />
+              <BotNav />
+            </>
+          }
+        ></Route>
+        <Route
           path="/meditation"
           element={
             <>
               <TopLogo />
               <MeditationPage isLoggedIn={isLoggedIn} />
-              <BotNav/>
-
+              <BotNav />
             </>
           }
         ></Route>
-         <Route
+        <Route
           path="/collection"
           element={
             <>
               <TopLogo />
               <CollectionPage isLoggedIn={isLoggedIn} />
-              <BotNav/>
-
+              <BotNav />
             </>
           }
         ></Route>
