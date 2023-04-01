@@ -1,17 +1,41 @@
-import React from 'react';
-import Card from "../Card/Card"
+import React from "react";
+import Card from "../Card/Card";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Loader from "../Loader/Loader"
 
 const Chapters = () => {
-    return (
-        <div className = "chapters__container">
-            <div className = "chapters__header">
-                <h1 className = "chapters__title">Chapters</h1>
-            </div>
-            <div className = "chapters__main">
-                <Card/>
-            </div>
-        </div>
-    );
+    const [chapterData, setChapterData] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    useEffect(() => {
+        const getChapters = async () => {
+            try {
+                axios.get('http://localhost:8080/chapters')
+                .then((response) => {
+                    setChapterData(response.data)
+                })
+            }catch(error) {
+                console.log(error);
+            }
+        }
+        getChapters()
+    }, [])
+
+    if (!isLoaded) {
+        return <Loader/>
+    }
+    
+  return (
+    <div className="chapters__container">
+      <div className="chapters__header">
+        <h1 className="chapters__title">Chapters</h1>
+      </div>
+      <div className="chapters__main">
+        <Card />
+      </div>
+    </div>
+  );
 };
 
 export default Chapters;
