@@ -2,6 +2,8 @@ import "./Card.scss"
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { useState, useEffect } from "react"
 
+
+
 const Card = ({id, name, sections, available, images}) => {
     const [ isAvailable, setIsAvailable ] = useState(false)
 
