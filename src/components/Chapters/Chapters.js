@@ -14,6 +14,9 @@ const Chapters = () => {
                 axios.get('http://localhost:8080/chapters')
                 .then((response) => {
                     setChapterData(response.data)
+                    setTimeout(() => {
+                      setIsLoaded(true)
+                    }, 1250)
                 })
             }catch(error) {
                 console.log(error);
@@ -32,9 +35,18 @@ const Chapters = () => {
         <h1 className="chapters__title">Chapters</h1>
       </div>
       <div className="chapters__main">
-        <Card />
+        {chapterData.map((chapter) => {
+          return <Card
+            id = {chapter.id}
+            name = {chapter.name}
+            sections = {chapter.sections}
+            images = {chapter.images}
+            available = {chapter.available}
+          />
+        })}
       </div>
     </div>
+    
   );
 };
 
