@@ -4,9 +4,27 @@
 
 .chapters {
 
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    &__header {
+        width: 100%;
+        margin: 4rem 0 8rem;
+    }
+
+    &__title {
+        color: $off-white;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
     &__main {
         display: flex;
         width: 100%;
         gap: 3rem;
+        flex-wrap: wrap;
     }
 }

@@ -7,12 +7,19 @@
     &__container {
         display: flex;
         flex-direction: column;
-        width: 15%;
+        width: 20%;
         background-color: $off-white;
         border-radius: 4px;
         padding: 1rem;
         align-items: center;
         justify-content: space-between;
+
+        &__off {
+            @extend .card__container;
+            filter: grayscale(100%);
+            opacity: 0.5;
+           
+        }
     }
 
     &__name {
@@ -21,12 +28,26 @@
         align-items: flex-start;
         justify-content: center;
         text-align: center;
-        min-height: 3.5rem;
+        min-height: 4.5rem;
+        font-weight: 500;
     }
 
     &__image {
         width: 70%;
         filter: drop-shadow(0 3px 1px rgb(72, 72, 72));
-        padding-bottom: 2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    &__button {
+        background-color: $black;
+        color: $off-white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem;
+        width: 100%;
+        text-transform: uppercase;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
     }
 }
