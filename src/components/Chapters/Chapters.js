@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 
 const Chapters = () => {
   const [chapterData, setChapterData] = useState([]);
+  const [componentTitle, setComponentTitle] = useState('Chapters')
   // const [getImages, setGetImages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
   const { id } = useParams();
@@ -50,12 +51,19 @@ const Chapters = () => {
           `http://localhost:8080/chapters/${id}`
         );
         setSectionData(response.data);
+        getTitle()
       } catch (err) {
         console.log(err + "problem retrieving section data");
       }
     };
     getSection();
   }, [id]);
+
+  function getTitle() {
+    const chosenSection = chapterData.find(section => section.id === parseInt(id))
+    setComponentTitle(chosenSection.name)
+  }
+
 
   if (!isLoaded) {
     return <Loader />;
@@ -64,7 +72,7 @@ const Chapters = () => {
   return (
     <div className="chapters__container">
       <div className="chapters__header">
-        <h1 className="chapters__title">Chapters</h1>
+        <h1 className="chapters__title">{id ? componentTitle: 'Chapters'}</h1>
       </div>
       <div className="chapters__main">
         {id
