@@ -1,4 +1,4 @@
-import React from "react";
+import "./Chapters.scss";
 import Card from "../Card/Card";
 import { useState, useEffect } from "react";
 import axios from "axios";

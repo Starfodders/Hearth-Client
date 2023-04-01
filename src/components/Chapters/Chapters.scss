@@ -1,3 +1,12 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.chapters {
+
+    &__main {
+        display: flex;
+        width: 100%;
+        gap: 3rem;
+    }
+}
