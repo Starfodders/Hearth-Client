@@ -7,7 +7,7 @@ import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
 
 const Chapters = ({initial}) => {
-  const {id, unitId} = useParams()
+  const {id, name, unitId} = useParams()
   const location = useLocation();
 
 
@@ -15,20 +15,25 @@ const Chapters = ({initial}) => {
   const [initialContent, setInitialContent] = useState(initial)
   const [contentToLoad, setContentToLoad] = useState(null)
   const [contentTitle, setContentTitle] = useState('Chapters')
-  const [sectionLevel, setSectionLevel] = useState(false)
+  const [sectionLevel, setSectionLevel] = useState('chapters')
 
+  //resets state to this when they're back on /Chapters
   useEffect(() => {
    if (location.pathname === '/chapters')
-    setSectionLevel(false)
+    setSectionLevel('chapters')
+    setContentTitle('Chapters')
     setContentToLoad(initialContent)
   },[location])
 
+  //if unitID exists as param, they're on page to select specific Unit
   useEffect(() => {
     if (unitId) {
+      setSectionLevel('units')
       const getUnitDetails = async () => {
         try {
           const response = await axios.get(`http://localhost:8080/chapters/${id}/${unitId}`)
           setContentToLoad(response.data)
+          getTitle(id)
         }
         catch(err) {
           console.log(err + 'Error getting unit data');
@@ -36,8 +41,9 @@ const Chapters = ({initial}) => {
       }
       getUnitDetails();
     }
+    //if no unitId and ONLY id param, then they're on page to select specific Section
     if (!unitId && id) {
-      setSectionLevel(true)
+      setSectionLevel('sections')
       const getNewDetails = async () => {
         try {
           const response = await axios.get(`http://localhost:8080/chapters/${id}`)
@@ -51,10 +57,12 @@ const Chapters = ({initial}) => {
     }
   }, [id, unitId])
 
+  //renders specific title based on which page you're rendering
   function getTitle(id) {
     const chosenSection = initial.find(section => section.id === parseInt(id))
     setContentTitle(chosenSection.name)
   }
+  //WORK ON RENDERING THIS NOW
 
   if (!contentToLoad) {
     return <Loader/>

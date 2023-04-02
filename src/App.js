@@ -55,7 +55,7 @@ function App() {
           }
         ></Route>
          <Route
-          path="/chapters/:id/:unitId"
+          path="/chapters/:name/:unitId/"
           element={
             <>
               <TopLogo />

@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./ChaptersBlock.scss";
 import { useNavigate } from "react-router-dom";
 
-const ChaptersBlock = ({ content, change, title, level }) => {
+const ChaptersBlock = ({ content, title, level }) => {
   const navigate = useNavigate();
 
 
