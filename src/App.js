@@ -54,6 +54,16 @@ function App() {
             </>
           }
         ></Route>
+         <Route
+          path="/chapters/:id/:unitId"
+          element={
+            <>
+              <TopLogo />
+              <ChaptersPage isLoggedIn={isLoggedIn} />
+              <BotNav />
+            </>
+          }
+        ></Route>
         <Route
           path="/meditation"
           element={

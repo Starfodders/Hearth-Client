@@ -7,6 +7,7 @@ import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
 
 const Chapters = ({initial}) => {
+  const {id, unitId} = useParams()
   const location = useLocation();
 
 
@@ -14,32 +15,41 @@ const Chapters = ({initial}) => {
   const [initialContent, setInitialContent] = useState(initial)
   const [contentToLoad, setContentToLoad] = useState(null)
   const [contentTitle, setContentTitle] = useState('Chapters')
-  const [dataChange, setDataChange] = useState(null)
-
-  //responds to changes in ID down in Card component
-  function handleChange(id) {
-    setDataChange(id)
-  }
+  const [sectionLevel, setSectionLevel] = useState(false)
 
   useEffect(() => {
    if (location.pathname === '/chapters')
+    setSectionLevel(false)
     setContentToLoad(initialContent)
   },[location])
 
   useEffect(() => {
-    if (dataChange) {
+    if (unitId) {
+      const getUnitDetails = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/chapters/${id}/${unitId}`)
+          setContentToLoad(response.data)
+        }
+        catch(err) {
+          console.log(err + 'Error getting unit data');
+        }
+      }
+      getUnitDetails();
+    }
+    if (!unitId && id) {
+      setSectionLevel(true)
       const getNewDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/chapters/${dataChange}`)
+          const response = await axios.get(`http://localhost:8080/chapters/${id}`)
           setContentToLoad(response.data)
-          getTitle(dataChange)
+          getTitle(id)
         } catch(err) {
           console.log('Error in getting new data' + err);
         }
       }
       getNewDetails()
     }
-  }, [dataChange])
+  }, [id, unitId])
 
   function getTitle(id) {
     const chosenSection = initial.find(section => section.id === parseInt(id))
@@ -52,7 +62,7 @@ const Chapters = ({initial}) => {
 
 
   return (
-      <ChaptersBlock content = {contentToLoad} change = {handleChange} title = {contentTitle}/>
+      <ChaptersBlock content = {contentToLoad} title = {contentTitle} level = {sectionLevel}/>
   );
 };
 
