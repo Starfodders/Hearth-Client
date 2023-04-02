@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom"
 
 
 
-const Card = ({id, name, sections, available, images}) => {
+const Card = ({id, name, sections, available, images, depth}) => {
     const navigate = useNavigate();
     const [ isAvailable, setIsAvailable ] = useState(false);
 
     useEffect(() => {
-        if (available === 1) {
-            setIsAvailable(true)
-        } else {
-            setIsAvailable(false)
+        if (available) {
+            if (available === 1) {
+                setIsAvailable(true)
+            } else {
+                setIsAvailable(false)
+            }
         }
     }, [available])
 

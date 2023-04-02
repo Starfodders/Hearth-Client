@@ -14,12 +14,12 @@
         padding: 1rem;
         align-items: center;
         justify-content: space-between;
+        min-height: 385px;
 
         &__off {
             @extend .card__container;
             filter: grayscale(100%);
             opacity: 0.5;
-            min-height: 385px;
            
         }
     }

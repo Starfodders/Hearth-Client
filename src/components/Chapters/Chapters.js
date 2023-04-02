@@ -1,7 +1,7 @@
 import "./Chapters.scss";
 import Card from "../Card/Card";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 
@@ -10,6 +10,9 @@ const Chapters = () => {
   const [componentTitle, setComponentTitle] = useState('Chapters')
   // const [getImages, setGetImages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
+  const [chapterDepth, setChapterDepth] = useState('chapters')
+  const location = useLocation();
+
   const { id } = useParams();
   const [sectionData, setSectionData] = useState([]);
 
@@ -19,9 +22,9 @@ const Chapters = () => {
       try {
         const response = await axios.get("http://localhost:8080/chapters");
         setChapterData(response.data);
-        setTimeout(() => {
-          setIsLoaded(true);
-        }, 750);
+        if (chapterData) {
+          setIsLoaded(true)
+        }
         //CODE FOR TRYING TO PRELOAD IMAGES
         // try {
         //   const tempImages = []
@@ -45,24 +48,31 @@ const Chapters = () => {
 
   //gets specific section information if ID param is present
   useEffect(() => {
-    const getSection = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/chapters/${id}`
-        );
-        setSectionData(response.data);
-        getTitle()
-      } catch (err) {
-        console.log(err + "problem retrieving section data");
-      }
-    };
-    getSection();
+    if (id) {
+      const getSection = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/chapters/${id}`
+          );
+          setSectionData(response.data);
+          getTitle()
+        } catch (err) {
+          console.log(err + "problem retrieving section data");
+        }
+      };
+      getSection();
+    }
   }, [id]);
 
+  //retrieves specific section name and renders component title
   function getTitle() {
     const chosenSection = chapterData.find(section => section.id === parseInt(id))
     setComponentTitle(chosenSection.name)
   }
+
+  useEffect(() => {
+    setChapterDepth(location.pathname)
+  }, [location])
 
 
   if (!isLoaded) {
@@ -83,6 +93,7 @@ const Chapters = () => {
                   name={section.name}
                   completed = {section.completed}
                   images={section.images}
+                  depth = {chapterDepth}
                 />
               );
             })
@@ -94,6 +105,7 @@ const Chapters = () => {
                   sections={chapter.sections}
                   images={chapter.images}
                   available={chapter.available}
+                  depth = {chapterDepth}
                 />
               );
             })}
