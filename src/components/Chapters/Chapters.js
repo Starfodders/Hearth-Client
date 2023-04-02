@@ -1,117 +1,73 @@
 import "./Chapters.scss";
-import Card from "../Card/Card";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
-const Chapters = () => {
-  const [chapterData, setChapterData] = useState([]);
-  const [componentTitle, setComponentTitle] = useState('Chapters')
-  // const [getImages, setGetImages] = useState([])
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [chapterDepth, setChapterDepth] = useState('chapters')
+
+const Chapters = ({initial}) => {
   const location = useLocation();
 
-  const { id } = useParams();
-  const [sectionData, setSectionData] = useState([]);
 
-  //gets overall chapter information
-  useEffect(() => {
-    const getChapters = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/chapters");
-        setChapterData(response.data);
-        if (chapterData) {
-          setIsLoaded(true)
-        }
-        //CODE FOR TRYING TO PRELOAD IMAGES
-        // try {
-        //   const tempImages = []
-        //   chapterData.forEach((chapter) => {
-        //     const image = new Image();
-        //     image.src = (`http://localhost:8080${chapter.images}`)
-        //     tempImages.push(image)
-        //   })
-        //   setGetImages(tempImages)
-        //   setIsLoaded(true);
-        // }
-        // catch(error) {
-        //   console.log(error + 'Problem preloading images');
-        // }
-      } catch (error) {
-        console.log(error + "Problem retrieving Chapter Data");
-      }
-    };
-    getChapters();
-  }, []);
+  // const [isLoaded, setIsLoaded] = useState(false)
+  const [initialContent, setInitialContent] = useState(initial)
+  const [contentToLoad, setContentToLoad] = useState(null)
+  const [contentTitle, setContentTitle] = useState('Chapters')
+  const [dataChange, setDataChange] = useState(null)
 
-  //gets specific section information if ID param is present
+  //responds to changes in ID down in Card component
+  function handleChange(id) {
+    setDataChange(id)
+  }
+
   useEffect(() => {
-    if (id) {
-      const getSection = async () => {
+   if (location.pathname === '/chapters')
+    setContentToLoad(initialContent)
+  },[location])
+
+  useEffect(() => {
+    if (dataChange) {
+      const getNewDetails = async () => {
         try {
-          const response = await axios.get(
-            `http://localhost:8080/chapters/${id}`
-          );
-          setSectionData(response.data);
-          getTitle()
-        } catch (err) {
-          console.log(err + "problem retrieving section data");
+          const response = await axios.get(`http://localhost:8080/chapters/${dataChange}`)
+          setContentToLoad(response.data)
+          getTitle(dataChange)
+        } catch(err) {
+          console.log('Error in getting new data' + err);
         }
-      };
-      getSection();
+      }
+      getNewDetails()
     }
-  }, [id]);
+  }, [dataChange])
 
-  //retrieves specific section name and renders component title
-  function getTitle() {
-    const chosenSection = chapterData.find(section => section.id === parseInt(id))
-    setComponentTitle(chosenSection.name)
+  function getTitle(id) {
+    const chosenSection = initial.find(section => section.id === parseInt(id))
+    setContentTitle(chosenSection.name)
   }
 
-  useEffect(() => {
-    setChapterDepth(location.pathname)
-  }, [location])
-
-
-  if (!isLoaded) {
-    return <Loader />;
+  if (!contentToLoad) {
+    return <Loader/>
   }
+
 
   return (
-    <div className="chapters__container">
-      <div className="chapters__header">
-        <h1 className="chapters__title">{id ? componentTitle: 'Chapters'}</h1>
-      </div>
-      <div className="chapters__main">
-        {id
-          ? sectionData.map((section) => {
-              return (
-                <Card
-                  id={section.id}
-                  name={section.name}
-                  completed = {section.completed}
-                  images={section.images}
-                  depth = {chapterDepth}
-                />
-              );
-            })
-          : chapterData.map((chapter) => {
-              return (
-                <Card
-                  id={chapter.id}
-                  name={chapter.name}
-                  sections={chapter.sections}
-                  images={chapter.images}
-                  available={chapter.available}
-                  depth = {chapterDepth}
-                />
-              );
-            })}
-      </div>
-    </div>
+      <ChaptersBlock content = {contentToLoad} change = {handleChange} title = {contentTitle}/>
   );
 };
 
 export default Chapters;
+
+
+//on initial load, the contents will be GET from the backend for chapter data
+//when retrieved, then display by mapping contents over the cards
+//each card has a handler that changes the state of the data being rendered as their link pointer is also in state
+
+
+//now when I click on the button,
+//I need to know which chapter I selected
+//their id will match the chapter ID 
+//each button essentially sends up a specific ID
+//capture that ID in state, when it changes then make a request to back end using this id
+
+//now that i'm one level deep

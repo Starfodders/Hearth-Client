@@ -2,44 +2,44 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.chapters {
-  &__container {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
+// .chapters {
+//   &__container {
+//     max-width: 1024px;
+//     margin: 0 auto;
+//   }
 
-  &__header {
-    width: 100%;
-    margin: 4rem 0 6rem;
-  }
+//   &__header {
+//     width: 100%;
+//     margin: 4rem 0 6rem;
+//   }
 
-  &__title {
-    color: $off-white;
-    font-size: 3rem;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
+//   &__title {
+//     color: $off-white;
+//     font-size: 3rem;
+//     text-transform: uppercase;
+//     font-weight: 700;
+//   }
 
-  &__main {
-    display: flex;
-    width: 100%;
-    gap: 3rem;
-    padding: 2rem 0;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
+//   &__main {
+//     display: flex;
+//     width: 100%;
+//     gap: 3rem;
+//     padding: 2rem 0;
+//     flex-wrap: nowrap;
+//     overflow-x: scroll;
+//     overflow-y: hidden;
   
-    &::-webkit-scrollbar {
-      width: 2rem;
+//     &::-webkit-scrollbar {
+//       width: 2rem;
       
-    }
+//     }
 
-    &::-webkit-scrollbar-track {
-      background: $extra-dark-blue;
-    }
+//     &::-webkit-scrollbar-track {
+//       background: $extra-dark-blue;
+//     }
 
-    &::-webkit-scrollbar-thumb {
-      background: $dark-green;
-    }
-  }
-}
+//     &::-webkit-scrollbar-thumb {
+//       background: $dark-green;
+//     }
+//   }
+// }
