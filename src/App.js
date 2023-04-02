@@ -8,6 +8,7 @@ import ChaptersPage from "./pages/ChaptersPage";
 import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
 import BotNav from "./components/BotNav/BotNav";
+import UnitsPage from "./pages/UnitsPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,12 +55,22 @@ function App() {
             </>
           }
         ></Route>
-         <Route
-          path="/chapters/:name/:unitId/"
+        <Route
+          path="/chapters/:name/:unitId"
           element={
             <>
               <TopLogo />
               <ChaptersPage isLoggedIn={isLoggedIn} />
+              <BotNav />
+            </>
+          }
+        ></Route>
+        <Route
+          path="/unit/:name/:id"
+          element={
+            <>
+              <TopLogo />
+              <UnitsPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
           }
