@@ -53,7 +53,6 @@ const UnitsPage = () => {
         setTotalPages(unitData.length)
         setPageLoaded(true);
         setPageTitle(name)
-        console.log(unitData);
     }
   }, [unitData])
 
