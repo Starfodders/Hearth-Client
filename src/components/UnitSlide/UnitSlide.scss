@@ -1,0 +1,19 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.slide {
+    &__container {
+        background-color: $off-white;
+        border-radius: 4px;
+        min-height: 450px;
+    }
+
+
+    &__content {
+        color: $black;
+        font-size: 2rem;
+        padding: 2rem 3rem;
+        line-height: 3rem;
+    }
+}

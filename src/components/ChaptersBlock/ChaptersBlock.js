@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 const ChaptersBlock = ({ content, title, level }) => {
   const navigate = useNavigate();
 
-
-
   return (
     <section className="chapters__container">
       <div className="chapters__header">

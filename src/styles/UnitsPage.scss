@@ -1,0 +1,98 @@
+@use "./partials/fonts" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+
+.units {
+    &__bg {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -10;
+
+        &--img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+        position: relative;
+      }
+    
+      &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        margin: 4rem 0 6rem;
+      }
+  
+      &__return {
+        color: $off-white;
+        font-size: 3rem;
+      }
+    
+      &__title {
+        color: $off-white;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      &__pages {
+        background-color: $background-faded;
+        color: white;
+        min-height: 2rem;
+        min-width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 1.5rem;
+      }
+
+      &__saved {
+        font-size: 2.5rem;
+        color: $off-white;
+      }
+
+}
+
+.carousel {
+  &__main {
+  }
+
+  &__buttons {
+    position: absolute;
+    min-width: 1150px;
+    z-index: 20;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    top: 27rem;
+    left: -6.5%;
+
+    &--el {
+      font-size: 2rem;
+    }
+  }
+
+}
+
+
+
+// .swiper-pagination-horizontal, .swiper-pagination, .swiper-pagination-bullets {
+//   position: relative;
+//   margin-top: 2rem;
+// }
+
+// .swiper-pagination-bullet {
+//   background-color: $medium-green;
+// }
+
+// .swiper-pagination-bullet-active {
+//   background-color: $medium-green;
+// }
