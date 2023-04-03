@@ -24,29 +24,47 @@ const UnitsPage = () => {
   function handleForward() {
     carouselElRef.current.swiper.slideNext();
   }
-
   function handleBack() {
     carouselElRef.current.swiper.slidePrev();
   }
 
   const [unitData, setUnitData] = useState([]);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages]= useState(null)
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     const getUnitData = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/units/${id}`);
         setUnitData(response.data);
-        if (unitData) {
-          console.log(unitData);
-          setPageLoaded(true);
-        }
       } catch (err) {
         console.log(err + "Error retrieving unit data");
       }
     };
     getUnitData();
   }, [params]);
+
+  useEffect(() => {
+    if (unitData.length > 0) {
+        setTotalPages(unitData.length)
+        setPageLoaded(true);
+        console.log(unitData);
+    }
+  }, [unitData])
+
+  function handleSave() {
+    // setIsSaved(!isSaved)
+
+  }
+
+  function handleTransition() {
+    //when fired, updates currentPage to the current active index
+    const activeIndex = carouselElRef.current.swiper.realIndex + 1;
+    setCurrentPage(activeIndex)
+    
+  }
 
   if (!pageLoaded) {
     return (
@@ -70,19 +88,21 @@ const UnitsPage = () => {
             arrow_back
           </span>
           <h2 className="units__title">Title</h2>
-          <span className="units__pages">1/x</span>
-          <span><img src = {savedOff} className= "units__saved"/></span>
+          <span className="units__pages">{currentPage}/{totalPages}</span>
+          <span onClick = {() => handleSave()}><img src = {isSaved ? savedOn : savedOff} className= "units__saved"/></span>
         </div>
         <swiper-container
+
           slides-per-view="1"
           pagination="true"
           className="carousel__main"
           ref={carouselElRef}
+          onTransitionEnd = {() => handleTransition()}
         >
           {unitData.map((slide, index) => {
             return (
               <swiper-slide key = {index}>
-                <UnitSlide slide={slide} />
+                <UnitSlide slide={slide} index = {index}/>
               </swiper-slide>
             );
           })}

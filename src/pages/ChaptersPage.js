@@ -27,7 +27,7 @@ const ChaptersPage = () => {
         }
         getChapters()
       },[])
-
+      
     return (
         <div className = "wrapper">
             <div className = "chapters__bg">
