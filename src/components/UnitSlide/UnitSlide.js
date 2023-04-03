@@ -1,25 +1,52 @@
 import "./UnitSlide.scss";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Transcript from "../Transcript/Transcript";
+import axios from "axios";
 
-const UnitSlide = ({ slide, index }) => {
-  const { content, title, type, images, transcript } = slide;
-  //   console.log(slide);
-  //   console.log(transcript);
+const UnitSlide = ({ slide, unitID }) => {
+  const { content, title, type, images, transcript, page_number } = slide;
+    // console.log(slide);
+    // console.log(unitID);
+
+  const stringPageNum = page_number.toString()
 
   const [transcriptState, setTranscriptState] = useState(false)
+  const [transcriptData, setTranscriptData] = useState(null)
 
   function toggleTranscript() {
     setTranscriptState(!transcriptState)
+    // console.log(page_number);
+    // console.log(parseInt(unitID));
+    // console.log(transcriptState);
+    // console.log(transcriptData);
+    // console.log(typeof unitID);
+    // console.log(typeof page_number);
   }
+
+  useEffect(() => {
+    if (unitID && !transcriptData) {
+        const getTranscript = async () => {
+            try {
+                // const response = await axios.get(`http://localhost:8080/units/${unitID}/${page_number}`)
+                const response = await axios.get(`http://localhost:8080/units/${unitID}/${stringPageNum}`)
+                setTranscriptData(response.data)
+                if (transcriptData) {
+                    console.log(transcriptData);
+                }
+            }
+            catch(err) {
+                console.log(err + 'Error retrieving Transcript Data');
+            }
+        }
+        getTranscript()
+    }
+  }, [transcriptState])
 
   function formatType(string) {
     const changeFirst = string.charAt(0).toUpperCase();
     const restOfString = string.substring(1, string.length);
     return changeFirst.concat(restOfString);
   }
-
-  //   console.log(formatType());
 
   if (type === "special") {
     return (
