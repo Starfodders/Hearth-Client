@@ -1,7 +1,7 @@
 import "../styles/UnitsPage.scss";
 import topwave from "../assets/images/top-wave.svg";
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";
@@ -15,7 +15,8 @@ register();
 
 const UnitsPage = () => {
   const params = useParams();
-  const { id } = params;
+  const { id, name } = params;
+  const navigate = useNavigate();
 
   const carouselElRef = useRef(null);
   const backElRef = useRef(null);
@@ -30,6 +31,7 @@ const UnitsPage = () => {
 
   const [unitData, setUnitData] = useState([]);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [pageTitle, setPageTitle] = useState('Title')
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages]= useState(null)
   const [isSaved, setIsSaved] = useState(false)
@@ -50,6 +52,7 @@ const UnitsPage = () => {
     if (unitData.length > 0) {
         setTotalPages(unitData.length)
         setPageLoaded(true);
+        setPageTitle(name)
         console.log(unitData);
     }
   }, [unitData])
@@ -84,10 +87,10 @@ const UnitsPage = () => {
       </div>
       <main className="units__container">
         <div className="units__header">
-          <span className="material-symbols-outlined units__return">
+          <span className="material-symbols-outlined units__return" onClick = {() => navigate(-1)}>
             arrow_back
           </span>
-          <h2 className="units__title">Title</h2>
+          <h2 className="units__title">{pageTitle}</h2>
           <span className="units__pages">{currentPage}/{totalPages}</span>
           <span onClick = {() => handleSave()}><img src = {isSaved ? savedOn : savedOff} className= "units__saved"/></span>
         </div>
