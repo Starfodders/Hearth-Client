@@ -1,17 +1,21 @@
 import React from "react";
 import "./Options.scss"
 
-const Options = ({animToggle, animState}) => {
+const Options = ({animToggle, animState, soundToggle, soundState}) => {
 
     function handleAnimationToggle() {
         animToggle()
     }
 
+    function handleSoundToggle() {
+        soundToggle()
+    }
+
   return (
     <div className="options">
-      {/* <div
+      <div
         className="options__sound"
-        onClick={() => setSoundState(!soundState)}
+        onClick={() => handleSoundToggle()}
       >
         {soundState ? (
           <span className="material-symbols-outlined">check_box</span>
@@ -21,7 +25,7 @@ const Options = ({animToggle, animState}) => {
           </span>
         )}
         <p>Toggle Sound</p>
-      </div> */}
+      </div>
       <div
         className="options__animation"
         onClick={() => {

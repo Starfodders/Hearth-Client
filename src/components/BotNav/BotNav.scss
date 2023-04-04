@@ -10,6 +10,7 @@
     position: fixed;
     justify-content: center;
     bottom: 0;
+    animation: slide-up 1s;
     }
     &__block {
         display: flex;
@@ -18,6 +19,19 @@
         padding: 3rem;
         color: $off-white-reduced;
         font-size: 1.3rem;
+        transition: transform 0.5s;
+
+        &:hover {
+            transform: translateY(-30%);
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        &:hover > span, &:hover > p {
+            color: #52b69a;
+            opacity: 1;
+            transition: opacity 1s;
+        }
     }
 
     &__title {
@@ -32,4 +46,16 @@
 
 .active {
     color: $dark-green;
+}
+
+// FOR CHOICES SLIDE IN FROM BOTTOM
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
 }
