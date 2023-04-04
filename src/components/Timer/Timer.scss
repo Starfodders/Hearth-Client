@@ -1,0 +1,21 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.timer {
+
+    &__value {
+      background-color: rgb(1, 11, 18);
+      color: white;
+      border: none;
+      font-size: 2.4rem;
+      padding-right: 0.1rem;
+      max-width: 100px;
+    }
+  }
+
+  .circle__element {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
