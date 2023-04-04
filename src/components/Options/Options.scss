@@ -1,0 +1,38 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.options {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 12rem;
+    height: 7rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 4px;
+    animation: slide-in 0.5s ease-out;
+
+    &__sound {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 1rem;
+        opacity: 0.7;
+        padding: 0 1rem;
+
+        &:hover {
+            transition: background-color 0.25s;
+            background-color: #52b69a;
+            cursor: pointer;
+        }
+    }
+
+    &__animation{
+        @extend .options__sound;
+    }
+}

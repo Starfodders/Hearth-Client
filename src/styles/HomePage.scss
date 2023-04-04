@@ -1,0 +1,36 @@
+@use "./partials/fonts" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+
+.home {
+  &__container {
+    width: 100%;
+
+    &__welcome {
+      min-height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(3, 11, 17);
+      background: linear-gradient(
+        180deg,
+        rgba(3, 11, 17, 1) 0%,
+        rgba(6, 24, 37, 1) 100%
+      );
+    }
+
+    &__title {
+        color: $off-white-reduced;
+        font-size: 3rem;
+    }
+  }
+
+  &__image {
+    width: 100%;
+
+    &--picture {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}

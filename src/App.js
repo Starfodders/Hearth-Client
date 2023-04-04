@@ -31,7 +31,6 @@ function App() {
             <>
               <TopLogo />
               <HomePage isLoggedIn={isLoggedIn} />
-              <BotNav />
             </>
           }
         ></Route>
