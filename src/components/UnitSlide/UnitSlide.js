@@ -10,14 +10,14 @@ const UnitSlide = ({ slide, unitID }) => {
 
   const [transcriptState, setTranscriptState] = useState(false);
   const [transcriptData, setTranscriptData] = useState(null);
-  
-  const [currentSuggestion, setCurrentSuggestion] = useState(null)
-  const [currentListMascot, setCurrentListMascot] = useState(null)
-  const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null)
-  const [currentPlaying, setCurrentPlaying] = useState(null)
 
-  const mascotRef = useRef()
-  const currentMascot = mascotRef.current
+  const [currentSuggestion, setCurrentSuggestion] = useState(null);
+  const [currentListMascot, setCurrentListMascot] = useState(null);
+  const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null);
+  const [currentPlaying, setCurrentPlaying] = useState(null);
+
+  const [voiceoverState, setVoiceoverState] = useState(false)
+  const [voiceoverObject, setVoiceoverObject] = useState(null)
 
   //capitalizes the 'Type' for display
   function formatType(string) {
@@ -29,6 +29,7 @@ const UnitSlide = ({ slide, unitID }) => {
   //toggles transcript on and off
   function toggleTranscript() {
     setTranscriptState(!transcriptState);
+    setVoiceoverState(!voiceoverState)
   }
 
   //if transcript exists, grab specific unit ID to make GET for transcript data
@@ -50,27 +51,47 @@ const UnitSlide = ({ slide, unitID }) => {
     }
   }, [transcriptState]);
 
- //toggle to display a new recommendation
- function toggleSuggestion() {
-    if (list) {
-        setCurrentPlaying(currentListMascotGIF)
-        setTimeout(() => {
-            setCurrentPlaying(currentListMascot)
-        }, 480)
-        const splitList = list.split(', ')
-        let randomIndex = Math.floor(Math.random() * splitList.length)
-        let currentWord = `"${splitList[randomIndex]}"`
-        setCurrentSuggestion(currentWord)
-    }
- }
+//   function toggleAudio() {
+//     // console.log(transcriptData.audio);
+//     // const voiceover = new Audio(`http://localhost:8080/${transcriptData.audio}`)
+//     // voiceover.play();
+//   }
 
- useEffect(() => {
-    if (list && images) {
-        import (`../../assets/images/${images}.gif`).then((gif) => setCurrentListMascotGIF(gif.default))
-        import (`../../assets/images/${images}.png`).then((png) => setCurrentListMascot(png.default))
-        setCurrentPlaying(currentListMascot)
+//   useEffect(() => {
+//     if (!voiceoverObject) {
+//         const voiceover = new Audio(`http://localhost:8080/${transcriptData.audio}`)
+//     }
+//     if (voiceoverState) {
+        
+//     }
+//   }, [voiceoverState])
+
+  //toggle to display a new recommendation
+  function toggleSuggestion() {
+    if (list) {
+      setCurrentPlaying(currentListMascotGIF);
+      setTimeout(() => {
+        setCurrentPlaying(currentListMascot);
+      }, 480);
+      const splitList = list.split(", ");
+      let randomIndex = Math.floor(Math.random() * splitList.length);
+      let currentWord = `"${splitList[randomIndex]}"`;
+      setCurrentSuggestion(currentWord);
     }
- }, [list, images])
+  }
+
+  //if LIST slide exists, get the specific mascot for that list
+  useEffect(() => {
+    if (list && images) {
+      import(`../../assets/images/${images}.gif`).then((gif) =>
+        setCurrentListMascotGIF(gif.default)
+      );
+      import(`../../assets/images/${images}.png`).then((png) =>
+        setCurrentListMascot(png.default)
+      );
+      setCurrentPlaying(currentListMascot);
+    }
+  }, [list, images]);
 
   if (type === "special") {
     return (
@@ -100,12 +121,17 @@ const UnitSlide = ({ slide, unitID }) => {
           <p className="slide__content">{content}</p>
         </div>
         <div className="slide__container__bottom">
-          <span className="material-symbols-outlined slide__start">
-            play_circle
-          </span>
-          <p className="slide__play" onClick={() => toggleTranscript()}>
-            Play
-          </p>
+          <div className="slide__container__bottom__block">
+            <span className="material-symbols-outlined slide__start">
+              play_circle
+            </span>
+            <p className="slide__play" onClick={() => toggleTranscript()}>
+              Play
+            </p>
+          </div>
+          <div className="slide__container__bottom__block">
+            
+          </div>
         </div>
         {transcriptState ? <Transcript text={transcriptData} /> : null}
       </div>
@@ -120,12 +146,20 @@ const UnitSlide = ({ slide, unitID }) => {
           <p className="slide__content">{content}</p>
         </div>
         <div className="list__container">
-            <div className = "list__appear">
-                {currentSuggestion ? <div className = "list__appear--box"><p>{currentSuggestion}</p></div> : null }
-            </div>
-            <div className = "list__mascot">
-                <img src = {currentPlaying} className = "list__mascot--image" onClick = {() => toggleSuggestion()} ref = {mascotRef}/>
-            </div>
+          <div className="list__appear">
+            {currentSuggestion ? (
+              <div className="list__appear--box">
+                <p>{currentSuggestion}</p>
+              </div>
+            ) : null}
+          </div>
+          <div className="list__mascot">
+            <img
+              src={currentPlaying}
+              className="list__mascot--image"
+              onClick={() => toggleSuggestion()}
+            />
+          </div>
         </div>
       </>
     );

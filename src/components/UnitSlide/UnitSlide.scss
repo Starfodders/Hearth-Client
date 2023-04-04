@@ -48,9 +48,14 @@
 
         &__bottom {
             display: flex;
+            gap: 5rem;
+
+            &__block {
+                display: flex;
             align-items: center;
             gap: 0.5rem;
             padding: 2rem 0;
+            }
 
         }
 
