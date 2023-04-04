@@ -1,0 +1,17 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.transcript {
+    &__container {
+        margin-top: 2rem;
+        
+    }
+
+    &__paragraph {
+        font-size: 1.5rem;
+        line-height: 4rem;
+        padding-bottom: 1.5rem;
+        background-color: $off-white-reduced;
+    }
+}
