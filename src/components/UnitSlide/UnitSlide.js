@@ -1,29 +1,46 @@
 import "./UnitSlide.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Transcript from "../Transcript/Transcript";
 import axios from "axios";
 
 const UnitSlide = ({ slide, unitID }) => {
-  const { content, title, type, images, transcript, page_number } = slide;
+  const { content, title, type, images, transcript, page_number, list } = slide;
 
   const stringPageNum = page_number.toString();
 
   const [transcriptState, setTranscriptState] = useState(false);
   const [transcriptData, setTranscriptData] = useState(null);
+  
+  const [currentSuggestion, setCurrentSuggestion] = useState(null)
+  const [currentListMascot, setCurrentListMascot] = useState(null)
+  const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null)
+  const [currentPlaying, setCurrentPlaying] = useState(null)
 
-  function toggleTranscript() {
-    setTranscriptState(!transcriptState);
-    
+  const mascotRef = useRef()
+  const currentMascot = mascotRef.current
+
+  //capitalizes the 'Type' for display
+  function formatType(string) {
+    const changeFirst = string.charAt(0).toUpperCase();
+    const restOfString = string.substring(1, string.length);
+    return changeFirst.concat(restOfString);
   }
 
+  //toggles transcript on and off
+  function toggleTranscript() {
+    setTranscriptState(!transcriptState);
+  }
+
+  //if transcript exists, grab specific unit ID to make GET for transcript data
   useEffect(() => {
     if (transcript) {
       if (unitID && !transcriptData) {
         const getTranscript = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/units/${unitID}/${stringPageNum}`);
+            const response = await axios.get(
+              `http://localhost:8080/units/${unitID}/${stringPageNum}`
+            );
             setTranscriptData(response.data);
-           
           } catch (err) {
             console.log(err + "Error retrieving Transcript Data");
           }
@@ -33,11 +50,27 @@ const UnitSlide = ({ slide, unitID }) => {
     }
   }, [transcriptState]);
 
-  function formatType(string) {
-    const changeFirst = string.charAt(0).toUpperCase();
-    const restOfString = string.substring(1, string.length);
-    return changeFirst.concat(restOfString);
-  }
+ //toggle to display a new recommendation
+ function toggleSuggestion() {
+    if (list) {
+        setCurrentPlaying(currentListMascotGIF)
+        setTimeout(() => {
+            setCurrentPlaying(currentListMascot)
+        }, 480)
+        const splitList = list.split(', ')
+        let randomIndex = Math.floor(Math.random() * splitList.length)
+        let currentWord = `"${splitList[randomIndex]}"`
+        setCurrentSuggestion(currentWord)
+    }
+ }
+
+ useEffect(() => {
+    if (list && images) {
+        import (`../../assets/images/${images}.gif`).then((gif) => setCurrentListMascotGIF(gif.default))
+        import (`../../assets/images/${images}.png`).then((png) => setCurrentListMascot(png.default))
+        setCurrentPlaying(currentListMascot)
+    }
+ }, [list, images])
 
   if (type === "special") {
     return (
@@ -76,6 +109,25 @@ const UnitSlide = ({ slide, unitID }) => {
         </div>
         {transcriptState ? <Transcript text={transcriptData} /> : null}
       </div>
+    );
+  }
+  if (type === "list") {
+    return (
+      <>
+        <div className="slide__container">
+          <p className="slide__type">{formatType(type)} Card</p>
+          {title !== "null" ? <h1 className="slide__title">{title}</h1> : null}
+          <p className="slide__content">{content}</p>
+        </div>
+        <div className="list__container">
+            <div className = "list__appear">
+                {currentSuggestion ? <div className = "list__appear--box"><p>{currentSuggestion}</p></div> : null }
+            </div>
+            <div className = "list__mascot">
+                <img src = {currentPlaying} className = "list__mascot--image" onClick = {() => toggleSuggestion()} ref = {mascotRef}/>
+            </div>
+        </div>
+      </>
     );
   }
   return (
