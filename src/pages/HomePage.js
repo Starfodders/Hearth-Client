@@ -26,7 +26,14 @@ const HomePage = ({ isLoggedIn }) => {
   const [fireOn, setFireOn] = useState(false);
   const [mainFireOn, setMainFireOn] = useState(false);
   const [fireSrc, setFireSrc] = useState(noFire);
-  const [homepageState, setHomepageState] = useState(sessionStorage.getItem('homepageState'))
+  const [homepageState, setHomepageState] = useState(
+    sessionStorage.getItem("homepageState")
+  );
+  function handleInitialClick() {
+    if (!homepageState) {
+      setFireOn(true);
+    }
+  }
 
   //for animation states
   const [animationState, setAnimationState] = useState(true);
@@ -43,21 +50,23 @@ const HomePage = ({ isLoggedIn }) => {
 
   //this works, loops without taking up too much memory
   useEffect(() => {
-    if (soundState) {
-      fireLoopAudio.play();
-      fireLoopAudio.volume = 0.2;
-      fireLoopAudio.loop = true;
-    } else if (!soundState && fireLoopAudio) {
-      fireLoopAudio.pause();
-    } else {
-      return;
-    }
-    return () => {
-      if (fireLoopAudio && !fireLoopAudio.paused) {
+    if (homepageState) {
+      if (soundState) {
+        fireLoopAudio.play();
+        fireLoopAudio.volume = 0.2;
+        fireLoopAudio.loop = true;
+      } else if (!soundState && fireLoopAudio) {
         fireLoopAudio.pause();
+      } else {
+        return;
       }
-    };
-  }, [soundState, mainFireOn]);
+      return () => {
+        if (fireLoopAudio && !fireLoopAudio.paused) {
+          fireLoopAudio.pause();
+        }
+      };
+    }
+  }, [soundState, homepageState]);
 
   function toggleAnimation() {
     setAnimationState(!animationState);
@@ -86,8 +95,8 @@ const HomePage = ({ isLoggedIn }) => {
 
       setTimeout(() => {
         setMainFireOn(true);
-        sessionStorage.setItem('homepageState', true)
-        setHomepageState(sessionStorage.getItem('homepageState'))
+        sessionStorage.setItem("homepageState", true);
+        setHomepageState(sessionStorage.getItem("homepageState"));
 
         if (animationState) {
           setFireSrc(fireGif);
@@ -97,16 +106,6 @@ const HomePage = ({ isLoggedIn }) => {
       }, 2000);
     }
   }, [fireOn]);
-
-//   useEffect(() => {
-//     if (homepageState || mainFireOn) {
-//         if (animationState) {
-//             setFireSrc(fireGif)
-//         } else {
-//             setFireSrc(fireStatic)
-//         }
-//     }
-//   }, [])
 
   return (
     <>
@@ -120,12 +119,12 @@ const HomePage = ({ isLoggedIn }) => {
           <img
             src={fireSrc}
             className="home__image--picture"
-            onClick={() => setFireOn(true)}
+            onClick={() => handleInitialClick()}
           />
         </div>
         {currToken}
       </div>
-      {mainFireOn ? (
+      {homepageState ? (
         <Options
           animToggle={toggleAnimation}
           animState={animationState}
