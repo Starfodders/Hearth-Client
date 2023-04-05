@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 
-const LandingPage = ({isLoggedIn, setIsLoggedIn}) => {
+const LandingPage = ({isLoggedIn, setIsLoggedIn, setDisplayName}) => {
   const navigate = useNavigate()
   const [SignUpPage, setSignUpPage] = useState(false);
   const [newSignUp, setNewSignUp] = useState({});
@@ -21,7 +21,7 @@ const LandingPage = ({isLoggedIn, setIsLoggedIn}) => {
 
   //if already logged in, redirect to home
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn || sessionStorage.getItem('authToken')) {
       navigate('/home')
     }
   }, [isLoggedIn])
@@ -34,7 +34,7 @@ const LandingPage = ({isLoggedIn, setIsLoggedIn}) => {
         {SignUpPage ? (
           <SignUp toggle={toggleState} getUser={getNewUserSignUp} />
         ) : (
-          <Login toggle={toggleState} newUser={newSignUp} setIsLoggedIn={setIsLoggedIn} />
+          <Login toggle={toggleState} newUser={newSignUp} setIsLoggedIn={setIsLoggedIn} setDisplayName = {setDisplayName} />
         )}
         <img src={bgWaves} className="bg-wrapper" alt="background waves" />
       </div>

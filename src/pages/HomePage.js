@@ -13,15 +13,18 @@ import BotNav from "../components/BotNav/BotNav";
 
 import "../styles/HomePage.scss";
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
   const currToken = sessionStorage.getItem("authToken");
+  const [username, setUsername] = useState('Traveller')
 
-  // useEffect(() => {
-  //     if (!isLoggedIn) {
-  //         navigate('/')
-  //     }
-  // }, [isLoggedIn])
+  useEffect(() => {
+      if (!isLoggedIn) {
+        if (!sessionStorage.getItem('authToken')) {
+          navigate('/')
+        }
+      } 
+  }, [isLoggedIn])
 
   const [fireOn, setFireOn] = useState(false);
   const [mainFireOn, setMainFireOn] = useState(false);
@@ -112,7 +115,7 @@ const HomePage = ({ isLoggedIn }) => {
       <div className="home__container">
         <div className="home__container__welcome">
           <h1 className="home__container__title">
-            {homepageState ? "Welcome back, Michael" : "Let's Get Warm"}
+            {homepageState ? `Welcome back, ${username}` : "Let's Get Warm"}
           </h1>
         </div>
         <div className="home__image">

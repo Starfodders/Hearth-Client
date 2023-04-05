@@ -2,13 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom"
+import jwt_decode from "jwt-decode"
 import passwordHide from "../../assets/icons/passwordHide.svg"
 import passwordShow from "../../assets/icons/passwordShow.svg"
 import ErrorIcon from '../ErrorIcon/ErrorIcon'
 import "./Login.scss"
 
 
-const Login = ({toggle, newUser, setIsLoggedIn}) => {
+const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
     const navigate = useNavigate();
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
@@ -64,7 +65,10 @@ const Login = ({toggle, newUser, setIsLoggedIn}) => {
             })
             //once successful, set token, set logged in to true, go to home page
             .then(({data}) => {
-                sessionStorage.setItem('authToken', data.token)
+                const {token} = data
+                sessionStorage.setItem('authToken', token)
+                const decodedToken = jwt_decode(token)
+                setDisplayName(decodedToken.name)
                 setIsLoggedIn(true)
                 navigate('/home')
             })

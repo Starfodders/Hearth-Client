@@ -6,9 +6,18 @@ import Loader from "../components/Loader/Loader";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
-const ChaptersPage = () => {
+const ChaptersPage = ({isLoggedIn}) => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!isLoggedIn) {
+      if (!sessionStorage.getItem('authToken')) {
+        navigate('/')
+      }
+    } 
+}, [isLoggedIn])
   const [isLoaded, setIsLoaded] = useState(false)
   const [initialContent, setInitialContent] = useState(null)
 

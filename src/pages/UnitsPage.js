@@ -12,10 +12,18 @@ import savedOn from "../assets/icons/savedFull.svg";
 import { register } from "swiper/element/bundle";
 register();
 
-const UnitsPage = () => {
+const UnitsPage = ({isLoggedIn}) => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!isLoggedIn) {
+      if (!sessionStorage.getItem('authToken')) {
+        navigate('/')
+      }
+    } 
+}, [isLoggedIn])
+
   const params = useParams();
   const { id, name } = params;
-  const navigate = useNavigate();
 
   const carouselElRef = useRef(null);
   const backElRef = useRef(null);

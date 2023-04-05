@@ -1,5 +1,5 @@
 import "./_App.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
@@ -9,9 +9,27 @@ import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
 import BotNav from "./components/BotNav/BotNav";
 import UnitsPage from "./pages/UnitsPage";
+import axios from "axios";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [displayName, setDisplayName] = useState(null);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('authToken') && !displayName) {
+      const getName = async () => {
+        try {
+          const response = await axios.get('http://localhost:8080/users/getName')
+          setDisplayName(response.data)
+          sessionStorage.setItem('currentName', displayName)
+        }
+        catch(error) {
+          console.log(error + ' Error getting username');
+        }
+      }
+      getName()
+    }
+  }, [isLoggedIn, displayName]);
 
   return (
     <BrowserRouter>
@@ -22,6 +40,7 @@ function App() {
             <LandingPage
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
+              setDisplayName={setDisplayName}
             />
           }
         ></Route>
@@ -29,8 +48,8 @@ function App() {
           path="/home"
           element={
             <>
-              <TopLogo />
-              <HomePage isLoggedIn={isLoggedIn} />
+              <TopLogo name={displayName} login = {setIsLoggedIn} />
+              <HomePage isLoggedIn={isLoggedIn} name = {displayName}/>
             </>
           }
         ></Route>
@@ -38,7 +57,8 @@ function App() {
           path="/chapters"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn} />
+
               <ChaptersPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
@@ -48,7 +68,8 @@ function App() {
           path="/chapters/:id"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn} />
+
               <ChaptersPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
@@ -58,7 +79,8 @@ function App() {
           path="/chapters/:name/:unitId"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn}/>
+
               <ChaptersPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
@@ -68,7 +90,8 @@ function App() {
           path="/unit/:name/:id"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn}/>
+
               <UnitsPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
@@ -78,7 +101,8 @@ function App() {
           path="/meditation"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn}/>
+
               <MeditationPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
@@ -88,7 +112,8 @@ function App() {
           path="/collection"
           element={
             <>
-              <TopLogo />
+              <TopLogo name={displayName} login = {setIsLoggedIn}/>
+
               <CollectionPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>

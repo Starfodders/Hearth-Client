@@ -1,13 +1,25 @@
 import MeditateSetter from "../components/MeditateSetter/MeditateSetter";
 import Timer from "../components/Timer/Timer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import bgFire from "../assets/images/homepage/fireOnLesser.gif";
 
 import "../styles/MeditatePage.scss";
 
-const MeditationPage = () => {
+const MeditationPage = ({isLoggedIn}) => {
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!isLoggedIn) {
+      if (!sessionStorage.getItem('authToken')) {
+        navigate('/')
+      }
+    } 
+}, [isLoggedIn])
+
+
   const [inputTime, setInputTime] = useState(15);
-  //   const [pause, setPause] = useState(false);
   const [start, setStart] = useState(false);
 
   function handleInputTime(time) {
