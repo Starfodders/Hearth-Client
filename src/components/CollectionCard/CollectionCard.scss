@@ -1,0 +1,44 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.collection-card {
+  &__container {
+    width: 20%;
+    padding: 1rem;
+    min-height: 385px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $off-white;
+    border-radius: 4px;
+    min-width: 230px;
+  }
+
+  &__name {
+    min-height: 4.5rem;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  &__image {
+    width: 70%;
+    filter: drop-shadow(0 3px 1px rgba(72, 72, 72, 0.5));
+    padding-bottom: 1.2rem;
+  }
+
+  &__button {
+    background-color: $black;
+    color: $off-white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem;
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+}

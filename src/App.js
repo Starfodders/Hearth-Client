@@ -9,7 +9,6 @@ import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
 import BotNav from "./components/BotNav/BotNav";
 import UnitsPage from "./pages/UnitsPage";
-import axios from "axios";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
