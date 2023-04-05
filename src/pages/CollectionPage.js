@@ -4,6 +4,7 @@ import "../styles/CollectionPage.scss";
 import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
+import CollectionBlock from "../components/CollectionBlock/CollectionBlock";
 
 const CollectionPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
@@ -19,6 +20,15 @@ const CollectionPage = ({ isLoggedIn }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
 
+  const [pageState, setPageState] = useState("");
+  const [insideBlock, setInsideBlock] = useState(false);
+
+  const [summaryCount, setSummaryCount] = useState(0);
+  const [techniqueCount, setTechniqueCount] = useState(0);
+  const [listCount, setListCount] = useState(0);
+  const [textCount, setTextCount] = useState(0);
+
+  //get array of saved posts
   useEffect(() => {
     if (!savedData) {
       const getData = async () => {
@@ -39,6 +49,30 @@ const CollectionPage = ({ isLoggedIn }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const typeVariables = {
+      text: setTextCount,
+      summary: setSummaryCount,
+      technique: setTechniqueCount,
+      list: setListCount,
+    };
+
+    if (savedData) {
+      savedData.forEach((page) => {
+        const { type } = page;
+        if (typeVariables[type]) {
+          typeVariables[type]((prev) => prev + 1);
+        }
+      });
+    }
+    return () => {
+      setSummaryCount(0);
+      setTextCount(0);
+      setTechniqueCount(0);
+      setListCount(0);
+    };
+  }, [savedData]);
+
   if (!isLoaded) {
     return (
       <main className="collections__wrapper">
@@ -58,12 +92,38 @@ const CollectionPage = ({ isLoggedIn }) => {
         </span>
         <h1 className="collections__title--text">Collections</h1>
       </div>
-      <section className="collections__content">
-        <CollectionCard name="Summary Cards" />
-        <CollectionCard name="Technique Cards" />
-        <CollectionCard name="List Cards" />
-        <CollectionCard name="Text Cards" />
-      </section>
+      {insideBlock ? (
+        <section className="collections__content--list">
+          <CollectionBlock type={pageState} content={savedData} />
+        </section>
+      ) : (
+        <section className="collections__content">
+          <CollectionCard
+            name="Summary Cards"
+            count={summaryCount}
+            setBlock={setInsideBlock}
+            setPage={setPageState}
+          />
+          <CollectionCard
+            name="Technique Cards"
+            count={techniqueCount}
+            setBlock={setInsideBlock}
+            setPage={setPageState}
+          />
+          <CollectionCard
+            name="List Cards"
+            count={listCount}
+            setBlock={setInsideBlock}
+            setPage={setPageState}
+          />
+          <CollectionCard
+            name="Text Cards"
+            count={textCount}
+            setBlock={setInsideBlock}
+            setPage={setPageState}
+          />
+        </section>
+      )}
     </main>
   );
 };

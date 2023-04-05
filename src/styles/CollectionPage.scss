@@ -38,5 +38,12 @@
         gap: 1.5rem;
         display: flex;
         justify-content: space-between;
+
+        &--list {
+            @extend .collections__content;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-bottom: 20rem;
+        }
     }
 }

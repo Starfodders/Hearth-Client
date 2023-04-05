@@ -1,0 +1,40 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.block {
+
+    &__container {
+        width: 100%;
+        background-color: $off-white;
+        padding: 1rem 1.5rem;
+        border-radius: 4px;
+        max-height: 8em;
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 1.5rem;
+        line-height: 1.8em;
+    }
+
+    &__left {
+        width: 5%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__center {
+        width: 92%;
+    }
+
+    &__title {
+        font-size: 1.2rem;
+        max-height: 2rem;
+        opacity: 0.7;
+    }
+
+    &__expand {
+        display: flex;
+        align-items: center;
+    }
+}
