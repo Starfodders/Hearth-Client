@@ -18,5 +18,17 @@
   &__gif {
     width: 40%;
     margin-left: 1%;
+    margin-top: -2rem;
+    opacity: 1;
+    animation: fade-in 0.25s;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
   }
 }

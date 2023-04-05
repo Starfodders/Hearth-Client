@@ -18,4 +18,14 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    animation: fade-in 1s;
   }
+
+  @keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

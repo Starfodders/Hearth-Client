@@ -60,22 +60,14 @@ const MeditateSetter = ({ inputTime, setTime, start, startState, pause }) => {
         <div className="meditate__choices__block">
           {start ? (
             <button
-              className={
-                start
-                  ? "meditate__choices__button"
-                  : "meditate__choices__button cancel"
-              }
+              className={"meditate__choices__button--pause"}
               onClick={() => handlePause()}
             >
               Pause
             </button>
           ) : (
             <button
-              className={
-                start
-                  ? "meditate__choices__button cancel"
-                  : "meditate__choices__button"
-              }
+              className={"meditate__choices__button"}
               onClick={() => handleStart()}
             >
               Start
