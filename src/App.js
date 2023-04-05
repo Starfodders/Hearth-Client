@@ -13,23 +13,7 @@ import axios from "axios";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [displayName, setDisplayName] = useState(null);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('authToken') && !displayName) {
-      const getName = async () => {
-        try {
-          const response = await axios.get('http://localhost:8080/users/getName')
-          setDisplayName(response.data)
-          sessionStorage.setItem('currentName', displayName)
-        }
-        catch(error) {
-          console.log(error + ' Error getting username');
-        }
-      }
-      getName()
-    }
-  }, [isLoggedIn, displayName]);
+  const [displayName, setDisplayName] = useState(sessionStorage.getItem('currentName'));
 
   return (
     <BrowserRouter>

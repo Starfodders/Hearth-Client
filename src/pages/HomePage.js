@@ -16,7 +16,7 @@ import "../styles/HomePage.scss";
 const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
   const currToken = sessionStorage.getItem("authToken");
-  const [username, setUsername] = useState('Traveller')
+  // const [username, setUsername] = useState('Traveller')
 
   useEffect(() => {
       if (!isLoggedIn) {
@@ -115,7 +115,7 @@ const HomePage = ({ isLoggedIn, name }) => {
       <div className="home__container">
         <div className="home__container__welcome">
           <h1 className="home__container__title">
-            {homepageState ? `Welcome back, ${username}` : "Let's Get Warm"}
+            {homepageState ? `Welcome back, ${name}` : "Let's Get Warm"}
           </h1>
         </div>
         <div className="home__image">

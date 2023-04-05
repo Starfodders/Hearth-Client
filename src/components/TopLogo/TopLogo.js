@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./TopLogo.scss";
-import {useState} from "react"
 
 const TopLogo = ({name, login}) => {
   const [menuHover, setMenuHover] = useState(false)
+  const navigate = useNavigate();
+
 
   function handleLogOut() {
     sessionStorage.removeItem('authToken')
     login(false)
+    navigate('/')
   }
 
   return (

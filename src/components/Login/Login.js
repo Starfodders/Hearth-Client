@@ -68,7 +68,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
                 const {token} = data
                 sessionStorage.setItem('authToken', token)
                 const decodedToken = jwt_decode(token)
-                setDisplayName(decodedToken.name)
+                sessionStorage.setItem('currentName', decodedToken.name)
+                setDisplayName(sessionStorage.getItem('currentName'))
                 setIsLoggedIn(true)
                 navigate('/home')
             })
