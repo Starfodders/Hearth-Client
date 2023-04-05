@@ -2,7 +2,7 @@ import "./Timer.scss";
 import { useState, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-const Timer = ({ timer, animate, pause }) => {
+const Timer = ({ timer, animate }) => {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
@@ -16,20 +16,10 @@ const Timer = ({ timer, animate, pause }) => {
     );
   };
 
-  const [playState, setPlayState] = useState(false);
-
-  useEffect(() => {
-    if (animate) {
-      setPlayState(true);
-    } else if (pause) {
-      setPlayState(false);
-    }
-  }, [pause, animate]);
-
   return (
     <div className="circle__element">
       <CountdownCircleTimer
-        isPlaying={playState}
+        isPlaying={animate}
         duration={timer * 60}
         colors={["#52b69a"]}
         strokeWidth={18}

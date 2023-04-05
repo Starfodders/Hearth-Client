@@ -14,7 +14,7 @@ const UnitSlide = ({ slide, unitID }) => {
   const [currentSuggestion, setCurrentSuggestion] = useState(null);
   const [currentListMascot, setCurrentListMascot] = useState(null);
   const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null);
-  const [currentPlaying, setCurrentPlaying] = useState(null);
+  const [currentPlaying, setCurrentPlaying] = useState(currentListMascot);
 
   const [voiceoverState, setVoiceoverState] = useState(false)
   const [voiceoverObject, setVoiceoverObject] = useState(null)
@@ -91,7 +91,7 @@ const UnitSlide = ({ slide, unitID }) => {
       );
       setCurrentPlaying(currentListMascot);
     }
-  }, [list, images]);
+  }, [list, images, currentListMascot]);
 
   if (type === "special") {
     return (
@@ -101,6 +101,7 @@ const UnitSlide = ({ slide, unitID }) => {
           <p className="slide__content">{content}</p>
         </div>
         <div className="slide__container--special--right">
+          .
           <img
             src={`http://localhost:8080/${images}`}
             className="slide__container--special--mascot"

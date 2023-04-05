@@ -1,3 +1,22 @@
 @use "./partials/fonts" as *;
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
+
+.meditate {
+  &__wrapper {
+    height: 100%;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__picture {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__gif {
+    width: 40%;
+    margin-left: 1%;
+  }
+}

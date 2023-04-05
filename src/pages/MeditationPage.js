@@ -1,12 +1,13 @@
 import MeditateSetter from "../components/MeditateSetter/MeditateSetter";
 import Timer from "../components/Timer/Timer";
 import { useState } from "react";
+import bgFire from "../assets/images/homepage/fireOnLesser.gif";
 
 import "../styles/MeditatePage.scss";
 
 const MeditationPage = () => {
   const [inputTime, setInputTime] = useState(15);
-  const [pause, setPause] = useState(false);
+  //   const [pause, setPause] = useState(false);
   const [start, setStart] = useState(false);
 
   function handleInputTime(time) {
@@ -18,24 +19,24 @@ const MeditationPage = () => {
   }
 
   function togglePause() {
-    setPause(true);
+    setStart(false);
   }
-
-  useState(() => {
-    if (pause) {
-      setStart(false);
-    }
-  }, [pause]);
 
   return (
     <div className="meditate__wrapper">
       <MeditateSetter
         currentTime={inputTime}
         setTime={handleInputTime}
-        start={toggleStart}
+        start = {start}
+        startState={toggleStart}
         pause={togglePause}
       />
       <Timer timer={inputTime} animate={start} pause={false} />
+      {start ? (
+        <div className="meditate__picture">
+          <img src={bgFire} className="meditate__gif" />
+        </div>
+      ) : null}
     </div>
   );
 };
