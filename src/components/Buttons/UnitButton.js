@@ -13,7 +13,7 @@ const UnitButton = ({details}) => {
 
     return (
         <button className="card__button" onClick = {() =>  navigate(`/unit/${name}/${id}`)}>
-        Click - unit
+        Continue
       </button>
     );
 };

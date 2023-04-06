@@ -31,6 +31,11 @@
     &__return {
         color: $off-white;
         font-size: 3rem;
+        &:hover {
+            cursor: pointer;
+            color: $turquoise;
+            transition: color 0.3s;
+          }
     }
 
     &__content {

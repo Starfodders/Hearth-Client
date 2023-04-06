@@ -14,6 +14,17 @@
     background-color: $off-white;
     border-radius: 4px;
     min-width: 230px;
+
+    &:hover {
+      background-color: $off-white-highlighted;
+      transition: background-color 0.3s;
+
+      & > img {
+          transform: scale(1.1);
+          transition: transform 0.3s;
+      }
+  }
+   
   }
 
   &__name {
@@ -40,5 +51,34 @@
     margin-top: 1rem;
     font-size: 1.1rem;
     font-weight: 500;
+
+    &:hover {
+      background-color: $turquoise;
+      transition: background-color 0.3s;
+      cursor: pointer;
+
+  }
 }
+}
+
+.collection-card__container:nth-of-type(1) {
+  animation: card-slide-in 0.6s;
+}
+.collection-card__container:nth-of-type(2) {
+  animation: card-slide-in 0.5s;
+}
+.collection-card__container:nth-of-type(3) {
+  animation: card-slide-in 0.4s;
+}
+.collection-card__container:nth-of-type(4) {
+  animation: card-slide-in 0.3s;
+}
+
+@keyframes card-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }

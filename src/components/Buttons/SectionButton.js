@@ -8,7 +8,8 @@ const SectionButton = ({details}) => {
 
     return (
         <button className="card__button" onClick = {() => navigate(`/chapters/${name}/${id}`)}>
-        Click - sect
+                Continue
+
       </button>
     );
 };
