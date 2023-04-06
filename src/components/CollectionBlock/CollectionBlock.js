@@ -5,9 +5,6 @@ import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 
 const CollectionBlock = ({ type, content }) => {
-  console.log(content); //encompasses ALL retrieved data
-  //   console.log(type); //encompasses the current data to be displayed
-
   //init a state var, object full of expand false equal to the content length
   const [blocks, setBlocks] = useState(content.map(() => ({ expand: false })));
 
@@ -78,7 +75,7 @@ const CollectionBlock = ({ type, content }) => {
   if (!contentLoad) {
     return (
       <div className="loader__wrapper">
-        <h2 className = "loader__disclaimer">Nothing saved.</h2>
+        <h2 className="loader__disclaimer">Nothing saved.</h2>
         <Loader />
       </div>
     );
@@ -92,10 +89,8 @@ const CollectionBlock = ({ type, content }) => {
             <div className="block__left">
               <span className="material-symbols-outlined">delete</span>
             </div>
-            <div className="block__center">
-              <p className="block__title">
-                {page.title ? page.title : shortenTitle(type)}
-              </p>
+            <div className="block__center" onClick={() => handleTextExpand(index)}>
+              <p className="block__title">{shortenTitle(type)}</p>
               <CollectionItem
                 content={page.content}
                 shorten={shortenText}

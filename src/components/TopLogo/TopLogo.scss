@@ -17,6 +17,9 @@
     &__title {
         font-family: 'Paytone One', sans-serif;
         font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        min-width: 8rem;
     }
 
     &__profile {
@@ -50,7 +53,7 @@
 
 
 .spacer { 
-    min-width: 4rem;
+    min-width: 8rem;
     width: 5%;
 
     user-select: none;

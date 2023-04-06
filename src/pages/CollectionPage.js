@@ -86,7 +86,7 @@ const CollectionPage = ({ isLoggedIn }) => {
       <div className="collections__title">
         <span
           className="material-symbols-outlined collections__return"
-          onClick={() => navigate(-1)}
+          onClick={() => setInsideBlock(false)}
         >
           arrow_back
         </span>
