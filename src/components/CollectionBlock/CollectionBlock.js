@@ -2,6 +2,7 @@ import "./CollectionBlock.scss";
 import CollectionItem from "../CollectionItem/CollectionItem";
 
 import { useEffect, useState } from "react";
+import axios from "axios"
 import Loader from "../Loader/Loader";
 
 const CollectionBlock = ({ type, content }) => {
@@ -72,6 +73,21 @@ const CollectionBlock = ({ type, content }) => {
     });
   }
 
+  function handleDelete(id) {
+    axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
+    .then(response => {
+      if (response.status === 204) {
+
+          setFilteredContent(filteredContent.filter(item => item.id !== id));
+          setBlocks(content.map(() => ({ expand: false })));
+
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   if (!contentLoad) {
     return (
       <div className="loader__wrapper">
@@ -87,12 +103,12 @@ const CollectionBlock = ({ type, content }) => {
         return (
           <div className="block__container" key={page.id}>
             <div className="block__left">
-              <span className="material-symbols-outlined">delete</span>
+              <span className="material-symbols-outlined" onClick = {() => handleDelete(page.id)}>delete</span>
             </div>
             <div className="block__center">
               <p className="block__title">{shortenTitle(type)}</p>
               <CollectionItem
-              type  = {type}
+                type={type}
                 content={page}
                 shorten={shortenText}
                 expand={blocks[index].expand}

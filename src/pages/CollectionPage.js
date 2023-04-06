@@ -104,7 +104,7 @@ const CollectionPage = ({ isLoggedIn }) => {
       </div>
       {insideBlock ? (
         <section className="collections__content--list">
-          <CollectionBlock type={pageState} content={savedData} />
+          <CollectionBlock type={pageState} content = {savedData}/>
         </section>
       ) : (
         <section className="collections__content">
