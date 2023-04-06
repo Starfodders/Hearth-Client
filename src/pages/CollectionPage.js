@@ -39,7 +39,6 @@ const CollectionPage = ({ isLoggedIn }) => {
           setSavedData(response.data);
           if (response) {
             setIsLoaded(true);
-            console.log(response.data);
           }
         } catch (error) {
           console.log(error + " Error retrieving collection data");
@@ -49,6 +48,7 @@ const CollectionPage = ({ isLoggedIn }) => {
     }
   }, []);
 
+  //counts the amount of specific TYPEs and sets their counters
   useEffect(() => {
     const typeVariables = {
       text: setTextCount,
