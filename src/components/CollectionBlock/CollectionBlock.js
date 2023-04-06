@@ -1,20 +1,23 @@
 import "./CollectionBlock.scss";
+import CollectionItem from "../CollectionItem/CollectionItem";
+
+import {useState} from "react"
 
 const CollectionBlock = ({ type, content }) => {
-  // console.log(type);
   console.log(content);
 
+  const [expand, setExpand] = useState(false);
+
   function shortenText(text) {
-    const arrayText = text.split(" ");
-    arrayText.length = 8;
-    const joined = arrayText.join(" ");
-    return `${joined}...`;
+    return text.split(" ").slice(0, 8).join(" ") + "...";
   }
 
   function shortenTitle(title) {
-    const arrayTitle = title.split(" ");
-    arrayTitle.pop();
-    return arrayTitle;
+    return title.split(" ").slice(0, -1);
+  }
+
+  function handleTextExpand() {
+    setExpand(prevExpand => !prevExpand)
   }
 
   return (
@@ -29,9 +32,9 @@ const CollectionBlock = ({ type, content }) => {
               <p className="block__title">
                 {page.title ? page.title : shortenTitle(type)}
               </p>
-              <p className="block__content">{shortenText(page.content)}</p>
+              <CollectionItem content = {page.content} shorten = {shortenText} expand = {expand}/>
             </div>
-            <div className="block__expand">
+            <div className="block__expand" onClick = {() => handleTextExpand()}>
               <span className="material-symbols-outlined">unfold_more</span>
             </div>
           </div>
