@@ -1,0 +1,36 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.expand__list {
+
+    &__block {
+        padding-top: 1rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        z-index: 10;
+    }
+
+    &--icon {
+        width: 7%;
+        z-index: 10;
+        object-fit: contain;
+        filter: drop-shadow(0 1px 1px black);
+
+        &:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s;
+        }
+    }
+
+    &--suggestion {
+        border-radius: 4px;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        background-color: $off-white-highlighted;
+    }
+    
+}

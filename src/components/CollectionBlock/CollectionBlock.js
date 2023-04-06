@@ -89,10 +89,11 @@ const CollectionBlock = ({ type, content }) => {
             <div className="block__left">
               <span className="material-symbols-outlined">delete</span>
             </div>
-            <div className="block__center" onClick={() => handleTextExpand(index)}>
+            <div className="block__center">
               <p className="block__title">{shortenTitle(type)}</p>
               <CollectionItem
-                content={page.content}
+              type  = {type}
+                content={page}
                 shorten={shortenText}
                 expand={blocks[index].expand}
               />

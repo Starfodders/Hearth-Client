@@ -1,18 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CollectionExpandList from "../CollectionExpand/CollectionExpandList";
+import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
-const CollectionItem = ({ content, shorten, expand }) => {
+
+const CollectionItem = ({ type, content, shorten, expand }) => {
+
+  const [isList, setIsList] = useState(false)
+  const [isTechnique, setIsTechnique] = useState(false)
 
 
+  useEffect(() => {
+    if (type === 'List Cards') {
+      setIsList(true)
+      setIsTechnique(false)
+
+    }
+    if (type === 'Technique Cards') {
+      setIsTechnique(true)
+      setIsList(false)
+    }
+  }, [type, expand])
 
   return (
-    <>
+    <div className="block__center--text">
       {expand ? (
-        <p className="block__content">{content}</p>
+        <>
+          <p className="block__content">{content.content}</p>
+          {isList ? <CollectionExpandList content = {content}/> : null }
+          {isTechnique ? <CollectionExpandTech/> : null }
+        </>
       ) : (
-        <p className="block__content">{shorten(content)}</p>
+        <p className="block__content">{shorten(content.content)}</p>
       )}
-    </>
+    </div>
   );
 };
 
 export default CollectionItem;
+
+//if list exists, then render the expand list
