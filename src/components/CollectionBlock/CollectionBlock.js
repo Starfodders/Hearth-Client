@@ -1,28 +1,40 @@
 import "./CollectionBlock.scss";
 import CollectionItem from "../CollectionItem/CollectionItem";
 
-import {useState} from "react"
+import { useState } from "react";
 
 const CollectionBlock = ({ type, content }) => {
-  console.log(content);
+//   console.log(content);
 
-  const [expand, setExpand] = useState(false);
+//init a state var, object full of expand false equal to the content length
+  const [blocks, setBlocks] = useState(content.map(() => ({ expand: false })));
 
+  //truncates the text
   function shortenText(text) {
     return text.split(" ").slice(0, 8).join(" ") + "...";
   }
 
+  //formats the title to remove 'card' from text
   function shortenTitle(title) {
     return title.split(" ").slice(0, -1);
   }
 
-  function handleTextExpand() {
-    setExpand(prevExpand => !prevExpand)
+  //passes block's index, takes the current state of blocks, maps over it. If index matches clicked index, reverse the state
+  function handleTextExpand(index) {
+    setBlocks((prevState) => {
+      return prevState.map((block, i) => {
+        if (i === index) {
+          return { ...block, expand: !block.expand };
+        } else {
+          return block;
+        }
+      });
+    });
   }
 
   return (
     <>
-      {content.map((page) => {
+      {content.map((page, index) => {
         return (
           <div className="block__container" key={page.id}>
             <div className="block__left">
@@ -32,9 +44,13 @@ const CollectionBlock = ({ type, content }) => {
               <p className="block__title">
                 {page.title ? page.title : shortenTitle(type)}
               </p>
-              <CollectionItem content = {page.content} shorten = {shortenText} expand = {expand}/>
+              <CollectionItem
+                content={page.content}
+                shorten={shortenText}
+                expand = {blocks[index].expand}
+              />
             </div>
-            <div className="block__expand" onClick = {() => handleTextExpand()}>
+            <div className="block__expand" onClick={() => handleTextExpand(index)}>
               <span className="material-symbols-outlined">unfold_more</span>
             </div>
           </div>

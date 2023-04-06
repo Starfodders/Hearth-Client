@@ -9,7 +9,6 @@
         background-color: $off-white;
         padding: 1rem 1.5rem;
         border-radius: 4px;
-        max-height: 8em;
         display: flex;
         justify-content: space-between;
 
@@ -19,22 +18,28 @@
 
     &__left {
         width: 5%;
+        max-height: 2rem;
         display: flex;
         align-items: center;
     }
 
     &__center {
-        width: 92%;
+        width: 90%;
     }
 
     &__title {
         font-size: 1.2rem;
         max-height: 2rem;
         opacity: 0.7;
+        display: flex;
+        align-items: center;
     }
 
     &__expand {
+        width: 5%;
+        
         display: flex;
+        justify-content: flex-end;
         align-items: center;
     }
 }
