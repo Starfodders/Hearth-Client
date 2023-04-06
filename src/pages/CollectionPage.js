@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/CollectionPage.scss";
 import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";
@@ -8,6 +8,7 @@ import CollectionBlock from "../components/CollectionBlock/CollectionBlock";
 
 const CollectionPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     if (!isLoggedIn) {
       if (!sessionStorage.getItem("authToken")) {
@@ -27,6 +28,15 @@ const CollectionPage = ({ isLoggedIn }) => {
   const [techniqueCount, setTechniqueCount] = useState(0);
   const [listCount, setListCount] = useState(0);
   const [textCount, setTextCount] = useState(0);
+
+
+  // useEffect(() => {
+  //   if (location.pathname !== "/collection") {
+  //     setReturnHome(false);
+  //   } else {
+  //     setReturnHome(true);
+  //   }
+  // }, [location]);
 
   //get array of saved posts
   useEffect(() => {

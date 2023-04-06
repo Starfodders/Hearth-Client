@@ -5,8 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";
-import savedOff from "../assets/icons/savedEmpty.svg";
-import savedOn from "../assets/icons/savedFull.svg";
+
 
 //Swiper Components
 import { register } from "swiper/element/bundle";
@@ -37,22 +36,26 @@ const UnitsPage = ({isLoggedIn}) => {
   }
 
   const [unitData, setUnitData] = useState([]);
+  const [unitSavedData, setUnitSavedData] = useState([])
   const [pageLoaded, setPageLoaded] = useState(false);
   const [pageTitle, setPageTitle] = useState("Title");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
-  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    const getUnitData = async () => {
+    const getData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/units/${id}`);
-        setUnitData(response.data);
+        const [unitResponse, savedResponse] = await Promise.all([
+          axios.get(`http://localhost:8080/units/${id}`),
+          axios.get(`http://localhost:8080/collections/${sessionStorage.getItem('userId')}`)
+        ]);
+        setUnitData(unitResponse.data);
+        setUnitSavedData(savedResponse.data);
       } catch (err) {
         console.log(err + " Error retrieving unit data");
       }
     };
-    getUnitData();
+    getData();
   }, [params]);
 
   useEffect(() => {
@@ -60,12 +63,10 @@ const UnitsPage = ({isLoggedIn}) => {
       setTotalPages(unitData.length);
       setPageLoaded(true);
       setPageTitle(name);
+      // console.log(unitData);
+      // console.log(unitSavedData);
     }
   }, [unitData]);
-
-  function handleSave() {
-    // setIsSaved(!isSaved)
-  }
 
   function handleTransition() {
     //when fired, updates currentPage to the current active index
@@ -98,9 +99,6 @@ const UnitsPage = ({isLoggedIn}) => {
           <span className="units__pages">
             {currentPage}/{totalPages}
           </span>
-          <span onClick={() => handleSave()}>
-            <img src={isSaved ? savedOn : savedOff} className="units__saved" />
-          </span>
         </div>
         <swiper-container
           slides-per-view="1"
@@ -112,7 +110,7 @@ const UnitsPage = ({isLoggedIn}) => {
           {unitData.map((slide, index) => {
             return (
               <swiper-slide key={index}>
-                <UnitSlide slide={slide} unitID = {id}/>
+                <UnitSlide slide={slide} unitID = {id} currentSaved = {unitSavedData}/>
               </swiper-slide>
             );
           })}

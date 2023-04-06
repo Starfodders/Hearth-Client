@@ -11,6 +11,7 @@
     justify-content: center;
     bottom: 0;
     animation: slide-up 1s;
+    z-index: 10;
     }
     &__block {
         display: flex;

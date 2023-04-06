@@ -71,8 +71,12 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
                 sessionStorage.setItem('currentName', decodedToken.name)
                 sessionStorage.setItem('userId', decodedToken.id)
                 setDisplayName(sessionStorage.getItem('currentName'))
-                setIsLoggedIn(true)
-                navigate('/home')
+                
+                // setTimeout(() => {
+                    setIsLoggedIn(true)
+                    navigate('/home')
+                // }, 2000)
+               
             })
             .catch((error) => {
                 console.log(error);

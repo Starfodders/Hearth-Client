@@ -45,6 +45,14 @@
 
         &__top {
             display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+
+            &--left {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
         }
 
         &__bottom {
@@ -121,4 +129,12 @@
         }
     }
 
+}
+
+.units__saved {
+    transition: all 0.3s ease;
+}
+
+.units__saved--off {
+    transform: scale(1.1);
 }
