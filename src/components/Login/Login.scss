@@ -13,12 +13,22 @@
         align-items: center;
         position: relative;
 
+        &--disappear {
+            @extend .login__container;
+            animation: fade-out 0.5s;
+            opacity: 0;
+
+        }
+
+       
+
         &--label {
             color: $off-white;
             align-self: flex-start;
             font-size: 1rem;
             letter-spacing: 1px;
             padding-bottom: 0.2rem;
+
         }
     }
 
@@ -93,5 +103,17 @@
         margin-top: 2rem;
         font-size: 0.7rem;
         cursor: pointer;
+    }
+}
+
+
+
+@keyframes fade-out {
+    0% {
+        opacity: 1
+    }
+    100%{
+        display: none;
+        opacity: 0
     }
 }

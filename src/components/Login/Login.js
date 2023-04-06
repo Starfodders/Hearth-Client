@@ -9,7 +9,7 @@ import ErrorIcon from '../ErrorIcon/ErrorIcon'
 import "./Login.scss"
 
 
-const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
+const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postLoginState, setPrepage}) => {
     const navigate = useNavigate();
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
@@ -65,17 +65,19 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
             })
             //once successful, set token, set logged in to true, go to home page
             .then(({data}) => {
-                const {token} = data
-                sessionStorage.setItem('authToken', token)
-                const decodedToken = jwt_decode(token)
-                sessionStorage.setItem('currentName', decodedToken.name)
-                sessionStorage.setItem('userId', decodedToken.id)
-                setDisplayName(sessionStorage.getItem('currentName'))
+                postLogin(true)
                 
-                // setTimeout(() => {
+                setTimeout(() => {
+                    const {token} = data
+                    sessionStorage.setItem('authToken', token)
+                    const decodedToken = jwt_decode(token)
+                    sessionStorage.setItem('currentName', decodedToken.name)
+                    sessionStorage.setItem('userId', decodedToken.id)
+                    setDisplayName(sessionStorage.getItem('currentName'))
+
                     setIsLoggedIn(true)
                     navigate('/home')
-                // }, 2000)
+                }, 5000)
                
             })
             .catch((error) => {
@@ -86,7 +88,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
 
 
     return (
-        <form className = "login__container" onSubmit = {(e) => handleLogin(e) }>
+        <>
+        <form className = {postLoginState ? "login__container--disappear" : "login__container"} onSubmit = {(e) => handleLogin(e) }>
             <label htmlFor = "email" className = "login__container--label">Email Address</label>
             <input type = "text" name = "email" className = "login__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
             <ErrorIcon element = {errorFields.email}/>
@@ -106,6 +109,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName}) => {
             <button className = "login__btn">Log In</button>
             <p className = "login__toggle" onClick = {()=> toggle()}>New to here? Click here to make an account.</p>
         </form>
+
+        </>
     );
 };
 

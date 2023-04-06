@@ -110,6 +110,8 @@ const HomePage = ({ isLoggedIn, name }) => {
     }
   }, [fireOn]);
 
+  // window.scrollTo(0, 5000)
+
   return (
     <>
       <div className="home__container">
@@ -125,7 +127,6 @@ const HomePage = ({ isLoggedIn, name }) => {
             onClick={() => handleInitialClick()}
           />
         </div>
-        {currToken}
       </div>
       {homepageState ? (
         <Options
