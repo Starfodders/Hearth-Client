@@ -9,7 +9,7 @@ import ErrorIcon from '../ErrorIcon/ErrorIcon'
 import "./Login.scss"
 
 
-const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postLoginState, setPrepage}) => {
+const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postLoginState}) => {
     const navigate = useNavigate();
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
