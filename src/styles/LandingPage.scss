@@ -128,7 +128,7 @@
 
     &--moving {
         @extend .transition__fire;
-        animation: transition-slide-up-3 5s;
+        animation: transition-slide-up-2 5s;
         opacity: 1;
         transform: scale(1);
     }
@@ -242,7 +242,6 @@
         opacity: 1;
      }
 }
-
 
 @keyframes transition-slide-up-3 {
     0% {

@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/LandingPage.scss";
-import bgWaves from "../assets/images/homepage/waves1.svg";
 import bgForest from "../assets/images/homepage/homeBG.png"
 import transition from "../assets/images/transitionForest.png"
 import transitionBot from "../assets/images/transitionBottom.png"
@@ -59,11 +58,6 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             postLoginState={postLogin}
           />
         )}
-        {/* <img
-          src={bgWaves}
-          className={postLogin ? "bg-wrapper--disappear" : "bg-wrapper"}
-          alt="background waves"
-        /> */}
         <img src = {bgForest} className = {postLogin ? "bg-solid--disappear" : "bg-solid"}/>
         <img src = {transition} className ={postLogin ? "transition__bg--moving": "transition__bg"}/>
         <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"}/>
