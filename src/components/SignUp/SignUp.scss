@@ -90,12 +90,27 @@
         border-radius: 4px;
         font-size: 1.2rem;
         font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+
+
+
+        &:hover {
+            background-color: $turquoise;
+            transition: background-color 0.3s;
+        }
     }
 
     &__toggle {
         color: $off-white-reduced;
         margin-top: 2rem;
+        padding: 0.2rem;
+        border-radius: 4px;
         font-size: 0.7rem;
         cursor: pointer;
+
+        &:hover {
+            background-color: $turquoise;
+            transition: background-color 0.3s;
+        }
     }
 }

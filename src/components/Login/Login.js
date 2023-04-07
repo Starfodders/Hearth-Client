@@ -13,6 +13,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
     const navigate = useNavigate();
     const [passwordHidden, setPasswordHidden] = useState(true)
     const [passwordType, setPasswordType] = useState('password')
+    const [rememberUser, setRememberUser] = useState(false)
+
 
     const [formValid, setFormValid] = useState(true)
     const [inputFields, setInputFields] = useState({email: '', password: '', blank: ''})
@@ -28,6 +30,14 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
         setPasswordHidden(!passwordHidden)
        
     }
+
+    //checks localStorage if user has a saved email from 'remember' option
+    useEffect(() => {
+        if (localStorage.getItem('savedUserEmail')) {
+            setInputFields({...inputFields, email: localStorage.getItem('savedUserEmail')})
+            setRememberUser(true)
+        }
+    }, [])
 
     //handles if the user is new, populates the fields with the new account details
     useEffect(() => {
@@ -58,7 +68,7 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
         }
         if (formValid) {
             const {email, password} = inputFields;
-            //login, posts to back end to check for an exisiting account
+            //login, posts to back end to check for an existing account
             axios.post('http://localhost:8080/users/login', {
                 email,
                 password
@@ -66,6 +76,9 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
             //once successful, set token, set logged in to true, go to home page
             .then(({data}) => {
                 postLogin(true)
+                if (rememberUser === true) {
+                    localStorage.setItem('savedUserEmail', email)
+                }
                 
                 setTimeout(() => {
                     const {token} = data
@@ -86,6 +99,13 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
         }
     }
 
+    function toggleRemember() {
+        setRememberUser((prev) => !prev)
+        if (!rememberUser && localStorage.getItem('savedUserEmail')) {
+            localStorage.removeItem('savedUserEmail')
+        }
+    }
+
 
     return (
         <>
@@ -93,15 +113,17 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
             <label htmlFor = "email" className = "login__container--label">Email Address</label>
             <input type = "text" name = "email" className = "login__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
             <ErrorIcon element = {errorFields.email}/>
+
             <label htmlFor = "password" className = "login__container--label">Password</label>
             <div className = "login__pw-box">
             <input type = {passwordType} name = "password" className = "login__password" value = {inputFields.password} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
             {passwordHidden ? <img src = {passwordShow} className = "login__pw-icon" onClick = {()=> toggleShowState()}/> : <img src = {passwordHide} className = "login__pw-icon" onClick = {()=> toggleShowState()}/>}
             <ErrorIcon element = {errorFields.password}/>
+
             </div>
             <div className = "login__lower">
                 <div className = "login__remember">
-                    <input type = "checkbox" name = "remember" className = "login__remember--box"></input>
+                    <input type = "checkbox" name = "remember" className = "login__remember--box" onChange = {() => toggleRemember()} checked = {localStorage.getItem('savedUserEmail')}></input>
                     <label htmlFor = "remember">Remember Me</label>
                 </div>
                 <p className ="login__reset">Forgot Password</p>
