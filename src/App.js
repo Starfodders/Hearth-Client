@@ -48,7 +48,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/chapters/:id"
+          path="/chapters/:chapterID"
           element={
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn} />
@@ -59,7 +59,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/chapters/:name/:unitId"
+          path="/chapters/units/:sectionID"
           element={
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn}/>

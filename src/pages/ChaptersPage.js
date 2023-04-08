@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ChaptersPage = ({isLoggedIn}) => {
+
   const navigate = useNavigate()
   useEffect(() => {
     if (!isLoggedIn) {
@@ -18,14 +19,16 @@ const ChaptersPage = ({isLoggedIn}) => {
       }
     } 
 }, [isLoggedIn])
+
   const [isLoaded, setIsLoaded] = useState(false)
   const [initialContent, setInitialContent] = useState(null)
+  const currentUser = sessionStorage.getItem('userId')
 
     //handles initial content which is overall chapters
     useEffect(() => {
         const getChapters = async () => {
           try {
-            const response = await axios.get('http://localhost:8080/chapters')
+            const response = await axios.get(`http://localhost:8080/chapters/${currentUser}`)
             setInitialContent(response.data)
             setTimeout(() => {
                 setIsLoaded(true)

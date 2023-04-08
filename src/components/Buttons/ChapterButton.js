@@ -8,7 +8,7 @@ const ChapterButton = ({details}) => {
 
     return (
         <button className={available ? "card__button" : "card__button--disabled"} onClick = {() => navigate(`/chapters/${id}`)}>
-        {available ? "Continue" : "Coming Soon"}
+        {available ? "Continue" : "Locked"}
       </button>
     );
 };

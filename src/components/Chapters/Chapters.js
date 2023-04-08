@@ -7,8 +7,10 @@ import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
 
 const Chapters = ({initial}) => {
-  const {id, name, unitId} = useParams()
+  const {chapterID, sectionID} = useParams()
+
   const location = useLocation();
+  const currentUser = sessionStorage.getItem('userId')
 
 
   // const [isLoaded, setIsLoaded] = useState(false)
@@ -27,11 +29,11 @@ const Chapters = ({initial}) => {
 
   //if unitID exists as param, they're on page to select specific Unit
   useEffect(() => {
-    if (unitId) {
+    if (sectionID) {
       setSectionLevel('units')
       const getUnitDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/chapters/${id}/${unitId}`)
+          const response = await axios.get(`http://localhost:8080/chapters/units/${currentUser}/${sectionID}`)
           setContentToLoad(response.data)          
         }
         catch(err) {
@@ -41,11 +43,11 @@ const Chapters = ({initial}) => {
       getUnitDetails();
     }
     //if no unitId and ONLY id param, then they're on page to select specific Section
-    if (!unitId && id) {
+    if (!sectionID && chapterID) {
       setSectionLevel('sections')
       const getNewDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/chapters/${id}`)
+          const response = await axios.get(`http://localhost:8080/chapters/sections/${currentUser}/${chapterID}`)
           setContentToLoad(response.data)
           // getTitle(id)
         } catch(err) {
@@ -54,7 +56,7 @@ const Chapters = ({initial}) => {
       }
       getNewDetails()
     }
-  }, [id, unitId])
+  }, [chapterID, sectionID])
 
   //renders specific title based on which page you're rendering
   // function getTitle(id) {
