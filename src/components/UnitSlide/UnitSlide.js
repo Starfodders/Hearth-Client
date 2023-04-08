@@ -4,6 +4,7 @@ import TextCard from "../SlideTypes/TextCard";
 import TechniqueCard from "../SlideTypes/TechniqueCard";
 import ListCard from "../SlideTypes/ListCard";
 import SpecialCard from "../SlideTypes/SpecialCard";
+// import FinishCard from "../SlideTypes/FinishCard";
 
 const UnitSlide = ({ slide, unitID, currentSaved }) => {
   const { type } = slide;
@@ -53,6 +54,11 @@ const UnitSlide = ({ slide, unitID, currentSaved }) => {
       />
     );
   }
+  // if (type === 'finish') {
+  //   return (
+  //     <FinishCard slide = {slide}/>
+  //   )
+  // }
   return (
     <TextCard
       slide={slide}

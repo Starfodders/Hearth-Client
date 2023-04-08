@@ -5,13 +5,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";
-
+import FinishCard from "../components/SlideTypes/FinishCard";
 
 //Swiper Components
 import { register } from "swiper/element/bundle";
 register();
 
 const UnitsPage = ({isLoggedIn}) => {
+
   const navigate = useNavigate()
   useEffect(() => {
     if (!isLoggedIn) {
@@ -28,8 +29,13 @@ const UnitsPage = ({isLoggedIn}) => {
   const backElRef = useRef(null);
   const forwardElRef = useRef(null);
 
+  const [isCloser, setIsCloser] = useState(false)
+
   function handleForward() {
     carouselElRef.current.swiper.slideNext();
+    if(currentPage === totalPages) {
+      setIsCloser(true)
+    }
   }
   function handleBack() {
     carouselElRef.current.swiper.slidePrev();
@@ -37,6 +43,7 @@ const UnitsPage = ({isLoggedIn}) => {
 
   const [unitData, setUnitData] = useState([]);
   const [unitSavedData, setUnitSavedData] = useState([])
+  const [finishData, setFinishData] = useState([])
   const [pageLoaded, setPageLoaded] = useState(false);
   const [pageTitle, setPageTitle] = useState("Title");
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,12 +52,14 @@ const UnitsPage = ({isLoggedIn}) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const [unitResponse, savedResponse] = await Promise.all([
+        const [unitResponse, savedResponse, finishData] = await Promise.all([
           axios.get(`http://localhost:8080/units/${id}`),
-          axios.get(`http://localhost:8080/collections/${sessionStorage.getItem('userId')}`)
+          axios.get(`http://localhost:8080/collections/${sessionStorage.getItem('userId')}`),
+          axios.get(`http://localhost:8080/units/finish/${id}`)
         ]);
         setUnitData(unitResponse.data);
         setUnitSavedData(savedResponse.data);
+        setFinishData(finishData.data)
       } catch (err) {
         console.log(err + " Error retrieving unit data");
       }
@@ -87,6 +96,7 @@ const UnitsPage = ({isLoggedIn}) => {
       <div className="units__bg">
         <img src={topwave} className="units__bg--img" alt="moving waves" />
       </div>
+      {isCloser ? <FinishCard details = {finishData}/> : null}
       <main className="units__container">
         <div className="units__header">
           <span

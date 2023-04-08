@@ -76,7 +76,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
     if (transcript && transcriptState) {
         if (!transcriptData) {
             axios
-            .get(`http://localhost:8080/units/${unitID}/${page_number}`)
+            .get(`http://localhost:8080/units/transcript/${unitID}/${page_number}`)
             .then((response) => {
               setTranscriptData(response.data);
               setTranscriptLoaded(true)
