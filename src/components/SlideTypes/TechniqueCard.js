@@ -12,6 +12,22 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
   const [voiceoverState, setVoiceoverState] = useState(false);
   const [voiceoverObject, setVoiceoverObject] = useState(null);
 
+  //   function toggleAudio() {
+  //     // console.log(transcriptData.audio);
+  //     // const voiceover = new Audio(`http://localhost:8080/${transcriptData.audio}`)
+  //     // voiceover.play();
+  //   }
+
+  //   useEffect(() => {
+  //     if (!voiceoverObject) {
+  //         const voiceover = new Audio(`http://localhost:8080/${transcriptData.audio}`)
+  //     }
+  //     if (voiceoverState) {
+
+  //     }
+  //   }, [voiceoverState])
+
+
   //states for transcripts
   const [transcriptState, setTranscriptState] = useState(false);
   const [transcriptData, setTranscriptData] = useState(null);
