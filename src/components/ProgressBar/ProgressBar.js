@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./ProgressBar.scss"
 
 const ProgressBar = ({ details, level, progress }) => {
   const { current, unit, completedChapters, completedSections } = progress;
@@ -30,7 +31,17 @@ const ProgressBar = ({ details, level, progress }) => {
     }
   }
 
-  return <div>{`${currentContent}/${details.units}`}</div>;
+  return (
+    <div className="progress__container">
+      <label htmlFor="progress" className="progress__label">{`${currentContent}/${details.units}`}</label>
+      <progress
+        value={currentContent}
+        max={details.units}
+        name="progress"
+        className="progress__bar"
+      ></progress>
+    </div>
+  );
 };
 
 export default ProgressBar;
