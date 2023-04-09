@@ -35,6 +35,11 @@ const TextCard = ({slide, format, saveState, saveFunc}) => {
         }
       }
 
+      function formatContent(content) {
+        return content.split(';')
+      }
+
+
   return (
     <div className="slide__container">
       <div className="slide__container__top">
@@ -51,7 +56,7 @@ const TextCard = ({slide, format, saveState, saveFunc}) => {
         </div>
       </div>
 
-      <p className="slide__content">{content}</p>
+     {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
     </div>
   );
 };

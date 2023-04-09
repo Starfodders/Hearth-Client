@@ -16,12 +16,12 @@ progress {
 
   &::-webkit-progress-value {
     background: rgb(82, 182, 154);
-    background: linear-gradient(
-      90deg,
-      rgba(82, 182, 154, 1) 0%,
-      rgba(137, 204, 151, 1) 51%,
-      rgba(217, 237, 146, 1) 100%
-    );
+    // background: linear-gradient(
+    //   90deg,
+    //   rgba(82, 182, 154, 1) 0%,
+    //   rgba(137, 204, 151, 1) 51%,
+    //   rgba(217, 237, 146, 1) 100%
+    // );
     animation: progress-bar 1s ease-in-out infinite;
 
     border-radius: 4px;

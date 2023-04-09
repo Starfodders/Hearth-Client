@@ -8,6 +8,7 @@ import SpecialCard from "../SlideTypes/SpecialCard";
 
 const UnitSlide = ({ slide, unitID, currentSaved }) => {
   const { type } = slide;
+  console.log(slide);
 
   const [isSaved, setIsSaved] = useState(false);
 
