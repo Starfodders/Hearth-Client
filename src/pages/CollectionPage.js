@@ -5,6 +5,11 @@ import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import CollectionBlock from "../components/CollectionBlock/CollectionBlock";
+import TechniqueIcon from "../assets/icons/techniqueIcon.svg"
+import ListIcon from "../assets/icons/listIcon.svg"
+import summaryIcon from "../assets/icons/summaryIcon.svg"
+import textIcon from "../assets/icons/textIcon.svg"
+
 
 const CollectionPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
@@ -110,24 +115,28 @@ const CollectionPage = ({ isLoggedIn }) => {
         <section className="collections__content">
           <CollectionCard
             name="Summary Cards"
+            image = {summaryIcon}
             count={summaryCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="Technique Cards"
+            image = {TechniqueIcon}
             count={techniqueCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="List Cards"
+            image = {ListIcon}
             count={listCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="Text Cards"
+            image = {textIcon}
             count={textCount}
             setBlock={setInsideBlock}
             setPage={setPageState}

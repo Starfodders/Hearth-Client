@@ -4,11 +4,8 @@ import ChapterButton from "../Buttons/ChapterButton"
 import SectionButton from "../Buttons/SectionButton";
 import UnitButton from "../Buttons/UnitButton"
 
-const Card = ({ details, level }) => {
+const Card = ({ details, level, progress }) => {
   const {available} = details
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
 
 let button;
   if (level === 'chapters') {
@@ -27,7 +24,7 @@ let button;
         alt={details.name}
         className="card__image"
       />
-      <ProgressBar />
+      {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> : 'In Development'}
      {button}
     </div>
   );

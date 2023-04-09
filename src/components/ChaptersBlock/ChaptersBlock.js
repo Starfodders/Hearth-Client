@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-const ChaptersBlock = ({ content, title, level }) => {
+const ChaptersBlock = ({ content, title, level, progress }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [backPath, setBackPath] = useState(-1)
@@ -27,7 +27,7 @@ const ChaptersBlock = ({ content, title, level }) => {
       </div>
       <div className="chapters__main">
         {content.map((details) => {
-          return <Card details={details} level = {level} key = {details.id}/>;
+          return <Card details={details} level = {level} key = {details.id} progress = {progress}/>;
         })}
       </div>
     </section>

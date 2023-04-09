@@ -6,12 +6,13 @@ import Loader from "../Loader/Loader";
 import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
 
-const Chapters = ({initial}) => {
+const Chapters = ({initial, progress}) => {
   const {chapterID, sectionID} = useParams()
+  // console.log(initial);
+  // console.log(progress);
 
   const location = useLocation();
   const currentUser = sessionStorage.getItem('userId')
-
 
   // const [isLoaded, setIsLoaded] = useState(false)
   const [initialContent, setInitialContent] = useState(initial)
@@ -72,7 +73,7 @@ const Chapters = ({initial}) => {
 
 
   return (
-      <ChaptersBlock content = {contentToLoad} title = {contentTitle} level = {sectionLevel}/>
+      <ChaptersBlock content = {contentToLoad} title = {contentTitle} level = {sectionLevel} progress = {progress}/>
   );
 };
 

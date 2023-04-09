@@ -22,14 +22,19 @@ const ChaptersPage = ({isLoggedIn}) => {
 
   const [isLoaded, setIsLoaded] = useState(false)
   const [initialContent, setInitialContent] = useState(null)
+  const [userProgress, setUserProgress] = useState(null)
   const currentUser = sessionStorage.getItem('userId')
 
     //handles initial content which is overall chapters
     useEffect(() => {
         const getChapters = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/chapters/${currentUser}`)
-            setInitialContent(response.data)
+            const [chapterData, currentProgress] = await Promise.all([
+              axios.get(`http://localhost:8080/chapters/${currentUser}`),
+              axios.get(`http://localhost:8080/users/progress/${currentUser}`)
+            ])
+            setInitialContent(chapterData.data)
+            setUserProgress(currentProgress.data.userProgress)
             setTimeout(() => {
                 setIsLoaded(true)
             }, 1000)
@@ -45,7 +50,7 @@ const ChaptersPage = ({isLoggedIn}) => {
             <div className = "chapters__bg">
                 <img src = {topwave} className = "chapters__bg--img" alt = "moving waves"/>
             </div>
-            {isLoaded ? <Chapters initial = {initialContent}/> : <Loader/>}
+            {isLoaded ? <Chapters initial = {initialContent} progress = {userProgress}/> : <Loader/>}
         </div>
     );
 };
