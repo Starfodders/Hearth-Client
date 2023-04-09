@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import "../Card/Card.scss";
 import { useNavigate} from "react-router-dom";
 

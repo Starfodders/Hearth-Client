@@ -55,11 +55,7 @@ const UnitSlide = ({ slide, unitID, currentSaved }) => {
       />
     );
   }
-  // if (type === 'finish') {
-  //   return (
-  //     <FinishCard slide = {slide}/>
-  //   )
-  // }
+
   return (
     <TextCard
       slide={slide}

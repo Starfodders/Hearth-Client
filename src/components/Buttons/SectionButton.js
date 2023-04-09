@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
 import "../Card/Card.scss";
 import { useNavigate} from "react-router-dom";
 
 const SectionButton = ({details}) => {
-  const {name, id, available} = details
+  const {id, available} = details
   const navigate = useNavigate();
 
     return (

@@ -25,9 +25,9 @@ const ProgressBar = ({ details, level, progress }) => {
 
   if (level === "units") {
     if (details.id <= current) {
-      return <div>Complete</div>;
+      return <div className="progress__box"><p className="progress__notif">Complete</p></div>;
     } else if (details.id === unit) {
-      return <div>In Progress</div>;
+      return <div className="progress__box"><p className="progress__notif">In Progress</p></div>;
     }
   }
 

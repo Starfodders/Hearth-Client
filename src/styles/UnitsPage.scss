@@ -21,6 +21,7 @@
         margin: 0 auto;
         position: relative;
         margin-bottom: 20rem;
+        
       }
     
       &__header {
@@ -29,11 +30,17 @@
         gap: 1rem;
         width: 100%;
         margin: 4rem 0 6rem;
+        animation: slide-in 0.5s;
       }
   
       &__return {
         color: $off-white;
         font-size: 3rem;
+        &:hover {
+          cursor: pointer;
+          color: $turquoise;
+          transition: color 0.5s;
+        }
       }
     
       &__title {
@@ -64,7 +71,7 @@
 
 .carousel {
   &__main {
-   
+    
   }
 
   &__buttons {
@@ -79,6 +86,14 @@
 
     &--el {
       font-size: 2rem;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $turquoise;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+    
+      }
     }
   }
 
@@ -107,3 +122,14 @@
 // .swiper-pagination-bullet-active {
 //   background-color: $medium-green;
 // }
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

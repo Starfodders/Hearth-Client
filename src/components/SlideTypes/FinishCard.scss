@@ -14,6 +14,8 @@
         margin: 0 auto;
         top: 0;
         left: 0;
+        opacity: 1;
+        animation: frame-appear 1s;
     }
 
     &__container {
@@ -24,6 +26,7 @@
         width: 100%;
         max-width: 1020px;
         padding: 10rem 0;
+        animation: frame-appear 1s;
         
     }
 
@@ -46,5 +49,25 @@
         border-radius: 4px;
         font-size: 1.5rem;
         cursor: pointer;
+        animation: frame-appear 2s;
+
+        &:hover {
+            background-color: $turquoise;
+            color: $off-white;
+            transition: all 0.75s;
+
+        }
+    }
+}
+
+@keyframes frame-appear {
+    0% {
+        opacity: 0
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1
     }
 }
