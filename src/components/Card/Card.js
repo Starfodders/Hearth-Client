@@ -6,6 +6,7 @@ import UnitButton from "../Buttons/UnitButton"
 
 const Card = ({ details, level, progress }) => {
   const {available} = details
+  // console.log(details.id);
 
 let button;
   if (level === 'chapters') {

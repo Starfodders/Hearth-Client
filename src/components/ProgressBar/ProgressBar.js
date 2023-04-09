@@ -1,53 +1,36 @@
 import { useEffect, useState } from "react";
 
-const ProgressBar = ({details, level, progress}) => {
-    console.log(details);
-    const {current, unit} = progress
-    
-    // const [available, setAvailable] = useState(true)
-    const [currentContent, setCurrentContent] = useState(current)
+const ProgressBar = ({ details, level, progress }) => {
+  const { current, unit, completedChapters, completedSections } = progress;
 
-    useEffect(() => {
-       
-    }, [details])
+  const [currentContent, setCurrentContent] = useState(0);
 
-    if (level === 'units') {
-        if (details.id <= current) {
-            return <div>
-                Complete
-            </div>
+  useEffect(() => {
+    if (level === "chapters") {
+      completedChapters.forEach((chapter) => {
+        if (chapter.chapter_id === details.id) {
+          setCurrentContent(chapter.units_complete);
         }
-        else if (details.id === unit) {
-            return <div>
-                In Progress
-            </div>
-        }
+      });
     }
+    if (level === "sections") {
+      completedSections.forEach((section) => {
+        if (section.section_id === details.id) {
+          setCurrentContent(section.units_complete);
+        }
+      });
+    }
+  }, [details, currentContent]);
 
-    // if (level === 'chapters') {
-    //     return <div>
-    //         1/{details.units}
-    //     </div>
-    // }
+  if (level === "units") {
+    if (details.id <= current) {
+      return <div>Complete</div>;
+    } else if (details.id === unit) {
+      return <div>In Progress</div>;
+    }
+  }
 
-     return (
-        <div>
-            {`${current}/${details.units}`}
-        </div>
-    );
+  return <div>{`${currentContent}/${details.units}`}</div>;
 };
 
 export default ProgressBar;
-
-//progress bar will always take a prop
-//this will be total units inside 
-
-//can make a get request on chapters page for specific numbers of sections
-
-//Chapter Cards will have % of units inside completed
-//Section Cards will have % of units inside completed
-
-//so need which units completed and can do math upwards
-
-//if at level UNITS, progress bar should be replaced with a boolean whether the unit is done or not
-//get user profile and pass down the units #

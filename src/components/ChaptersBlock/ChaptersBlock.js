@@ -10,6 +10,8 @@ const ChaptersBlock = ({ content, title, level, progress }) => {
   const location = useLocation();
   const [backPath, setBackPath] = useState(-1)
 
+  // console.log(progress.completed); //array with two objects
+
   useState(() => {
     if (location.pathname !== '/chapters') {
       setBackPath(-1)
