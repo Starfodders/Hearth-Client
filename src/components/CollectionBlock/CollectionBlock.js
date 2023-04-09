@@ -50,8 +50,16 @@ const CollectionBlock = ({ type, content }) => {
     }
   }, [content, type]);
 
-  //truncates the text
+  //truncates the text, the syntax is very confusing please don't ask me
   function shortenText(text) {
+    if (text.indexOf(';') !== -1) {
+      const colonIndex = text.split('').indexOf(';')
+      const newShortenString = text.split('').splice(0, colonIndex).join('').split(" ").slice(0, 8).join(" ")+ "..."
+      return newShortenString
+    }
+    if (text.length <= 8) {
+      return text
+    }
     return text.split(" ").slice(0, 8).join(" ") + "...";
   }
 
@@ -103,7 +111,7 @@ const CollectionBlock = ({ type, content }) => {
         return (
           <div className="block__container" key={page.id}>
             <div className="block__left">
-              <span className="material-symbols-outlined" onClick = {() => handleDelete(page.id)}>delete</span>
+              <span className="material-symbols-outlined block__delete" onClick = {() => handleDelete(page.id)}>delete</span>
             </div>
             <div className="block__center">
               <p className="block__title">{shortenTitle(type)}</p>
@@ -118,7 +126,7 @@ const CollectionBlock = ({ type, content }) => {
               className="block__expand"
               onClick={() => handleTextExpand(index)}
             >
-              <span className="material-symbols-outlined">unfold_more</span>
+              <span className="material-symbols-outlined block__expand--btn">unfold_more</span>
             </div>
           </div>
         );

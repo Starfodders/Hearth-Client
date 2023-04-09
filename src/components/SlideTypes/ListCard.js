@@ -13,13 +13,18 @@ const ListCard = ({slide, format, saveState, saveFunc}) => {
   const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null);
   const [currentPlaying, setCurrentPlaying] = useState(currentListMascot);
 
+  function formatContent(content) {
+    return content.split(';')
+  }
+
+
   function toggleSuggestion() {
     if (list) {
       setCurrentPlaying(currentListMascotGIF);
       setTimeout(() => {
         setCurrentPlaying(currentListMascot);
       }, 480);
-      const splitList = list.split(", ");
+      const splitList = list.split("; ");
       let randomIndex = Math.floor(Math.random() * splitList.length);
       let currentWord = `"${splitList[randomIndex]}"`;
       setCurrentSuggestion(currentWord);
@@ -80,7 +85,7 @@ const ListCard = ({slide, format, saveState, saveFunc}) => {
 
             </div>
           </div>
-          <p className="slide__content">{content}</p>
+          {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
         </div>
         <div className="list__container">
           <div className="list__appear">

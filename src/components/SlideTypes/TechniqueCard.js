@@ -33,6 +33,11 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
   const [transcriptData, setTranscriptData] = useState(null);
   const [transcriptLoaded, setTranscriptLoaded] = useState(false)
 
+  function formatContent(content) {
+    return content.split(';')
+  }
+
+
 
   //toggles transcript on and off which also renders specific content below the card
   function toggleTranscript() {
@@ -105,7 +110,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
       </div>
       <div className="slide__container__middle">
         <h1 className="slide__title">{title}</h1>
-        <p className="slide__content">{content}</p>
+        {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
       </div>
       <div className="slide__container__bottom">
         <div className="slide__container__bottom__block">

@@ -8,7 +8,7 @@ const CollectionExpandList = ({content}) => {
     const [currentSuggestion, setCurrentSuggestion] = useState(null)
 
     function handleSuggestion() {
-        const suggestionList = content.list.split(', ')
+        const suggestionList = content.list.split('; ')
         let randomIndex = Math.floor(Math.random() * suggestionList.length);
         let currentWord = `"${suggestionList[randomIndex]}"`;
         setCurrentSuggestion(currentWord)

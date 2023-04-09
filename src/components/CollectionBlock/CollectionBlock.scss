@@ -23,6 +23,11 @@
         align-items: center;
     }
 
+    &__delete:hover {
+        cursor: pointer;
+        color: $medium-blue;
+    }
+
     &__center {
         width: 90%;
         display: flex;
@@ -36,13 +41,21 @@
         display: flex;
         align-items: center;
     }
-
     &__expand {
         width: 5%;
         
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        &--btn {
+            cursor: pointer;
+            &:hover {
+                background-color: $turquoise;
+                color: $off-white;
+                border-radius: 50%;
+            }
+        }
     }
 }
 

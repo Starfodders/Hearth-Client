@@ -4,11 +4,10 @@ import TextCard from "../SlideTypes/TextCard";
 import TechniqueCard from "../SlideTypes/TechniqueCard";
 import ListCard from "../SlideTypes/ListCard";
 import SpecialCard from "../SlideTypes/SpecialCard";
-// import FinishCard from "../SlideTypes/FinishCard";
+import SummaryCard from "../SlideTypes/SummaryCard"
 
 const UnitSlide = ({ slide, unitID, currentSaved }) => {
   const { type } = slide;
-  console.log(slide);
 
   const [isSaved, setIsSaved] = useState(false);
 
@@ -54,6 +53,13 @@ const UnitSlide = ({ slide, unitID, currentSaved }) => {
         saveFunc={setIsSaved}
       />
     );
+  }
+  if (type === 'summary') {
+    return (
+      <SummaryCard slide = {slide} format={formatType}
+      saveState={isSaved}
+      saveFunc={setIsSaved}/>
+    )
   }
 
   return (

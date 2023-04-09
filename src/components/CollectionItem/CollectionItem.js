@@ -5,6 +5,10 @@ import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
 const CollectionItem = ({ type, content, shorten, expand }) => {
 
+  function formatContent(content) {
+    return content.split(';')
+  }
+
   const [isList, setIsList] = useState(false)
   const [isTechnique, setIsTechnique] = useState(false)
 
@@ -25,7 +29,7 @@ const CollectionItem = ({ type, content, shorten, expand }) => {
     <div className="block__center--text">
       {expand ? (
         <>
-          <p className="block__content">{content.content}</p>
+          {formatContent(content.content).map((paragraph)=>  <p className="block__content--expand" key ={paragraph}>{paragraph}</p>)}
           {isList ? <CollectionExpandList content = {content}/> : null }
           {isTechnique ? <CollectionExpandTech/> : null }
         </>
