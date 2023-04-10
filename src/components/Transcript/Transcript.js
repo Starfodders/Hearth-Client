@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Loader from "../Loader/Loader";
 import "./Transcript.scss";
 
-const Transcript = ({ text, state }) => {
+const Transcript = ({ text }) => {
   const [voiceoverObject, setVoiceoverObject] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const audioRef = useRef();
 
   //if there is an audio object, then create it. Clean up is to pause any duplicates
   useEffect(() => {
@@ -21,18 +23,6 @@ const Transcript = ({ text, state }) => {
     }
   }, [text.audio]);
 
-  // if audio object exists and audio state is true, then play it
-  useEffect(() => {
-    if (voiceoverObject && isLoaded) {
-      console.log(voiceoverObject);
-      if (state) {
-        voiceoverObject[0].play();
-      } else {
-        voiceoverObject[0].pause();
-        voiceoverObject[0].currentTime = 0;
-      }
-    }
-  }, [voiceoverObject, isLoaded, state]);
 
   if (text.audio && !isLoaded) {
     return <Loader />;
@@ -40,6 +30,31 @@ const Transcript = ({ text, state }) => {
 
   return (
     <div className="transcript__container">
+      {text.audio ? <div className="transcript__audio">
+        {voiceoverObject.length > 0 && (
+          <audio
+            src={`http://localhost:8080/${text.audio}`}
+            ref={audioRef}
+          />
+        )}
+        <div className="transcript__buttons">
+          <div className="transcript__buttons__block">
+            <span className="material-symbols-outlined button-el" onClick = {() => audioRef.current.play()}>play_arrow</span>
+            <span className="material-symbols-outlined button-el" onClick = {() => audioRef.current.pause()}>pause</span>
+          </div>
+          <div className="transcript__buttons__block">
+            <span className="material-symbols-outlined button-el" onClick = {() => audioRef.current.volume += 0.1}>add</span>
+            <span className="material-symbols-outlined button-el" onClick = {() => audioRef.current.volume -= 0.1}>remove</span>
+          </div>
+          <div className="transcript__buttons__block">
+            <span className="material-symbols-outlined button-el" onClick = {() => audioRef.current.mute()}>volume_up</span>
+            <span className="material-symbols-outlined button-el">volume_mute</span>
+          </div>
+        </div>
+        {/* <div className="transcript__progress">
+          Playback Bar
+        </div> */}
+      </div> : null }
       {Object.values(text.content).map((textBlock, index) => {
         return (
           <p key={index} className="transcript__paragraph">

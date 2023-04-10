@@ -6,13 +6,12 @@ import axios from "axios";
 import Transcript from "../Transcript/Transcript";
 
 const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
-  const { content, title, type, transcript, page_number } = slide;
+  const { content, title, type, transcript, audio, page_number } = slide;
 
   //states for transcripts
   const [transcriptState, setTranscriptState] = useState(false);
   const [transcriptData, setTranscriptData] = useState(null);
   const [transcriptLoaded, setTranscriptLoaded] = useState(false);
-  // const [audioState, setAudioState] = useState(false);
   function formatContent(content) {
     return content.split(";");
   }
@@ -24,7 +23,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
       setTranscriptLoaded(true);
     } else {
       setTranscriptLoaded(false);
-      setTranscriptData(null)
+      setTranscriptData(null);
     }
   }
 
@@ -70,6 +69,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
           .then((response) => {
             setTranscriptData(response.data);
             setTranscriptLoaded(true);
+            
           })
           .catch((err) => {
             console.log(err);
@@ -120,19 +120,20 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
               unfold_more
             </span>
           )}
-          <p className="slide__play" onClick={() => toggleTranscript()}>
+          <p className="slide__play--toggle" onClick={() => toggleTranscript()}>
             {transcriptState ? "View Less" : "View More"}
           </p>
         </div>
         <div className="slide__container__bottom__block">
-          Audio playback here
+          {audio ? 
+              <p className="slide__play">Audio Available</p>
+            :
+            <p className="slide__play">No Audio Available</p>
+          }
         </div>
       </div>
       {transcriptLoaded && transcriptState ? (
-        <Transcript
-          text={transcriptData}
-          state={transcriptState}
-        />
+        <Transcript text={transcriptData} state={transcriptState} />
       ) : null}
     </div>
   );

@@ -16,4 +16,39 @@
         padding-top: 2rem;
         background-color: $off-white;
     }
+
+    &__audio {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    &__buttons {
+        color: $off-white;
+        width: 30%;
+        background-color: $light-black;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+
+        &__block {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__progress {
+        background-color: $light-black;
+
+    }
+}
+
+.button-el {
+    font-size: 2rem;
 }
