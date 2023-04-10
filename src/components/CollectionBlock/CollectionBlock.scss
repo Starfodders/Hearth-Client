@@ -47,6 +47,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        
 
         &--btn {
             cursor: pointer;
@@ -55,6 +56,12 @@
                 color: $off-white;
                 border-radius: 50%;
             }
+        }
+    }
+
+    &__content {
+        &--expand {
+            padding: 1rem 0;
         }
     }
 }

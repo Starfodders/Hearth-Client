@@ -32,7 +32,7 @@ const CollectionItem = ({ type, content, shorten, expand }) => {
         <>
           {formatContent(content.content).map((paragraph)=>  <p className="block__content--expand" key ={paragraph}>{paragraph}</p>)}
           {isList ? <CollectionExpandList content = {content}/> : null }
-          {isTechnique ? <CollectionExpandTech/> : null }
+          {isTechnique ? <CollectionExpandTech content = {content}/> : null }
         </>
       ) : (
         <p className="block__content">{shorten(content.content)}</p>

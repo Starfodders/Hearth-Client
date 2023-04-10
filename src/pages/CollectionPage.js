@@ -12,6 +12,7 @@ import textIcon from "../assets/icons/textIcon.svg"
 
 
 const CollectionPage = ({ isLoggedIn }) => {
+
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -33,15 +34,6 @@ const CollectionPage = ({ isLoggedIn }) => {
   const [techniqueCount, setTechniqueCount] = useState(0);
   const [listCount, setListCount] = useState(0);
   const [textCount, setTextCount] = useState(0);
-
-
-  // useEffect(() => {
-  //   if (location.pathname !== "/collection") {
-  //     setReturnHome(false);
-  //   } else {
-  //     setReturnHome(true);
-  //   }
-  // }, [location]);
 
   //get array of saved posts
   useEffect(() => {
@@ -99,12 +91,17 @@ const CollectionPage = ({ isLoggedIn }) => {
   return (
     <main className="collections__wrapper">
       <div className="collections__title">
-        <span
+        {insideBlock ? <span
           className="material-symbols-outlined collections__return"
           onClick={() => setInsideBlock(false)}
         >
           arrow_back
-        </span>
+        </span>:<span
+          className="material-symbols-outlined collections__return"
+          onClick={() => navigate('/home')}
+        >
+          arrow_back
+        </span>}
         <h1 className="collections__title--text">Collections</h1>
       </div>
       {insideBlock ? (

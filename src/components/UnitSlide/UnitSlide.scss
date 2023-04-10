@@ -67,6 +67,11 @@
         align-items: center;
         gap: 0.5rem;
         padding: 2rem 0;
+
+        &--small {
+          @extend .slide__container__bottom__block;
+          padding: 0.5rem 0;
+        }
       }
     }
   }
@@ -94,10 +99,20 @@
 
   &__start--more {
     @extend .slide__start--less;
+
+    &--small {
+      font-size: 1.5rem;
+      color: $medium-blue;
+      padding: 0;
+    }
   }
 
   &__play {
     font-size: 1.5rem;
+
+    &--small {
+      font-size: 1.2rem;
+    }
 
     &--toggle {
       font-size: 1.5rem;
@@ -109,6 +124,19 @@
         color: $off-white;
         border-radius: 8px;
         transition: all 0.3s;
+      }
+
+      &--small {
+        padding: 0.3rem;
+        font-size: 1.2rem;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $turquoise;
+          color: $off-white;
+          border-radius: 8px;
+          transition: all 0.3s;
+        }
       }
     }
   }
