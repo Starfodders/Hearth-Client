@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./MeditateSetter.scss";
 
-const MeditateSetter = ({ inputTime, setTime, start, startState, pause }) => {
+const MeditateSetter = ({ inputTime, setTime, start, startState, pause, setAudio }) => {
   //also validates so that max digits is 2
   function handleDuration(e) {
     const { value } = e.target;
@@ -44,10 +44,10 @@ const MeditateSetter = ({ inputTime, setTime, start, startState, pause }) => {
         {start ? null : (
           <div className="meditate__choices__block">
             <label className="meditate__choices__label--sound">Sound</label>
-            <select className="meditate__choices__select">
-              <option>Campfire Crackle</option>
-              <option>Test 2</option>
-              <option>Test 3</option>
+            <select className="meditate__choices__select" onChange = {(e) => setAudio(e.target.value)}>
+              <option value = "campfire" >Campfire</option>
+              <option value = "rainforest">Rainforest</option>
+              <option value = "waves">Waves</option>
             </select>
           </div>
         )}
