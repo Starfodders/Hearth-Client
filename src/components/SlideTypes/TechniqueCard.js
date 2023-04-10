@@ -10,8 +10,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
   const { content, title, type, transcript, page_number } = slide;
 
   //for slides that have audio
-  const [voiceoverState, setVoiceoverState] = useState(false);
-  const [voiceoverObject, setVoiceoverObject] = useState(null);
+
 
   //   function toggleAudio() {
   //     // console.log(transcriptData.audio);
@@ -38,12 +37,14 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
     return content.split(';')
   }
 
-
-
   //toggles transcript on and off which also renders specific content below the card
   function toggleTranscript() {
-    setTranscriptState(!transcriptState);
-    setVoiceoverState(!voiceoverState);
+    setTranscriptState(prevState => !prevState);
+    if (transcriptState) {
+      setTranscriptLoaded(true)
+    } else {
+      setTranscriptLoaded(false)
+    }
   }
 
   //save functionality
@@ -128,7 +129,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
           Audio playback here
         </div>
       </div>
-      {transcriptLoaded && transcriptState ? <Transcript text={transcriptData} /> : null}
+      {transcriptLoaded && transcriptState ? <Transcript text={transcriptData} state = {transcriptState}/> : null}
     </div>
   );
 };

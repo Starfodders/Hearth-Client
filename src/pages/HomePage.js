@@ -10,13 +10,14 @@ import campfireSound from "../assets/audio/campfire-1.mp3";
 
 import Options from "../components/Options/Options";
 import BotNav from "../components/BotNav/BotNav";
+import BeginnerModal from "../components/BeginnerModal/BeginnerModal";
 
 import "../styles/HomePage.scss";
+import axios from "axios";
 
 const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
-  const currToken = sessionStorage.getItem("authToken");
-  // const [username, setUsername] = useState('Traveller')
+  const currUser = sessionStorage.getItem('userId')
 
   useEffect(() => {
       if (!isLoggedIn) {
@@ -32,11 +33,26 @@ const HomePage = ({ isLoggedIn, name }) => {
   const [homepageState, setHomepageState] = useState(
     sessionStorage.getItem("homepageState")
   );
+  const [displayModal, setDisplayModal] = useState(false)
   function handleInitialClick() {
     if (!homepageState) {
       setFireOn(true);
     }
   }
+
+  //checks if the user is new, display beginner modal for intro
+  useEffect(() => {
+    axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
+      .then(({data}) => {
+        console.log(data);
+        if (data.isNew === 1) {
+          setDisplayModal(true)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
 
   //for animation states
   const [animationState, setAnimationState] = useState(true);
@@ -110,14 +126,13 @@ const HomePage = ({ isLoggedIn, name }) => {
     }
   }, [fireOn]);
 
-  // window.scrollTo(0, 5000)
-
   return (
     <>
       <div className="home__container">
+        {displayModal ? <BeginnerModal change = {setDisplayModal}/> : null }
         <div className="home__container__welcome">
           <h1 className="home__container__title">
-            {homepageState ? `Welcome back, ${name}` : "Let's Get Warm"}
+            {homepageState ? `Welcome back, ${name}` : <div className="home__inactive-message"><p>Let's Get Cozy</p><p className="home__inactive-sub">Click on the campfire below to begin.</p></div>}
           </h1>
         </div>
         <div className="home__image">

@@ -1,13 +1,39 @@
+import { useState, useEffect } from "react";
+import Loader from "../Loader/Loader";
 import "./Transcript.scss";
 
-const Transcript = ({ text }) => {
-  console.log((text));
-  if (!text) {
-    return <p>Retrieving...</p>;
-  }
-  if (text) {
-    const voiceoverObject = new Audio(`http://localhost:8080/${text.audio}`)
-    voiceoverObject.play()
+const Transcript = ({ text, state }) => {
+  const [voiceoverObject, setVoiceoverObject] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    if (text.audio && !voiceoverObject) {
+      const newVoiceoverObject = new Audio(`http://localhost:8080/${text.audio}`);
+      setVoiceoverObject(newVoiceoverObject);
+      setIsLoaded(true);
+      return () => {
+        newVoiceoverObject.pause();
+      };
+    }
+  }, [text.audio, voiceoverObject]);
+
+  useEffect(() => {
+    console.log(state);
+    if (voiceoverObject) {
+      if (state) {
+        voiceoverObject.play()
+      }
+      else {
+        voiceoverObject.pause()
+      }
+    }
+    
+  }, [voiceoverObject, state])
+  
+
+
+  if (text.audio && !isLoaded) {
+    return <Loader/>
   }
   
 

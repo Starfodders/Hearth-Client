@@ -5,6 +5,7 @@ import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
 const CollectionItem = ({ type, content, shorten, expand }) => {
 
+
   function formatContent(content) {
     return content.split(';')
   }
