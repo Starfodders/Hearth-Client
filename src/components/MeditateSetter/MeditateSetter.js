@@ -1,7 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./MeditateSetter.scss";
 
-const MeditateSetter = ({ inputTime, setTime, start, startState, pause, setAudio }) => {
+const MeditateSetter = ({
+  inputTime,
+  setTime,
+  start,
+  startState,
+  pause,
+  currAudio,
+  setAudio,
+  currAudioObj,
+}) => {
   //also validates so that max digits is 2
   function handleDuration(e) {
     const { value } = e.target;
@@ -16,6 +25,22 @@ const MeditateSetter = ({ inputTime, setTime, start, startState, pause, setAudio
 
   function handlePause() {
     pause();
+  }
+
+  function handleVolumeUp(audio) {
+    const increment = 0.1;
+    if (audio.volume + increment > 1) {
+      return;
+    } else {
+      audio.volume += increment;
+    }
+  }
+  function handleVolumeDown(audio) {
+    if (audio.volume - 0.1 < 0) {
+      return;
+    } else {
+      audio.volume -= 0.1;
+    }
   }
 
   return (
@@ -44,16 +69,38 @@ const MeditateSetter = ({ inputTime, setTime, start, startState, pause, setAudio
         {start ? null : (
           <div className="meditate__choices__block">
             <label className="meditate__choices__label--sound">Sound</label>
-            <select className="meditate__choices__select" onChange = {(e) => setAudio(e.target.value)}>
-              <option value = "campfire" >Campfire</option>
-              <option value = "rainforest">Rainforest</option>
-              <option value = "waves">Waves</option>
+            <select
+              className="meditate__choices__select"
+              onChange={(e) => setAudio(e.target.value)}
+              value={currAudio}
+            >
+              <option value="campfire">Campfire</option>
+              <option value="rainforest">Rainforest</option>
+              <option value="waves">Waves</option>
             </select>
           </div>
         )}
         {start ? (
-          <div className="meditate__choices__block">
-            <label className="meditate__choices__label">Volume</label>
+          <div className="meditate__choices__block--vol">
+            <div className="meditate__choices__volume">
+              <p className="meditate__now-playing">Now playing</p>
+              <p className="meditate__now-playing">{currAudio}</p>
+            </div>
+            <div className="meditate__choices__volume">
+              <label className="meditate__choices__label">Volume</label>
+              <span
+                className="material-symbols-outlined volume-el"
+                onClick={() => handleVolumeUp(currAudioObj)}
+              >
+                add
+              </span>
+              <span
+                className="material-symbols-outlined volume-el"
+                onClick={() => handleVolumeDown(currAudioObj)}
+              >
+                remove
+              </span>
+            </div>
           </div>
         ) : null}
 
