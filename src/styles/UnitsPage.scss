@@ -71,7 +71,7 @@
 
 .carousel {
   &__main {
-    
+    overflow: visible;
   }
 
   &__buttons {
@@ -98,14 +98,14 @@
   }
 
 }
-.units__container swiper-container {
-  // height: 50%;
+
+swiper-container {
+  overflow-y: visible;
+  height: 100%;
 }
 
-.units__container swiper-container .swiper-pagination{
+.swiper-pagination {
   position: relative;
-  text-align: left ;
-
 }
 
 
