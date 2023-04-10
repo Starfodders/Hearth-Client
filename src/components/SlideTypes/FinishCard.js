@@ -22,6 +22,22 @@ const FinishCard = ({ details }) => {
       });
   }
 
+  if (!image) {
+    return (
+      <div className="finish__wrapper">
+      <div className="finish__container--mod">
+        <h3 className="finish__message">{content}</h3> 
+        <button
+          className="finish__confirm--mod"
+          onClick={() => handleUnitComplete()}
+        >
+          Complete
+        </button>
+      </div>
+    </div>
+    )
+  }
+else {
   return (
     <div className="finish__wrapper">
       <div className="finish__container">
@@ -50,5 +66,7 @@ const FinishCard = ({ details }) => {
     </div>
   );
 };
+}
+  
 
 export default FinishCard;

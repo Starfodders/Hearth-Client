@@ -43,9 +43,10 @@ const SummaryCard = ({slide, format, saveState, saveFunc}) => {
   return (
     <div className="slide__container">
       <div className="slide__container__top">
-        <div className="slide__top--left">
+        <div className="slide__container__top--left">
+        <span className="material-symbols-outlined card-icon">summarize</span>
+
           <p className="slide__type">{format(type)} Card</p>
-          <h1 className="slide__title">{title}</h1>
         </div>
         <div className="slide__top--right">
           <img
@@ -55,7 +56,7 @@ const SummaryCard = ({slide, format, saveState, saveFunc}) => {
           />
         </div>
       </div>
-
+      <h1 className="slide__title">{title}</h1>
      {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
     </div>
   );

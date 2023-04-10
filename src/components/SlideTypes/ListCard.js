@@ -74,17 +74,19 @@ const ListCard = ({slide, format, saveState, saveFunc}) => {
         <>
         <div className="slide__container">
           <div className="slide__container__top">
-            <div className="slide__container__top-left">
+            <div className="slide__container__top--left">
+            <span className="material-symbols-outlined card-icon">list</span>
               <p className="slide__type">{format(type)} Card</p>
-              {title !== "null" ? (
-                <h1 className="slide__title">{title}</h1>
-              ) : null}
+              
             </div>
             <div className="slide__container__top--right">
             <img src={saveState ? savedOn : savedOff} className={saveState ? "units__saved" : "units__saved--off"} onClick = {() => handleSave()}/>
 
             </div>
           </div>
+          {title !== "null" ? (
+                <h1 className="slide__title">{title}</h1>
+              ) : null}
           {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
         </div>
         <div className="list__container">

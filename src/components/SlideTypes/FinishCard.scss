@@ -22,12 +22,17 @@
         display: flex;
         flex-direction: column;
         // justify-content: space-around;
-        margin-top: 5rem;
+        margin-top: 10rem;
         align-items: center;
         width: 100%;
         max-width: 1020px;
         animation: frame-appear 1s;
         
+        &--mod {
+            @extend .finish__container;
+            margin-top: 15rem;
+            gap: 10rem;
+        }
     }
 
     &__image {
@@ -74,6 +79,11 @@
         font-size: 1.5rem;
         cursor: pointer;
         animation: frame-appear 2s;
+
+        &--mod {
+            @extend .finish__confirm;
+
+        }
 
         &:hover {
             background-color: $turquoise;

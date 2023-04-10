@@ -1,9 +1,10 @@
 import "../UnitSlide/UnitSlide.scss";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import savedOff from "../../assets/icons/savedEmpty.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
 import axios from "axios";
 import Transcript from "../Transcript/Transcript";
+
 
 const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
   const { content, title, type, transcript, page_number } = slide;
@@ -97,7 +98,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
     <div className="slide__container--technique">
       <div className="slide__container__top">
         <div className="slide__container__top--left">
-          <span className="material-symbols-outlined">magic_button</span>
+          <span className="material-symbols-outlined card-icon">magic_button</span>
           <p className="slide__type">{format(type)} Card</p>
         </div>
         <div className="slide__container__top--right">
@@ -114,14 +115,18 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
       </div>
       <div className="slide__container__bottom">
         <div className="slide__container__bottom__block">
-          <span className="material-symbols-outlined slide__start">
-            play_circle
-          </span>
+          {transcriptState ? <span className="material-symbols-outlined slide__start--less" onClick={() => toggleTranscript()}>
+            unfold_less
+          </span> : <span className="material-symbols-outlined slide__start--more" onClick={() => toggleTranscript()}>
+            unfold_more
+          </span>}
           <p className="slide__play" onClick={() => toggleTranscript()}>
-            Play
+            {transcriptState ? 'View Less' : 'View More'}
           </p>
         </div>
-        <div className="slide__container__bottom__block"></div>
+        <div className="slide__container__bottom__block">
+          Audio playback here
+        </div>
       </div>
       {transcriptLoaded && transcriptState ? <Transcript text={transcriptData} /> : null}
     </div>
