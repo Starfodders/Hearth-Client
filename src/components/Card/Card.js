@@ -4,9 +4,30 @@ import ChapterButton from "../Buttons/ChapterButton"
 import SectionButton from "../Buttons/SectionButton";
 import UnitButton from "../Buttons/UnitButton"
 
+import {useEffect, useState} from "react"
+
 const Card = ({ details, level, progress }) => {
+  console.log(details);
   const {available} = details
-  // console.log(details.id);
+
+  const [display, setDisplay] = useState('In Development')
+
+  useEffect(() => {
+    if (level === 'chapters') {
+      if (!details.overall_available) {
+        setDisplay('In Development')
+      }
+      else if (details.overall_available && !details.available) {
+        setDisplay('Unavailable')
+      }
+    }
+    else if (level === 'sections' || level === 'units') {
+      if (!details.available) {
+        setDisplay('Unavailable')
+      }
+    }
+    
+  }, [])
 
 let button;
   if (level === 'chapters') {
@@ -25,7 +46,7 @@ let button;
         alt={details.name}
         className="card__image"
       />
-      {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> : 'In Development'}
+      {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> : display}
      {button}
     </div>
   );

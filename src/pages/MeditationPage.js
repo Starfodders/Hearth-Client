@@ -2,7 +2,9 @@ import MeditateSetter from "../components/MeditateSetter/MeditateSetter";
 import campfire from "../assets/meditateAudio/campfire.mp3"
 import waves from "../assets/meditateAudio/waves.mp3"
 import rainforest from "../assets/meditateAudio/rainforest.mp3"
+import minecraft from "../assets/meditateAudio/minecraft.mp3"
 import Timer from "../components/Timer/Timer";
+
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +31,8 @@ const MeditationPage = ({isLoggedIn}) => {
   const audioSources= {
     campfire,
     waves,
-    rainforest
+    rainforest,
+    minecraft
   }
 
   const [currentAudio, setCurrentAudio] = useState('campfire')

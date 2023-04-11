@@ -42,9 +42,9 @@ const HomePage = ({ isLoggedIn, name }) => {
 
   //checks if the user is new, display beginner modal for intro
   useEffect(() => {
+    if (homepageState || mainFireOn) {
     axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
       .then(({data}) => {
-        console.log(data);
         if (data.isNew === 1) {
           setDisplayModal(true)
         }
@@ -52,7 +52,8 @@ const HomePage = ({ isLoggedIn, name }) => {
       .catch((err) => {
         console.log(err);
       })
-  }, [])
+    }
+  }, [mainFireOn])
 
   //for animation states
   const [animationState, setAnimationState] = useState(true);

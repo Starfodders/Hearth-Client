@@ -3,6 +3,7 @@ import "./ProgressBar.scss"
 
 const ProgressBar = ({ details, level, progress }) => {
   const { current, unit, completedChapters, completedSections } = progress;
+  console.log(details);
 
   const [currentContent, setCurrentContent] = useState(0);
 
@@ -27,7 +28,7 @@ const ProgressBar = ({ details, level, progress }) => {
     if (details.id <= current) {
       return <div className="progress__box"><p className="progress__notif">Complete</p></div>;
     } else if (details.id === unit) {
-      return <div className="progress__box"><p className="progress__notif">In Progress</p></div>;
+      return <div className="progress__box"><p className="progress__notif--progress">In Progress</p></div>;
     }
   }
 

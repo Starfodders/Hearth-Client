@@ -112,7 +112,6 @@ const UnitsPage = ({isLoggedIn}) => {
         </div>
         <swiper-container
           slides-per-view="1"
-          pagination="true"
           className="carousel__main"
           ref={carouselElRef}
           onTransitionEnd={() => handleTransition()}

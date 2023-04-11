@@ -67,5 +67,17 @@ progress {
     color: $off-white;
     padding: 0.3rem 1rem;
     border-radius: 4px;
+
+    &--progress {
+      @extend .progress__notif;
+      background: rgb(246, 255, 244);
+      background: linear-gradient(
+      90deg,
+      rgba(246, 255, 244, 1) 0%,
+      #168AAD 30%,
+      #168AAD 70%,
+      rgba(246, 255, 244, 1) 100%
+    );
+    }
   }
 }

@@ -8,8 +8,6 @@ import ChaptersBlock from "../ChaptersBlock/ChaptersBlock";
 
 const Chapters = ({initial, progress}) => {
   const {chapterID, sectionID} = useParams()
-  // console.log(initial);
-  // console.log(progress);
 
   const location = useLocation();
   const currentUser = sessionStorage.getItem('userId')

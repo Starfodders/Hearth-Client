@@ -12,6 +12,11 @@
     bottom: 0;
     animation: slide-up 1s;
     z-index: 10;
+
+    &--reduced {
+        @extend .bot-nav__container;
+        transition: all 1s;
+    }
     }
     &__block {
         display: flex;
@@ -21,6 +26,13 @@
         color: $off-white-reduced;
         font-size: 1.3rem;
         transition: transform 0.5s;
+
+        &--reduced {
+            @extend .bot-nav__block;
+            padding: 1rem 3rem;
+            transition: all 1s;
+
+        }
 
         &:hover {
             transform: translateY(-30%);
@@ -41,6 +53,8 @@
 
     &__icon {
         font-size: 2.5rem;
+        animation: slide-up 1s;
+
         
     }
 }
