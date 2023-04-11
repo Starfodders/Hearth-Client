@@ -33,7 +33,8 @@ const Chapters = ({initial, progress}) => {
       const getUnitDetails = async () => {
         try {
           const response = await axios.get(`http://localhost:8080/chapters/units/${currentUser}/${sectionID}`)
-          setContentToLoad(response.data)          
+          setContentToLoad(response.data)   
+          setContentTitle(response.data[0].title)
         }
         catch(err) {
           console.log(err + 'Error getting unit data');
@@ -48,7 +49,8 @@ const Chapters = ({initial, progress}) => {
         try {
           const response = await axios.get(`http://localhost:8080/chapters/sections/${currentUser}/${chapterID}`)
           setContentToLoad(response.data)
-          // getTitle(id)
+          setContentTitle(response.data[0].title)
+
         } catch(err) {
           console.log('Error in getting new data' + err);
         }
@@ -56,14 +58,6 @@ const Chapters = ({initial, progress}) => {
       getNewDetails()
     }
   }, [chapterID, sectionID])
-
-  //renders specific title based on which page you're rendering
-  // function getTitle(id) {
-  //   const chosenSection = contentToLoad.find(section => section.id === parseInt(id))
-  //   setContentTitle(chosenSection.name)
-   
-  // }
-  
 
   if (!contentToLoad) {
     return <Loader/>

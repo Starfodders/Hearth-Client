@@ -132,6 +132,17 @@
 
 .volume-el {
   color: $off-white;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  &:hover {
+    background-color: $turquoise;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
 }
 
 @keyframes slide-from-top {

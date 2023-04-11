@@ -1,10 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import fireStatic from "../assets/images/homepage/yesFire.png";
+
 import stokingFire from "../assets/images/homepage/fireMedium.gif";
 import noFire from "../assets/images/homepage/noFireBase.png";
+
+import fireStatic from "../assets/images/homepage/yesFire.png";
+import fireStaticOne from "../assets/images/homepage/yesFireOne.png";
+
 import fireGif from "../assets/images/homepage/fireOn.gif";
+import fireGifOne from "../assets/images/homepage/fireOnOne.gif";
+
 import lightFire from "../assets/audio/matches-3.mp3";
 import campfireSound from "../assets/audio/campfire-1.mp3";
 
@@ -18,6 +23,7 @@ import axios from "axios";
 const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
   const currUser = sessionStorage.getItem('userId')
+  const [currUserProgress, setCurrUserProgress] = useState()
 
   useEffect(() => {
       if (!isLoggedIn) {
@@ -45,6 +51,7 @@ const HomePage = ({ isLoggedIn, name }) => {
     if (homepageState || mainFireOn) {
     axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
       .then(({data}) => {
+        setCurrUserProgress(data.progress)
         if (data.isNew === 1) {
           setDisplayModal(true)
         }
@@ -100,12 +107,20 @@ const HomePage = ({ isLoggedIn, name }) => {
   useEffect(() => {
     if (homepageState || mainFireOn) {
       if (animationState) {
-        setFireSrc(fireGif);
+        if (currUserProgress === 1) {
+          setFireSrc(fireGifOne)
+        } else {
+          setFireSrc(fireGif);
+        }
       } else {
-        setFireSrc(fireStatic);
+        if (currUserProgress === 1) {
+          setFireSrc(fireStaticOne)
+        } else {
+          setFireSrc(fireStatic);
+        }
       }
     }
-  }, [animationState]);
+  }, [animationState, currUserProgress, homepageState, mainFireOn]);
 
   //main loading loop, fires only on first click on page
   useEffect(() => {

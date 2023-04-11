@@ -7,7 +7,6 @@ import UnitButton from "../Buttons/UnitButton"
 import {useEffect, useState} from "react"
 
 const Card = ({ details, level, progress }) => {
-  console.log(details);
   const {available} = details
 
   const [display, setDisplay] = useState('In Development')

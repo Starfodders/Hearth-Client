@@ -3,7 +3,6 @@ import "./ProgressBar.scss"
 
 const ProgressBar = ({ details, level, progress }) => {
   const { current, unit, completedChapters, completedSections } = progress;
-  console.log(details);
 
   const [currentContent, setCurrentContent] = useState(0);
 
