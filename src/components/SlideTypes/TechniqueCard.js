@@ -103,7 +103,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
           </p>
         ))}
       </div>
-      <div className="slide__container__bottom">
+      <div className={transcript === '1' ? "slide__container__bottom" : "slide__container__bottom--none"}>
         <div className="slide__container__bottom__block">
           {transcriptState ? (
             <span
@@ -132,7 +132,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
           }
         </div>
       </div>
-      {transcriptLoaded && transcriptState ? (
+      {transcript && transcriptLoaded && transcriptState ? (
         <Transcript text={transcriptData} state={transcriptState} />
       ) : null}
     </div>

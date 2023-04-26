@@ -62,6 +62,10 @@
       justify-content: space-between;
       border-top: 1px solid black;
 
+      &--none {
+        display: none;
+      }
+
       &__block {
         display: flex;
         align-items: center;
