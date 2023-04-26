@@ -12,12 +12,16 @@
     margin-bottom: 0.3rem;
 }
 &__icon {
-    color: rgba(159, 0, 0, 0.6);
-    font-size: 1rem;
+    color: rgb(183, 0, 0);
+    font-size: 0.2rem;
+    
 }
 &__message {
-    color: rgba(159, 0, 0, 0.6);
-    font-size: 0.8rem
+    color: rgb(183, 0, 0);
+    font-size: 0.8rem;
+    background-color: $off-white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
 }
 }
 

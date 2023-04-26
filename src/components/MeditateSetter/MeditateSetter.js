@@ -42,6 +42,10 @@ const MeditateSetter = ({
       audio.volume -= 0.1;
     }
   }
+  //austin bray
+  //margaret (Aundreya's wife)
+  //justin hugh //also recommended the bot nav be more accessible
+  //james suresh
 
   return (
     <div className={start ? "active__setting" : "meditate__setting"}>

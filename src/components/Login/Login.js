@@ -15,6 +15,7 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
     const [passwordType, setPasswordType] = useState('password')
     const [rememberUser, setRememberUser] = useState(false)
 
+    const [errorMessage, setErrorMessage] = useState('Error')
 
     const [formValid, setFormValid] = useState(true)
     const [inputFields, setInputFields] = useState({email: '', password: '', blank: ''})
@@ -94,7 +95,9 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
                
             })
             .catch((error) => {
-                console.log(error);
+                console.log(error.response.data.message);
+                //error is because the element is not false so it doesn't display
+                setErrorMessage(error.response.data.message)
             })
         }
     }
@@ -112,13 +115,13 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
         <form className = {postLoginState ? "login__container--disappear" : "login__container"} onSubmit = {(e) => handleLogin(e) }>
             <label htmlFor = "email" className = "login__container--label">Email Address</label>
             <input type = "text" name = "email" className = "login__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
-            <ErrorIcon element = {errorFields.email}/>
+            <ErrorIcon element = {errorFields.email} message = {errorMessage}/>
 
             <label htmlFor = "password" className = "login__container--label">Password</label>
             <div className = "login__pw-box">
             <input type = {passwordType} name = "password" className = "login__password" value = {inputFields.password} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
             {passwordHidden ? <img src = {passwordShow} className = "login__pw-icon" onClick = {()=> toggleShowState()}/> : <img src = {passwordHide} className = "login__pw-icon" onClick = {()=> toggleShowState()}/>}
-            <ErrorIcon element = {errorFields.password}/>
+            <ErrorIcon element = {errorFields.password} message = {errorMessage}/>
 
             </div>
             <div className = "login__lower">
@@ -129,7 +132,7 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
                 <p className ="login__reset">Forgot Password</p>
             </div>
             <button className = "login__btn">Log In</button>
-            <p className = "login__toggle" onClick = {()=> toggle()}>New to here? Click here to make an account.</p>
+            <p className = "login__toggle" onClick = {()=> toggle()}>New to Hearth? Click here to make an account.</p>
         </form>
 
         </>

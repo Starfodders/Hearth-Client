@@ -33,7 +33,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
 
   return (
     <div className="wrapper">
-      <div className="landing__container">
+      <section className="landing__container">
         <h1
           className={postLogin ? "landing__title--disappear" : "landing__title"}
         >
@@ -58,11 +58,11 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             postLoginState={postLogin}
           />
         )}
-        <img src = {bgForest} className = {postLogin ? "bg-solid--disappear" : "bg-solid"}/>
-        <img src = {transition} className ={postLogin ? "transition__bg--moving": "transition__bg"}/>
-        <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"}/>
-        <img src = {transitionFire} className ={postLogin ? "transition__fire--moving": "transition__fire"}/>
-      </div>
+        <img src = {bgForest} className = {postLogin ? "bg-solid--disappear" : "bg-solid"} alt = ""/>
+        <img src = {transition} className ={postLogin ? "transition__bg--moving": "transition__bg"} alt = ""/>
+        <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/>
+        <img src = {transitionFire} className ={postLogin ? "transition__fire--moving": "transition__fire"} alt = ""/>
+      </section>
     </div>
   );
 };

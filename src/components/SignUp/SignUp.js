@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
 import passwordHide from "../../assets/icons/passwordHide.svg"
 import passwordShow from "../../assets/icons/passwordShow.svg"
@@ -8,6 +8,9 @@ import "./SignUp.scss"
 
 
 const SignUp = ({toggle, getUser}) => {
+
+    const [errorMessage, setErrorMessage] = useState('Error')
+
 
         //handles password display and state
         const [passwordHidden, setPasswordHidden] = useState(true)
@@ -59,8 +62,11 @@ const SignUp = ({toggle, getUser}) => {
                     toggle();
                 })
                 .catch((error) => {
-                    console.log(error.response.data.message);
+                    console.log(error.response.data);
+                    // setErrorFields
+                    setErrorMessage(error.response.data.message)
                 })
+                
             }
         }
 
@@ -68,15 +74,15 @@ const SignUp = ({toggle, getUser}) => {
         <form className = "sign__container" onSubmit = {(e) => handleSubmit(e)}>
             <label htmlFor = "given_name" className = "sign__container--label">First Name</label>
             <input type = "text" name = "given_name" className = "sign__given-name" value = {inputFields.given_name} onChange = {(e)=> handleInput(e)} onClick = {(e) => resetField(e)}></input>
-            <ErrorIcon element = {errorFields.given_name}/>
+            <ErrorIcon element = {errorFields.given_name} message = {errorMessage}/>
             <label htmlFor = "email" className = "sign__container--label">Email Address</label>
             <input type = "text" name = "email" className = "sign__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
-            <ErrorIcon element = {errorFields.email}/>
+            <ErrorIcon element = {errorFields.email} message = {errorMessage}/>
             <label htmlFor = "password" className = "sign__container--label">Password</label>
             <div className = "sign__pw-box">
             <input type = {passwordType} name = "password" className = "sign__password" value = {inputFields.password} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
             {passwordHidden ? <img src = {passwordShow} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/> : <img src = {passwordHide} className = "sign__pw-icon" onClick = {()=> toggleShowState()}/>}
-            <ErrorIcon element = {errorFields.password}/>
+            <ErrorIcon element = {errorFields.password} message = {errorMessage}/>
             </div>
             <button className = "sign__btn">Sign Up</button>
             <p className = "sign__toggle" onClick = {()=> toggle()}>Already have an account? Click here to log in.</p>

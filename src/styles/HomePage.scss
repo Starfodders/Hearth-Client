@@ -7,7 +7,7 @@
     width: 100%;
 
     &__welcome {
-      min-height: 300px;
+      min-height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -24,6 +24,7 @@
         opacity: 1;
         color: $off-white-reduced;
         font-size: 3rem;
+        margin-top: 1rem;
     }
   }
 
