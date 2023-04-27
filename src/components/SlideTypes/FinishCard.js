@@ -6,7 +6,7 @@ const FinishCard = ({ details }) => {
   const navigate = useNavigate();
 
   const { id, content, image, caption } = details;
-  console.log(image);
+  // console.log(image);
   const userID = sessionStorage.getItem("userId");
 
   function handleUnitComplete() {

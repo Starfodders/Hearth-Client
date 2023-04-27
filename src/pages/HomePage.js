@@ -107,13 +107,13 @@ const HomePage = ({ isLoggedIn, name }) => {
   useEffect(() => {
     if (homepageState || mainFireOn) {
       if (animationState) {
-        if (currUserProgress === 1) {
+        if (currUserProgress === 3) {
           setFireSrc(fireGifOne)
         } else {
           setFireSrc(fireGif);
         }
       } else {
-        if (currUserProgress === 1) {
+        if (currUserProgress === 3) {
           setFireSrc(fireStaticOne)
         } else {
           setFireSrc(fireStatic);

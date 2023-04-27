@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const ChaptersBlock = ({ content, title, level, progress }) => {
-  console.log(content);
   const navigate = useNavigate();
 
   return (
