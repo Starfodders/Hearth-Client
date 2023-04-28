@@ -79,6 +79,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
                 postLogin(true)
                 if (rememberUser === true) {
                     localStorage.setItem('savedUserEmail', email)
+                } else {
+                    localStorage.removeItem('savedUserEmail')
                 }
                 
                 setTimeout(() => {
@@ -102,14 +104,6 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
         }
     }
 
-    function toggleRemember() {
-        setRememberUser((prev) => !prev)
-        if (!rememberUser && localStorage.getItem('savedUserEmail')) {
-            localStorage.removeItem('savedUserEmail')
-        }
-    }
-
-
     return (
         <>
         <form className = {postLoginState ? "login__container--disappear" : "login__container"} onSubmit = {(e) => handleLogin(e) }>
@@ -126,8 +120,8 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
             </div>
             <div className = "login__lower">
                 <div className = "login__remember">
-                    <input type = "checkbox" name = "remember" className = "login__remember--box" onChange = {() => toggleRemember()} checked = {localStorage.getItem('savedUserEmail')}></input>
-                    <label htmlFor = "remember">Remember Me</label>
+                    <input type = "checkbox" name = "remember-user" className = "login__remember--box" onChange = {() => setRememberUser(!rememberUser)} checked = {rememberUser}></input>
+                    <label htmlFor = "remember-user">Remember Me</label>
                 </div>
                 <p className ="login__reset">Forgot Password</p>
             </div>
