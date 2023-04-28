@@ -1,9 +1,8 @@
-import React from "react";
 import "./ErrorIcon.scss";
 
 const ErrorIcon = ({ element, message }) => {
 
-
+  //html elements already exist for spacing, but are revealed based on if an error is present or not
   if (!element) {
     return (
       <div className="error__container">
