@@ -26,6 +26,11 @@ const SignUp = ({toggle, getUser}) => {
            
         }
 
+        //regex that accepts at least a single letter, digit, symbol. A single @ to separate emails
+        // backticks for string temp literal, ^ for start of input, $ for end. The i means its case insensitive
+        //then accepts any letter and digit, . and - within the domain
+        //then accepts at least 2 letters from a-z
+        // const formRegexPattern = new RegExp('^\\w+[\\w\\.-]*@\\w+([-]\\w+)*\\.\\w{2,}$', 'i');
 
         const [formValid, setFormValid] = useState(true)
         const [inputFields, setInputFields] = useState({given_name: '', email: '', password: '', blank: ''})
@@ -77,7 +82,7 @@ const SignUp = ({toggle, getUser}) => {
             <input type = "text" name = "given_name" className = "sign__given-name" value = {inputFields.given_name} onChange = {(e)=> handleInput(e)} onClick = {(e) => resetField(e)}></input>
             <ErrorIcon element = {errorFields.given_name} message = {errorMessage}/>
             <label htmlFor = "email" className = "sign__container--label">Email Address</label>
-            <input type = "text" name = "email" className = "sign__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)}></input>
+            <input type = "email" name = "email" className = "sign__email" value = {inputFields.email} onChange = {(e) => handleInput(e)} onClick = {(e) => resetField(e)} pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></input>
             <ErrorIcon element = {errorFields.email} message = {errorMessage}/>
             <label htmlFor = "password" className = "sign__container--label">Password</label>
             <div className = "sign__pw-box">
