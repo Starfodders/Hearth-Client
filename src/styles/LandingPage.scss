@@ -83,6 +83,15 @@
             opacity: 0;
         }
     }
+    &__footer {
+        font-size: 0.8rem;
+        width: 100%;
+        position: fixed;
+        bottom: 1rem;
+        left: 0;
+        color: $off-white-reduced;
+        text-align: center;
+    }
 }
 
 .transition__bg {

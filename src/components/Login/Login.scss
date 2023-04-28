@@ -2,132 +2,134 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-
 .login {
+  &__container {
+    width: 100%;
+    padding: 2.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: toggle-slide-in-left 0.3s;
+    
 
-    &__container {
-        width: 100%;
-        padding: 2.5rem 1.5rem 1.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-
-        &--disappear {
-            @extend .login__container;
-            animation: fade-out 0.5s;
-            opacity: 0;
-
-        }
-
-       
-
-        &--label {
-            color: $off-white;
-            align-self: flex-start;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            padding-bottom: 0.2rem;
-
-        }
+    &--disappear {
+      @extend .login__container;
+      animation: fade-out 0.5s;
+      opacity: 0;
     }
 
-    &__email {
-        width: 100%;
-        padding: 0.5rem 1rem 0.5rem;
-        background-color: $off-white-reduced;
-        border: none;
-        border-radius: 4px;
-        margin-bottom: 0.3rem;
-        color: $extra-dark-blue;
-
-        &:focus {
-            outline: 2px solid $extra-dark-blue;
-            background-color: $off-white;
-        }
+    &--label {
+      color: $off-white;
+      align-self: flex-start;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding-bottom: 0.2rem;
     }
+  }
 
-    &__password {
-        @extend .login__email;
+  &__email {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem;
+    background-color: $off-white-reduced;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    color: $extra-dark-blue;
+
+    &:focus {
+      outline: 2px solid $extra-dark-blue;
+      background-color: $off-white;
     }
+  }
 
-    &__pw-box {
-        width: 100%;
-        position: relative;
+  &__password {
+    @extend .login__email;
+  }
 
+  &__pw-box {
+    width: 100%;
+    position: relative;
+  }
+
+  &__pw-icon {
+    width: 1rem;
+    position: absolute;
+    right: 3%;
+    top: 0.5rem;
+  }
+
+  &__lower {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  &__remember {
+    color: $off-white-reduced;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+    width: 50%;
+    align-items: center;
+  }
+
+  &__reset {
+    font-size: 0.8rem;
+    color: $off-white-reduced;
+  }
+
+  &__btn {
+    width: 100%;
+    background-color: $dark-green;
+    margin-top: 0.5rem;
+    color: $off-white;
+    padding: 0.6rem 1rem;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $turquoise;
+      transition: background-color 0.3s;
     }
+  }
 
-    &__pw-icon {
-        width: 1rem;
-        position: absolute;
-        right: 3%;
-        top: 0.5rem;
+  &__toggle {
+    color: $off-white-reduced;
+    margin-top: 2rem;
+    font-size: 0.7rem;
+    padding: 0.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $turquoise;
+      transition: background-color 0.3s;
     }
-
-    &__lower {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 1rem;
-    }
-
-    &__remember {
-        color: $off-white-reduced;
-        font-size: 0.8rem;
-        display: flex;
-        gap: 0.5rem;
-        width: 50%;
-        align-items: center;
-
-    }
-
-    &__reset {
-        font-size: 0.8rem;
-        color: $off-white-reduced;
-    }
-
-    &__btn {
-        width: 100%;
-        background-color: $dark-green;
-        margin-top: 0.5rem;
-        color: $off-white;
-        padding: 0.6rem 1rem;
-        border: 0;
-        border-radius: 4px;
-        font-size: 1.2rem;
-        font-family: 'Montserrat', sans-serif;
-        cursor: pointer;
-
-
-        &:hover {
-            background-color: $turquoise;
-            transition: background-color 0.3s;
-        }
-    }
-
-    &__toggle {
-        color: $off-white-reduced;
-        margin-top: 2rem;
-        font-size: 0.7rem;
-        padding: 0.2rem;
-        border-radius: 4px;
-        cursor: pointer;
-
-        &:hover {
-            background-color: $turquoise;
-            transition: background-color 0.3s;
-        }
-    }
+  }
 }
 
-
-
 @keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes toggle-slide-in-left {
     0% {
-        opacity: 1
+        transform: translateX(-100%);
+        opacity: 0
     }
     100%{
-        display: none;
-        opacity: 0
+        transform: translateX(0);
+        opacity: 1;
     }
 }

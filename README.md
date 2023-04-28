@@ -18,3 +18,5 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 1. Clicking on the initial 'Remember Me' checkbox doesn't accurately reflect state. Flagging as a controlled component error
 2. Deleting a saved page from collections doesn't reflect until the route is refreshed (redoing the GET request)
 3. The timer doesn't reflect a change in the input time IF it has already begun
+4. Moving from slide to slide should collapse technique cards
+5. The final cards should restrict movement, prevent scrolling? Bug with some slides extending far down in height which can still be seen
