@@ -127,6 +127,7 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
             </div>
             <button className = "login__btn">Log In</button>
             <p className = "login__toggle" onClick = {()=> toggle()}>New to Hearth? Click here to make an account.</p>
+            <p className='login__toggle--guest'>Log in as a Guest.</p>
         </form>
 
         </>
@@ -134,3 +135,4 @@ const Login = ({toggle, newUser, setIsLoggedIn, setDisplayName, postLogin, postL
 };
 
 export default Login;
+

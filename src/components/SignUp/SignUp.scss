@@ -107,6 +107,11 @@
       background-color: $turquoise;
       transition: background-color 0.3s;
     }
+
+    &--guest {
+      @extend .sign__toggle;
+      margin-top: 1rem;
+    }
   }
 }
 
