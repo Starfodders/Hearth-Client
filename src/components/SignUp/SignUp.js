@@ -88,7 +88,7 @@ const SignUp = ({ toggle, getUser }) => {
   return (
     <>
       {isGuestSignUp ? (
-        <GuestSignUp toggle = {setIsGuestSignUp} />
+        <GuestSignUp toggle = {setIsGuestSignUp} resetLogin = {toggle}/>
       ) : (
         <form className="sign__container" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="given_name" className="sign__container--label">
@@ -151,7 +151,7 @@ const SignUp = ({ toggle, getUser }) => {
             className="sign__toggle--guest"
             onClick={() => setIsGuestSignUp(true)}
           >
-            Create a Guest Profile.
+            No Email? Create a Guest Profile.
           </p>
         </form>
       )}

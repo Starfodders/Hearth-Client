@@ -1,18 +1,46 @@
 import "./GuestSignUp.scss";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
 
-const GuestSignUp = ({ toggle }) => {
+
+const GuestSignUp = ({ toggle, resetLogin }) => {
   const [name, setName] = useState("");
   const [notifyExists, setNotifyExists] = useState(true);
+  
+  function generateGuestUUID() {
+    return `Guest${uuidv4()}`
+  }
+
+  function generateGuestPW() {
+    return uuidv4()
+  }
 
   function handleGuestProfile(e) {
     e.preventDefault();
-    localStorage.setItem("guest-profile", name);
-    console.log(localStorage.getItem("guest-profile"));
+    localStorage.setItem("guest-profile-name", name);
+    localStorage.setItem("guest-profile-id", generateGuestUUID());
+    localStorage.setItem("guest-profile-pw", generateGuestPW())
+
+    axios.post('http://localhost:8080/users/signup', {
+      given_name : localStorage.getItem('guest-profile-name'),
+      email : localStorage.getItem('guest-profile-id'),
+      password : localStorage.getItem('guest-profile-pw')
+    })
+    .then((response) => {
+      console.log('Guest Profile Creation Successful');
+      toggle(false)
+      resetLogin()
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
+  //give a name, then I auto generate a name, auto generate a password and save it all to localStorage. Then send that over to DB for log in credentials
+
   useEffect(() => {
-    if (localStorage.getItem("guest-profile")) {
+    if (localStorage.getItem("guest-profile-name" || localStorage.getItem('guest-profile-id'))) {
       setNotifyExists(true)
     }
     else {
