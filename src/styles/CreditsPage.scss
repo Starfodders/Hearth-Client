@@ -1,0 +1,59 @@
+@use "./partials/fonts" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+
+.credits {
+    &__wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        padding-top: 10rem;
+        gap: 2rem;
+
+        &__img {
+            width: 100%;
+            height: 100vh;
+            object-fit: fill;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            z-index: -10;
+        }
+       
+    }
+
+    &__block {
+        display: flex;
+        width: 50%;
+        max-width: 800px;
+        gap: 1rem;
+    }
+
+    &__pic {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 200px;
+    }
+
+    &__img {
+        width: 100%;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        &--el {
+            color: $off-white;
+            font-size: 1.2rem;
+            line-height: 2rem;
+        }
+    }
+}
