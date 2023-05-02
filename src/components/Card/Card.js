@@ -16,7 +16,7 @@ const Card = ({ details, level, progress }) => {
       if (!overall_available) {
         setDisplay('In Development')
       }
-      else if (details.overall_available && !details.available) {
+      if (details.overall_available && !details.available) {
         setDisplay('Unavailable')
       }
     }

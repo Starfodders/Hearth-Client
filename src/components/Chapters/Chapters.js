@@ -42,8 +42,11 @@ const Chapters = ({initial, progress}) => {
       }
       getUnitDetails();
     }
-    //if no unitId and ONLY id param, then they're on page to select specific Section
-    if (!sectionID && chapterID) {
+  }, [chapterID, sectionID])
+
+  useEffect(() => {
+     //if no unitId and ONLY id param, then they're on page to select specific Section
+     if (!sectionID && chapterID) {
       setSectionLevel('sections')
       const getNewDetails = async () => {
         try {
@@ -57,7 +60,7 @@ const Chapters = ({initial, progress}) => {
       }
       getNewDetails()
     }
-  }, [chapterID, sectionID])
+}, [chapterID, sectionID])
 
   if (!contentToLoad) {
     return <Loader/>
@@ -70,3 +73,7 @@ const Chapters = ({initial, progress}) => {
 };
 
 export default Chapters;
+
+
+//stutter may be casued by API calls everytime the section levle switches
+//useMemo to cache API responses
