@@ -1,22 +1,21 @@
-import React from "react";
-import "./Options.scss"
+import "./Options.scss";
+import {useNavigate} from "react-router-dom";
 
-const Options = ({animToggle, animState, soundToggle, soundState}) => {
 
-    function handleAnimationToggle() {
-        animToggle()
-    }
+const Options = ({ animToggle, animState, soundToggle, soundState }) => {
+  const navigate = useNavigate();
 
-    function handleSoundToggle() {
-        soundToggle()
-    }
+  function handleAnimationToggle() {
+    animToggle();
+  }
+
+  function handleSoundToggle() {
+    soundToggle();
+  }
 
   return (
     <div className="options">
-      <div
-        className="options__sound"
-        onClick={() => handleSoundToggle()}
-      >
+      <div className="options__sound" onClick={() => handleSoundToggle()}>
         {soundState ? (
           <span className="material-symbols-outlined">check_box</span>
         ) : (
@@ -40,6 +39,10 @@ const Options = ({animToggle, animState, soundToggle, soundState}) => {
           </span>
         )}
         <p>Toggle Animation</p>
+      </div>
+      <div className="options__credits" onClick = {() => navigate('/credits')}>
+        <span className="material-symbols-outlined options__credits--icon">arrow_right_alt</span>
+        <p className="options__credits--text">Credits & Contributions</p>
       </div>
     </div>
   );
