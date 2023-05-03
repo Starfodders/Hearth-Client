@@ -22,6 +22,10 @@
             transform: scale(1.1);
             transition: transform 0.2s;
         }
+
+        &:active {
+            animation: click-pressdown 0.25s;
+        }
     }
 
     &--suggestion {
@@ -33,4 +37,13 @@
         background-color: $off-white-highlighted;
     }
     
+}
+
+@keyframes click-pressdown {
+    0% {
+        transform: translateY(5%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

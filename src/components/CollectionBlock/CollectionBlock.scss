@@ -14,6 +14,7 @@
 
         font-size: 1.5rem;
         line-height: 1.8em;
+        animation: slide-in 0.25s;
     }
 
     &__left {
@@ -68,6 +69,7 @@
     &__content {
         &--expand {
             padding: 1rem 0;
+            animation: slide-down 0.25s;
         }
     }
 }
@@ -101,3 +103,27 @@
             border-radius: 4px;
     }
 }
+
+@keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+
+  @keyframes slide-down {
+    from {
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  

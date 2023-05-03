@@ -41,6 +41,18 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+
+        &__left {
+          display: flex;
+          align-items: center;
+          width: 70%;
+        }
+
+        &__right {
+          display: flex;
+          justify-content: space-between;
+          width: 20%;
+        }
     }
 
     &__label {
@@ -48,6 +60,11 @@
       text-transform: uppercase;
       color: $off-white;
       width: 60%;
+
+      &--integer {
+        color: $off-white;
+        font-size: 1.3rem;
+      }
 
       &--small {
         font-size: 0.8rem;

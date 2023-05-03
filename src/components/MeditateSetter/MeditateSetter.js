@@ -20,6 +20,7 @@ const MeditateSetter = ({
   }
 
   function handleStart() {
+    setCurrentVolumeValue(Math.trunc(currAudioObj.volume * 10));
     startState();
   }
 
@@ -27,12 +28,17 @@ const MeditateSetter = ({
     pause();
   }
 
+  const [currentVolumeValue, setCurrentVolumeValue] = useState(
+    currAudio.volume
+  );
+
   function handleVolumeUp(audio) {
-    const increment = 0.1;
+    const increment = 0.105;
     if (audio.volume + increment > 1) {
       return;
     } else {
       audio.volume += increment;
+      setCurrentVolumeValue(Math.trunc(audio.volume * 10));
     }
   }
   function handleVolumeDown(audio) {
@@ -40,6 +46,7 @@ const MeditateSetter = ({
       return;
     } else {
       audio.volume -= 0.1;
+      setCurrentVolumeValue(Math.trunc(audio.volume * 10));
     }
   }
   //austin bray
@@ -92,19 +99,26 @@ const MeditateSetter = ({
               <p className="meditate__now-playing">{currAudio}</p>
             </div>
             <div className="meditate__choices__volume">
-              <label className="meditate__choices__label">Volume</label>
-              <span
-                className="material-symbols-outlined volume-el"
-                onClick={() => handleVolumeUp(currAudioObj)}
-              >
-                add
-              </span>
-              <span
-                className="material-symbols-outlined volume-el"
-                onClick={() => handleVolumeDown(currAudioObj)}
-              >
-                remove
-              </span>
+              <div className="meditate__choices__volume__left">
+                <label className="meditate__choices__label">Volume</label>
+                <p className="meditate__choices__label--integer">
+                  {currentVolumeValue}
+                </p>
+              </div>
+              <div className="meditate__choices__volume__right">
+                <span
+                  className="material-symbols-outlined volume-el"
+                  onClick={() => handleVolumeUp(currAudioObj)}
+                >
+                  add
+                </span>
+                <span
+                  className="material-symbols-outlined volume-el"
+                  onClick={() => handleVolumeDown(currAudioObj)}
+                >
+                  remove
+                </span>
+              </div>
             </div>
           </div>
         ) : null}
