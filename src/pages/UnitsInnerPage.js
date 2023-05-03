@@ -119,7 +119,7 @@ const UnitsPage = ({isLoggedIn}) => {
           {unitData.map((slide, index) => {
             return (
               <swiper-slide key={index}>
-                <UnitSlide slide={slide} unitID = {id} currentSaved = {unitSavedData}/>
+                <UnitSlide slide={slide} unitID = {id} currentSaved = {unitSavedData} notifyChange = {currentPage}/>
               </swiper-slide>
             );
           })}

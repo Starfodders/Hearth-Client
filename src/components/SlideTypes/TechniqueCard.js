@@ -5,7 +5,7 @@ import savedOn from "../../assets/icons/savedFull.svg";
 import axios from "axios";
 import Transcript from "../Transcript/Transcript";
 
-const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
+const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChange}) => {
   const { content, title, type, transcript, audio, page_number } = slide;
 
   //states for transcripts
@@ -27,6 +27,14 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID }) => {
     }
   }
 
+  //whenever slide changes, collapse transcript
+  useEffect(() => {
+    if (transcriptState) {
+      setTranscriptState(false)
+    }
+  }, [notifyChange])
+
+  
   //save functionality
   function handleSave() {
     const userID = sessionStorage.getItem("userId");

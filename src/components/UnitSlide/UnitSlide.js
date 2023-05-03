@@ -6,7 +6,7 @@ import ListCard from "../SlideTypes/ListCard";
 import SpecialCard from "../SlideTypes/SpecialCard";
 import SummaryCard from "../SlideTypes/SummaryCard"
 
-const UnitSlide = ({ slide, unitID, currentSaved }) => {
+const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
   const { type } = slide;
 
   const [isSaved, setIsSaved] = useState(false);
@@ -41,6 +41,7 @@ const UnitSlide = ({ slide, unitID, currentSaved }) => {
         saveState={isSaved}
         saveFunc={setIsSaved}
         unitID={unitID}
+        notifyChange = {notifyChange}
       />
     );
   }
