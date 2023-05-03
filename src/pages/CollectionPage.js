@@ -37,7 +37,7 @@ const CollectionPage = ({ isLoggedIn }) => {
 
   //get array of saved posts
   useEffect(() => {
-    if (!savedData) {
+    if (!savedData || !insideBlock) {
       const getData = async () => {
         try {
           const response = await axios.get(
@@ -53,7 +53,7 @@ const CollectionPage = ({ isLoggedIn }) => {
       };
       getData();
     }
-  }, []);
+  }, [insideBlock]);
 
   //counts the amount of specific TYPEs and sets their counters
   useEffect(() => {

@@ -12,7 +12,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 8. BCrypt for personal information
 9. 😀 DONE - Capitalize first letter of given_name if they give a non capitalized name
 10. Add visual cues to show how the user can 'save'
-11. Add card to the intro, I missed adding 'List' as an card type
+11. 😀 DONE - Add card to the intro, I missed adding 'List' as an card type
 
 ### Bugs
 1. 😀 DONE - Clicking on the initial 'Remember Me' checkbox doesn't accurately reflect state. Flagging as a controlled component error

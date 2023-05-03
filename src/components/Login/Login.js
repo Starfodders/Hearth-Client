@@ -139,6 +139,10 @@ const Login = ({
     }
   }
 
+  function capitalizeName(name) {
+    return name.charAt(0).toUpperCase() + name.substring(1, name.length);
+  }
+
   function handleGuestLogin() {
     if (guestProfile) {
         axios.post(`http://localhost:8080/users/login`, {
@@ -153,7 +157,7 @@ const Login = ({
                 const decodedToken = jwt_decode(token);
                 sessionStorage.setItem("currentName", decodedToken.name);
                 sessionStorage.setItem("userId", decodedToken.id);
-                setDisplayName(sessionStorage.getItem("currentName"));
+                setDisplayName(capitalizeName(sessionStorage.getItem("currentName")));
     
                 setIsLoggedIn(true);
                 navigate("/home");
