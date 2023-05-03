@@ -54,7 +54,7 @@ const SectionsSlidesPage = ({isLoggedIn}) => {
     
       return (
         <div className = "wrapper">
-            <ChaptersBlock content = {contentToLoad} title = {contentTitle} level = {sectionLevel} progress = {userProgress}/>
+            <ChaptersBlock content = {contentToLoad} title = {contentTitle} level = {sectionLevel} progress = {userProgress} destination = '/chapters'/>
         </div>
       );
 };

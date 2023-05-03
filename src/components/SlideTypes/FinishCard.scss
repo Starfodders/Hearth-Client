@@ -3,105 +3,102 @@
 @use "../../styles/partials/mixins" as *;
 
 .finish {
-    &__wrapper {
-        width: 100%;
-        height: 100%;
-        background-color: $black;
-        z-index: 8;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        top: 0;
-        left: 0;
-        opacity: 1;
-        animation: frame-appear 1s;
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: $black;
+    z-index: 8;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    animation: frame-appear 1s;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    margin-top: 10rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1020px;
+    animation: frame-appear 1s;
+
+    &--mod {
+      @extend .finish__container;
+      margin-top: 20%;
+      gap: 10%;
+    }
+  }
+
+  &__image {
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+
+    &--el {
+      width: 50%;
+      object-fit: contain;
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__caption {
+    color: $off-white;
+    text-transform: uppercase;
+    opacity: 0.7;
+    background-color: $light-black;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+  }
+
+  &__message {
+    color: $off-white-reduced;
+    font-size: 2rem;
+    line-height: 4rem;
+    text-align: center;
+  }
+
+  &__confirm {
+    background-color: $light-black;
+    width: 20%;
+    padding: 1rem 2rem;
+    color: $turquoise;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    animation: frame-appear 2s;
+
+    &--mod {
+      @extend .finish__confirm;
     }
 
-    &__container {
-        display: flex;
-        flex-direction: column;
-        // justify-content: space-around;
-        margin-top: 10rem;
-        align-items: center;
-        width: 100%;
-        max-width: 1020px;
-        animation: frame-appear 1s;
-        
-        &--mod {
-            @extend .finish__container;
-            margin-top: 15rem;
-            gap: 10rem;
-        }
+    &:hover {
+      background-color: $turquoise;
+      color: $off-white;
+      transition: all 0.75s;
     }
-
-    &__image {
-        min-height: 300px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 1rem;
-
-        &--el {
-            width: 50%;
-            object-fit: contain;
-            padding-bottom: 1rem;
-
-        }
-    }
-
-    &__caption {
-        color: $off-white;
-        text-transform: uppercase;
-        opacity: 0.7;
-        background-color: $light-black;
-        padding: 1rem 2rem;
-        border-radius: 4px;
-    }
-    
-
-    &__message {
-        color: $off-white-reduced;
-        font-size: 2rem;
-        line-height: 4rem;
-        text-align: center;
-    }
-
-    &__confirm {
-        background-color: $light-black;
-        width: 20%;
-        padding: 1rem 2rem;
-        color: $turquoise;
-        border: none;
-        border-radius: 4px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        animation: frame-appear 2s;
-
-        &--mod {
-            @extend .finish__confirm;
-
-        }
-
-        &:hover {
-            background-color: $turquoise;
-            color: $off-white;
-            transition: all 0.75s;
-
-        }
-    }
+  }
 }
 
 @keyframes frame-appear {
-    0% {
-        opacity: 0
-    }
-    70% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1
-    }
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
