@@ -18,6 +18,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [displayName, setDisplayName] = useState(sessionStorage.getItem('currentName'));
 
+  function capitalizeName() {
+    return displayName.charAt(0).toUpperCase() + displayName.substring(1, displayName.length);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -35,8 +39,8 @@ function App() {
           path="/home"
           element={
             <>
-              <TopLogo name={displayName} login = {setIsLoggedIn} />
-              <HomePage isLoggedIn={isLoggedIn} name = {displayName}/>
+              <TopLogo name={capitalizeName()} login = {setIsLoggedIn} />
+              <HomePage isLoggedIn={isLoggedIn} name = {capitalizeName()}/>
             </>
           }
         ></Route>
