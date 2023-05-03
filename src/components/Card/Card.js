@@ -25,8 +25,7 @@ const Card = ({ details, level, progress }) => {
         setDisplay('Unavailable')
       }
     }
-    
-  }, [])
+  }, [level])
 
 let button;
   if (level === 'chapters') {

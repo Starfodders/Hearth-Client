@@ -46,7 +46,7 @@ const Chapters = ({initial, progress}) => {
 
   useEffect(() => {
      //if no unitId and ONLY id param, then they're on page to select specific Section
-     if (!sectionID && chapterID) {
+     if (!sectionID && chapterID) {   
       setSectionLevel('sections')
       const getNewDetails = async () => {
         try {

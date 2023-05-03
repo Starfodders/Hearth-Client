@@ -1,7 +1,5 @@
-import React from 'react';
-import topwave from "../assets/images/top-wave.svg"
 import "../styles/ChaptersPage.scss"
-import Chapters from "../components/Chapters/Chapters"
+import ChaptersBlock from "../components/ChaptersBlock/ChaptersBlock"
 import Loader from "../components/Loader/Loader";
 
 import axios from "axios";
@@ -9,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-const ChaptersPage = ({isLoggedIn}) => {
+const ChaptersSlidesPage = ({isLoggedIn}) => {
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -35,9 +33,7 @@ const ChaptersPage = ({isLoggedIn}) => {
             ])
             setInitialContent(chapterData.data)
             setUserProgress(currentProgress.data.userProgress)
-            setTimeout(() => {
-                setIsLoaded(true)
-            }, 1000)
+            setIsLoaded(true)
           }catch(error) {
             console.log(error + 'Error retrieving chapter data');
           }
@@ -47,12 +43,10 @@ const ChaptersPage = ({isLoggedIn}) => {
       
     return (
         <div className = "wrapper">
-            <div className = "chapters__bg">
-                <img src = {topwave} className = "chapters__bg--img" alt = "moving waves"/>
-            </div>
-            {isLoaded ? <Chapters initial = {initialContent} progress = {userProgress}/> : <Loader/>}
+
+            {isLoaded ? <ChaptersBlock content = {initialContent} progress = {userProgress} title = "Chapters" level = {'chapters'}/> : <Loader/>}
         </div>
     );
 };
 
-export default ChaptersPage;
+export default ChaptersSlidesPage;

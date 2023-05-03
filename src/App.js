@@ -4,11 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import TopLogo from "./components/TopLogo/TopLogo";
-import ChaptersPage from "./pages/ChaptersPage";
+import ChaptersSlidesPage from "./pages/ChaptersSlidesPage";
+import SectionsSlidesPage from "./pages/SectionsSlidesPage";
+import UnitsSlidesPage from "./pages/UnitsSlidesPage"
+import UnitsInnerPage from "./pages/UnitsInnerPage";
+import SlidesBackground from "./components/SlidesBackground/SlidesBackground";
 import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
 import BotNav from "./components/BotNav/BotNav";
-import UnitsPage from "./pages/UnitsPage";
 import CreditsPage from "./pages/CreditsPage";
 
 function App() {
@@ -43,7 +46,8 @@ function App() {
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn} />
 
-              <ChaptersPage isLoggedIn={isLoggedIn} />
+              <ChaptersSlidesPage isLoggedIn={isLoggedIn} />
+              <SlidesBackground/>
               <BotNav />
             </>
           }
@@ -54,7 +58,9 @@ function App() {
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn} />
 
-              <ChaptersPage isLoggedIn={isLoggedIn} />
+              <SectionsSlidesPage isLoggedIn={isLoggedIn} />
+              <SlidesBackground/>
+
               <BotNav />
             </>
           }
@@ -65,7 +71,9 @@ function App() {
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn}/>
 
-              <ChaptersPage isLoggedIn={isLoggedIn} />
+              <UnitsSlidesPage isLoggedIn={isLoggedIn} />
+              <SlidesBackground/>
+
               <BotNav />
             </>
           }
@@ -76,7 +84,7 @@ function App() {
             <>
               <TopLogo name={displayName} login = {setIsLoggedIn}/>
 
-              <UnitsPage isLoggedIn={isLoggedIn} />
+              <UnitsInnerPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
           }

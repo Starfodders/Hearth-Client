@@ -7,7 +7,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 3. Modal to notify user the meditation is over, also user tracking for how many times they've done it
 4. Visual cues for audio volume
 5. Collections -> when clicking on a collection item it should expand if clicked on the entire body, not just the icon
-6. Add transitions for the chapters to better indicate a change in state, easier to follow
+6. 😀 DONE - Add transitions for the chapters to better indicate a change in state, easier to follow
 7. Add a 'Resume where last left off' option to take them back to the correct unit (can be based on current user current_progress metric)
 8. BCrypt for personal information
 9. Capitalize first letter of given_name if they give a non capitalized name
