@@ -37,8 +37,6 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
     })
   }
 
-  //give a name, then I auto generate a name, auto generate a password and save it all to localStorage. Then send that over to DB for log in credentials
-
   useEffect(() => {
     if (localStorage.getItem("guest-profile-name" || localStorage.getItem('guest-profile-id'))) {
       setNotifyExists(true)
@@ -47,6 +45,14 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
       setNotifyExists(false)
     }
   }, []);
+
+  const formInvalidName = (e) => {
+    e.target.setCustomValidity('Please Use Only Characters')
+  }
+
+  function resetField(e) {
+    e.target.setCustomValidity('')
+  }
 
   return (
     <div className="guest__container">
@@ -83,6 +89,9 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
           className="guest__given-name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onClick={(e) => resetField(e)}
+          pattern = "[A-Za-z]+"
+          onInvalid={formInvalidName}
         ></input>
         <button className="guest__btn">Create Guest Profile</button>
         <p className="sign__toggle--guest" onClick={() => toggle(false)}>

@@ -10,7 +10,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 6. 😀 DONE - Add transitions for the chapters to better indicate a change in state, easier to follow
 7. Add a 'Resume where last left off' option to take them back to the correct unit (can be based on current user current_progress metric)
 8. BCrypt for personal information
-9. Capitalize first letter of given_name if they give a non capitalized name
+9. 😀 DONE - Capitalize first letter of given_name if they give a non capitalized name
 10. Add visual cues to show how the user can 'save'
 11. Add card to the intro, I missed adding 'List' as an card type
 

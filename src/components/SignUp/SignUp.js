@@ -52,6 +52,7 @@ const SignUp = ({ toggle, getUser }) => {
   function resetField(e) {
     const { name } = e.target;
     setErrorFields({ ...errorFields, [name]: true });
+    e.target.setCustomValidity('')
     setFormValid(true);
   }
 
@@ -85,6 +86,10 @@ const SignUp = ({ toggle, getUser }) => {
     }
   }
 
+  const formInvalidName = (e) => {
+    e.target.setCustomValidity('Please Use Only Characters')
+  }
+
   return (
     <>
       {isGuestSignUp ? (
@@ -101,6 +106,8 @@ const SignUp = ({ toggle, getUser }) => {
             value={inputFields.given_name}
             onChange={(e) => handleInput(e)}
             onClick={(e) => resetField(e)}
+            pattern = "[A-Za-z]+"
+            onInvalid={formInvalidName}
           ></input>
           <ErrorIcon element={errorFields.given_name} message={errorMessage} />
           <label htmlFor="email" className="sign__container--label">
