@@ -114,7 +114,7 @@ const CollectionBlock = ({ type, content }) => {
               <span className="material-symbols-outlined block__delete" onClick = {() => handleDelete(page.id)}>delete</span>
             </div>
             <div className="block__center">
-              <p className="block__title">{page.title}</p>
+              <p className="block__title" onClick={() => handleTextExpand(index)}>{page.title}</p>
               <CollectionItem
                 type={type}
                 content={page}
