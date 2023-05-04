@@ -32,3 +32,9 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 6. 😀 DONE - Remove transcript toggle for techniques that do not have this feature within collections
 7. BotNav is clipping through content, not accessible at most times and can interfere with reading if accidentally hover
 8. Logout menu is hard-coded, doesn't align with actual name length
+
+<!-- 
+  //austin bray
+  //margaret (Aundreya's wife)
+  //justin hugh //also recommended the bot nav be more accessible
+  //james suresh -->

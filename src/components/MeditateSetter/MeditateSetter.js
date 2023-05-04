@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import "./MeditateSetter.scss";
+import MeditateActive from "../MeditateActive/MeditateActive";
 
 const MeditateSetter = ({
   inputTime,
   setTime,
   start,
+  active,
+  setActive,
   startState,
   pause,
   currAudio,
@@ -19,44 +22,20 @@ const MeditateSetter = ({
     }
   }
 
+  //when 'START' is clicked, both Start and Active flags are true
   function handleStart() {
-    setCurrentVolumeValue(Math.trunc(currAudioObj.volume * 10));
     startState();
   }
 
+  //only toggles Active to false, START is overall still true until session is ended prematurely or concludes naturally
   function handlePause() {
     pause();
   }
 
-  const [currentVolumeValue, setCurrentVolumeValue] = useState(
-    currAudio.volume
-  );
-
-  function handleVolumeUp(audio) {
-    const increment = 0.105;
-    if (audio.volume + increment > 1) {
-      return;
-    } else {
-      audio.volume += increment;
-      setCurrentVolumeValue(Math.trunc(audio.volume * 10));
-    }
-  }
-  function handleVolumeDown(audio) {
-    if (audio.volume - 0.1 < 0) {
-      return;
-    } else {
-      audio.volume -= 0.1;
-      setCurrentVolumeValue(Math.trunc(audio.volume * 10));
-    }
-  }
-  //austin bray
-  //margaret (Aundreya's wife)
-  //justin hugh //also recommended the bot nav be more accessible
-  //james suresh
-
   return (
     <div className={start ? "active__setting" : "meditate__setting"}>
       <div className="meditate__choices">
+        {/* Block determines Duration of Meditation */}
         {start ? null : (
           <div className="meditate__choices__block">
             <label className="meditate__choices__label">
@@ -77,6 +56,7 @@ const MeditateSetter = ({
             ></input>
           </div>
         )}
+        {/* Block Determines Sound Chosen for Meditation */}
         {start ? null : (
           <div className="meditate__choices__block">
             <label className="meditate__choices__label--sound">Sound</label>
@@ -92,54 +72,26 @@ const MeditateSetter = ({
             </select>
           </div>
         )}
+        {/* If Started, change to display the active panel */}
         {start ? (
-          <div className="meditate__choices__block--vol">
-            <div className="meditate__choices__volume">
-              <p className="meditate__now-playing">Now playing</p>
-              <p className="meditate__now-playing">{currAudio}</p>
-            </div>
-            <div className="meditate__choices__volume">
-              <div className="meditate__choices__volume__left">
-                <label className="meditate__choices__label">Volume</label>
-                <p className="meditate__choices__label--integer">
-                  {currentVolumeValue}
-                </p>
-              </div>
-              <div className="meditate__choices__volume__right">
-                <span
-                  className="material-symbols-outlined volume-el"
-                  onClick={() => handleVolumeUp(currAudioObj)}
-                >
-                  add
-                </span>
-                <span
-                  className="material-symbols-outlined volume-el"
-                  onClick={() => handleVolumeDown(currAudioObj)}
-                >
-                  remove
-                </span>
-              </div>
-            </div>
-          </div>
-        ) : null}
-
-        <div className="meditate__choices__block">
-          {start ? (
+          <MeditateActive
+            currAudio={currAudio}
+            currAudioObj={currAudioObj}
+            active={active}
+            resume={setActive}
+            pause={handlePause}
+          />
+        ) : (
+          <div className="meditate__choices__block">
             <button
-              className={"meditate__choices__button--pause"}
-              onClick={() => handlePause()}
-            >
-              Pause
-            </button>
-          ) : (
-            <button
-              className={"meditate__choices__button"}
+              className="meditate__choices__button"
               onClick={() => handleStart()}
             >
+              <span className="material-symbols-outlined inner-icon">play_arrow</span>
               Start
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

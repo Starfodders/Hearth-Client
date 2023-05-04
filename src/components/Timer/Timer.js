@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import meditateCompleteSound from "../../assets/audio/meditateDone.mp3"
 
-const Timer = ({ timer, animate, setStart, opened }) => {
+const Timer = ({ timer, animate, start, setStart, setActive, opened }) => {
   const [currentTime, setCurrentTime] = useState(timer)
 
   const meditateSound = new Audio(meditateCompleteSound)
 
   const handleComplete = (e) => {
     setStart(false);
+    setActive(false);
     setCurrentTime(15);
     opened(true)
     setTimeout(() => {
@@ -35,11 +36,11 @@ const Timer = ({ timer, animate, setStart, opened }) => {
   };
 
   return (
-    <div className="circle__element">
+    <div className={start ? "circle__element--on" : "circle__element"}>
       <CountdownCircleTimer
         isPlaying={animate}
-        initialRemainingTime = {15}
-        duration={currentTime * 1}
+        // initialRemainingTime = {15}
+        duration={currentTime * 60}
         colors={["#52b69a"]}
         strokeWidth={18}
         trailStrokeWidth={18}

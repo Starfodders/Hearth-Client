@@ -16,7 +16,7 @@
     opacity: 0.5;
     padding-bottom: 1rem;
     text-transform: uppercase;
-}
+  }
 
   &__choices {
     width: 300px;
@@ -31,6 +31,10 @@
       gap: 5px;
       animation: block-appear 0.5s linear forwards;
 
+      &--active {
+        @extend .meditate__choices__block;
+      }
+
       &--vol {
         @extend .meditate__choices__block;
         flex-direction: column;
@@ -38,21 +42,21 @@
     }
 
     &__volume {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      &__left {
         display: flex;
-        width: 100%;
+        align-items: center;
+        width: 70%;
+      }
+
+      &__right {
+        display: flex;
         justify-content: space-between;
-
-        &__left {
-          display: flex;
-          align-items: center;
-          width: 70%;
-        }
-
-        &__right {
-          display: flex;
-          justify-content: space-between;
-          width: 20%;
-        }
+        width: 20%;
+      }
     }
 
     &__label {
@@ -92,14 +96,12 @@
     }
 
     &__input {
-
       width: 30%;
       font-size: 0.8rem;
       padding: 0 0.5rem;
       border-radius: 4px;
       background-color: $light-black;
       color: $off-white-reduced;
-      
 
       &:focus,
       :active {
@@ -113,7 +115,10 @@
     &__button {
       width: 100%;
       padding: 0.7rem 1rem;
-      background-color: #52B69AAA;
+      background-color: #52b69aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: $off-white-reduced;
       border: none;
       border-radius: 4px;
@@ -121,19 +126,17 @@
       text-transform: uppercase;
       animation: block-appear 0.5s linear forwards;
 
-
       &:hover {
         cursor: pointer;
         background-color: $turquoise;
         color: $off-white;
-        transition: all 0.3s
+        transition: all 0.3s;
       }
 
       &--pause {
         @extend .meditate__choices__button;
         opacity: 1;
-      animation: block-appear 0.5s linear forwards;
-
+        animation: block-appear 0.5s linear forwards;
       }
     }
   }
@@ -162,6 +165,10 @@
   }
 }
 
+.inner-icon {
+  margin-left: -0.5rem;
+}
+
 @keyframes slide-from-top {
   0% {
     transform: translateY(-100%);
@@ -174,10 +181,10 @@
 }
 
 @keyframes block-appear {
-    from {
-        opacity: 0;
-    }
-     to {
-        opacity: 1;
-     }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

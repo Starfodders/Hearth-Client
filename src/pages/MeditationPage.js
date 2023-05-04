@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import bgFire from "../assets/images/homepage/fireOnLesser.gif";
+import bgStatic from "../assets/images/homepage/fireOnLesser.png"
 
 import "../styles/MeditatePage.scss";
 
@@ -24,9 +25,10 @@ const MeditationPage = ({isLoggedIn}) => {
     } 
 }, [isLoggedIn])
 
-
+  //start changes active to true, active handles the meditation instance. 
   const [inputTime, setInputTime] = useState(15);
   const [start, setStart] = useState(false);
+  const [active, setActive] = useState(false)
   const [meditateFinish, setMeditateFinish] = useState(false)
 
   const audioElRef = useRef()
@@ -40,17 +42,13 @@ const MeditationPage = ({isLoggedIn}) => {
   const [currentAudio, setCurrentAudio] = useState('campfire')
   const [currentAudioObj, setCurrentAudioObj] = useState([])
 
-
-  // function handleInputTime(time) {
-  //   setInputTime(time);
-  // }
-
   function toggleStart() {
     setStart(true);
+    setActive(true)
   }
 
   function togglePause() {
-    setStart(false);
+    setActive(false);
   }
 
   useEffect(() => {
@@ -67,7 +65,7 @@ const MeditationPage = ({isLoggedIn}) => {
   }, [currentAudio]);
 
   useEffect(() => {
-    if (start && currentAudioObj.length > 0) {
+    if (active && currentAudioObj.length > 0) {
       currentAudioObj[0].play()
       currentAudioObj[0].loop = true
     }
@@ -76,7 +74,7 @@ const MeditationPage = ({isLoggedIn}) => {
       currentAudioObj[0].loop = false
 
     }
-  }, [start, currentAudioObj])
+  }, [start, active, currentAudioObj])
 
   return (
     <div className="meditate__wrapper">
@@ -84,16 +82,18 @@ const MeditationPage = ({isLoggedIn}) => {
         currentTime={inputTime}
         setTime={setInputTime}
         start = {start}
+        active = {active}
+        setActive = {setActive}
         startState={toggleStart}
         pause={togglePause}
         currAudio = {currentAudio}
         setAudio = {setCurrentAudio}
         currAudioObj = {currentAudioObj[0]}
       />
-      <Timer timer={inputTime} animate={start} setStart = {setStart} opened = {setMeditateFinish} />
+      <Timer timer={inputTime} animate={active} start = {start} setStart = {setStart} setActive = {setActive} opened = {setMeditateFinish} />
       {start ? (
         <div className="meditate__picture">
-          <img src={bgFire} className="meditate__gif" />
+          <img src={active ? bgFire : bgStatic} className="meditate__gif" alt = ""/>
         </div>
       ) : null}
       {meditateFinish ? <MeditateComplete opened = {setMeditateFinish} time = {inputTime}/> : null}
