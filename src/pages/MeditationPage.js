@@ -4,6 +4,7 @@ import waves from "../assets/meditateAudio/waves.mp3"
 import rainforest from "../assets/meditateAudio/rainforest.mp3"
 import minecraft from "../assets/meditateAudio/minecraft.mp3"
 import Timer from "../components/Timer/Timer";
+import MeditateComplete from "../components/MeditateComplete/MeditateComplete";
 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +27,7 @@ const MeditationPage = ({isLoggedIn}) => {
 
   const [inputTime, setInputTime] = useState(15);
   const [start, setStart] = useState(false);
+  const [meditateFinish, setMeditateFinish] = useState(false)
 
   const audioElRef = useRef()
   const audioSources= {
@@ -39,9 +41,9 @@ const MeditationPage = ({isLoggedIn}) => {
   const [currentAudioObj, setCurrentAudioObj] = useState([])
 
 
-  function handleInputTime(time) {
-    setInputTime(time);
-  }
+  // function handleInputTime(time) {
+  //   setInputTime(time);
+  // }
 
   function toggleStart() {
     setStart(true);
@@ -80,7 +82,7 @@ const MeditationPage = ({isLoggedIn}) => {
     <div className="meditate__wrapper">
       <MeditateSetter
         currentTime={inputTime}
-        setTime={handleInputTime}
+        setTime={setInputTime}
         start = {start}
         startState={toggleStart}
         pause={togglePause}
@@ -88,12 +90,13 @@ const MeditationPage = ({isLoggedIn}) => {
         setAudio = {setCurrentAudio}
         currAudioObj = {currentAudioObj[0]}
       />
-      <Timer timer={inputTime} animate={start} setStart = {setStart} />
+      <Timer timer={inputTime} animate={start} setStart = {setStart} opened = {setMeditateFinish} />
       {start ? (
         <div className="meditate__picture">
           <img src={bgFire} className="meditate__gif" />
         </div>
       ) : null}
+      {meditateFinish ? <MeditateComplete opened = {setMeditateFinish} time = {inputTime}/> : null}
     </div>
   );
 };

@@ -4,7 +4,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 ## To Add
 1. 😀 DONE - Update the sign up page to display if an email already exists (proper error handling)
 2. 😀 DONE - Prompt the user if the login credentials entered don't match, or do not fit the proper format
-3. Modal to notify user the meditation is over, also user tracking for how many times they've done it
+3. 😀 DONE - Modal to notify user the meditation is over
 4. 😀 DONE - Visual cues for audio volume
 5. 😀 DONE - Collections -> when clicking on a collection item it should expand if clicked on the entire body, not just the icon
 6. 😀 DONE - Add transitions for the chapters to better indicate a change in state, easier to follow
@@ -20,6 +20,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 16. Website responsive design (Mobile)
 17. Add place to download specific forms for exercises (google docs)
 18. Add better help tooling for new users
+19. Add stat tracking for user progress under 'collections'
 
 
 ### Bugs

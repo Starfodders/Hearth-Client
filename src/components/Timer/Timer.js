@@ -2,13 +2,18 @@ import "./Timer.scss";
 import { useState, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-const Timer = ({ timer, animate, setStart }) => {
+const Timer = ({ timer, animate, setStart, opened }) => {
   const [currentTime, setCurrentTime] = useState(timer)
 
   const handleComplete = () => {
     setStart(false);
     setCurrentTime(timer);
+    opened(true)
   };
+
+  useEffect(() => {
+    setCurrentTime(timer)
+  }, [timer])
 
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60);
@@ -28,7 +33,7 @@ const Timer = ({ timer, animate, setStart }) => {
     <div className="circle__element">
       <CountdownCircleTimer
         isPlaying={animate}
-        duration={currentTime * 60}
+        duration={currentTime * 1}
         colors={["#52b69a"]}
         strokeWidth={18}
         trailStrokeWidth={18}
