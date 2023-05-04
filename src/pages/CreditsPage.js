@@ -33,6 +33,7 @@ const CreditsPage = () => {
           </p>
           <p className="credits__text--el">Special thanks to:</p>
           <p className="credits__text--el">Joseph Wong (Voiceover)</p>
+         <p className="credits__text--el">Meditation Completion Sound - UNIVERSFIELD on Pixabay</p>
         </section>
         <div className="credits__pic">
           <img className="credits__img" src={textBook} />

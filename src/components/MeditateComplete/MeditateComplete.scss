@@ -27,6 +27,7 @@
         justify-content: center;
         align-items: center;
         color: $off-white;
+        animation: modal-appear 0.5s forwards ease-out;
     }
 
     &__heading {
@@ -56,4 +57,13 @@
           transition: all 0.75s;
         }
       }
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
