@@ -96,7 +96,7 @@ const MeditationPage = ({isLoggedIn}) => {
           <img src={active ? bgFire : bgStatic} className="meditate__gif" alt = ""/>
         </div>
       ) : null}
-      {meditateFinish ? <MeditateComplete opened = {setMeditateFinish} time = {inputTime}/> : null}
+      {meditateFinish ? <MeditateComplete time = {inputTime}/> : null}
     </div>
   );
 };

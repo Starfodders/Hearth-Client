@@ -8,10 +8,9 @@ const Timer = ({ timer, animate, start, setStart, setActive, opened }) => {
 
   const meditateSound = new Audio(meditateCompleteSound)
 
-  const handleComplete = (e) => {
+  const handleComplete = () => {
     setStart(false);
     setActive(false);
-    setCurrentTime(15);
     opened(true)
     setTimeout(() => {
       meditateSound.play();
@@ -39,15 +38,14 @@ const Timer = ({ timer, animate, start, setStart, setActive, opened }) => {
     <div className={start ? "circle__element--on" : "circle__element"}>
       <CountdownCircleTimer
         isPlaying={animate}
-        // initialRemainingTime = {15}
         duration={currentTime * 60}
         colors={["#52b69a"]}
         strokeWidth={18}
         trailStrokeWidth={18}
         strokeLinecap={"square"}
         trailColor={"#061825"}
-        onComplete={(e) => {
-         handleComplete(e)
+        onComplete={() => {
+         handleComplete()
         }}
       >
         {children}
