@@ -44,6 +44,10 @@ const Options = ({ animToggle, animState, soundToggle, soundState }) => {
         <span className="material-symbols-outlined options__credits--icon">arrow_right_alt</span>
         <p className="options__credits--text">View Credits</p>
       </div>
+      <div className="options__credits" onClick = {() => navigate('/feedback')}>
+        <span className="material-symbols-outlined options__credits--icon">arrow_right_alt</span>
+        <p className="options__credits--text">Submit Feedback</p>
+      </div>
     </div>
   );
 };

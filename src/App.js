@@ -13,6 +13,7 @@ import MeditationPage from "./pages/MeditationPage";
 import CollectionPage from "./pages/CollectionPage";
 import BotNav from "./components/BotNav/BotNav";
 import CreditsPage from "./pages/CreditsPage";
+import FeedbackPage from "./pages/FeedbackPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -118,6 +119,17 @@ function App() {
               <TopLogo name={displayName} login = {setIsLoggedIn}/>
 
               <CreditsPage isLoggedIn={isLoggedIn} />
+              <BotNav />
+            </>
+          }
+        ></Route>
+        <Route
+          path="/feedback"
+          element={
+            <>
+              <TopLogo name={displayName} login = {setIsLoggedIn}/>
+
+              <FeedbackPage isLoggedIn={isLoggedIn} />
               <BotNav />
             </>
           }
