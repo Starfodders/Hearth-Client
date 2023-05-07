@@ -55,7 +55,7 @@ const Options = ({ animToggle, animState, soundToggle, soundState, navToUnit }) 
         <p>Toggle Animation</p>
       </div>
       <div className="options__credits" onClick = {() => navigateToUnit()}>
-        <span className="material-symbols-outlined options__credits--icon">arrow_right_alt</span>
+        <span className="material-symbols-outlined options__credits--icon">line_start_circle</span>
         <p className="options__credits--text">Continue From Recent Progress</p>
       </div>
       <div className="options__credits" onClick = {() => navigate('/credits')}>
