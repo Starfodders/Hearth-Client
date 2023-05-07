@@ -21,6 +21,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 17. Add place to download specific forms for exercises (google docs)
 18. Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'
+20. Re: stat tracking, create separate user profile to handle this
 
 
 ### Bugs
