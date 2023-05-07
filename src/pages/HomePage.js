@@ -24,6 +24,7 @@ const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
   const currUser = sessionStorage.getItem('userId')
   const [currUserProgress, setCurrUserProgress] = useState()
+  const [currUserNavigateUnit, setCurrUserNavigateUnit] = useState()
 
   useEffect(() => {
       if (!isLoggedIn) {
@@ -52,6 +53,7 @@ const HomePage = ({ isLoggedIn, name }) => {
     axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
       .then(({data}) => {
         setCurrUserProgress(data.progress)
+        setCurrUserNavigateUnit(data.currentUnitToNav)
         if (data.isNew === 1) {
           setDisplayModal(true)
         }
@@ -128,6 +130,7 @@ const HomePage = ({ isLoggedIn, name }) => {
       setFireSrc(stokingFire);
       playMatches();
 
+
       setTimeout(() => {
         setMainFireOn(true);
         sessionStorage.setItem("homepageState", true);
@@ -165,6 +168,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           animState={animationState}
           soundToggle={toggleSound}
           soundState={soundState}
+          navToUnit = {currUserNavigateUnit}
         />
       ) : null}
       {homepageState ? <BotNav /> : null}

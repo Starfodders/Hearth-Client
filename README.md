@@ -8,12 +8,12 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 4. 😀 DONE - Visual cues for audio volume
 5. 😀 DONE - Collections -> when clicking on a collection item it should expand if clicked on the entire body, not just the icon
 6. 😀 DONE - Add transitions for the chapters to better indicate a change in state, easier to follow
-7. Add a 'Resume where last left off' option to take them back to the correct unit (can be based on current user current_progress metric)
+7. 😀 DONE - Add a 'Resume where last left off' option to take them back to the correct unit (can be based on current user current_progress metric)
 8. BCrypt for personal information
 9. 😀 DONE - Capitalize first letter of given_name if they give a non capitalized name
 10. Add visual cues to show how the user can 'save'
 11. 😀 DONE - Add card to the intro, I missed adding 'List' as an card type
-12. Add form for users to submit feedback on improvements
+12. 😀 DONE - Add form for users to submit feedback on improvements
 13. Add additional graphics for users when going through techniques
 14. Add animation to background waves
 15. Website responsive design (Tablet)
