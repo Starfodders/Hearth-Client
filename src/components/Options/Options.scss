@@ -9,16 +9,36 @@
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   width: 17rem;
-  padding: 1rem;
+  min-height: 18rem;
+  padding: 1rem 1rem 1rem 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   border-radius: 4px;
   animation: slide-in 0.5s ease-out;
 
-  // @include desktop {
-  //   top: 30%;
-  // }
+  &__left {
+    width: 10%;
+    height: 100%;
+    min-height: 18rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-left: 1px solid $off-white;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $background-faded;
+      transition: all 0.2s;
+    }
+  }
+
+  &__right {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
 
   &__sound {
     display: flex;
@@ -46,6 +66,30 @@
 
     &--icon {
       color: $off-white-reduced;
+    }
+  }
+
+  &__expand {
+    position: fixed;
+    right: 0;
+    top: 35%;
+    width: 4rem;
+    min-height: 16rem;
+    border-left: 2px solid $off-white-reduced;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &--arrow {
+      color: $off-white;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-left: 3px solid $off-white;
+      background-color: $background-faded;
+      transition: all 0.2s;
     }
   }
 }
