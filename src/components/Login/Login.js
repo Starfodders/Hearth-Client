@@ -176,17 +176,20 @@ const Login = ({
           postLoginState ? "login__container--disappear" : "login__container"
         }
         onSubmit={(e) => handleLogin(e)}
+        role = "application"
       >
-        <label htmlFor="email" className="login__container--label">
+        <label htmlFor="email" className="login__container--label" aria-label="user email">
           Email Address
         </label>
         <input
-          type="text"
+          type="email"
           name="email"
           className="login__email"
           value={inputFields.email}
           onChange={(e) => handleInput(e)}
           onClick={(e) => resetField(e)}
+          role = "user login"
+          tabIndex={1}
         ></input>
         <ErrorIcon element={errorFields.email} message={errorMessage} />
 
@@ -201,18 +204,24 @@ const Login = ({
             value={inputFields.password}
             onChange={(e) => handleInput(e)}
             onClick={(e) => resetField(e)}
+            role = "user password"
+            tabIndex={2}
           ></input>
           {passwordHidden ? (
             <img
               src={passwordShow}
               className="login__pw-icon"
               onClick={() => toggleShowState()}
+              tabIndex={3}
+              alt = "hide password"
             />
           ) : (
             <img
               src={passwordHide}
               className="login__pw-icon"
               onClick={() => toggleShowState()}
+              tabIndex={3}
+              alt = "reveal password"
             />
           )}
           <ErrorIcon element={errorFields.password} message={errorMessage} />
@@ -230,7 +239,7 @@ const Login = ({
           </div>
           <p className="login__reset">Forgot Password</p>
         </div>
-        <button className="login__btn">Log In</button>
+        <button className="login__btn" role = "button">Log In</button>
         <p className="login__toggle" onClick={() => toggle()}>
           New to Hearth? Click here to make an account.
         </p>

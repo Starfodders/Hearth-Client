@@ -22,6 +22,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 18. Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'
 20. Re: stat tracking, create separate user profile to handle this
+21. Website ARIA completion
 
 
 ### Bugs
@@ -34,6 +35,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 7. BotNav is clipping through content, not accessible at most times and can interfere with reading if accidentally hover
 8. Logout menu is hard-coded, doesn't align with actual name length
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
+10. Feedback page is no longer working
 
 <!-- 
   //austin bray

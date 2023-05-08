@@ -11,8 +11,16 @@
     align-items: center;
     position: relative;
     animation: toggle-slide-in-left 0.3s;
-    
 
+    @include tablet {
+      min-width: 400px;
+    }
+
+    @include mobile {
+      min-width: 250px;
+      animation: toggle-slide-in-left-MOBILE 0.3s;
+    }
+    
     &--disappear {
       @extend .login__container;
       animation: fade-out 0.5s;
@@ -148,11 +156,21 @@
 
 @keyframes toggle-slide-in-left {
     0% {
-        transform: translateX(-100%);
-        opacity: 0
+        transform: translateX(-20%);
+        opacity: 0.3
     }
     100%{
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+
+@keyframes toggle-slide-in-left-MOBILE {
+  0% {
+      opacity: 0.3
+  }
+  100%{
+      opacity: 1;
+  }
 }

@@ -1,10 +1,20 @@
 import "./Options.scss";
+import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 
 const Options = ({ animToggle, animState, soundToggle, soundState, navToUnit }) => {
   const navigate = useNavigate();
+
+  function handleResize() {
+    console.log(window.innerWidth);
+  }
+  useEffect(() => {
+    
+   window.addEventListener('resize', handleResize);
+   return () => window.removeEventListener('resize', handleResize);
+  }, [])
 
   function handleAnimationToggle() {
     animToggle();
