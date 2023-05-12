@@ -8,7 +8,6 @@ import SummaryCard from "../SlideTypes/SummaryCard"
 
 const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
   const { type } = slide;
-
   const [isSaved, setIsSaved] = useState(false);
 
   //capitalizes the 'Type' for display
