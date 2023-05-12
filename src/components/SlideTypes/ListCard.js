@@ -2,6 +2,7 @@ import "../UnitSlide/UnitSlide.scss";
 import savedOff from "../../assets/icons/savedEmpty.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
 import resourceIcon from "../../assets/icons/access-resource.svg";
+import resourceIconOff from "../../assets/icons/access-resource-none.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -86,7 +87,11 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
                 className="resource-link"
                 alt="access page resource"
               />
-            </a> : null }
+            </a> : <img
+                src={resourceIconOff}
+                className="resource-link-off"
+                alt=""
+              />}
             <img
               src={saveState ? savedOn : savedOff}
               className={saveState ? "units__saved" : "units__saved--off"}

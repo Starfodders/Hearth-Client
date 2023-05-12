@@ -194,6 +194,14 @@
     cursor: pointer;
   }
 
+  &-off {
+    @extend .resource-link;
+
+    &:hover {
+      cursor: auto;
+    }
+  }
+
 }
 
 .card-icon {
