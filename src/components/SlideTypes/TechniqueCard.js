@@ -2,6 +2,8 @@ import "../UnitSlide/UnitSlide.scss";
 import { useEffect, useState } from "react";
 import savedOff from "../../assets/icons/savedEmpty.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
+import resourceIcon from "../../assets/icons/access-resource.svg";
+import resourceIconOff from "../../assets/icons/access-resource-none.svg";
 import axios from "axios";
 import Transcript from "../Transcript/Transcript";
 
@@ -96,6 +98,17 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
           <p className="slide__type">{format(type)} Card</p>
         </div>
         <div className="slide__container__top--right">
+        {slide.links ? <a href={`http://localhost:8080${slide.links}`} target="_blank">
+              <img
+                src={resourceIcon}
+                className="resource-link"
+                alt="access page resource"
+              />
+            </a> : <img
+                src={resourceIconOff}
+                className="resource-link-off"
+                alt=""
+              />}
           <img
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}

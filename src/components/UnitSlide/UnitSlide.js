@@ -4,7 +4,7 @@ import TextCard from "../SlideTypes/TextCard";
 import TechniqueCard from "../SlideTypes/TechniqueCard";
 import ListCard from "../SlideTypes/ListCard";
 import SpecialCard from "../SlideTypes/SpecialCard";
-import SummaryCard from "../SlideTypes/SummaryCard"
+import SummaryCard from "../SlideTypes/SummaryCard";
 
 const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
   const { type } = slide;
@@ -26,11 +26,8 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
     });
   }, [currentSaved]);
 
-
   if (type === "special") {
-    return (
-      <SpecialCard slide = {slide}/>
-    );
+    return <SpecialCard slide={slide} />;
   }
   if (type === "technique") {
     return (
@@ -40,7 +37,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
         saveState={isSaved}
         saveFunc={setIsSaved}
         unitID={unitID}
-        notifyChange = {notifyChange}
+        notifyChange={notifyChange}
       />
     );
   }
@@ -54,12 +51,15 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
       />
     );
   }
-  if (type === 'summary') {
+  if (type === "summary") {
     return (
-      <SummaryCard slide = {slide} format={formatType}
-      saveState={isSaved}
-      saveFunc={setIsSaved}/>
-    )
+      <SummaryCard
+        slide={slide}
+        format={formatType}
+        saveState={isSaved}
+        saveFunc={setIsSaved}
+      />
+    );
   }
 
   return (
