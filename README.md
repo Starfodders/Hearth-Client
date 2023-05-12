@@ -18,7 +18,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 14. Add animation to background waves
 15. Website responsive design (Tablet)
 16. Website responsive design (Mobile)
-17. Add place to download specific forms for exercises (google docs)
+17. 😀 DONE - Add place to download specific forms for exercises
 18. Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'
 20. Re: stat tracking, create separate user profile to handle this

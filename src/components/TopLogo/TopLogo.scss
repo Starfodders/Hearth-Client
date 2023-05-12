@@ -26,26 +26,39 @@
 
     &__profile {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: center;
         flex-wrap: wrap;
         color: $off-white;
-        gap: 0.5rem;
-        min-width: 4rem;
-        
+
+        &__preview {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        &__opened {
+            color: $off-white;
+            display: flex;
+            justify-content: flex-start;
+            // padding: 6rem 2rem 2rem 5rem;
+            background-color: $background-faded;
+            z-index: -5;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     }
 
     &__icon {
-        padding: 1rem;
     }
 
     &__menu {
         color: $off-white;
-        min-width: 4rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         position: absolute;
         right: 0;
-        padding: 6rem 2rem 2rem 5rem;
+        // padding: 6rem 2rem 2rem 5rem;
         background-color: $background-faded;
         z-index: -5;
         border-radius: 4px;

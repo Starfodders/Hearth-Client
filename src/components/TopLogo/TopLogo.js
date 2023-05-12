@@ -24,18 +24,21 @@ const TopLogo = ({ name, login }) => {
         onMouseEnter={() => setMenuHover(true)}
         onMouseLeave={() => setMenuHover(false)}
       >
-        <span className="material-symbols-outlined top__icon">
-          account_circle
-        </span>
-        <p className="top__name">{name}</p>
-        {menuHover ? (
-          <div className="top__menu">
+        <div className="top__profile__preview">
+          <span className="material-symbols-outlined top__icon">
+            account_circle
+          </span>
+          <p className="top__name">{name}</p>
+          {menuHover ? (
+          <div className="top__profile__opened">
             <span className="material-symbols-outlined">logout</span>
             <p className="top__signout" onClick={() => handleLogOut()}>
               Sign Out
             </p>
           </div>
         ) : null}
+        </div>
+        
       </div>
     </div>
   );
