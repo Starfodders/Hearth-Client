@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import stokingFire from "../assets/images/homepage/fireMedium.gif";
 import noFire from "../assets/images/homepage/noFireBase.png";
 
-import fireStatic from "../assets/images/homepage/yesFire.png";
+import bgLeavesBot from "../assets/images/homepage/lit-up-leaves-bot.png";
+import bgLeavesTop from "../assets/images/homepage/lit-up-leaves-top.png";
+
+import fireStatic from "../assets/images/homepage/fireOnLesser.png";
 import fireStaticOne from "../assets/images/homepage/yesFireOne.png";
 
-import fireGif from "../assets/images/homepage/fireOn.gif";
+import fireGif from "../assets/images/homepage/fireOnLesser.gif";
 import fireGifOne from "../assets/images/homepage/fireOnOne.gif";
 
 import lightFire from "../assets/audio/matches-3.mp3";
@@ -22,17 +25,17 @@ import axios from "axios";
 
 const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
-  const currUser = sessionStorage.getItem('userId')
-  const [currUserProgress, setCurrUserProgress] = useState()
-  const [currUserNavigateUnit, setCurrUserNavigateUnit] = useState()
+  const currUser = sessionStorage.getItem("userId");
+  const [currUserProgress, setCurrUserProgress] = useState();
+  const [currUserNavigateUnit, setCurrUserNavigateUnit] = useState();
 
   useEffect(() => {
-      if (!isLoggedIn) {
-        if (!sessionStorage.getItem('authToken')) {
-          navigate('/')
-        }
-      } 
-  }, [isLoggedIn])
+    if (!isLoggedIn) {
+      if (!sessionStorage.getItem("authToken")) {
+        navigate("/");
+      }
+    }
+  }, [isLoggedIn]);
 
   const [fireOn, setFireOn] = useState(false);
   const [mainFireOn, setMainFireOn] = useState(false);
@@ -40,7 +43,7 @@ const HomePage = ({ isLoggedIn, name }) => {
   const [homepageState, setHomepageState] = useState(
     sessionStorage.getItem("homepageState")
   );
-  const [displayModal, setDisplayModal] = useState(false)
+  const [displayModal, setDisplayModal] = useState(false);
   function handleInitialClick() {
     if (!homepageState) {
       setFireOn(true);
@@ -50,19 +53,20 @@ const HomePage = ({ isLoggedIn, name }) => {
   //checks if the user is new, display beginner modal for intro
   useEffect(() => {
     if (homepageState || mainFireOn) {
-    axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
-      .then(({data}) => {
-        setCurrUserProgress(data.progress)
-        setCurrUserNavigateUnit(data.currentUnitToNav)
-        if (data.isNew === 1) {
-          setDisplayModal(true)
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      axios
+        .get(`http://localhost:8080/users/checkNew/${currUser}`)
+        .then(({ data }) => {
+          setCurrUserProgress(data.progress);
+          setCurrUserNavigateUnit(data.currentUnitToNav);
+          if (data.isNew === 1) {
+            setDisplayModal(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [mainFireOn])
+  }, [mainFireOn]);
 
   //for animation states
   const [animationState, setAnimationState] = useState(true);
@@ -110,13 +114,13 @@ const HomePage = ({ isLoggedIn, name }) => {
     if (homepageState || mainFireOn) {
       if (animationState) {
         if (currUserProgress === 3) {
-          setFireSrc(fireGifOne)
+          setFireSrc(fireGifOne);
         } else {
           setFireSrc(fireGif);
         }
       } else {
         if (currUserProgress === 3) {
-          setFireSrc(fireStaticOne)
+          setFireSrc(fireStaticOne);
         } else {
           setFireSrc(fireStatic);
         }
@@ -129,7 +133,6 @@ const HomePage = ({ isLoggedIn, name }) => {
     if (fireOn) {
       setFireSrc(stokingFire);
       playMatches();
-
 
       setTimeout(() => {
         setMainFireOn(true);
@@ -148,10 +151,19 @@ const HomePage = ({ isLoggedIn, name }) => {
   return (
     <>
       <div className="home__container">
-        {displayModal ? <BeginnerModal change = {setDisplayModal}/> : null }
+        {displayModal ? <BeginnerModal change={setDisplayModal} /> : null}
         <div className="home__container__welcome">
           <h1 className="home__container__title">
-            {homepageState ? `Welcome back, ${name}` : <div className="home__inactive-message"><p>Let's Get Cozy</p><p className="home__inactive-sub">Click on the campfire below to begin.</p></div>}
+            {homepageState ? (
+              `Welcome back, ${name}`
+            ) : (
+              <div className="home__inactive-message">
+                <p>Let's Get Cozy</p>
+                <p className="home__inactive-sub">
+                  Click on the campfire below to begin.
+                </p>
+              </div>
+            )}
           </h1>
         </div>
         <div className="home__image">
@@ -159,8 +171,11 @@ const HomePage = ({ isLoggedIn, name }) => {
             src={fireSrc}
             className="home__image--picture"
             onClick={() => handleInitialClick()}
+            alt="app start screen"
           />
         </div>
+        <img src={bgLeavesTop} className = "home__image--top" alt = ""/>
+        <img src={bgLeavesBot} className = "home__image--bot" alt = ""/>
       </div>
       {homepageState ? (
         <Options
@@ -168,7 +183,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           animState={animationState}
           soundToggle={toggleSound}
           soundState={soundState}
-          navToUnit = {currUserNavigateUnit}
+          navToUnit={currUserNavigateUnit}
         />
       ) : null}
       {homepageState ? <BotNav /> : null}

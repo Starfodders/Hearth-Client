@@ -3,7 +3,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .top {
-    &__container {
+  &__container {
     width: 100%;
     position: fixed;
     z-index: 12;
@@ -11,69 +11,88 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 2rem;
-    }
-    &__link {
-        color: $off-white;
-    }
-    &__title {
-        font-family: 'Paytone One', sans-serif;
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center;
-        min-width: 8rem;
-        color: $off-white;
+  }
+  &__link {
+    color: $off-white;
+  }
+  &__title {
+    font-family: "Paytone One", sans-serif;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    min-width: 8rem;
+    color: $off-white;
+  }
+
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: $off-white;
+    padding: 0.5rem 1rem 1.5rem;
+    border-radius: 0 0 4px 4px;
+
+    &:hover {
+      background-color: $background-faded;
     }
 
-    &__profile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-wrap: wrap;
-        color: $off-white;
-
-        &__preview {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        &__opened {
-            color: $off-white;
-            display: flex;
-            justify-content: flex-start;
-            // padding: 6rem 2rem 2rem 5rem;
-            background-color: $background-faded;
-            z-index: -5;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    &__preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      z-index: 2;
     }
 
-    &__icon {
+    &__primary {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
     }
 
-    &__menu {
-        color: $off-white;
-        display: flex;
-        justify-content: flex-start;
-        position: absolute;
-        right: 0;
-        // padding: 6rem 2rem 2rem 5rem;
-        background-color: $background-faded;
-        z-index: -5;
-        border-radius: 4px;
-        cursor: pointer;
+    &__opened {
+        width: 100%;
+      color: $off-white;
+      display: flex;
+      justify-content: flex-end;
+      z-index: -5;
+      gap: 0.5rem;
     }
+  }
+
+  &__menu {
+    color: $off-white;
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    right: 0;
+    // padding: 6rem 2rem 2rem 5rem;
+    background-color: $background-faded;
+    z-index: -5;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__signout {
+    &:hover {
+      color: $off-white;
+      cursor: pointer;
+    }
+  }
 }
 
+.spacer {
+  min-width: 8rem;
+  width: 5%;
 
-.spacer { 
-    min-width: 8rem;
-    width: 5%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
 
-    user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
+.logout-icon {
 }

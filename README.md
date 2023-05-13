@@ -33,7 +33,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 5. 😀 DONE - The final cards should restrict movement, prevent scrolling? Bug with some slides extending far down in height which can still be seen
 6. 😀 DONE - Remove transcript toggle for techniques that do not have this feature within collections
 7. BotNav is clipping through content, not accessible at most times and can interfere with reading if accidentally hover
-8. Logout menu is hard-coded, doesn't align with actual name length
+8. 😀 DONE - Logout menu is hard-coded, doesn't align with actual name length
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
 10. Feedback page is no longer working
 
