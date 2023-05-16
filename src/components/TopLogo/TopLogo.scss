@@ -11,7 +11,19 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 2rem;
+
+    @include tablet {
+        padding: 0.5rem 1rem;
+    }
+
   }
+
+  &__name {
+    &--hidden {
+        display: none;
+    }
+  }
+
   &__link {
     color: $off-white;
   }
@@ -33,8 +45,16 @@
     padding: 0.5rem 1rem 1.5rem;
     border-radius: 0 0 4px 4px;
 
+    @include tablet {
+        padding-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem;
+    }
+
     &:hover {
-      background-color: $background-faded;
+      background-color: $black;
     }
 
     &__preview {
@@ -50,6 +70,10 @@
       align-items: center;
       justify-content: flex-end;
       gap: 1rem;
+
+      @include tablet {
+        gap: 0.5rem;
+      }
     }
 
     &__opened {
@@ -69,7 +93,7 @@
     position: absolute;
     right: 0;
     // padding: 6rem 2rem 2rem 5rem;
-    background-color: $background-faded;
+    background-color: $black;
     z-index: -5;
     border-radius: 4px;
     cursor: pointer;
@@ -92,6 +116,10 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+
+  @include mobile {
+    min-width: 3rem;
+  }
 }
 
 .logout-icon {

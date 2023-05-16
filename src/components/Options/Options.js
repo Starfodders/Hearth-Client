@@ -20,10 +20,13 @@ const Options = ({
   function handleResize() {
     if (window.innerWidth <= 1024 && optionExpand) {
       setOptionExpand(false);
-    } else {
+      window.removeEventListener("resize", handleResize);
+    } else if (window.innerWidth > 1024 && !optionExpand) {
       setOptionExpand(true);
+      window.removeEventListener("resize", handleResize);
     }
   }
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -116,6 +119,7 @@ const Options = ({
         </div>
       ) : (
         <div className="options__expand" onClick={() => setOptionExpand(true)}>
+          <p className="options__expand--header">Options</p>
           <span className="material-symbols-outlined options__expand--arrow">
             chevron_left
           </span>

@@ -3,8 +3,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .bot-nav {
-    
-    &__container {
+  &__container {
     width: 100%;
     display: flex;
     position: fixed;
@@ -13,64 +12,102 @@
     animation: slide-up 1s;
     z-index: 10;
 
+    @include mobile {
+      justify-content: center;
+      background-color: $background-faded;
+    }
+
     &--reduced {
-        @extend .bot-nav__container;
-        transition: all 1s;
+      @extend .bot-nav__container;
+      transition: all 1s;
     }
-    }
-    &__block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 3rem;
-        color: $off-white-reduced;
-        font-size: 1.3rem;
-        transition: transform 0.5s;
+  }
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    color: $off-white-reduced;
+    font-size: 1.3rem;
+    transition: transform 0.5s;
 
-        &--reduced {
-            @extend .bot-nav__block;
-            padding: 1rem 3rem;
-            transition: all 1s;
+    @include tablet {
+      width: 33%;
+      font-size: 1.1rem;
+      padding: 1.5rem 2rem 3rem;
+      transition: all 0.5s;
 
-        }
-
-        &:hover {
-            transform: translateY(-30%);
-            transition: transform 0.5s;
-            cursor: pointer;
-        }
-
-        &:hover > span, &:hover > p {
-            color: #52b69a;
-            opacity: 1;
-            transition: opacity 1s;
-        }
+      
     }
 
-    &__title {
-        padding-bottom: 1rem;
+    @include mobile {
+      padding: 1rem;
+      width: 100%;
+      gap: 1rem;
+      background-color: $background-faded;
+      color: $off-white;
+      transition: all 0.5s;
     }
 
-    &__icon {
-        font-size: 2.5rem;
-        animation: slide-up 1s;
-
-        
+    &--reduced {
+      @extend .bot-nav__block;
+      padding: 1rem 3rem;
+      transition: all 1s;
     }
+
+    &:hover {
+      transform: translateY(-30%);
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+
+    &:hover > span,
+    &:hover > p {
+      color: #52b69a;
+      opacity: 1;
+      transition: opacity 1s;
+    }
+  }
+
+  &__title {
+    padding-bottom: 1rem;
+
+    @include mobile {
+      padding: 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__icon {
+    font-size: 2.5rem;
+    animation: slide-up 1s;
+  }
 }
 
 .active {
-    color: $dark-green;
+  color: $dark-green;
 }
 
 // FOR CHOICES SLIDE IN FROM BOTTOM
 @keyframes slide-up {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 0.5;
-    }
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+}
+
+.bot-nav__block:nth-child(1) {
+  @include mobile {
+    border-right: 1px solid $off-white-reduced;
+  }
+}
+
+.bot-nav__block:nth-child(2) {
+  @include mobile {
+    border-right: 1px solid $off-white-reduced;
+  }
 }

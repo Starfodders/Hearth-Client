@@ -174,8 +174,8 @@ const HomePage = ({ isLoggedIn, name }) => {
             alt="app start screen"
           />
         </div>
-        <img src={bgLeavesTop} className = "home__image--top" alt = ""/>
-        <img src={bgLeavesBot} className = "home__image--bot" alt = ""/>
+        {homepageState ? <img src={bgLeavesTop} className = "home__image--top" alt = ""/> : null }
+        {homepageState ? <img src={bgLeavesBot} className = "home__image--bot" alt = ""/> : null }
       </div>
       {homepageState ? (
         <Options
