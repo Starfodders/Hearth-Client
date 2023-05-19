@@ -7,14 +7,16 @@ const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
 
-  const [mobileWindow, setMobileWindow] = useState(window.innerWidth <= 425 ? true : false)
+  const [mobileWindow, setMobileWindow] = useState(
+    window.innerWidth <= 425 ? true : false
+  );
 
   function handleResize() {
     if (window.innerWidth < 425 && !mobileWindow) {
-     setMobileWindow(true)
+      setMobileWindow(true);
       window.removeEventListener("resize", handleResize);
     } else if (window.innerWidth > 425 && mobileWindow) {
-     setMobileWindow(false)
+      setMobileWindow(false);
       window.removeEventListener("resize", handleResize);
     }
   }
@@ -45,11 +47,15 @@ const TopLogo = ({ name, login }) => {
             <span className="material-symbols-outlined top__icon">
               account_circle
             </span>
-            <p className={mobileWindow ? "top__name--hidden" : "top__name"}>{name}</p>
+            <p className={mobileWindow ? "top__name--hidden" : "top__name"}>
+              {name}
+            </p>
           </div>
           {menuHover ? (
             <div className="top__profile__opened">
-              <span className="material-symbols-outlined logout-icon">logout</span>
+              <span className="material-symbols-outlined logout-icon">
+                logout
+              </span>
               <p className="top__signout" onClick={() => handleLogOut()}>
                 Sign Out
               </p>

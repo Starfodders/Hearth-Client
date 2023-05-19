@@ -8,6 +8,7 @@
     height: 100vh;
     position: fixed;
 
+
     &__welcome {
       min-height: 150px;
       display: flex;
@@ -38,6 +39,8 @@
 
       @include mobile {
         font-size: 1.5rem;
+        flex-wrap: nowrap;
+        text-align: center;
       }
     }
   }
@@ -65,7 +68,7 @@
     z-index: 0;
 
     &--picture {
-      width: 80%;
+      width: 60%;
       object-fit: contain;
       transition: width 0.5s;
 
@@ -97,10 +100,82 @@
       left: 0;
       z-index: 1;
 
+      &--off {
+        width: 100%;
+        position: absolute;
+        object-fit: contain;
+        bottom: 0;
+        z-index: 1;
+        
+        @include mobile {
+          bottom: 0;
+        }
+      }
+
       @include mobile {
         bottom: 9.5%;
       }
     }
+  }
+}
+
+.resume-container {
+  width: 100%;
+  position: absolute;
+  bottom: 11.5rem;
+  display: flex;
+  justify-content: center;
+  z-index: 8;
+  animation: title-fade-in 1s;
+  transition: all 0.35s;
+
+
+  @include mobile {
+    bottom: 14.5rem;
+    transition: all 0.3s;
+  }
+}
+
+.resume-btn {
+  background-color: $light-black;
+  color: $off-white;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  padding: 0.8rem 1rem 0.8rem 1.6rem;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  border-right: 4px solid $light-black;
+  gap: 0.5rem;
+  transition: all 0.35s;
+
+
+  @include mobile {
+    background: rgb(118, 200, 147);
+    background: linear-gradient(
+      180deg,
+      rgba(118, 200, 147, 1) 0%,
+      rgba(82, 182, 154, 1) 50%,
+      rgba(52, 160, 164, 1) 100%
+    );
+    letter-spacing: 2px;
+    padding: 0.8rem 1rem 0.8rem 1.3rem;
+    margin-left: 0.6rem;
+    color: $off-white;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-right: 4px solid $off-white;
+    background-color: $turquoise;
+    letter-spacing: 2px;
+    padding: 0.8rem 1rem 0.8rem 1.6rem;
+    margin-left: -4px;
+    color: $off-white;
+    transition: all 0.35s;
   }
 }
 

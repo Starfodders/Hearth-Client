@@ -5,11 +5,10 @@
 .options {
   position: fixed;
   right: 0;
-  top: 35%;
+  top: 40%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $black;
   width: 17rem;
-  min-height: 18rem;
   padding: 1rem 1rem 1rem 0;
   display: flex;
   justify-content: center;
@@ -17,15 +16,24 @@
   animation: slide-in 0.5s ease-out;
   z-index: 5;
 
+  @include mobile {
+    top: 35%;
+  }
+
+  &__upper {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $off-white-reduced;
+  }
+
   &__left {
     width: 10%;
     height: 100%;
-    min-height: 18rem;
+    min-height: 12rem;
     padding: 0 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color:$black;
     border-left: 1px solid $off-white;
 
     &:hover {
@@ -73,41 +81,48 @@
   &__expand {
     position: fixed;
     right: 0;
-    top: 35%;
-    width: 4rem;
-    min-height: 16rem;
+    top: 50%;
     border-left: 2px solid $off-white-reduced;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0 2rem;
+    justify-content: space-between;
+    gap: 0.2rem;
+    padding: 1rem;
     background-color: rgba(0, 0, 0, 0.8);
 
     @include mobile {
-      width: 3rem;
-      padding: 0;
+      top: 40%;
+      padding: 0.5rem;
     }
 
-    &--arrow {
-      color: $off-white;
+    &--icon {
+      color: $off-white-reduced;
+
+      @include mobile {
+        display: none;
+      }
     }
 
     &--header {
-      color: $off-white;
+      color: $off-white-reduced;
       font-size: 0.8rem;
 
       @include mobile {
-        font-size: 0.6rem;
+        display: none;
       }
     }
 
     &:hover {
       cursor: pointer;
       border-left: 3px solid $off-white;
+      padding-right: 1.5rem;
       background-color: $background-faded;
+      opacity: 1;
       transition: all 0.2s;
+    }
+
+    &:hover > span, &:hover > p {
+      color: $off-white;
     }
   }
 }
@@ -126,4 +141,10 @@
 
 .options__credits:last-of-type {
   margin-top: 0;
+}
+
+.options__expand--icon:nth-of-type(1) {
+  @include mobile {
+    display: none;
+  }
 }

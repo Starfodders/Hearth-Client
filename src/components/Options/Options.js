@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Options = ({
-  animToggle,
-  animState,
-  soundToggle,
-  soundState,
-  navToUnit,
-}) => {
+const Options = ({ animToggle, animState, soundToggle, soundState }) => {
   const navigate = useNavigate();
 
   //toggle the options appearance based on window size (collapsed on 1024px)
@@ -40,30 +34,17 @@ const Options = ({
     soundToggle();
   }
 
-  function navigateToUnit() {
-    //%20 for spaces
-    axios
-      .get(`http://localhost:8080/units/${navToUnit}/all`)
-      .then((response) => {
-        //replace the spaces in the response with '%20' to match URL string, then navigate there
-        const modifyUnitName = response.data[0].name.replace(" ", "%20");
-        navigate(`/unit/${modifyUnitName}/${navToUnit}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   return (
     <>
       {optionExpand ? (
         <div className="options">
-          <div className="options__left" onClick = {() => setOptionExpand(false)}>
-          <span className="material-symbols-outlined options__expand--arrow">
-            chevron_right
-          </span>
+          <div className="options__left" onClick={() => setOptionExpand(false)}>
+            <span className="material-symbols-outlined options__expand--arrow">
+              chevron_right
+            </span>
           </div>
           <div className="options__right">
+            <section className="options__upper">
             <div className="options__sound" onClick={() => handleSoundToggle()}>
               {soundState ? (
                 <span className="material-symbols-outlined">check_box</span>
@@ -89,14 +70,8 @@ const Options = ({
               )}
               <p>Toggle Animation</p>
             </div>
-            <div className="options__credits" onClick={() => navigateToUnit()}>
-              <span className="material-symbols-outlined options__credits--icon">
-                line_start_circle
-              </span>
-              <p className="options__credits--text">
-                Continue From Recent Progress
-              </p>
-            </div>
+            </section>
+            <section className="options__lower">
             <div
               className="options__credits"
               onClick={() => navigate("/credits")}
@@ -115,14 +90,17 @@ const Options = ({
               </span>
               <p className="options__credits--text">Submit Feedback</p>
             </div>
+            </section>
           </div>
         </div>
       ) : (
         <div className="options__expand" onClick={() => setOptionExpand(true)}>
-          <p className="options__expand--header">Options</p>
-          <span className="material-symbols-outlined options__expand--arrow">
+          <span className="material-symbols-outlined options__expand--icon">
             chevron_left
           </span>
+          <span className="material-symbols-outlined options__expand--icon">settings</span>
+          <p className="options__expand--header">Options</p>
+          
         </div>
       )}
     </>

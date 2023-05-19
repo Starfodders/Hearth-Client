@@ -14,7 +14,7 @@
 
     @include mobile {
       justify-content: center;
-      background-color: $background-faded;
+      background-color: $light-black;
     }
 
     &--reduced {
@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
+    padding: 1rem 3rem 3rem;
     color: $off-white-reduced;
     font-size: 1.3rem;
     transition: transform 0.5s;
@@ -44,7 +44,7 @@
       padding: 1rem;
       width: 100%;
       gap: 1rem;
-      background-color: $background-faded;
+      background-color: $light-black;
       color: $off-white;
       transition: all 0.5s;
     }

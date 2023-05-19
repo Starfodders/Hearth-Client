@@ -42,3 +42,8 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
   //margaret (Aundreya's wife)
   //justin hugh //also recommended the bot nav be more accessible
   //james suresh -->
+
+
+  <!-- to add: 
+  'Continue Journey' CTA
+  Create new settings/cogwheel option that contains anchor links as well as toggle options -->

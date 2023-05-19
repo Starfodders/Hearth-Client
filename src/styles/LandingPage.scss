@@ -137,8 +137,8 @@
 
   &--moving {
     @extend .transition__bg;
-    animation: transition-slide-up-2 4.5s;
-    transform: translateY(7%);
+    animation: transition-slide-up-4 4.5s;
+    transform: translateY(35%);
   }
 }
 
@@ -154,7 +154,13 @@
     @extend .transition__fire;
     animation: transition-slide-up-2 5s;
     opacity: 1;
-    transform: scale(1);
+    transform: scale(0.7);
+
+    @include tablet {
+      margin-top: 14rem;
+      transform: scale(0.9);
+      
+    }
   }
 }
 
@@ -266,6 +272,7 @@
   }
   to {
     transform: translateY(7%);
+    transform: scale(0.7);
     opacity: 1;
   }
 }
@@ -288,6 +295,17 @@
   }
   100% {
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes transition-slide-up-4 {
+  from {
+    transform: translateY(500%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(35%);
     opacity: 1;
   }
 }

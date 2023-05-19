@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import stokingFire from "../assets/images/homepage/fireMedium.gif";
-import noFire from "../assets/images/homepage/noFireBase.png";
+import noFire from "../assets/images/homepage/noFireBase1.png";
+
+import inactiveBgTop from "../assets/images/transitionTopMod.png";
+import inactiveBgBot from "../assets/images/transitionBottom.png";
 
 import bgLeavesBot from "../assets/images/homepage/lit-up-leaves-bot.png";
 import bgLeavesTop from "../assets/images/homepage/lit-up-leaves-top.png";
@@ -148,6 +151,20 @@ const HomePage = ({ isLoggedIn, name }) => {
     }
   }, [fireOn]);
 
+  function navigateToUnit() {
+    //%20 for spaces
+    axios
+      .get(`http://localhost:8080/units/${currUserNavigateUnit}/all`)
+      .then((response) => {
+        //replace the spaces in the response with '%20' to match URL string, then navigate there
+        const modifyUnitName = response.data[0].name.replace(" ", "%20");
+        navigate(`/unit/${modifyUnitName}/${currUserNavigateUnit}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <div className="home__container">
@@ -170,12 +187,33 @@ const HomePage = ({ isLoggedIn, name }) => {
           <img
             src={fireSrc}
             className="home__image--picture"
-            onClick={() => handleInitialClick()}
             alt="app start screen"
+            onClick={() => handleInitialClick()}
           />
         </div>
-        {homepageState ? <img src={bgLeavesTop} className = "home__image--top" alt = ""/> : null }
-        {homepageState ? <img src={bgLeavesBot} className = "home__image--bot" alt = ""/> : null }
+        {homepageState ? (
+          <img src={bgLeavesTop} className="home__image--top" alt="" />
+        ) : null}
+        {homepageState ? (
+          <img src={bgLeavesBot} className="home__image--bot" alt="" />
+        ) : null}
+        {homepageState ? null : (
+          <img src={inactiveBgTop} className="home__image--top" alt="" />
+        )}
+        {homepageState ? null : (
+          <img src={inactiveBgBot} className="home__image--bot--off" onClick={() => handleInitialClick()}
+          alt="" />
+        )}
+        {homepageState ? (
+          <div className="resume-container">
+            <button className="resume-btn" onClick={() => navigateToUnit()}>
+              Continue Journey{" "}
+              <span className="material-symbols-outlined resume-icon">
+                start
+              </span>
+            </button>
+          </div>
+        ) : null}
       </div>
       {homepageState ? (
         <Options
@@ -183,7 +221,6 @@ const HomePage = ({ isLoggedIn, name }) => {
           animState={animationState}
           soundToggle={toggleSound}
           soundState={soundState}
-          navToUnit={currUserNavigateUnit}
         />
       ) : null}
       {homepageState ? <BotNav /> : null}
