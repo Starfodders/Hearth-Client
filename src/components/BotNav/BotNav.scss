@@ -36,8 +36,6 @@
       font-size: 1.1rem;
       padding: 1.5rem 2rem 3rem;
       transition: all 0.5s;
-
-      
     }
 
     @include mobile {
@@ -53,6 +51,15 @@
       @extend .bot-nav__block;
       padding: 1rem 3rem;
       transition: all 1s;
+
+      @include mobile {
+        padding: 1rem;
+        width: 100%;
+        gap: 1rem;
+        background-color: $light-black;
+        color: $off-white;
+        transition: all 0.5s;
+      }
     }
 
     &:hover {
@@ -81,6 +88,10 @@
   &__icon {
     font-size: 2.5rem;
     animation: slide-up 1s;
+
+    @include mobile {
+      animation: slide-up 0.3s;
+    }
   }
 }
 

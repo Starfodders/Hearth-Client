@@ -5,7 +5,7 @@ import "../../styles/ChaptersPage.scss";
 const SlidesBackground = () => {
   return (
     <div className="chapters__bg">
-      <img src={topwave} className="chapters__bg--img" alt="moving waves" />
+      <img src={topwave} className="chapters__bg--img" alt=""/>
     </div>
   );
 };

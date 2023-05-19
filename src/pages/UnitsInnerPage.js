@@ -94,7 +94,7 @@ const UnitsPage = ({isLoggedIn}) => {
   return (
     <div className="wrapper">
       <div className="units__bg">
-        <img src={topwave} className="units__bg--img" alt="moving waves" />
+        <img src={topwave} className="units__bg--img" alt="" />
       </div>
       {isCloser ? <FinishCard details = {finishData}/> : null}
       <main className="units__container">

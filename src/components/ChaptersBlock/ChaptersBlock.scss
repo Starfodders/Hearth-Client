@@ -3,72 +3,117 @@
 @use "../../styles/partials/mixins" as *;
 
 .chapters {
-    &__container {
-      max-width: 1024px;
-      margin: 0 auto;
-    }
-  
-    &__header {
+  &__container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @include desktop {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 1rem;
-      width: 100%;
-      margin: 6rem 0;
-      animation: slide-in 0.3s ease-out;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin: 6rem 0;
+    max-width: 900px;
+    animation: slide-in 0.3s ease-out;
+
+    @include desktop {
+      margin: 9rem 5rem 3rem 0;
+      max-width: 580px;
+    }
+    @include tablet {
+      // margin: 9rem 5rem 3rem 0;
+      padding: 0 1rem;
+      max-width: 375px;
     }
 
-    &__return {
-      color: $off-white;
-      font-size: 3rem;
-
-      &:hover {
-        cursor: pointer;
-        color: $turquoise;
-        transition: color 0.5s;
-      }
+    @include mobile {
+      justify-content: flex-start;
+      margin: 9rem 5rem 0 0;
+      padding-left: 3rem;
+      max-width: 300px;
     }
-  
-    &__title {
-      color: $off-white;
-      font-size: 3rem;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-  
-    &__main {
-      display: flex;
-      width: 100%;
-      gap: 3rem;
-      padding: 2rem 0;
-      flex-wrap: nowrap;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      animation: slide-in 0.4s ease-out;
+  }
 
+  &__return {
+    color: $off-white;
+    font-size: 3rem;
+
+    &:hover {
+      cursor: pointer;
+      color: $turquoise;
+      transition: color 0.5s;
+    }
+  }
+
+  &__title {
+    color: $off-white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+    @include mobile {
+      font-size: 1.5rem;
+    }
     
-      &::-webkit-scrollbar {
-        width: 2rem;
-        
-      }
-  
-      &::-webkit-scrollbar-track {
-        background: $light-black;
-      }
-  
-      &::-webkit-scrollbar-thumb {
-        background: $turquoise;
-      }
-    }
   }
-  
 
-  @keyframes slide-in {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
+  &__main {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    padding: 2rem 0;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    animation: slide-in 0.4s ease-out;
+
+    @include desktop {
+      max-width: 580px;
+      transition: all 0.3s;
     }
-    to {
-      transform: translateX(0);
-      opacity: 1;
+
+    @include tablet {
+      max-width: 400px;
+    }
+
+    @include mobile {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-bottom: 8rem;
+    }
+
+    &::-webkit-scrollbar {
+      width: 2rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $light-black;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $turquoise;
     }
   }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

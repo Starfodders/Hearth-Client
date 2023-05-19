@@ -23,6 +23,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 19. Add stat tracking for user progress under 'collections'
 20. Re: stat tracking, create separate user profile to handle this
 21. Website ARIA completion
+22. Mobile Site header needs to disappear on scrolldown
 
 
 ### Bugs

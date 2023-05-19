@@ -14,6 +14,10 @@
     padding: 2rem 3rem 3rem;
     animation: slide-in 0.5s;
 
+    @include desktop {
+      padding: 0 2rem 2rem;
+    }
+
     &--special {
       display: flex;
 
@@ -43,6 +47,15 @@
 
     &--technique {
       @extend .slide__container;
+
+      @include tablet {
+        padding-bottom: 0;
+      }
+
+      @include mobile {
+        padding: 0rem 2rem 1rem;
+
+      }
     }
 
     &__top {
@@ -79,6 +92,13 @@
         gap: 0.5rem;
         padding: 2rem 0;
 
+        @include tablet {
+          padding: 1rem 0;
+        }
+
+        @include mobile {
+        }
+
         &--small {
           @extend .slide__container__bottom__block;
           padding: 0.5rem 0;
@@ -91,6 +111,10 @@
     font-weight: 600;
     font-size: 2rem;
 
+    @include mobile {
+      font-size: 1.5rem;
+    }
+
     &--special {
       @extend .slide__title;
     }
@@ -102,6 +126,15 @@
     line-height: 4rem;
     padding: 2rem 0;
 
+    @include desktop {
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      line-height: 3.5rem;
+    }
+    @include mobile {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
   }
 
   &__start--less {
@@ -121,6 +154,13 @@
 
   &__play {
     font-size: 1.5rem;
+    text-align: right;
+    @include tablet {
+      font-size: 1.3rem;
+    }
+    @include mobile {
+      font-size: 1rem;
+    }
 
     &--small {
       font-size: 1.2rem;
@@ -129,6 +169,15 @@
     &--toggle {
       font-size: 1.5rem;
       padding: 1rem;
+
+      @include tablet {
+        font-size: 1.3rem;
+      }
+
+      @include mobile {
+        font-size: 1rem;
+        padding: 0.5rem;
+      }
 
       &:hover {
         cursor: pointer;
@@ -168,8 +217,13 @@
     &--box {
       background-color: $off-white;
       padding: 1rem 3rem 1rem 3rem;
-      font-size: 2em;
+      font-size: 1.5em;
+      line-height: 2.2rem;
       border-radius: 4px;
+      @include tablet {
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+      }
     }
   }
 
@@ -187,8 +241,13 @@
 }
 
 .resource-link {
-  padding-top: 0.3rem;
   width: 2.5rem;
+  padding-top: 0.4rem;
+
+  @include mobile {
+    width: 1.5rem;
+    padding-top: 0.25rem;
+  }
 
   &:hover {
     cursor: pointer;
@@ -196,39 +255,56 @@
 
   &-off {
     @extend .resource-link;
+    padding: 0;
+    
 
     &:hover {
       cursor: auto;
     }
   }
-
 }
 
 .card-icon {
   font-size: 2rem;
   opacity: 0.7;
+
+  @include mobile {
+    font-size: 1rem;
+  }
 }
 
 .slide__type {
   opacity: 0.7;
+  @include mobile {
+    font-size: 0.8rem;
+  }
 }
 
 .units__saved {
-  transition: all 0.3s ease;
-  padding: 0.5rem 0;
+  transition: all 0.5s ease;
+  padding: 1rem 0;
 
   &:hover {
-    cursor: pointer;    
+    cursor: pointer;
+  }
+  @include mobile {
+    width: 1.7rem;
+    padding: 1rem 0;
   }
 }
 
 .units__saved--off {
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   padding: 1rem 0;
 
   &:hover {
-    cursor: pointer;    
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+
+  @include mobile {
+    width: 1.7rem;
+
   }
 }
 

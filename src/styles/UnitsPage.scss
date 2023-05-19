@@ -17,10 +17,22 @@
     }
 
     &__container {
-        max-width: 1024px;
+        width: 100%;
+        max-width: 980px;
         margin: 0 auto;
+        padding: 0 3rem;
         position: relative;
         margin-bottom: 20rem;
+
+        @include desktop {
+          max-width: 750px;
+          padding: 0 4rem;
+          margin-bottom: 0;
+        }
+
+        @include mobile {
+          padding: 0.5rem 1rem;
+        }
         
       }
     
@@ -31,6 +43,13 @@
         width: 100%;
         margin: 4rem 0 6rem;
         animation: slide-in 0.5s;
+
+        @include tablet {
+          margin: 8rem 0 2rem;
+        }
+        @include mobile {
+          // align-items: flex-start;
+        }
       }
   
       &__return {
@@ -48,6 +67,15 @@
         font-size: 3rem;
         text-transform: uppercase;
         font-weight: 700;
+
+        @include tablet {
+          font-size: 2rem;
+        }
+
+        @include mobile {
+          font-size: 1.5rem;
+
+        }
       }
 
       &__pages {
@@ -60,12 +88,22 @@
         justify-content: center;
         border-radius: 10px;
         font-size: 1.5rem;
+
+        @include mobile {
+          font-size: 1rem;
+          min-width: 3rem;
+        }
       }
 
-      &__saved {
-        font-size: 2.5rem;
-        color: $off-white;
-      }
+
+      // &__saved {
+      //   font-size: 2.5rem;
+      //   color: $off-white;
+
+      //   @include mobile {
+      //     font-size: 2rem;
+      //   }
+      // }
 
 }
 
@@ -76,16 +114,36 @@
 
   &__buttons {
     position: absolute;
-    min-width: 1150px;
+    width: 101%;
     z-index: 7;
     color: white;
     display: flex;
     justify-content: space-between;
     top: 27rem;
-    left: -6.5%;
+    left: -0.5rem;
 
+    @include desktop {
+      width: 95%;
+      left: 2%;
+    }
+
+    @include mobile {
+      justify-content: center;
+      align-items: flex-end;
+      position: fixed;
+      top:auto;
+      bottom: 6.5rem;
+      gap: 2rem;
+      
+    }
+    
     &--el {
       font-size: 2rem;
+
+      @include mobile {
+        background-color: $black;
+      border-radius: 50%;
+      }
 
       &:hover {
         cursor: pointer;

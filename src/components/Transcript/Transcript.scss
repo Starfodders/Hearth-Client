@@ -15,6 +15,13 @@
         padding-bottom: 1.5rem;
         padding-top: 2rem;
         background-color: $off-white;
+
+        @include mobile {
+            font-size: 1rem;
+            line-height: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+          }
     }
 
     &__audio {
@@ -27,13 +34,19 @@
 
     &__buttons {
         color: $off-white;
-        width: 30%;
+        width: 50%;
+        max-width: 200px;
         background-color: $light-black;
         display: flex;
         align-items: center;
         justify-content: space-around;
         border-radius: 4px;
         padding: 0.5rem 1rem;
+
+        @include tablet {
+            width: 70%;
+            max-width: none;
+        }
 
         &__block {
             width: 30%;
