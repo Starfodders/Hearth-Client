@@ -37,6 +37,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 8. 😀 DONE - Logout menu is hard-coded, doesn't align with actual name length
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
 10. Feedback page is no longer working
+11. Lists can repeat a suggestion, need to track which have already appeared
 
 <!-- 
   //austin bray

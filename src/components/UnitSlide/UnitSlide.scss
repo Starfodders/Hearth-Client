@@ -13,9 +13,18 @@
     min-height: 450px;
     padding: 2rem 3rem 3rem;
     animation: slide-in 0.5s;
+    transition: all 0.3s;
+
 
     @include desktop {
       padding: 0 2rem 2rem;
+      transition: all 0.3s;
+
+    }
+
+    @include mobile {
+      min-height: initial;
+      padding-bottom: 1rem;
     }
 
     &--special {
@@ -24,6 +33,15 @@
       &--left {
         @extend .slide__container;
         width: 65%;
+        @include desktop {
+          padding: 2rem;
+        }
+        @include tablet {
+          padding: 1rem;
+        }
+        @include mobile {
+          width: 80%;
+        }
       }
 
       &--right {
@@ -33,6 +51,12 @@
         animation: slide-in 0.6s;
         z-index: 10;
         right: 1rem;
+        @include desktop {
+          max-height: 500px;
+        }
+        @include mobile {
+          width: 20%;
+        }
       }
 
       &--mascot {
@@ -42,6 +66,16 @@
         bottom: 7rem;
         z-index: 10;
         animation: slide-in 1s;
+        transition: all 0.3s;
+
+        @include desktop {
+          top: 20%;
+          transition: all 0.3s;
+        }
+        @include mobile {
+          top: 0;
+          width: 220%;
+        }
       }
     }
 
@@ -54,7 +88,6 @@
 
       @include mobile {
         padding: 0rem 2rem 1rem;
-
       }
     }
 
@@ -130,6 +163,10 @@
       padding: 1rem 0;
       font-size: 1.5rem;
       line-height: 3.5rem;
+    }
+    @include tablet {
+      font-size: 1.3rem;;
+      line-height: 3rem;
     }
     @include mobile {
       font-size: 1rem;
@@ -216,13 +253,19 @@
 
     &--box {
       background-color: $off-white;
-      padding: 1rem 3rem 1rem 3rem;
+      padding: 1rem 3rem;
       font-size: 1.5em;
       line-height: 2.2rem;
       border-radius: 4px;
       @include tablet {
+        padding: 1rem 1.5rem;
         font-size: 1.5rem;
         line-height: 2.2rem;
+      }
+      @include mobile {
+        font-size: 1rem;
+        line-height: 2rem;
+        padding: 1rem 1.5rem;
       }
     }
   }
@@ -232,6 +275,10 @@
     width: 30%;
     right: 0;
     z-index: 10;
+
+    @include tablet {
+      width: 45%;
+    }
 
     &--image {
       width: 100%;
@@ -256,7 +303,6 @@
   &-off {
     @extend .resource-link;
     padding: 0;
-    
 
     &:hover {
       cursor: auto;
@@ -304,7 +350,6 @@
 
   @include mobile {
     width: 1.7rem;
-
   }
 }
 
