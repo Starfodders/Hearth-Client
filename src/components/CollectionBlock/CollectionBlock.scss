@@ -89,6 +89,10 @@
         color: $off-white;
         font-size: 2rem;
         margin-bottom: -12rem;
+
+        @include tablet {
+            margin-top: 10rem;
+        }
     }
 }
 

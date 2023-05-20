@@ -3,52 +3,85 @@
 @use "./partials/mixins" as *;
 
 .collections {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
 
-    &__wrapper {
-        display: flex;
+    @include tablet {
+        padding: 0 2rem;
+    }
+
+    @include mobile {
+      padding: 1rem;
+    }
+  }
+
+  &__title {
+    width: 100%;
+    padding: 6rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @include tablet {
+      padding: 6rem 1rem 2rem;
+    }
+
+    &--text {
+      color: $off-white;
+      font-size: 3rem;
+      text-transform: uppercase;
+
+      @include tablet {
+        font-size: 2.2rem;
+      }
+
+      @include mobile {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__return {
+    color: $off-white;
+    font-size: 3rem;
+    &:hover {
+      cursor: pointer;
+      color: $turquoise;
+      transition: color 0.3s;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    gap: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+        flex-wrap: wrap;
         justify-content: center;
-        width: 100%;
-        max-width: 1020px;
-        margin: 0 auto;
-        flex-direction: column;
-        align-items: center;
+        padding-bottom: 8rem;
     }
 
-    &__title {
-        width: 100%;
-        padding: 6rem 0;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        &--text {
-            color: $off-white;
-            font-size: 3rem;
-            text-transform: uppercase;
-        }
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding-bottom: 6rem;
     }
 
-    &__return {
-        color: $off-white;
-        font-size: 3rem;
-        &:hover {
-            cursor: pointer;
-            color: $turquoise;
-            transition: color 0.3s;
-          }
+    &--list {
+      @extend .collections__content;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-bottom: 20rem;
     }
-
-    &__content {
-        width: 100%;
-        gap: 1.5rem;
-        display: flex;
-        justify-content: space-between;
-
-        &--list {
-            @extend .collections__content;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-bottom: 20rem;
-        }
-    }
+  }
 }

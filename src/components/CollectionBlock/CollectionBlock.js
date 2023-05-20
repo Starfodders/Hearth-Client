@@ -99,7 +99,7 @@ const CollectionBlock = ({ type, content }) => {
   if (!contentLoad) {
     return (
       <div className="loader__wrapper">
-        <h2 className="loader__disclaimer">Nothing saved.</h2>
+        <h2 className="loader__disclaimer">There seems to be nothing here!</h2>
         <Loader />
       </div>
     );
