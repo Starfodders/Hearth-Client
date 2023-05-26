@@ -18,7 +18,7 @@ const CollectionExpandList = ({content}) => {
         <div className = "expand__list__block">
             <img src = {iconAsset} className = "expand__list--icon" onClick = {() => handleSuggestion()}/>
             <div className="expand__list--suggestion">
-                <p>{currentSuggestion}</p>
+                <p className="expand__list--text">{currentSuggestion}</p>
               </div>
         </div>
     );

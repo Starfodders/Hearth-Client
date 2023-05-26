@@ -10,7 +10,6 @@
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
-
     font-size: 1.5rem;
     line-height: 1.8em;
     animation: slide-in 0.25s;
@@ -33,7 +32,7 @@
       min-width: 35px;
     }
     @include mobile {
-      align-self: center;
+        // align-self: center;
     }
   }
 
@@ -46,7 +45,7 @@
     width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
   }
 
   &__title {
@@ -64,7 +63,7 @@
 
     @include mobile {
       margin-bottom: 0.5rem;
-
+      line-height: 1.6rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -75,6 +74,11 @@
     &:hover {
       cursor: pointer;
       animation: hover-effect 0.2s forwards;
+
+      @include mobile  {
+        animation: none;
+      }
+
     }
   }
   &__expand {
@@ -107,6 +111,16 @@
     &--expand {
       padding: 1rem 0;
       animation: slide-down 0.25s;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
+      
+      @include mobile {
+        font-size: 1rem;
+        line-height: 2rem;
+        padding-top: 0.5rem;
+      }
     }
   }
 }

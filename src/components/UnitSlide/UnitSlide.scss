@@ -129,12 +129,15 @@
           padding: 1rem 0;
         }
 
-        @include mobile {
-        }
-
         &--small {
           @extend .slide__container__bottom__block;
           padding: 0.5rem 0;
+          @include tablet {
+            gap: 0;
+          }
+          @include mobile {
+           line-height: normal;
+          }
         }
       }
     }
@@ -201,6 +204,15 @@
 
     &--small {
       font-size: 1.2rem;
+
+      @include tablet {
+        font-size: 1rem;
+      }
+
+      @include mobile {
+        font-size: 0.8rem;
+        text-align: right;
+      }
     }
 
     &--toggle {
@@ -227,6 +239,18 @@
       &--small {
         padding: 0.3rem;
         font-size: 1.2rem;
+
+        @include tablet {
+          font-size: 1rem;
+          min-width: 100px;
+          text-align: center;
+
+        }
+        @include mobile {
+          font-size: 0.8rem;
+          min-width: 80px;
+
+        }
 
         &:hover {
           cursor: pointer;
