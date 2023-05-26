@@ -3,131 +3,166 @@
 @use "../../styles/partials/mixins" as *;
 
 .block {
+  &__container {
+    width: 100%;
+    background-color: $off-white;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
 
-    &__container {
-        width: 100%;
-        background-color: $off-white;
-        padding: 1rem 1.5rem;
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-between;
+    font-size: 1.5rem;
+    line-height: 1.8em;
+    animation: slide-in 0.25s;
+    transition: all 0.3s;
 
-        font-size: 1.5rem;
-        line-height: 1.8em;
-        animation: slide-in 0.25s;
+    @include mobile {
+      min-height: 10rem;
+      padding: 1rem;
+      transition: all 0.3s;
+    }
+  }
+
+  &__left {
+    width: 5%;
+    max-height: 2rem;
+    display: flex;
+    align-items: center;
+
+    @include tablet {
+      min-width: 35px;
+    }
+    @include mobile {
+      align-self: center;
+    }
+  }
+
+  &__delete:hover {
+    cursor: pointer;
+    color: $medium-blue;
+  }
+
+  &__center {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    max-height: 2rem;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+
+    @include tablet {
+      font-size: 1rem;
+      transition: all 0.3s;
     }
 
-    &__left {
-        width: 5%;
-        max-height: 2rem;
-        display: flex;
-        align-items: center;
+    @include mobile {
+      margin-bottom: 0.5rem;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: calc(80%);
+      display: inline-block;
     }
 
-    &__delete:hover {
-        cursor: pointer;
-        color: $medium-blue;
+    &:hover {
+      cursor: pointer;
+      animation: hover-effect 0.2s forwards;
+    }
+  }
+  &__expand {
+    width: 5%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include tablet {
+      min-width: 35px;
     }
 
-    &__center {
-        width: 90%;
-        display: flex;
-        flex-direction: column;
+    &--btn {
+      cursor: pointer;
+      &:hover {
+        background-color: $turquoise;
+        color: $off-white;
+        border-radius: 50%;
+      }
     }
+  }
 
-    &__title {
-        font-size: 1.2rem;
-        max-height: 2rem;
-        opacity: 0.7;
-        display: flex;
-        align-items: center;
+  &__content {
+    transition: all 0.3s;
 
-        &:hover {
-            cursor: pointer;
-            animation: hover-effect 0.2s forwards;
-            
-        }
+    @include tablet {
+      font-size: 1.2rem;
+      line-height: 1.7rem;
+      transition: all 0.3s;
     }
-    &__expand {
-        width: 5%;
-        
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        
-
-        &--btn {
-            cursor: pointer;
-            &:hover {
-                background-color: $turquoise;
-                color: $off-white;
-                border-radius: 50%;
-            }
-        }
+    &--expand {
+      padding: 1rem 0;
+      animation: slide-down 0.25s;
     }
-
-    &__content {
-        &--expand {
-            padding: 1rem 0;
-            animation: slide-down 0.25s;
-        }
-    }
+  }
 }
 
 .loader {
-    &__wrapper {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        max-width: 1020px;
-        margin: 0 auto;
-        flex-direction: column;
-        align-items: center;
-    }
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1020px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    &__disclaimer {
-        color: $off-white;
-        font-size: 2rem;
-        margin-bottom: -12rem;
+  &__disclaimer {
+    color: $off-white;
+    font-size: 2rem;
+    margin-bottom: -12rem;
+    text-align: center;
 
-        @include tablet {
-            margin-top: 10rem;
-        }
+    @include tablet {
+      margin-top: 10rem;
     }
+  }
 }
 
 @keyframes hover-effect {
-    from {
-
-    }
-    to {
-            background-color:$turquoise;
-            color: $off-white;
-            padding: 1rem;
-            border-radius: 4px;
-    }
+  from {
+  }
+  to {
+    background-color: $turquoise;
+    color: $off-white;
+    padding: 1rem;
+    border-radius: 4px;
+  }
 }
 
 @keyframes slide-in {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
-  
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-  @keyframes slide-down {
-    from {
-      transform: translateX(-50%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+@keyframes slide-down {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
   }
-  
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
