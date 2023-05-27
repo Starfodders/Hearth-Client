@@ -42,10 +42,7 @@ const MeditateActive = ({ currAudio, currAudioObj, active, resume, pause }) => {
         </div>
         <div className="meditate__choices__volume">
           <div className="meditate__choices__volume__left">
-            <label className="meditate__choices__label">Volume</label>
-            <p className="meditate__choices__label--integer">
-              {currentVolumeValue}
-            </p>
+            <label className="meditate__choices__label">{`Volume (${currentVolumeValue})`}</label>
           </div>
           <div className="meditate__choices__volume__right">
             <span

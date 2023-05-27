@@ -7,7 +7,7 @@
     background-color: rgb(1, 11, 18);
     color: white;
     border: none;
-    font-size: 2.4rem;
+    font-size: 2rem;
     padding-right: 0.1rem;
     max-width: 100px;
   }
@@ -22,7 +22,9 @@
   &--on {
     @extend .circle__element;
     animation: slide-up 0.5s ease-in-out;
+
   }
+  
 }
 
 @keyframes slide-up {

@@ -44,6 +44,7 @@ const Timer = ({ timer, animate, start, setStart, setActive, opened }) => {
         trailStrokeWidth={18}
         strokeLinecap={"square"}
         trailColor={"#061825"}
+        size = {150}
         onComplete={() => {
          handleComplete()
         }}

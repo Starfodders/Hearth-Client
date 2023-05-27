@@ -18,9 +18,15 @@
   &__gif {
     width: 40%;
     margin-left: 1%;
-    margin-top: -2rem;
     opacity: 1;
     animation: fade-in 1s;
+    @include tablet {
+      width: 80%;
+      min-width: calc(80%);
+    }
+    @include mobile {
+      width: 100%;
+    }
   }
 }
 

@@ -23,6 +23,11 @@
     padding: 2rem;
     min-width: 400px;
 
+    @include mobile {
+      width: 100%;
+      min-width: 0;
+    }
+
     &__block {
       display: flex;
       justify-content: space-between;
@@ -30,6 +35,10 @@
       padding: 0.8rem 2rem;
       gap: 5px;
       animation: block-appear 0.5s linear forwards;
+
+      @include mobile {
+        padding: 0.8rem 0;
+      }
 
       &--active {
         @extend .meditate__choices__block;
@@ -56,6 +65,10 @@
         display: flex;
         justify-content: space-between;
         width: 20%;
+        @include mobile {
+          gap: 1rem;
+          width: 30%;
+        }
       }
     }
 
@@ -63,11 +76,19 @@
       font-size: 1.3rem;
       text-transform: uppercase;
       color: $off-white;
-      width: 60%;
+      width: 70%;
+
+      @include mobile {
+        font-size: 1.1rem;
+        min-width: 90px;
+      }
 
       &--integer {
         color: $off-white;
         font-size: 1.3rem;
+        @include mobile {
+          margin-left: -1rem;
+        }
       }
 
       &--small {
@@ -102,6 +123,10 @@
       border-radius: 4px;
       background-color: $light-black;
       color: $off-white-reduced;
+
+      @include mobile {
+        width: calc(40%);
+      }
 
       &:focus,
       :active {
