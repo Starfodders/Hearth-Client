@@ -19,6 +19,9 @@
   }
 
   &__name {
+    @include mobile {
+      display: none;
+    }
     &--hidden {
         display: none;
     }
@@ -26,6 +29,7 @@
 
   &__link {
     color: $off-white;
+    width: 100%;
   }
   &__title {
     font-family: "Paytone One", sans-serif;
@@ -44,6 +48,7 @@
     color: $off-white;
     padding: 0.5rem 1rem 1.5rem;
     border-radius: 0 0 4px 4px;
+    min-width: 10rem;
 
     @include tablet {
         padding-right: 0.5rem;
@@ -51,11 +56,12 @@
 
     @include mobile {
         padding: 0.5rem;
+        min-width: 3rem;
     }
 
-    &:hover {
-      background-color: $black;
-    }
+    // &:hover {
+    //   background-color: $black;
+    // }
 
     &__preview {
       display: flex;
@@ -77,12 +83,19 @@
     }
 
     &__opened {
-        width: 100%;
       color: $off-white;
       display: flex;
       justify-content: flex-end;
       z-index: -5;
       gap: 0.5rem;
+      position: absolute;
+      right: 3rem;
+      top: 0em;
+      padding: 3.5rem 0.5rem 1rem;
+      @include mobile {
+        right: 0;
+      }
+      
     }
   }
 
@@ -100,6 +113,7 @@
   }
 
   &__signout {
+
     &:hover {
       color: $off-white;
       cursor: pointer;
@@ -108,8 +122,9 @@
 }
 
 .spacer {
-  min-width: 8rem;
-  width: 5%;
+  // min-width: 8rem;
+  width: calc(10%);
+  min-width: 10rem;
 
   user-select: none;
   -moz-user-select: none;
@@ -122,5 +137,3 @@
   }
 }
 
-.logout-icon {
-}

@@ -46,7 +46,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         >
           Learn, grow, thrive
         </h2>
-        <p className="landing__footer" aria-hidden = "true">Michael Deng © 2023 | Version 0.7</p>
+        <p className="landing__footer" aria-hidden = "true">Michael Deng © 2023 | Version 0.8</p>
         {SignUpPage ? (
           <SignUp toggle={toggleState} getUser={getNewUserSignUp} />
         ) : (
@@ -61,7 +61,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         )}
         <img src = {bgForest} className = {postLogin ? "bg-solid--disappear" : "bg-solid"} alt = ""/>
         <img src = {transition} className ={postLogin ? "transition__bg--moving": "transition__bg"} alt = ""/>
-        <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/>
+        {/* <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/> */}
         <img src = {transitionFire} className ={postLogin ? "transition__fire--moving": "transition__fire"} alt = ""/>
       </section>
     </div>

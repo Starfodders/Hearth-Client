@@ -121,8 +121,8 @@
 
   &--moving {
     @extend .transition__bg;
-    animation: transition-slide-up 4s;
-    transform: translateY(-50%);
+    animation: transition-slide-up 4.5s;
+    transform: translateY(-25%);
     opacity: 1;
   }
 }
@@ -130,7 +130,7 @@
 .transition__bot {
   width: 100%;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: -10;
   transform: translateY(-500%);
@@ -139,6 +139,7 @@
     @extend .transition__bg;
     animation: transition-slide-up-4 4.5s;
     transform: translateY(35%);
+    opacity: 1;
   }
 }
 
@@ -154,13 +155,6 @@
     @extend .transition__fire;
     animation: transition-slide-up-2 5s;
     opacity: 1;
-    transform: scale(0.7);
-
-    @include tablet {
-      margin-top: 14rem;
-      transform: scale(0.9);
-      
-    }
   }
 }
 
@@ -246,7 +240,7 @@
     opacity: 1;
   }
   90% {
-    opacity: 0.25;
+    opacity: 0.55;
   }
   100% {
     height: 200vh;
@@ -255,24 +249,31 @@
 }
 
 @keyframes transition-slide-up {
-  from {
+  0% {
     transform: translateY(500%);
     opacity: 0;
   }
-  to {
-    transform: translateY(-50%);
+  45% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-25%);
     opacity: 1;
   }
 }
 
 @keyframes transition-slide-up-2 {
-  from {
+  0% {
     transform: translateY(500%);
     opacity: 0;
   }
-  to {
-    transform: translateY(7%);
-    transform: scale(0.7);
+  70% {
+    opacity: 0;
+  }
+  100% {
+    top: 15rem;
+    transform: translateY(0);
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -300,12 +301,16 @@
 }
 
 @keyframes transition-slide-up-4 {
-  from {
-    transform: translateY(500%);
+  0% {
+    opacity: 0;
+    transform: translateY(-500%);
+
+  }
+  50% {
     opacity: 0;
   }
-  to {
-    transform: translateY(35%);
+  100%{
+    transform: translateY(100%);
     opacity: 1;
   }
 }
