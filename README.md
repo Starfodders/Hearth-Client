@@ -16,8 +16,8 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 12. 😀 DONE - Add form for users to submit feedback on improvements
 13. Add additional graphics for users when going through techniques
 14. Add animation to background waves
-15. Website responsive design (Tablet)
-16. Website responsive design (Mobile)
+15. 😀 DONE - Website responsive design (Tablet)
+16. 😀 DONE - Website responsive design (Mobile)
 17. 😀 DONE - Add place to download specific forms for exercises
 18. Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'

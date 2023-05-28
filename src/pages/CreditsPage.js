@@ -8,7 +8,7 @@ const CreditsPage = () => {
     <div className="credits__wrapper">
       <section className="credits__block">
         <div className="credits__pic">
-          <img className="credits__img" src={bioPic} />
+          <img className="credits__img" src={bioPic} alt = "Michael Deng" />
         </div>
         <section className="credits__text">
           <p className="credits__text--el"> Hello! </p>
@@ -33,14 +33,14 @@ const CreditsPage = () => {
           </p>
           <p className="credits__text--el">Special thanks to:</p>
           <p className="credits__text--el">Joseph Wong (Voiceover)</p>
-         <p className="credits__text--el">Meditation Completion Sound - UNIVERSFIELD on Pixabay</p>
+          <p className="credits__text--el">
+            Meditation Completion Sound - UNIVERSFIELD on Pixabay
+          </p>
         </section>
         <div className="credits__pic">
-          <img className="credits__img" src={textBook} />
+          <img className="credits__img" src={textBook} alt = "Dialectical Behaviour Skills Handbook"/>
         </div>
       </section>
-
-      <img className="credits__wrapper__img" src={bgImage} />
     </div>
   );
 };
