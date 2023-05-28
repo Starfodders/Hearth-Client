@@ -23,6 +23,16 @@
     position: relative;
     animation: slide-in 0.5s;
 
+    @include tablet {
+      padding: 1.5rem 2rem;
+      width: 100%;
+      margin: 1rem;
+
+    }
+    @include mobile {
+      width: 100%;
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -41,12 +51,19 @@
     font-weight: 600;
     color: $dark-green;
     padding-bottom: 0.5rem;
+    @include tablet {
+      font-size: 2rem;
+    }
   }
 
   &__paragraph {
     font-size: 1.3rem;
     padding: 0.5rem 0;
     line-height: 2.2rem;
+    @include tablet {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
   }
 
   &__text {
@@ -80,11 +97,16 @@
     border-radius: 4px;
     font-size: 1.2rem;
     font-family: "Montserrat", sans-serif;
+    min-width: 150px;
     animation: success-appear-2 0.5s;
     cursor: pointer;
     &:hover {
       background-color: $turquoise;
       transition: background-color 0.3s;
+    }
+
+    @include mobile {
+      width: 100%;
     }
   }
 
@@ -95,6 +117,10 @@
     font-weight: 600;
     align-self: flex-end;
     animation: success-appear 0.5s;
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 
