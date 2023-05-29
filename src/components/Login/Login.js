@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import passwordHide from "../../assets/icons/passwordHide.svg";
 import passwordShow from "../../assets/icons/passwordShow.svg";
 import ErrorIcon from "../ErrorIcon/ErrorIcon";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import "./Login.scss";
 
 const Login = ({
@@ -23,6 +24,8 @@ const Login = ({
   const [guestProfile, setGuestProfile] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("Error");
+
+  const [forgotPasswordToggle, setForgotPasswordToggle] = useState(false);
 
   const [formValid, setFormValid] = useState(true);
   const [inputFields, setInputFields] = useState({
@@ -145,111 +148,129 @@ const Login = ({
 
   function handleGuestLogin() {
     if (guestProfile) {
-        axios.post(`http://localhost:8080/users/login`, {
-            email: localStorage.getItem('guest-profile-id'),
-            password: localStorage.getItem('guest-profile-pw')
+      axios
+        .post(`http://localhost:8080/users/login`, {
+          email: localStorage.getItem("guest-profile-id"),
+          password: localStorage.getItem("guest-profile-pw"),
         })
-        .then(({data}) => {
-            postLogin(true)
-            setTimeout(() => {
-                const { token } = data;
-                sessionStorage.setItem("authToken", token);
-                const decodedToken = jwt_decode(token);
-                sessionStorage.setItem("currentName", decodedToken.name);
-                sessionStorage.setItem("userId", decodedToken.id);
-                setDisplayName(capitalizeName(sessionStorage.getItem("currentName")));
-    
-                setIsLoggedIn(true);
-                navigate("/home");
-              }, 5000);
+        .then(({ data }) => {
+          postLogin(true);
+          setTimeout(() => {
+            const { token } = data;
+            sessionStorage.setItem("authToken", token);
+            const decodedToken = jwt_decode(token);
+            sessionStorage.setItem("currentName", decodedToken.name);
+            sessionStorage.setItem("userId", decodedToken.id);
+            setDisplayName(
+              capitalizeName(sessionStorage.getItem("currentName"))
+            );
+
+            setIsLoggedIn(true);
+            navigate("/home");
+          }, 5000);
         })
         .catch((error) => {
-            console.log(error.response.data.message);
-          });
+          console.log(error.response.data.message);
+        });
     }
   }
 
   return (
     <>
-      <form
-        className={
-          postLoginState ? "login__container--disappear" : "login__container"
-        }
-        onSubmit={(e) => handleLogin(e)}
-        role = "application"
-      >
-        <label htmlFor="email" className="login__container--label" aria-label="user email">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="login__email"
-          value={inputFields.email}
-          onChange={(e) => handleInput(e)}
-          onClick={(e) => resetField(e)}
-          role = "user login"
-          tabIndex={1}
-        ></input>
-        <ErrorIcon element={errorFields.email} message={errorMessage} />
-
-        <label htmlFor="password" className="login__container--label">
-          Password
-        </label>
-        <div className="login__pw-box">
+      {forgotPasswordToggle ? (
+        <ForgotPassword toggle = {setForgotPasswordToggle} />
+      ) : (
+        <form
+          className={
+            postLoginState ? "login__container--disappear" : "login__container"
+          }
+          onSubmit={(e) => handleLogin(e)}
+          role="application"
+        >
+          <label
+            htmlFor="email"
+            className="login__container--label"
+            aria-label="user email"
+          >
+            Email Address
+          </label>
           <input
-            type={passwordType}
-            name="password"
-            className="login__password"
-            value={inputFields.password}
+            type="email"
+            name="email"
+            className="login__email"
+            value={inputFields.email}
             onChange={(e) => handleInput(e)}
             onClick={(e) => resetField(e)}
-            role = "user password"
-            tabIndex={2}
+            role="user login"
+            tabIndex={1}
           ></input>
-          {passwordHidden ? (
-            <img
-              src={passwordShow}
-              className="login__pw-icon"
-              onClick={() => toggleShowState()}
-              tabIndex={3}
-              alt = "hide password"
-            />
-          ) : (
-            <img
-              src={passwordHide}
-              className="login__pw-icon"
-              onClick={() => toggleShowState()}
-              tabIndex={3}
-              alt = "reveal password"
-            />
-          )}
-          <ErrorIcon element={errorFields.password} message={errorMessage} />
-        </div>
-        <div className="login__lower">
-          <div className="login__remember">
+          <ErrorIcon element={errorFields.email} message={errorMessage} />
+
+          <label htmlFor="password" className="login__container--label">
+            Password
+          </label>
+          <div className="login__pw-box">
             <input
-              type="checkbox"
-              name="remember-user"
-              className="login__remember--box"
-              onChange={() => setRememberUser(!rememberUser)}
-              checked={rememberUser}
+              type={passwordType}
+              name="password"
+              className="login__password"
+              value={inputFields.password}
+              onChange={(e) => handleInput(e)}
+              onClick={(e) => resetField(e)}
+              role="user password"
+              tabIndex={2}
             ></input>
-            <label htmlFor="remember-user">Remember Me</label>
+            {passwordHidden ? (
+              <img
+                src={passwordShow}
+                className="login__pw-icon"
+                onClick={() => toggleShowState()}
+                tabIndex={3}
+                alt="hide password"
+              />
+            ) : (
+              <img
+                src={passwordHide}
+                className="login__pw-icon"
+                onClick={() => toggleShowState()}
+                tabIndex={3}
+                alt="reveal password"
+              />
+            )}
+            <ErrorIcon element={errorFields.password} message={errorMessage} />
           </div>
-          <p className="login__reset">Forgot Password</p>
-        </div>
-        <button className="login__btn" role = "button">Log In</button>
-        <p className="login__toggle" onClick={() => toggle()}>
-          New to Hearth? Click here to make an account.
-        </p>
-        {guestProfile ? (
-          <div className="login__guest">
-            <p className="login__guest--notify">Available</p>
-            <p className="login__guest--toggle" onClick = {() => handleGuestLogin()}>Log in as a Guest.</p>
+          <div className="login__lower">
+            <div className="login__remember">
+              <input
+                type="checkbox"
+                name="remember-user"
+                className="login__remember--box"
+                onChange={() => setRememberUser(!rememberUser)}
+                checked={rememberUser}
+              ></input>
+              <label htmlFor="remember-user">Remember Me</label>
+            </div>
+            <p className="login__reset" onClick = {() => setForgotPasswordToggle(true)}>Forgot Password</p>
           </div>
-        ) : null}
-      </form>
+          <button className="login__btn" role="button">
+            Log In
+          </button>
+          <p className="login__toggle" onClick={() => toggle()}>
+            New to Hearth? Click here to make an account.
+          </p>
+          {guestProfile ? (
+            <div className="login__guest">
+              <p className="login__guest--notify">Available</p>
+              <p
+                className="login__guest--toggle"
+                onClick={() => handleGuestLogin()}
+              >
+                Log in as a Guest.
+              </p>
+            </div>
+          ) : null}
+        </form>
+      )}
     </>
   );
 };

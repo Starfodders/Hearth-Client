@@ -20,7 +20,7 @@
       min-width: 250px;
       animation: toggle-slide-in-left-MOBILE 0.3s;
     }
-    
+
     &--disappear {
       @extend .login__container;
       animation: fade-out 0.5s;
@@ -32,7 +32,7 @@
       align-self: flex-start;
       font-size: 1rem;
       letter-spacing: 1px;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.3rem;
     }
   }
 
@@ -86,6 +86,14 @@
   &__reset {
     font-size: 0.8rem;
     color: $off-white-reduced;
+    padding: 0.1rem;
+    border-radius: 4px;
+    &:hover {
+      cursor: pointer;
+      color: $off-white;
+      background-color: $turquoise;
+      transition: background-color 0.3s;
+    }
   }
 
   &__btn {
@@ -118,15 +126,13 @@
       background-color: $turquoise;
       transition: background-color 0.3s;
     }
-
-    
   }
   &__guest {
     display: flex;
-      margin-top: 1rem;
-      align-items: center;
-      border: 1px solid rgba(37, 37, 37, 0.2);
-      border-radius: 4px;
+    margin-top: 1rem;
+    align-items: center;
+    border: 1px solid rgba(37, 37, 37, 0.2);
+    border-radius: 4px;
 
     &--notify {
       color: $off-white-reduced;
@@ -155,22 +161,21 @@
 }
 
 @keyframes toggle-slide-in-left {
-    0% {
-        transform: translateX(-20%);
-        opacity: 0.3
-    }
-    100%{
-        transform: translateX(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateX(-20%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
-
 
 @keyframes toggle-slide-in-left-MOBILE {
   0% {
-      opacity: 0.3
+    opacity: 0.3;
   }
-  100%{
-      opacity: 1;
+  100% {
+    opacity: 1;
   }
 }
