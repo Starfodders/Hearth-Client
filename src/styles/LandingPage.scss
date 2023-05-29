@@ -124,6 +124,13 @@
     animation: transition-slide-up 4.5s;
     transform: translateY(-25%);
     opacity: 1;
+
+    @include desktop {
+      animation: transition-slide-up-5 4.5s;
+    transform: translateY(-30%);
+
+
+    }
   }
 }
 
@@ -311,6 +318,21 @@
   }
   100%{
     transform: translateY(100%);
+    opacity: 1;
+  }
+}
+
+@keyframes transition-slide-up-5 {
+  0% {
+    opacity: 0;
+    transform: translateY(-500%);
+
+  }
+  50% {
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(-30%);
     opacity: 1;
   }
 }
