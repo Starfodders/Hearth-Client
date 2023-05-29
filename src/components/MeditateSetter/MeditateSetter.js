@@ -1,4 +1,3 @@
-import { useEffect, useState, useRef } from "react";
 import "./MeditateSetter.scss";
 import MeditateActive from "../MeditateActive/MeditateActive";
 

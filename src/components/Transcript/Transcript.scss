@@ -33,22 +33,23 @@
   &__buttons {
     color: $off-white;
     width: 50%;
-    max-width: 200px;
+    max-width: 300px;
     background-color: $light-black;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: 4px;
     padding: 0.5rem 1rem;
 
     @include tablet {
-      width: 70%;
+      width: 100%;
       max-width: none;
     }
 
     &__block {
       width: 30%;
       display: flex;
+      gap: 1rem;
       justify-content: center;
       align-items: center;
     }
@@ -61,4 +62,25 @@
 
 .button-el {
   font-size: 2rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $extra-dark-blue;
+    border-radius: 50%;
+    user-select: none; /* standard syntax */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none;
+  }
+
+  &--off {
+    color: $off-white-reduced;
+    pointer-events: none;
+    user-select: none; /* standard syntax */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none;
+  }
 }
