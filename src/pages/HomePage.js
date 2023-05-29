@@ -215,7 +215,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           </div>
         ) : null}
       </div>
-      {homepageState ? (
+      {!displayModal && homepageState ? (
         <Options
           animToggle={toggleAnimation}
           animState={animationState}

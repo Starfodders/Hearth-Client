@@ -13,9 +13,15 @@
         z-index: 30;
         position: fixed;
 
+        @include tablet {
+            padding-top: 3rem;
+            position: initial;
+        }
+
     }
     &__container {
-        width: 30%;
+        width: 50%;
+        max-width: 550px;
         background-color: #030B11EE;
         display: flex;
         flex-direction: column;
@@ -25,27 +31,58 @@
         color: $off-white;
         margin-top: 5%;
         animation: fade-in 2.5s forwards;
+
+        @include desktop {
+            width: 80%;
+            max-width: 800px;
+            z-index: 15;
+        }
+
+        @include tablet {
+            width: 100%;
+            max-width: none;
+        }
+
+        @include mobile {
+            padding: 1rem 1.5rem;
+        }
     }
 
     &__title {
         font-size: 2rem;
         padding-bottom: 1rem;
+        color: $off-white;
+        @include mobile {
+            font-size: 1.3rem;
+        }
     }
 
     &__para {
         font-size: 1rem;
         line-height: 2.5rem;
         padding-bottom: 1rem;
+        color: $off-white;
+
+
+        @include tablet {
+            line-height: 2rem;
+        }
+        @include mobile {
+            font-size: 0.9rem;
+            line-height: 1.8rem;
+        }
     }
 
     &__btn {
        width: 50%;
+       max-width: 200px;
        background-color: $turquoise;
        color: $off-white;
        border: none;
        border-radius: 4px;
        padding: 0.5rem;
        font-size: 1.2rem;
+       margin-top: 1rem;
 
        &:hover {
         cursor: pointer;
