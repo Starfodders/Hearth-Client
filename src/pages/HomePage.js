@@ -204,7 +204,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           <img src={inactiveBgBot} className="home__image--bot--off" onClick={() => handleInitialClick()}
           alt="" />
         )}
-        {currUserNavigateUnit != 1 && homepageState ? (
+        {currUserNavigateUnit !== 1 && homepageState ? (
           <div className="resume-container">
             <button className="resume-btn" onClick={() => navigateToUnit()}>
               Continue Journey{" "}
@@ -221,6 +221,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           animState={animationState}
           soundToggle={toggleSound}
           soundState={soundState}
+          setTutorial = {setDisplayModal}
         />
       ) : null}
       {homepageState ? <BotNav /> : null}

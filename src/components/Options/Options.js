@@ -1,9 +1,8 @@
 import "./Options.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const Options = ({ animToggle, animState, soundToggle, soundState }) => {
+const Options = ({ animToggle, animState, soundToggle, soundState, setTutorial }) => {
   const navigate = useNavigate();
 
   //toggle the options appearance based on window size (collapsed on 1024px)
@@ -24,7 +23,7 @@ const Options = ({ animToggle, animState, soundToggle, soundState }) => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, );
 
   function handleAnimationToggle() {
     animToggle();
@@ -89,6 +88,15 @@ const Options = ({ animToggle, animState, soundToggle, soundState }) => {
                 arrow_right_alt
               </span>
               <p className="options__credits--text">Submit Feedback</p>
+            </div>
+            <div
+              className="options__credits"
+              onClick={() => setTutorial(true)}
+            >
+              <span className="material-symbols-outlined options__credits--icon">
+                arrow_right_alt
+              </span>
+              <p className="options__credits--text">Open Tutorial</p>
             </div>
             </section>
           </div>

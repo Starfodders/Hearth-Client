@@ -6,6 +6,7 @@ import example2 from "../../assets/tutorial/example2.png";
 import example3 from "../../assets/tutorial/example3.gif";
 import example4 from "../../assets/tutorial/example4.gif";
 import example5 from "../../assets/tutorial/example5.gif";
+import example6 from "../../assets/tutorial/example6.gif";
 import example7 from "../../assets/tutorial/example7.png";
 import example8 from "../../assets/tutorial/example8.gif";
 import example9 from "../../assets/tutorial/example9.gif";
@@ -45,8 +46,18 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-
   const Slide3 = () => {
+    return (
+      <>
+        <p className="modal__para">
+          Clicking on the Hearth logo at the top of your screen will return you back to this landing page.
+        </p>
+        <img src={example6} alt="" className="modal__img" />
+      </>
+    );
+  };
+
+  const Slide4 = () => {
     return (
       <>
         <p className="modal__para">
@@ -59,7 +70,7 @@ const BeginnerModal = ({ change }) => {
     );
   };
 
-  const Slide4 = () => {
+  const Slide5 = () => {
     return (
       <>
         <p className="modal__para">
@@ -74,7 +85,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide5 = () => {
+  const Slide6 = () => {
     return (
       <>
         <p className="modal__para">
@@ -87,7 +98,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide6 = () => {
+  const Slide7 = () => {
     return (
       <>
         <p className="modal__para">
@@ -99,7 +110,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide7 = () => {
+  const Slide8 = () => {
     return (
       <>
         <p className="modal__para">
@@ -111,7 +122,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide8 = () => {
+  const Slide9 = () => {
     return (
       <>
         <p className="modal__para">
@@ -122,7 +133,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide9 = () => {
+  const Slide10 = () => {
     return (
       <>
         <p className="modal__para">
@@ -143,6 +154,7 @@ const BeginnerModal = ({ change }) => {
     Slide7,
     Slide8,
     Slide9,
+    Slide10
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -163,7 +175,7 @@ const BeginnerModal = ({ change }) => {
         <SlideComponent />
         <div className="modal__bottom">
           <div className="modal__navigation">
-            {currentSlide > 0 && currentSlide != slides.length - 1 && (
+            {currentSlide > 0 && currentSlide !== slides.length - 1 && (
               <button className="modal__btn" onClick={handlePrevSlide}>
                 Previous
               </button>
