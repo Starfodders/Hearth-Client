@@ -1,15 +1,14 @@
 import axios from "axios";
 import "./BeginnerModal.scss";
 import { useState } from "react";
-import example1 from "../../assets/tutorial/example1.png";
+import example1 from "../../assets/tutorial/example1.gif";
 import example2 from "../../assets/tutorial/example2.png";
-import example3 from "../../assets/tutorial/example3.png";
-import example4 from "../../assets/tutorial/example4.png";
-import example5 from "../../assets/tutorial/example5.png";
-import example6 from "../../assets/tutorial/example6.png";
+import example3 from "../../assets/tutorial/example3.gif";
+import example4 from "../../assets/tutorial/example4.gif";
+import example5 from "../../assets/tutorial/example5.gif";
 import example7 from "../../assets/tutorial/example7.png";
-import example8 from "../../assets/tutorial/example8.png";
-import example9 from "../../assets/tutorial/example9.png";
+import example8 from "../../assets/tutorial/example8.gif";
+import example9 from "../../assets/tutorial/example9.gif";
 
 const BeginnerModal = ({ change }) => {
   function handleConfirm() {
@@ -80,7 +79,6 @@ const BeginnerModal = ({ change }) => {
         </p>
         <div className="modal__img--container">
         <img src={example5} alt = "" className="modal__img--half" />
-        <img src={example6} alt = "" className="modal__img--half" />
         </div>
       </>
     )
