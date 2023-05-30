@@ -9,7 +9,7 @@
     background-color: #030b11aa;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     z-index: 30;
     position: fixed;
 
@@ -24,15 +24,15 @@
   &__container {
     width: 100%;
     max-width: 550px;
-    min-height: 500px;
+    min-height: 60%;
     background-color: #030b11ee;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 2rem 3rem;
     color: $off-white;
-    margin-top: 5%;
+    margin-top: 8%;
     animation: fade-in 1.5s forwards;
 
     @include desktop {
@@ -73,6 +73,12 @@
       line-height: 2.5rem;
     }
   }
+  &__bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__navigation {
     width: 100%;
@@ -91,6 +97,7 @@
     padding: 0.5rem;
     font-size: 1.2rem;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 
     &:hover {
       cursor: pointer;
@@ -100,6 +107,7 @@
   &__img {
     width: 80%;
     max-width: 300px;
+    max-height: 300px;
     border: 1px solid $off-white;
     margin-bottom: 1rem;
     object-fit: cover;
@@ -122,6 +130,21 @@
         align-items: center;
         gap: 0.3rem;
       }
+    }
+  }
+  &__skip{
+    &--text{
+        color: $off-white-reduced;
+        font-size: 0.8rem;
+        cursor: pointer;
+        padding: 0.3rem;
+        border-radius: 4px;
+        &:hover {
+            background-color: $turquoise;
+            color: $off-white;
+            transition: all 0.3s;
+
+        }
     }
   }
 }

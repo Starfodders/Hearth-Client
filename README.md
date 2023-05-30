@@ -9,21 +9,22 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 5. 😀 DONE - Collections -> when clicking on a collection item it should expand if clicked on the entire body, not just the icon
 6. 😀 DONE - Add transitions for the chapters to better indicate a change in state, easier to follow
 7. 😀 DONE - Add a 'Resume where last left off' option to take them back to the correct unit (can be based on current user current_progress metric)
-8. BCrypt for personal information
+8. 😀 DONE - BCrypt for personal information
 9. 😀 DONE - Capitalize first letter of given_name if they give a non capitalized name
-10. Add visual cues to show how the user can 'save'
+10. 😀 DONE - Add visual cues to show how the user can 'save'
 11. 😀 DONE - Add card to the intro, I missed adding 'List' as an card type
 12. 😀 DONE - Add form for users to submit feedback on improvements
-13. Add additional graphics for users when going through techniques
+13. 😀 DONE - Add additional graphics for users when going through techniques
 14. Add animation to background waves
 15. 😀 DONE - Website responsive design (Tablet)
 16. 😀 DONE - Website responsive design (Mobile)
 17. 😀 DONE - Add place to download specific forms for exercises
-18. Add better help tooling for new users
+18. 😀 DONE - Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'
 20. Re: stat tracking, create separate user profile to handle this
 21. Website ARIA completion
 22. Mobile Site header needs to disappear on scrolldown
+23. Pagination for beginner tutorial (maybe)
 
 
 ### Bugs
