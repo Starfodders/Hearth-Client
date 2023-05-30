@@ -1,37 +1,165 @@
 import axios from "axios";
 import "./BeginnerModal.scss";
+import { useState } from "react";
+import example1 from "../../assets/tutorial/example1.png";
+import example2 from "../../assets/tutorial/example2.png";
+import example3 from "../../assets/tutorial/example3.png";
+import example4 from "../../assets/tutorial/example4.png";
+import example5 from "../../assets/tutorial/example5.png";
+import example6 from "../../assets/tutorial/example6.png";
+import example7 from "../../assets/tutorial/example7.png";
+import example8 from "../../assets/tutorial/example8.png";
+import example9 from "../../assets/tutorial/example9.png";
 
-const BeginnerModal = ({change}) => {
+const BeginnerModal = ({ change }) => {
+  function handleConfirm() {
+    axios.patch(
+      `http://localhost:8080/users/patchNew/${sessionStorage.getItem("userId")}`
+    );
+    change(false);
+  }
 
-    function handleConfirm() {
-        axios.patch(`http://localhost:8080/users/patchNew/${sessionStorage.getItem('userId')}`)
-        change(false)
-    }
+  const Slide1 = () => {
+    return (
+      <>
+        <h2 className="modal__title">
+          This is the <span style={{ color: "#52B69A" }}>Hearth</span>
+        </h2>
+        <p className="modal__para">
+          A place for you to begin your lessons each time you visit. It will
+          also act as a meeting ground for your digital companions as you
+          complete each major chapter.
+        </p>
+      </>
+    );
+  };
+
+  const Slide2 = () => {
+    return (
+      <>
+        <p className="modal__para">
+          At the bottom of your screen is your navigation bar. There you will
+          find three choices and will serve as your primary way of accessing
+          content throughout the app.
+        </p>
+        <img src={example1} alt = "" className="modal__img" />
+      </>
+    );
+  };
+
+  const Slide3 = () => {
+    return (
+      <>
+      <p className="modal__para">
+          The content is divided into individual chapters, sections, and units. Each concept will build on the last and is unlocked in sequential order.
+        </p>
+        <img src={example2} alt = "" className="modal__img" />
+      </>
+    )
+  }
+
+  const Slide4 = () => {
+    return (
+      <>
+      <p className="modal__para">
+          To navigate each unit's contents, use the arrow icons on either side of the slide. If you're on a mobile device, the arrows are on the bottom of the screen.
+        </p>
+        <div className="modal__img--container">
+        <img src={example3} alt = "" className="modal__img--half" />
+        <img src={example4} alt = "" className="modal__img--half" />
+        </div>
+        
+      </>
+    )
+  }
+  const Slide5 = () => {
+    return (
+      <>
+      <p className="modal__para">
+          Content can be saved easily for later reference by clicking on this icon available on each slide.
+        </p>
+        <div className="modal__img--container">
+        <img src={example5} alt = "" className="modal__img--half" />
+        <img src={example6} alt = "" className="modal__img--half" />
+        </div>
+      </>
+    )
+  }
+  const Slide6 = () => {
+    return (
+      <>
+      <p className="modal__para">
+          When this icon is highlighted, external resources are available. These PDFs will supplement the current slide's lessons and can be printed or downloaded.
+        </p>
+        <img src={example7} alt = "" className="modal__img--half" />
+      </>
+    )
+  }
+  const Slide7 = () => {
+    return (
+      <>
+      <p className="modal__para">
+      You can embark on a soothing meditation session at any time in the Meditations tab, tailoring the duration and selecting a background ambiance to enhance your session.
+        </p>
+        <img src={example8} alt = "" className="modal__img" />
+      </>
+    )
+  }
+  const Slide8 = () => {
+    return (
+      <>
+      <p className="modal__para">
+        Content that you've saved during your time spent in Hearth can be accessed in the Collections tab.
+        </p>
+        <img src={example9} alt = "" className="modal__img" />
+      </>
+    )
+  }
+  const Slide9 = () => {
+    return (
+      <>
+      <p className="modal__para">
+       If you encounter any bugs or problems, or have any recommendations, feel free to send feedback in the tab on your right.
+        </p>
+      </>
+    )
+  }
+
+  const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8, Slide9];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  function handleNextSlide() {
+    setCurrentSlide((prevSlide) => prevSlide + 1);
+  }
+
+  function handlePrevSlide() {
+    setCurrentSlide((prevSlide) => prevSlide - 1);
+  }
+
+  const SlideComponent = slides[currentSlide];
 
   return (
     <div className="modal__wrapper">
       <div className="modal__container">
-        <h1 className="modal__title">
-          This is the <span>Hearth</span>
-        </h1>
-        <p className="modal__para">
-          A place for you to begin your lessons each time you visit. It will
-          also act as a meeting ground for your digital companions, but more
-          information will become available to you shortly.
-        </p>
-        <p className="modal__para">
-          At the bottom of your screen is your navigation bar. There you will
-          find three choices and will serve as your primary way of accessing
-          content throughout the app. Information on them will be made available
-          to you as you progress.
-        </p>
-        <p className="modal__para">
-          The content of Hearth is divided into chapters, then sections, and
-          finally into individual units. You will need to finish each unit to
-          progress onto the next. The lessons you learn in each are intended to
-          build upon one another.
-        </p>
-        <button className="modal__btn" onClick = {() => handleConfirm()}>Confirm</button>
+        <SlideComponent />
+        <div className="modal__navigation">
+          {currentSlide > 0 && currentSlide != slides.length -1 && (
+            <button className="modal__btn" onClick={handlePrevSlide}>
+              Previous
+            </button>
+          )}
+          {currentSlide < slides.length - 1 && (
+            <button className="modal__btn" onClick={handleNextSlide}>
+              Next
+            </button>
+          )}
+          {currentSlide === slides.length -1 && (
+            <button onClick = {() => handleConfirm()} className = "modal__btn">
+            Confirm
+          </button>
+          )}
+        </div>
       </div>
     </div>
   );
