@@ -22,13 +22,13 @@ const BotNav = () => {
   return userScrollDown ? (
     <>
       <div className="bot-nav__container--reduced">
-        <NavLink to="/chapters" className="bot-nav__block--reduced">
+        <NavLink to="/chapters" className="bot-nav__block--reduced" aria-label="Link to Chapters">
           <p className="bot-nav__title">Chapters</p>
         </NavLink>
-        <NavLink to="/meditation" className="bot-nav__block--reduced">
+        <NavLink to="/meditation" className="bot-nav__block--reduced" aria-label="Link to Meditation">
           <p className="bot-nav__title">Meditation</p>
         </NavLink>
-        <NavLink to="/collection" className="bot-nav__block--reduced">
+        <NavLink to="/collection" className="bot-nav__block--reduced" aria-label="Link to Collections">
           <p className="bot-nav__title">Collection</p>
         </NavLink>
       </div>
@@ -36,19 +36,19 @@ const BotNav = () => {
   ) : (
     <>
       <div className="bot-nav__container">
-        <NavLink to="/chapters" className="bot-nav__block">
+        <NavLink to="/chapters" className="bot-nav__block" aria-label="Link to Chapters">
           <p className="bot-nav__title">Chapters</p>
           <span className="material-symbols-outlined bot-nav__icon">
             menu_book
           </span>
         </NavLink>
-        <NavLink to="/meditation" className="bot-nav__block">
+        <NavLink to="/meditation" className="bot-nav__block" aria-label="Link to Meditation">
           <p className="bot-nav__title">Meditation</p>
           <span className="material-symbols-outlined bot-nav__icon">
             self_improvement
           </span>
         </NavLink>
-        <NavLink to="/collection" className="bot-nav__block">
+        <NavLink to="/collection" className="bot-nav__block" aria-label="Link to Collections">
           <p className="bot-nav__title">Collection</p>
           <span className="material-symbols-outlined bot-nav__icon">
             bookmark

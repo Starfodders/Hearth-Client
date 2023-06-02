@@ -43,7 +43,8 @@ let button;
         <h2 className="card__name">{details.name}</h2>
         <img
           src={`http://localhost:8080${details.images}`}
-          alt={details.name}
+          alt=''
+          aria-hidden="true"
           className="card__image"
         />
         <p>{display}</p>
@@ -57,7 +58,8 @@ let button;
       <h2 className="card__name">{details.name}</h2>
       <img
         src={`http://localhost:8080${details.images}`}
-        alt={details.name}
+        alt=''
+        aria-hidden="true"
         className="card__image"
       />
       {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> :  <p>{display}</p>}

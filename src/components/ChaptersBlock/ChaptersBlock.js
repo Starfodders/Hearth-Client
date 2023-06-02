@@ -10,14 +10,14 @@ const ChaptersBlock = ({ content, title, level, progress, destination}) => {
   return (
     <section className="chapters__container">
       <div className="chapters__header">
-        <span className="material-symbols-outlined chapters__return" onClick = {() => navigate(destination)}>arrow_back</span>
+        <span className="material-symbols-outlined chapters__return" onClick = {() => navigate(destination)} aria-label="Go back one level">arrow_back</span>
         <h2 className="chapters__title">{title}</h2>
       </div>
-      <div className="chapters__main">
+      <main className="chapters__main" aria-label = "Choose content to view">
         {content.map((details) => {
           return <Card details={details} level = {level} key = {details.id} progress = {progress}/>;
         })}
-      </div>
+      </main>
     </section>
   );
 };

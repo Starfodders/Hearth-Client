@@ -34,7 +34,7 @@ const TopLogo = ({ name, login }) => {
   return (
     <div className="top__container">
       <div className="spacer"></div>
-      <Link to="/home" className="top__link">
+      <Link to="/home" className="top__link" aria-label = "Link to Homepage">
         <h2 className="top__title">Hearth</h2>
       </Link>
       <div
@@ -44,16 +44,16 @@ const TopLogo = ({ name, login }) => {
       >
         <div className="top__profile__preview">
           <div className="top__profile__primary">
-            <span className="material-symbols-outlined top__icon">
+            <span className="material-symbols-outlined top__icon" aria-hidden = 'true'>
               account_circle
             </span>
-            <p className={mobileWindow ? "top__name--hidden" : "top__name"}>
+            <p className={mobileWindow ? "top__name--hidden" : "top__name"} aria-role = 'menu'>
               {name}
             </p>
           </div>
           {menuHover ? (
             <div className="top__profile__opened">
-              <span className="material-symbols-outlined logout-icon">
+              <span className="material-symbols-outlined logout-icon" aria-hidden='true'>
                 logout
               </span>
               <p className="top__signout" onClick={() => handleLogOut()}>

@@ -6,7 +6,7 @@ const SectionButton = ({details}) => {
   const navigate = useNavigate();
 
     return (
-        <button className={available ? "card__button": "card__button--disabled"} onClick = {() => navigate(`/chapters/units/${id}`)}>
+        <button className={available ? "card__button": "card__button--disabled"} onClick = {() => navigate(`/chapters/units/${id}`)} aria-label = {`To ${details.name} section`}>
                 {available ? 'Continue' : 'Locked'}
       </button>
     );

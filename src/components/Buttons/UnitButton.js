@@ -6,7 +6,7 @@ const UnitButton = ({details}) => {
   const navigate = useNavigate();
 
     return (
-        <button className={available ? "card__button": "card__button--disabled"} onClick = {() =>  navigate(`/unit/${name}/${id}`)}>
+        <button className={available ? "card__button": "card__button--disabled"} onClick = {() =>  navigate(`/unit/${name}/${id}`)} aria-label={`To ${details.name} unit`}>
          {available ? 'Continue' : 'Locked'}
       </button>
     );

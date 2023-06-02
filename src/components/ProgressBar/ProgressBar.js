@@ -25,20 +25,21 @@ const ProgressBar = ({ details, level, progress }) => {
 
   if (level === "units") {
     if (details.id <= current) {
-      return <div className="progress__box"><p className="progress__notif">Complete</p></div>;
+      return <div className="progress__box"><p className="progress__notif" aria-label ="Unit is Complete">Complete</p></div>;
     } else if (details.id === unit) {
-      return <div className="progress__box"><p className="progress__notif--progress">In Progress</p></div>;
+      return <div className="progress__box"><p className="progress__notif--progress" aria-label="Unit is Currently in Progress">In Progress</p></div>;
     }
   }
 
   return (
     <div className="progress__container">
-      <label htmlFor="progress" className="progress__label">{`${currentContent}/${details.units}`}</label>
+      <label htmlFor="progress" className="progress__label" aria-label={`${currentContent} out of ${details.units} complete`}>{`${currentContent}/${details.units}`}</label>
       <progress
         value={currentContent}
         max={details.units}
         name="progress"
         className="progress__bar"
+        aria-hidden="true"
       ></progress>
     </div>
   );
