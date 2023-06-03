@@ -34,7 +34,7 @@ const TopLogo = ({ name, login }) => {
   return (
     <div className="top__container">
       <div className="spacer"></div>
-      <Link to="/home" className="top__link" aria-label = "Link to Homepage">
+      <Link to="/home" className="top__link" aria-label = "Link to Homepage" tabIndex={0}>
         <h2 className="top__title">Hearth</h2>
       </Link>
       <div

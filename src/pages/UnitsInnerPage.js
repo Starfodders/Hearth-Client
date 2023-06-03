@@ -11,16 +11,15 @@ import FinishCard from "../components/SlideTypes/FinishCard";
 import { register } from "swiper/element/bundle";
 register();
 
-const UnitsPage = ({isLoggedIn}) => {
-
-  const navigate = useNavigate()
+const UnitsPage = ({ isLoggedIn }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
-      if (!sessionStorage.getItem('authToken')) {
-        navigate('/')
+      if (!sessionStorage.getItem("authToken")) {
+        navigate("/");
       }
-    } 
-}, [isLoggedIn])
+    }
+  }, [isLoggedIn]);
 
   const params = useParams();
   const { id, name } = params;
@@ -29,12 +28,12 @@ const UnitsPage = ({isLoggedIn}) => {
   const backElRef = useRef(null);
   const forwardElRef = useRef(null);
 
-  const [isCloser, setIsCloser] = useState(false)
+  const [isCloser, setIsCloser] = useState(false);
 
   function handleForward() {
     carouselElRef.current.swiper.slideNext();
-    if(currentPage === totalPages) {
-      setIsCloser(true)
+    if (currentPage === totalPages) {
+      setIsCloser(true);
     }
   }
   function handleBack() {
@@ -42,8 +41,8 @@ const UnitsPage = ({isLoggedIn}) => {
   }
 
   const [unitData, setUnitData] = useState([]);
-  const [unitSavedData, setUnitSavedData] = useState([])
-  const [finishData, setFinishData] = useState([])
+  const [unitSavedData, setUnitSavedData] = useState([]);
+  const [finishData, setFinishData] = useState([]);
   const [pageLoaded, setPageLoaded] = useState(false);
   const [pageTitle, setPageTitle] = useState("Title");
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,12 +53,16 @@ const UnitsPage = ({isLoggedIn}) => {
       try {
         const [unitResponse, savedResponse, finishData] = await Promise.all([
           axios.get(`http://localhost:8080/units/${id}`),
-          axios.get(`http://localhost:8080/collections/${sessionStorage.getItem('userId')}`),
-          axios.get(`http://localhost:8080/units/finish/${id}`)
+          axios.get(
+            `http://localhost:8080/collections/${sessionStorage.getItem(
+              "userId"
+            )}`
+          ),
+          axios.get(`http://localhost:8080/units/finish/${id}`),
         ]);
         setUnitData(unitResponse.data);
         setUnitSavedData(savedResponse.data);
-        setFinishData(finishData.data)
+        setFinishData(finishData.data);
       } catch (err) {
         console.log(err + " Error retrieving unit data");
       }
@@ -96,18 +99,52 @@ const UnitsPage = ({isLoggedIn}) => {
       <div className="units__bg">
         <img src={topwave} className="units__bg--img" alt="" />
       </div>
-      {isCloser ? <FinishCard details = {finishData}/> : null}
-      <main className="units__container">
-        <div className="units__header">
+      {isCloser ? <FinishCard details={finishData} /> : null}
+      <main className="units__container" aria-label="Unit Slides">
+        <div
+          className="units__header"
+          aria-hidden={isCloser ? "true" : "false"}
+        >
           <span
             className="material-symbols-outlined units__return"
             onClick={() => navigate(-1)}
+            aria-label="Return to Unit Selection"
+            aria-hidden={isCloser ? "true" : "false"}
           >
-            arrow_back
+            <span aria-hidden="true">arrow_back</span>
           </span>
-          <h2 className="units__title">{pageTitle}</h2>
-          <span className="units__pages">
-            {currentPage}/{totalPages}
+          <h2 className="units__title" aria-hidden="true">
+            {pageTitle}
+          </h2>
+          <span
+            className="units__pages"
+            aria-label={`Page ${currentPage} of ${totalPages}`}
+            aria-hidden={isCloser ? "true" : "false"}
+          >
+            <span aria-hidden="true">
+              {currentPage}/{totalPages}
+            </span>
+          </span>
+        </div>
+        {/* navigation buttons put higher up for screen reader */}
+        <div className="carousel__buttons">
+          <span
+            className="material-symbols-outlined carousel__buttons--el"
+            ref={backElRef}
+            onClick={() => handleBack()}
+            aria-label="Go back 1 slide"
+            aria-hidden={isCloser ? "true" : "false"}
+          >
+            <span aria-hidden="true">arrow_back</span>
+          </span>
+          <span
+            className="material-symbols-outlined carousel__buttons--el"
+            ref={forwardElRef}
+            onClick={() => handleForward()}
+            aria-label="Go forward 1 slide"
+            aria-hidden={isCloser ? "true" : "false"}
+          >
+            <span aria-hidden="true">arrow_forward</span>
           </span>
         </div>
         <swiper-container
@@ -115,31 +152,25 @@ const UnitsPage = ({isLoggedIn}) => {
           className="carousel__main"
           ref={carouselElRef}
           onTransitionEnd={() => handleTransition()}
+          aria-hidden={isCloser ? "true" : "false"}
         >
           {unitData.map((slide, index) => {
+            const isActiveSlide = index === currentPage - 1;
             return (
-              <swiper-slide key={index}>
-                <UnitSlide slide={slide} unitID = {id} currentSaved = {unitSavedData} notifyChange = {currentPage}/>
+              <swiper-slide
+                key={index}
+                aria-hidden={!isActiveSlide || isCloser}
+              >
+                <UnitSlide
+                  slide={slide}
+                  unitID={id}
+                  currentSaved={unitSavedData}
+                  notifyChange={currentPage}
+                />
               </swiper-slide>
             );
           })}
         </swiper-container>
-        <div className="carousel__buttons">
-          <span
-            className="material-symbols-outlined carousel__buttons--el"
-            ref={backElRef}
-            onClick={() => handleBack()}
-          >
-            arrow_back
-          </span>
-          <span
-            className="material-symbols-outlined carousel__buttons--el"
-            ref={forwardElRef}
-            onClick={() => handleForward()}
-          >
-            arrow_forward
-          </span>
-        </div>
       </main>
     </div>
   );

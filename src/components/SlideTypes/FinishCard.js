@@ -29,6 +29,7 @@ const FinishCard = ({ details }) => {
         <button
           className="finish__confirm--mod"
           onClick={() => handleUnitComplete()}
+          aria-label = "Complete Unit"
         >
           Complete
         </button>
@@ -50,7 +51,7 @@ else {
                   alt="Congratulations on finishing the unit"
                   className="finish__image--el"
                 />
-                <p className="finish__caption">{caption}</p>
+                <p className="finish__caption" aria-hidden="true">{caption}</p>
               </>
             ) : null}
           </div>
@@ -58,6 +59,7 @@ else {
         <button
           className="finish__confirm"
           onClick={() => handleUnitComplete()}
+          aria-label = "Complete Unit"
         >
           Complete
         </button>
