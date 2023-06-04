@@ -35,7 +35,7 @@ const Timer = ({ timer, animate, start, setStart, setActive, opened }) => {
   };
 
   return (
-    <div className={start ? "circle__element--on" : "circle__element"}>
+    <div className={start ? "circle__element--on" : "circle__element"} aria-hidden = "true">
       <CountdownCircleTimer
         isPlaying={animate}
         duration={currentTime * 60}
