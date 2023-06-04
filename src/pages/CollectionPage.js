@@ -5,14 +5,12 @@ import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import CollectionBlock from "../components/CollectionBlock/CollectionBlock";
-import TechniqueIcon from "../assets/icons/techniqueIcon.svg"
-import ListIcon from "../assets/icons/listIcon.svg"
-import summaryIcon from "../assets/icons/summaryIcon.svg"
-import textIcon from "../assets/icons/textIcon.svg"
-
+import TechniqueIcon from "../assets/icons/techniqueIcon.svg";
+import ListIcon from "../assets/icons/listIcon.svg";
+import summaryIcon from "../assets/icons/summaryIcon.svg";
+import textIcon from "../assets/icons/textIcon.svg";
 
 const CollectionPage = ({ isLoggedIn }) => {
-
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -89,51 +87,57 @@ const CollectionPage = ({ isLoggedIn }) => {
   }
 
   return (
-    <main className="collections__wrapper">
+    <main className="collections__wrapper" aria-label={insideBlock ? pageState :"Choice of Saved Content"}>
       <div className="collections__title">
-        {insideBlock ? <span
-          className="material-symbols-outlined collections__return"
-          onClick={() => setInsideBlock(false)}
-        >
-          arrow_back
-        </span>:<span
-          className="material-symbols-outlined collections__return"
-          onClick={() => navigate('/home')}
-        >
-          arrow_back
-        </span>}
-        <h1 className="collections__title--text">Collections</h1>
+        {insideBlock ? (
+          <span
+            className="material-symbols-outlined collections__return"
+            onClick={() => setInsideBlock(false)}
+            aria-label="Return to Saved Categories"
+          >
+            <span aria-hidden="true">arrow_back</span>
+          </span>
+        ) : (
+          <span
+            className="material-symbols-outlined collections__return"
+            onClick={() => navigate("/home")}
+            aria-label="Return to Homepage"
+          >
+            <span aria-hidden="true">arrow_back</span>
+          </span>
+        )}
+        <h1 className="collections__title--text" aria-hidden = {insideBlock ? true : false}>Collections</h1>
       </div>
       {insideBlock ? (
         <section className="collections__content--list">
-          <CollectionBlock type={pageState} content = {savedData}/>
+          <CollectionBlock type={pageState} content={savedData} />
         </section>
       ) : (
         <section className="collections__content">
           <CollectionCard
             name="Summary Cards"
-            image = {summaryIcon}
+            image={summaryIcon}
             count={summaryCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="Technique Cards"
-            image = {TechniqueIcon}
+            image={TechniqueIcon}
             count={techniqueCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="List Cards"
-            image = {ListIcon}
+            image={ListIcon}
             count={listCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
           />
           <CollectionCard
             name="Text Cards"
-            image = {textIcon}
+            image={textIcon}
             count={textCount}
             setBlock={setInsideBlock}
             setPage={setPageState}

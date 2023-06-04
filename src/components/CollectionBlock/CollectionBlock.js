@@ -2,7 +2,7 @@ import "./CollectionBlock.scss";
 import CollectionItem from "../CollectionItem/CollectionItem";
 
 import { useEffect, useState } from "react";
-import axios from "axios"
+import axios from "axios";
 import Loader from "../Loader/Loader";
 
 const CollectionBlock = ({ type, content }) => {
@@ -52,13 +52,20 @@ const CollectionBlock = ({ type, content }) => {
 
   //truncates the text, the syntax is very confusing please don't ask me
   function shortenText(text) {
-    if (text.indexOf(';') !== -1) {
-      const colonIndex = text.split('').indexOf(';')
-      const newShortenString = text.split('').splice(0, colonIndex).join('').split(" ").slice(0, 8).join(" ")+ "..."
-      return newShortenString
+    if (text.indexOf(";") !== -1) {
+      const colonIndex = text.split("").indexOf(";");
+      const newShortenString =
+        text
+          .split("")
+          .splice(0, colonIndex)
+          .join("")
+          .split(" ")
+          .slice(0, 8)
+          .join(" ") + "...";
+      return newShortenString;
     }
     if (text.length <= 8) {
-      return text
+      return text;
     }
     return text.split(" ").slice(0, 8).join(" ") + "...";
   }
@@ -82,18 +89,19 @@ const CollectionBlock = ({ type, content }) => {
   }
 
   function handleDelete(id) {
-    axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
-    .then(response => {
-      if (response.status === 204) {
-
-          setFilteredContent(filteredContent.filter(item => item.id !== id));
+    axios
+      .delete(
+        `http://localhost:8080/units/${sessionStorage.getItem("userId")}/${id}`
+      )
+      .then((response) => {
+        if (response.status === 204) {
+          setFilteredContent(filteredContent.filter((item) => item.id !== id));
           setBlocks(content.map(() => ({ expand: false })));
-
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   if (!contentLoad) {
@@ -109,12 +117,23 @@ const CollectionBlock = ({ type, content }) => {
     <>
       {filteredContent.map((page, index) => {
         return (
-          <div className="block__container" key={page.id}>
+          <div className="block__container" key={page.id} aria-label = {`${type} number ${index + 1}`}>
             <div className="block__left">
-              <span className="material-symbols-outlined block__delete" onClick = {() => handleDelete(page.id)}>delete</span>
+              <span
+                className="material-symbols-outlined block__delete"
+                onClick={() => handleDelete(page.id)}
+                aria-label = "Delete saved card"
+              >
+                <span aria-hidden="true">delete</span>
+              </span>
             </div>
             <div className="block__center">
-              <p className="block__title" onClick={() => handleTextExpand(index)}>{page.title}</p>
+              <p
+                className="block__title"
+                onClick={() => handleTextExpand(index)}
+              >
+                {page.title}
+              </p>
               <CollectionItem
                 type={type}
                 content={page}
@@ -125,8 +144,11 @@ const CollectionBlock = ({ type, content }) => {
             <div
               className="block__expand"
               onClick={() => handleTextExpand(index)}
+              aria-label = "Interact to expand card"
             >
-              <span className="material-symbols-outlined block__expand--btn">unfold_more</span>
+              <span className="material-symbols-outlined block__expand--btn">
+                <span aria-hidden = "true">unfold_more</span>
+              </span>
             </div>
           </div>
         );

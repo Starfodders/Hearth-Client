@@ -45,19 +45,20 @@ const CollectionExpandTech = ({ content }) => {
             <span
               className="material-symbols-outlined slide__start--less--small"
               onClick={() => toggleTranscript()}
-            >
-              unfold_less
+              aria-label = "Interact to close technique transcript"
+              >
+              <span aria-hidden="true">unfold_less</span>
             </span>
           ) : (
             <span
               className="material-symbols-outlined slide__start--more-small"
               onClick={() => toggleTranscript()}
-            >
-              unfold_more
+              >
+              <span aria-hidden="true">unfold_more</span>
             </span>
           )}
           <p className="slide__play--toggle--small" onClick={() => toggleTranscript()}>
-            {transcriptState ? "View Less" : "View More"}
+            {transcriptState ? <span aria-hidden = "true">View Less</span> : <span aria-hidden = "true">View More</span>}
           </p>
         </div>
         <div className="slide__container__bottom__block--small">

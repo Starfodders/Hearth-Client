@@ -16,7 +16,7 @@ const CollectionExpandList = ({content}) => {
 
     return (
         <div className = "expand__list__block">
-            <img src = {iconAsset} className = "expand__list--icon" onClick = {() => handleSuggestion()}/>
+            <img src = {iconAsset} className = "expand__list--icon" onClick = {() => handleSuggestion()} alt = "Interact to generate suggestion"/>
             <div className="expand__list--suggestion">
                 <p className="expand__list--text">{currentSuggestion}</p>
               </div>
