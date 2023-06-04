@@ -175,7 +175,7 @@ const HomePage = ({ isLoggedIn, name }) => {
               `Welcome back, ${name}`
             ) : (
               <div className="home__inactive-message">
-                <p>Let's Get Cozy</p>
+                <p aria-hidden = "true">Let's Get Cozy</p>
                 <p className="home__inactive-sub">
                   Click on the campfire below to begin.
                 </p>
@@ -187,7 +187,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           <img
             src={fireSrc}
             className="home__image--picture"
-            alt="app start screen"
+            alt={homepageState ? '' : 'Interact to enter Hearth'}
             onClick={() => handleInitialClick()}
           />
         </div>
@@ -206,10 +206,10 @@ const HomePage = ({ isLoggedIn, name }) => {
         )}
         {currUserNavigateUnit !== 1 && homepageState ? (
           <div className="resume-container">
-            <button className="resume-btn" onClick={() => navigateToUnit()}>
-              Continue Journey{" "}
+            <button className="resume-btn" onClick={() => navigateToUnit()} aria-label = "Resume progress at most recent unit">
+              <span aria-hidden = "True">Continue Journey{" "}</span>
               <span className="material-symbols-outlined resume-icon">
-                start
+                <span aria-hidden = "true">start</span>
               </span>
             </button>
           </div>
