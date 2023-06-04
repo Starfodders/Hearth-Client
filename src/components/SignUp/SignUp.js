@@ -95,7 +95,7 @@ const SignUp = ({ toggle, getUser }) => {
       {isGuestSignUp ? (
         <GuestSignUp toggle = {setIsGuestSignUp} resetLogin = {toggle}/>
       ) : (
-        <form className="sign__container" onSubmit={(e) => handleSubmit(e)}>
+        <form className="sign__container" onSubmit={(e) => handleSubmit(e)} aria-hidden = "false">
           <label htmlFor="given_name" className="sign__container--label">
             First Name
           </label>
@@ -108,6 +108,7 @@ const SignUp = ({ toggle, getUser }) => {
             onClick={(e) => resetField(e)}
             pattern = "[A-Za-z]+"
             onInvalid={formInvalidName}
+            aria-label = "Enter your first name"
           ></input>
           <ErrorIcon element={errorFields.given_name} message={errorMessage} />
           <label htmlFor="email" className="sign__container--label">
@@ -121,6 +122,7 @@ const SignUp = ({ toggle, getUser }) => {
             onChange={(e) => handleInput(e)}
             onClick={(e) => resetField(e)}
             pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            aria-label = "Enter your email address"
           ></input>
           <ErrorIcon element={errorFields.email} message={errorMessage} />
           <label htmlFor="password" className="sign__container--label">
@@ -134,18 +136,21 @@ const SignUp = ({ toggle, getUser }) => {
               value={inputFields.password}
               onChange={(e) => handleInput(e)}
               onClick={(e) => resetField(e)}
+              aria-label = "Enter your desired password"
             ></input>
             {passwordHidden ? (
               <img
                 src={passwordShow}
                 className="sign__pw-icon"
                 onClick={() => toggleShowState()}
+                alt = "hide password"
               />
             ) : (
               <img
                 src={passwordHide}
                 className="sign__pw-icon"
                 onClick={() => toggleShowState()}
+                alt = "show password"
               />
             )}
             <ErrorIcon element={errorFields.password} message={errorMessage} />

@@ -13,7 +13,7 @@ const ForgotPassword = ({toggle}) => {
         <input className="forgot__input"></input>
         <button className="forgot__button">Request Change</button>
       </form>
-      <p>This doesn't work currently lol</p>
+      <p>This does not work currently</p>
     </>
   );
 };

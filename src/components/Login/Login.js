@@ -176,20 +176,16 @@ const Login = ({
   return (
     <>
       {forgotPasswordToggle ? (
-        <ForgotPassword toggle = {setForgotPasswordToggle} />
+        <ForgotPassword toggle={setForgotPasswordToggle} />
       ) : (
         <form
           className={
             postLoginState ? "login__container--disappear" : "login__container"
           }
           onSubmit={(e) => handleLogin(e)}
-          role="application"
+          aria-label="Login screen"
         >
-          <label
-            htmlFor="email"
-            className="login__container--label"
-            aria-label="user email"
-          >
+          <label htmlFor="email" className="login__container--label">
             Email Address
           </label>
           <input
@@ -224,7 +220,7 @@ const Login = ({
                 className="login__pw-icon"
                 onClick={() => toggleShowState()}
                 tabIndex={3}
-                alt="hide password"
+                alt="show password"
               />
             ) : (
               <img
@@ -232,7 +228,7 @@ const Login = ({
                 className="login__pw-icon"
                 onClick={() => toggleShowState()}
                 tabIndex={3}
-                alt="reveal password"
+                alt="hide password"
               />
             )}
             <ErrorIcon element={errorFields.password} message={errorMessage} />
@@ -245,25 +241,47 @@ const Login = ({
                 className="login__remember--box"
                 onChange={() => setRememberUser(!rememberUser)}
                 checked={rememberUser}
+                aria-label={
+                  rememberUser
+                    ? "Toggle remember email for login off"
+                    : "Toggle remember email for login on"
+                }
               ></input>
-              <label htmlFor="remember-user">Remember Me</label>
+              <label htmlFor="remember-user" aria-hidden="true">
+                Remember Me
+              </label>
             </div>
-            <p className="login__reset" onClick = {() => setForgotPasswordToggle(true)}>Forgot Password</p>
+            <p
+              className="login__reset"
+              onClick={() => setForgotPasswordToggle(true)}
+            >
+              Forgot Password
+            </p>
           </div>
-          <button className="login__btn" role="button">
+          <button
+            className="login__btn"
+            aria-label="Log in, if successful wait 5 seconds for animation to finish"
+          >
             Log In
           </button>
-          <p className="login__toggle" onClick={() => toggle()}>
+          <p
+            className="login__toggle"
+            onClick={() => toggle()}
+            aria-label="Interact to toggle form for account creation"
+          >
             New to Hearth? Click here to make an account.
           </p>
           {guestProfile ? (
             <div className="login__guest">
-              <p className="login__guest--notify">Available</p>
+              <p className="login__guest--notify" aria-hidden="true">
+                Available
+              </p>
               <p
                 className="login__guest--toggle"
                 onClick={() => handleGuestLogin()}
+                aria-label="Guest login is available, interact to enter Hearth as a guest"
               >
-                Log in as a Guest.
+                <span aria-hidden="true">Log in as a Guest.</span>
               </p>
             </div>
           ) : null}

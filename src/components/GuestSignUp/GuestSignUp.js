@@ -97,6 +97,7 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
           onClick={(e) => resetField(e)}
           pattern="[A-Za-z]+"
           onInvalid={formInvalidName}
+          aria-label = "Enter your first name"
         ></input>
         <button className="guest__btn">Create Guest Profile</button>
         <p className="toggle__guest" onClick={() => toggle(false)}>
