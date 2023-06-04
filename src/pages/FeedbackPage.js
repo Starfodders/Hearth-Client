@@ -42,7 +42,7 @@ const FeedbackPage = () => {
           Please offer suggestions for improvements, bugs that you've found, or
           any other comments!
         </p>
-        <textarea className="feedback__text" onChange = {(e) => setFeedbackInput(e.target.value)} value = {feedbackInput} placeholder= "Feedback, Bugs, Suggestions!"></textarea>
+        <textarea className="feedback__text" onChange = {(e) => setFeedbackInput(e.target.value)} value = {feedbackInput} placeholder= "Feedback, Bugs, Suggestions!" aria-label = "Feedback Input Field"></textarea>
         {confirmSubmission ? <p className="feedback__success">Thanks! Submission Received.</p>:<button className="feedback__submit">Submit</button>}
       </form>
     </div>

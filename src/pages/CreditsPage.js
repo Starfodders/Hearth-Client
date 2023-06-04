@@ -1,4 +1,3 @@
-import bgImage from "../assets/images/homepage/homeBG.png";
 import bioPic from "../assets/images/credits__bio.JPG";
 import textBook from "../assets/images/textbook-img.jpg";
 import "../styles/CreditsPage.scss";

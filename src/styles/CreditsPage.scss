@@ -75,7 +75,7 @@
 
     }
     @include mobile {
-      width: 100%;
+      width: 50%;
       transition: all 0.3s;
 
 
@@ -130,4 +130,19 @@
 
 .credits__pic {
   border-radius: 50%;
+}
+
+.credits__block:nth-of-type(2) > section {
+  order: 2;
+}
+
+.credits__block:nth-of-type(2) > img {
+  order: 1;
+}
+
+.credits__block:nth-of-type(2) > div {
+  @include mobile {
+    width: 100%;
+
+  }
 }

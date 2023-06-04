@@ -10,6 +10,7 @@ import example6 from "../../assets/tutorial/example6.gif";
 import example7 from "../../assets/tutorial/example7.png";
 import example8 from "../../assets/tutorial/example8.gif";
 import example9 from "../../assets/tutorial/example9.gif";
+import listExample from "../../assets/tutorial/listexample.gif"
 
 const BeginnerModal = ({ change }) => {
   function handleConfirm() {
@@ -114,6 +115,16 @@ const BeginnerModal = ({ change }) => {
     return (
       <>
         <p className="modal__para">
+          On list cards, clicking or interacting with the associated mascot will prompt them to produce a suggestion! 
+        </p>
+        <img src={listExample} alt="" className="modal__img" />
+      </>
+    );
+  };
+  const Slide9 = () => {
+    return (
+      <>
+        <p className="modal__para">
           You can embark on a soothing meditation session at any time in the
           Meditations tab, tailoring the duration and selecting a background
           ambiance to enhance your session.
@@ -122,7 +133,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide9 = () => {
+  const Slide10 = () => {
     return (
       <>
         <p className="modal__para">
@@ -133,7 +144,7 @@ const BeginnerModal = ({ change }) => {
       </>
     );
   };
-  const Slide10 = () => {
+  const Slide11 = () => {
     return (
       <>
         <p className="modal__para">
@@ -154,7 +165,8 @@ const BeginnerModal = ({ change }) => {
     Slide7,
     Slide8,
     Slide9,
-    Slide10
+    Slide10,
+    Slide11
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);

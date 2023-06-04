@@ -22,9 +22,10 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 18. 😀 DONE - Add better help tooling for new users
 19. Add stat tracking for user progress under 'collections'
 20. Re: stat tracking, create separate user profile to handle this
-21. Website ARIA completion
+21. 😀 DONE - Website ARIA completion
 22. Mobile Site header needs to disappear on scrolldown
 23. Pagination for beginner tutorial (maybe)
+24. Font resizing option
 
 
 ### Bugs
@@ -34,7 +35,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 4. 😀 DONE - Moving from slide to slide should collapse technique cards
 5. 😀 DONE - The final cards should restrict movement, prevent scrolling? Bug with some slides extending far down in height which can still be seen
 6. 😀 DONE - Remove transcript toggle for techniques that do not have this feature within collections
-7. BotNav is clipping through content, not accessible at most times and can interfere with reading if accidentally hover
+7. 😀 DONE - BotNav is clipping through content, not accessible at most times and can interfere with reading if accidentally hover
 8. 😀 DONE - Logout menu is hard-coded, doesn't align with actual name length
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
 10. 😀 DONE - Feedback page is no longer working

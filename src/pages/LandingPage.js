@@ -46,7 +46,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         >
           Learn, grow, thrive
         </h2>
-        <p className="landing__footer" aria-hidden = "True">Michael Deng © 2023 | Version 0.8</p>
+        <p className="landing__footer" aria-hidden = "True">Michael Deng © 2023 | Version 0.9</p>
         {SignUpPage ? (
           <SignUp toggle={toggleState} getUser={getNewUserSignUp} />
         ) : (
