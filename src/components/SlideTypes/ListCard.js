@@ -77,7 +77,7 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
       <div className="slide__container">
         <div className="slide__container__top">
           <div className="slide__container__top--left">
-            <span className="material-symbols-outlined card-icon">list</span>
+            <span className="material-symbols-outlined card-icon" aria-hidden="true">list</span>
             <p className="slide__type">{format(type)} Card</p>
           </div>
           <div className="slide__container__top--right">
@@ -85,7 +85,7 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
               <img
                 src={resourceIcon}
                 className="resource-link"
-                alt="access page resource"
+                alt="Interact to Access External Resource For Current Unit Content"
               />
             </a> : <img
                 src={resourceIconOff}
@@ -96,8 +96,8 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
               src={saveState ? savedOn : savedOff}
               className={saveState ? "units__saved" : "units__saved--off"}
               onClick={() => handleSave()}
-              alt={saveState ? "page saved icon" : "page not saved icon"}
-            />
+              alt = {saveState ? 'slide is saved, interact to remove save': 'slide is not saved, interact to save'}
+              />
           </div>
         </div>
         {title !== "null" ? <h1 className="slide__title">{title}</h1> : null}
@@ -120,6 +120,7 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
             src={currentPlaying}
             className="list__mascot--image"
             onClick={() => toggleSuggestion()}
+            alt = "Interact to create a list suggestion"
           />
         </div>
       </div>

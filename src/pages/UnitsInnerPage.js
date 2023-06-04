@@ -153,6 +153,7 @@ const UnitsPage = ({ isLoggedIn }) => {
           ref={carouselElRef}
           onTransitionEnd={() => handleTransition()}
           aria-hidden={isCloser ? "true" : "false"}
+          // auto-height = "true"
         >
           {unitData.map((slide, index) => {
             const isActiveSlide = index === currentPage - 1;

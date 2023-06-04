@@ -60,7 +60,7 @@ const Transcript = ({ text }) => {
       {text.audio ? (
         <div className="transcript__audio">
           {voiceoverObject.length > 0 && (
-            <audio src={`http://localhost:8080/${text.audio}`} ref={audioRef}/>
+            <audio src={`http://localhost:8080/${text.audio}`} ref={audioRef} />
           )}
           <div className="transcript__buttons">
             <div className="transcript__buttons__block">
@@ -71,8 +71,9 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el"
                 }
                 onClick={() => handleAudioOn(audioRef)}
+                aria-label="Play Audio"
               >
-                play_arrow
+                <span aria-hidden="true">play_arrow</span>
               </span>
               <span
                 className={
@@ -81,8 +82,9 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el--off"
                 }
                 onClick={() => handleAudioOff(audioRef)}
+                aria-label="Pause Audio"
               >
-                pause
+                <span aria-hidden="true">pause</span>
               </span>
             </div>
             <div className="transcript__buttons__block">
@@ -93,8 +95,9 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el--off"
                 }
                 onClick={() => handleVolumeUp(audioRef)}
+                aria-label = "Increase volume by 1 increment"
               >
-                add
+                <span aria-hidden="true">add</span>
               </span>
               <span
                 className={
@@ -103,8 +106,10 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el--off"
                 }
                 onClick={() => handleVolumeDown(audioRef)}
+                aria-label = "Decrease volume by 1 increment"
+
               >
-                remove
+                <span aria-hidden="true">remove</span>
               </span>
             </div>
           </div>

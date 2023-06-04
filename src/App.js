@@ -86,7 +86,7 @@ function App() {
               <TopLogo name={displayName} login = {setIsLoggedIn}/>
 
               <UnitsInnerPage isLoggedIn={isLoggedIn} />
-              <BotNav />
+              {/* <BotNav /> */}
             </>
           }
         ></Route>

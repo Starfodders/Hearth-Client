@@ -17,7 +17,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
   function formatContent(content) {
     return content.split(";");
   }
-
+  
   //toggles transcript on and off which also renders specific content below the card
   function toggleTranscript() {
     setTranscriptState((prevState) => !prevState);
@@ -92,7 +92,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
     <div className="slide__container--technique">
       <div className="slide__container__top">
         <div className="slide__container__top--left">
-          <span className="material-symbols-outlined card-icon">
+          <span className="material-symbols-outlined card-icon" aria-hidden="true">
             magic_button
           </span>
           <p className="slide__type">{format(type)} Card</p>
@@ -102,7 +102,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
               <img
                 src={resourceIcon}
                 className="resource-link"
-                alt="access page resource"
+                alt="Interact to Access External Resource For Current Unit Content"
               />
             </a> : <img
                 src={resourceIconOff}
@@ -113,6 +113,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}
             onClick={() => handleSave()}
+            alt = {saveState ? 'slide is saved, interact to remove save': 'slide is not saved, interact to save'}
           />
         </div>
       </div>
@@ -130,15 +131,17 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
             <span
               className="material-symbols-outlined slide__start--less"
               onClick={() => toggleTranscript()}
+              aria-label = "Interact to close technique transcript"
             >
-              unfold_less
+              <span aria-hidden="true">unfold_less</span>
             </span>
           ) : (
             <span
               className="material-symbols-outlined slide__start--more"
               onClick={() => toggleTranscript()}
+              aria-label = "Interact to open technique transcript"
             >
-              unfold_more
+              <span aria-hidden="true">unfold_more</span>
             </span>
           )}
           <p className="slide__play--toggle" onClick={() => toggleTranscript()}>

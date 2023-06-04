@@ -11,13 +11,13 @@
     border: none;
     border-radius: 4px;
     min-height: 450px;
-    padding: 2rem 3rem 3rem;
+    padding: 1rem 3rem 1rem;
     animation: slide-in 0.5s;
     transition: all 0.3s;
 
 
     @include desktop {
-      padding: 0 2rem 2rem;
+      padding: 0.5rem 2rem 1rem;
       transition: all 0.3s;
 
     }
@@ -123,7 +123,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 2rem 0;
+        padding: 1rem 0;
 
         @include tablet {
           padding: 1rem 0;
@@ -146,6 +146,7 @@
   &__title {
     font-weight: 600;
     font-size: 2rem;
+    padding-bottom: 1rem;
 
     @include mobile {
       font-size: 1.5rem;
@@ -160,10 +161,10 @@
     color: $black;
     font-size: 2rem;
     line-height: 4rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
 
     @include desktop {
-      padding: 1rem 0;
+      padding: 0.5rem 0;
       font-size: 1.5rem;
       line-height: 3.5rem;
     }

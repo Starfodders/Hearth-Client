@@ -47,7 +47,7 @@ const TopLogo = ({ name, login }) => {
             <span className="material-symbols-outlined top__icon" aria-hidden = 'true'>
               account_circle
             </span>
-            <p className={mobileWindow ? "top__name--hidden" : "top__name"} aria-role = 'menu'>
+            <p className={mobileWindow ? "top__name--hidden" : "top__name"}>
               {name}
             </p>
           </div>

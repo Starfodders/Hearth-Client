@@ -46,8 +46,7 @@ const SummaryCard = ({slide, format, saveState, saveFunc}) => {
     <div className="slide__container">
       <div className="slide__container__top">
         <div className="slide__container__top--left">
-        <span className="material-symbols-outlined card-icon">summarize</span>
-
+        <span className="material-symbols-outlined card-icon" aria-hidden="true">summarize</span>
           <p className="slide__type">{format(type)} Card</p>
         </div>
         <div className="slide__container__top--right">
@@ -66,10 +65,11 @@ const SummaryCard = ({slide, format, saveState, saveFunc}) => {
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}
             onClick={() => handleSave()}
+            alt = {saveState ? 'slide is saved, interact to remove save': 'slide is not saved, interact to save'}
           />
         </div>
       </div>
-      <h1 className="slide__title">{title}</h1>
+      <h1 className="slide__title" aria-label = {title}>{title}</h1>
      {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
     </div>
   );

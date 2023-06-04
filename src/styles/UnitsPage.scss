@@ -41,14 +41,19 @@
         align-items: center;
         gap: 1rem;
         width: 100%;
-        margin: 4rem 0 6rem;
+        margin: 4rem 0;
         animation: slide-in 0.5s;
+        transition: all 0.3s;
 
         @include tablet {
-          margin: 8rem 0 2rem;
+          margin: 6rem 0 4rem;
+        transition: all 0.3s;
+
         }
         @include mobile {
-          // align-items: flex-start;
+          margin: 6rem 0 2rem;
+        transition: all 0.3s;
+
         }
       }
   
@@ -94,17 +99,6 @@
           min-width: 3rem;
         }
       }
-
-
-      // &__saved {
-      //   font-size: 2.5rem;
-      //   color: $off-white;
-
-      //   @include mobile {
-      //     font-size: 2rem;
-      //   }
-      // }
-
 }
 
 .carousel {
@@ -132,17 +126,15 @@
       align-items: flex-end;
       position: fixed;
       top:auto;
-      bottom: 6.5rem;
-      gap: 2rem;
+      bottom: 3rem;
+      gap: 5rem;
       
     }
     
     &--el {
-      font-size: 2rem;
-
       @include mobile {
         background-color: $black;
-      border-radius: 50%;
+        border-radius: 50%;
       }
 
       &:hover {
@@ -152,6 +144,13 @@
         transition: background-color 0.3s;
     
       }
+
+      & > span {
+        font-size: 2rem;
+        @include mobile {
+          font-size: 3.5rem;
+        }
+      }
     }
   }
 
@@ -159,27 +158,12 @@
 
 swiper-container {
   overflow-y: visible;
-  height: 100%;
+  height: auto;
 }
 
 .swiper-pagination {
   position: relative;
 }
-
-
-
-// .swiper-pagination-horizontal, .swiper-pagination, .swiper-pagination-bullets {
-//   position: relative;
-//   margin-top: 2rem;
-// }
-
-// .swiper-pagination-bullet {
-//   background-color: $medium-green;
-// }
-
-// .swiper-pagination-bullet-active {
-//   background-color: $medium-green;
-// }
 
 @keyframes slide-in {
   from {

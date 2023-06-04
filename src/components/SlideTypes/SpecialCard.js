@@ -14,10 +14,10 @@ const SpecialCard = ({slide}) => {
           {formatContent(content).map((paragraph)=>  <p className="slide__content" key ={paragraph}>{paragraph}</p>)}
         </div>
         <div className="slide__container--special--right">
-          .
           <img
             src={`http://localhost:8080/${images}`}
             className="slide__container--special--mascot"
+            alt = "Cute Purple Friend"
           />
         </div>
       </div>
