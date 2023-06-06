@@ -28,7 +28,7 @@ const CreditsPage = () => {
           <p className="credits__text--el">
             The content of Hearth is taken directly from The Dialectical
             Behaviour Therapy Skills Workbook. The rest of this app (i.e. code &
-            illustrations) are completed by me.
+            illustrations) are completed by me. Check out my <a href = 'https://www.linkedin.com/in/michael-deng-840215199/' target ='_blank' className="credits__linkedin">LinkedIn!</a>
           </p>
           <p className="credits__text--el">Special thanks to:</p>
           <p className="credits__text--el">Joseph Wong (Voiceover)</p>

@@ -126,6 +126,13 @@
       }
     }
   }
+  &__linkedin {
+    color: $turquoise;
+    &:hover {
+      color: $light-yellow;
+      transition: all 0.3s;
+    }
+  }
 }
 
 .credits__pic {
