@@ -2,6 +2,7 @@ import React from 'react';
 
 const SpecialCard = ({slide}) => {
     const {title, content, images} = slide
+    const mascotPath = require(`../../assets/chapterAssets/${images}.png`)
 
     function formatContent(content) {
       return content.split(';')
@@ -15,7 +16,7 @@ const SpecialCard = ({slide}) => {
         </div>
         <div className="slide__container--special--right">
           <img
-            src={`http://localhost:8080/${images}`}
+            src={mascotPath}
             className="slide__container--special--mascot"
             alt = "Cute Purple Friend"
           />

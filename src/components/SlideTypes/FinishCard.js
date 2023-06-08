@@ -6,6 +6,7 @@ const FinishCard = ({ details }) => {
   const navigate = useNavigate();
 
   const { id, content, image, caption } = details;
+  console.log(image);
   const userID = sessionStorage.getItem("userId");
 
   function handleUnitComplete() {
@@ -53,7 +54,7 @@ const FinishCard = ({ details }) => {
               {image ? (
                 <>
                   <img
-                    src={`http://localhost:8080/${image}`}
+                    src= {require(`../../assets/chapterAssets/${image}.png`)}
                     alt="Congratulations on finishing the unit"
                     className="finish__image--el"
                   />
