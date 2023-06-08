@@ -3,6 +3,7 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import ChapterButton from "../Buttons/ChapterButton"
 import SectionButton from "../Buttons/SectionButton";
 import UnitButton from "../Buttons/UnitButton"
+import CardImageImports from "./CardImageImports"
 
 import {useEffect, useState} from "react"
 
@@ -41,12 +42,7 @@ let button;
     return (
       <div className="card__container--off">
         <h2 className="card__name">{details.name}</h2>
-        <img
-          src={`http://localhost:8080${details.images}`}
-          alt=''
-          aria-hidden="true"
-          className="card__image"
-        />
+        <CardImageImports src = {details}/>
         <p>{display}</p>
        {button}
       </div>
@@ -56,12 +52,7 @@ let button;
   return (
     <div className={available ? "card__container" : "card__container--off"}>
       <h2 className="card__name">{details.name}</h2>
-      <img
-        src={`http://localhost:8080${details.images}`}
-        alt=''
-        aria-hidden="true"
-        className="card__image"
-      />
+      <CardImageImports src = {details}/>
       {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> :  <p>{display}</p>}
      {button}
     </div>
