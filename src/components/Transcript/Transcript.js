@@ -14,7 +14,7 @@ const Transcript = ({ text }) => {
   useEffect(() => {
     if (text.audio && voiceoverObject.length === 0) {
       const newVoiceoverObject = new Audio(
-        `http://localhost:8080/${text.audio}`
+        `../../assets/transcript/${text.audio}.mp3`
       );
       setVoiceoverObject((prev) => [...prev, newVoiceoverObject]);
       setIsLoaded(true);
@@ -60,7 +60,7 @@ const Transcript = ({ text }) => {
       {text.audio ? (
         <div className="transcript__audio">
           {voiceoverObject.length > 0 && (
-            <audio src={`http://localhost:8080/${text.audio}`} ref={audioRef} />
+            <audio src={require(`../../assets/transcript/${text.audio}.mp3`)} ref={audioRef} />
           )}
           <div className="transcript__buttons">
             <div className="transcript__buttons__block">
