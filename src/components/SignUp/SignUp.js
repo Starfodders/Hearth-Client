@@ -67,7 +67,7 @@ const SignUp = ({ toggle, getUser }) => {
     if (formValid) {
       const { given_name, email, password } = inputFields;
       axios
-      .post("/api/user/signup", {
+      .post("https://hearthdbt.netlify.app/api/user/signup", {
         given_name,
           email,
           password,
