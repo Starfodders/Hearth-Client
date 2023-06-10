@@ -16,7 +16,7 @@ const ChaptersBlock = ({ content, title, level, progress, destination }) => {
           tabIndex={1}
         >
           {" "}
-          <span aria-hidden="true">arrow_back</span>
+          <span aria-hidden="true" className="chapters__return">arrow_back</span>
         </span>
         <h2 className="chapters__title">{title}</h2>
       </div>

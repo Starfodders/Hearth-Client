@@ -21,12 +21,13 @@
     gap: 1rem;
     width: 100%;
     margin: 6rem 0;
-    max-width: 900px;
+    padding-right: 3rem;
     animation: slide-in 0.3s ease-out;
 
     @include desktop {
       margin: 9rem 5rem 3rem 0;
       max-width: 580px;
+      // max-width: 580px;
     }
     @include tablet {
       // margin: 9rem 5rem 3rem 0;
@@ -38,6 +39,7 @@
       justify-content: flex-start;
       margin: 9rem 5rem 0 0;
       padding-left: 3rem;
+      padding-right: 0;
       max-width: 300px;
     }
   }
@@ -45,6 +47,14 @@
   &__return {
     color: $off-white;
     font-size: 3rem;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
 
     &:hover {
       cursor: pointer;
@@ -74,7 +84,7 @@
     gap: 3rem;
     padding: 2rem 0;
     flex-wrap: nowrap;
-    overflow-x: scroll;
+    // overflow-x: scroll;
     overflow-y: hidden;
     animation: slide-in 0.4s ease-out;
 

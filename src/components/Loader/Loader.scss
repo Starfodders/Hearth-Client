@@ -14,7 +14,7 @@
 
     &__img {
         width: 100%;
-        opacity: 1;
+        opacity: 0;
         filter: grayscale(30%);
         opacity: 0.9;
         animation: rotate 1.5s forwards infinite;
@@ -28,10 +28,11 @@
     }
     50% {
       transform: rotate(-30deg);
-      opacity: 1;
+      opacity: 0;
 
     }
     100% {
       transform: rotate(30deg);
+      opacity: 1;
     }
   }
