@@ -1,28 +1,28 @@
-const userController = require('./userController');
+const {signup, login, checkNew, patchNew, getProgress, update} = require('./usersController')
 
 exports.handler = async (event) => {
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/user/signup') {
-      return userController.signup(event);
+      return signUpController(event)
     }
   
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/user/login') {
-      return userController.login(event);
+      return loginController(event)
     }
   
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/checkNew/:userID') {
-      return userController.checkNew(event);
+      return checkNew(event)
     }
   
     if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/patchNew/:userID') {
-      return userController.patchNew(event);
+      return patchNew(event)
     }
   
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/progress/:userID') {
-      return userController.getProgress(event);
+      return getProgress(event)
     }
   
     if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/update/:userID/:unitID') {
-      return userController.update(event);
+      return update(event)
     }
   
     return {
@@ -30,3 +30,8 @@ exports.handler = async (event) => {
       body: JSON.stringify({ message: 'Not found' }),
     };
   };
+
+  // [[redirects]]
+  //   from = "/api/*"
+  //   to = "/.netlify/functions/:splat"
+  //   status = 200

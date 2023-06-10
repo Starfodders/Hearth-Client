@@ -107,7 +107,7 @@ const Login = ({
       const { email, password } = inputFields;
       //login, posts to back end to check for an existing account
       axios
-        .post("https://hearthdbt.netlify.app/api/user/login", {
+        .post("/.netlify/functions/user/login", {
           email,
           password,
         })
