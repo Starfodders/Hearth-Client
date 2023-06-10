@@ -81,7 +81,7 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
             <p className="slide__type">{format(type)} Card</p>
           </div>
           <div className="slide__container__top--right">
-          {slide.links ? <a href={`${process.env.PUBLIC_URL}/pdfs/${slide.links}.pdf`} target="_blank">
+          {slide.links ? <a href={`${process.env.PUBLIC_URL}/pdfs/${slide.links}.pdf`} target="_blank" rel="noreferrer">
               <img
                 src={resourceIcon}
                 className="resource-link"
