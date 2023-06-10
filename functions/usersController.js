@@ -2,121 +2,125 @@ const knex = require("knex")(require("./knexfile"));
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const signUp= async (event, context) => {
-    const { given_name, email, password } = JSON.parse(event.body);
-  
-    if (!given_name || !email || !password) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          message: "Missing information from input fields",
-        }),
-      };
-    }
-  
-    try {
-      const checkUserExist = await knex("users").where({ email });
-  
-      if (checkUserExist.length > 0) {
-        return {
-          statusCode: 404,
-          body: JSON.stringify({ message: `User Already Exists At ${email}` }),
-        };
-      }
-  
-      const hash = await bcrypt.hash(password, 10);
-      const newUser = {
-        given_name,
-        email,
-        password: hash,
-      };
-  
-      const [newUserId] = await knex("users").insert(newUser);
-      const [createdUser] = await knex("users").where("id", newUserId);
-      return {
-        statusCode: 201,
-        body: JSON.stringify(createdUser),
-      };
-    } catch (err) {
-      console.log(err);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ message: "Error while creating new user" }),
-      };
-    }
-  };
+const signUp = async (event, context) => {
+  const { given_name, email, password } = JSON.parse(event.body);
 
-const login = async (event, context) => {
-    const { email, password } = JSON.parse(event.body);
-  
-    if (!email || !password) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: "Missing data from input fields" }),
-      };
-    }
-  
-    try {
-      //first checks if email exists
-      const getUserCreds = await knex("users").where({ email });
-      if (getUserCreds.length === 0) {
-        return {
-          statusCode: 404,
-          body: JSON.stringify({ message: "User not found" }),
-        };
-      }
-      //now check found user's password against input
-      const user = getUserCreds[0];
-      const isValid = await bcrypt.compare(password, user.password);
-      if (!isValid) {
-        return {
-          statusCode: 400,
-          body: JSON.stringify({ message: "Incorrect password" }),
-        };
-      } else {
-        //if all matches, get their given name send back token + name as a claim
-        const getName = await knex("users").where({ email });
-        if (getName) {
-          const givenName = getName[0].given_name;
-          const userId = getName[0].id;
-          const token = jwt.sign({ name: givenName, id: userId }, "secretKey");
-          return {
-            statusCode: 200,
-            body: JSON.stringify({ token }),
-          };
-        } else {
-          const token = jwt.sign({ name: "Guest" }, "secretKey");
-          return {
-            statusCode: 200,
-            body: JSON.stringify({ token }),
-          };
-        }
-      }
-    } catch (error) {
-      console.log(error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ message: "Error occurred while logging in" }),
-      };
-    }
-  };
-  
-const checkNew = async(event, context) => {
-  const {userID} = JSON.parse(event.body)
+  if (!given_name || !email || !password) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: "Missing information from input fields",
+      }),
+    };
+  }
+
   try {
-    const user = await knex("users").where({ id: userID }).first();
-    return  {
-      statusCode: 200,
-      body: JSON.stringify({isNew: user.newbie, progress: user.chapter, currentUnitToNav: user.unit})
+    const checkUserExist = await knex("users").where({ email });
+
+    if (checkUserExist.length > 0) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ message: `User Already Exists At ${email}` }),
+      };
     }
+
+    const hash = await bcrypt.hash(password, 10);
+    const newUser = {
+      given_name,
+      email,
+      password: hash,
+    };
+
+    const [newUserId] = await knex("users").insert(newUser);
+    const [createdUser] = await knex("users").where("id", newUserId);
+    return {
+      statusCode: 201,
+      body: JSON.stringify(createdUser),
+    };
   } catch (err) {
     console.log(err);
     return {
       statusCode: 500,
-      body: JSON.stringify({message: "Error checking if user is new"})
-    }
+      body: JSON.stringify({ message: "Error while creating new user" }),
+    };
   }
-}
+};
+
+const login = async (event, context) => {
+  const { email, password } = JSON.parse(event.body);
+
+  if (!email || !password) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing data from input fields" }),
+    };
+  }
+
+  try {
+    //first checks if email exists
+    const getUserCreds = await knex("users").where({ email });
+    if (getUserCreds.length === 0) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ message: "User not found" }),
+      };
+    }
+    //now check found user's password against input
+    const user = getUserCreds[0];
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Incorrect password" }),
+      };
+    } else {
+      //if all matches, get their given name send back token + name as a claim
+      const getName = await knex("users").where({ email });
+      if (getName) {
+        const givenName = getName[0].given_name;
+        const userId = getName[0].id;
+        const token = jwt.sign({ name: givenName, id: userId }, "secretKey");
+        return {
+          statusCode: 200,
+          body: JSON.stringify({ token }),
+        };
+      } else {
+        const token = jwt.sign({ name: "Guest" }, "secretKey");
+        return {
+          statusCode: 200,
+          body: JSON.stringify({ token }),
+        };
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "Error occurred while logging in" }),
+    };
+  }
+};
+
+const checkNew = async (event, context) => {
+  const { userID } = JSON.parse(event.body);
+  try {
+    const user = await knex("users").where({ id: userID }).first();
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        isNew: user.newbie,
+        progress: user.chapter,
+        currentUnitToNav: user.unit,
+      }),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "Error checking if user is new" }),
+    };
+  }
+};
 
 const patchNew = async (event, context) => {
   try {
@@ -201,14 +205,12 @@ const update = async (event, context) => {
           .first();
         const chapterID = getChapter.chapter_id;
 
-        const updatedUser = await knex("users")
-          .where({ id: userID })
-          .update({
-            current_progress: unitID,
-            unit: updateUnit,
-            section: sectionID,
-            chapter: chapterID,
-          });
+        const updatedUser = await knex("users").where({ id: userID }).update({
+          current_progress: unitID,
+          unit: updateUnit,
+          section: sectionID,
+          chapter: chapterID,
+        });
         return {
           statusCode: 200,
           body: JSON.stringify(updatedUser),
@@ -223,5 +225,4 @@ const update = async (event, context) => {
   }
 };
 
-  
-module.exports = {signUp, login, checkNew, patchNew, getProgress, update}
+module.exports = { signUp, login, checkNew, patchNew, getProgress, update };

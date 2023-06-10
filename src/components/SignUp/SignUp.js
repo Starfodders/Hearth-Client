@@ -78,7 +78,7 @@ const SignUp = ({ toggle, getUser }) => {
           toggle();
         })
         .catch((error) => {
-          console.log(error.response.data);
+          // console.log(error.response.data);
           // setErrorFields
           setErrorFields((prev) => ({ ...prev, email: false }));
           setErrorMessage(error.response.data.message);
