@@ -107,7 +107,7 @@ const Login = ({
       const { email, password } = inputFields;
       //login, posts to back end to check for an existing account
       axios
-        .post("http://localhost:8080/users/login", {
+        .post("/api/user/login", {
           email,
           password,
         })

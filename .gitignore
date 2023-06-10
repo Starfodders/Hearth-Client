@@ -23,3 +23,5 @@ yarn-error.log*
 
 cert.pem
 key.pem
+# Local Netlify folder
+.netlify

@@ -67,8 +67,8 @@ const SignUp = ({ toggle, getUser }) => {
     if (formValid) {
       const { given_name, email, password } = inputFields;
       axios
-        .post("http://localhost:8080/users/signup", {
-          given_name,
+      .post("/api/user/signup", {
+        given_name,
           email,
           password,
         })
