@@ -55,6 +55,8 @@ const Transcript = ({ text }) => {
     return <Loader />;
   }
 
+  console.log(text.content);
+
   return (
     <div className="transcript__container">
       {text.audio ? (
@@ -121,13 +123,14 @@ const Transcript = ({ text }) => {
             </div> */}
         </div>
       ) : null}
-      {Object.values(text.content).map((textBlock, index) => {
+      {/* {Object.values(text.content).map((textBlock, index) => {
         return (
           <p key={index} className="transcript__paragraph">
             {textBlock}
           </p>
         );
-      })}
+      })} */}
+      {text.content.split(';').map((paragraph) => <p className="transcript__paragraph">{paragraph}</p>)}
     </div>
   );
 };
