@@ -1,12 +1,12 @@
-const {signup, login, checkNew, patchNew, getProgress, update} = require('./usersController')
+const {signUp, login, checkNew, patchNew, getProgress, update} = require('./usersController')
 
 exports.handler = async (event) => {
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/user/signup') {
-      return signUpController(event)
+      return signUp(event)
     }
   
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/user/login') {
-      return loginController(event)
+      return login(event)
     }
   
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/checkNew/:userID') {

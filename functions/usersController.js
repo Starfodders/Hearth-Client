@@ -118,7 +118,7 @@ const checkNew = async(event, context) => {
   }
 }
 
-exports.patchNew = async (event, context) => {
+const patchNew = async (event, context) => {
   try {
     const user = await knex("users")
       .where({ id: event.params.userID })
@@ -137,7 +137,7 @@ exports.patchNew = async (event, context) => {
   }
 };
 
-exports.getProgress = async (event, context) => {
+const getProgress = async (event, context) => {
   try {
     const user = await knex("users").where({ id: event.params.userID }).first();
     const completedChapters = await knex("units")
@@ -168,7 +168,7 @@ exports.getProgress = async (event, context) => {
   }
 };
 
-exports.update = async (event, context) => {
+const update = async (event, context) => {
   const { userID, unitID } = event.params;
   const updateUnit = parseInt(unitID) + 1;
   try {
