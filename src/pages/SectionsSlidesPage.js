@@ -38,7 +38,7 @@ const SectionsSlidesPage = ({isLoggedIn}) => {
                 chapterID: chapterID
               }
             }),
-            axios.get(`/.netlify/functions/users/progress/${currentUser}`)
+            axios.get(`/.netlify/functions/users/progress?userID=${currentUser}`)
           ]);
           setContentToLoad(sectionData.data);
           setContentTitle(sectionData.data[0].title);
