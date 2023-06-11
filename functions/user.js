@@ -12,9 +12,12 @@ exports.handler = async (event) => {
       return login(event)
     }
   
-    if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/checkNew/:userID') {
-      return checkNew(event)
+    if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/checkNew') {
+      const userID = event.queryStringParameters.userID;
+      event.path = `/user/checkNew/${userID}`;
+      return checkNew(event);
     }
+  
   
     if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/patchNew/:userID') {
       return patchNew(event)

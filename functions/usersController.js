@@ -103,7 +103,7 @@ const login = async (event, context) => {
 };
 
 const checkNew = async (event, context) => {
-  const { userID } = JSON.parse(event.body);
+  const userID = event.queryStringParameters.userID;
   try {
     const user = await knex("users").where({ id: userID }).first();
     return {
