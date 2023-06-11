@@ -2,18 +2,18 @@ require('mysql2')
 const {getChapters, getSections, getUnits} = require('./chaptersController')
 
 exports.handler = async (event) => {
-    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters/') {
+    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters') {
         const userID = event.queryStringParameters.userID;
         event.path = `/chapters/${userID}`;
         return getChapters(event)
     }
-    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters/sections/') {
+    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters/sections') {
         const userID = event.queryStringParameters.userID;
         const chapterID = event.queryStringParameters.chapterID;
         event.path = `/chapters/sections/${userID}/${chapterID}`;
         return getSections(event)
     }
-    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters/units/') {
+    if (event.httpMethod === 'GET' && event.path === './netlify/functions/chapters/units') {
         const userID = event.queryStringParameters.userID;
         const sectionID = event.queryStringParameters.sectionID;
         event.path = `/chapters/units/${userID}/${sectionID}`;
