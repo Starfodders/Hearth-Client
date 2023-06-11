@@ -76,7 +76,7 @@ const Login = ({
 
   //handles if the user is new, populates the fields with the new account details
   useEffect(() => {
-    if (Object.keys(newUser).length > 0) {
+    if (newUser && Object.keys(newUser).length > 0) {
       //if new user exists (redirect from Sign Up), then populate these fields
       setInputFields({
         ...inputFields,
