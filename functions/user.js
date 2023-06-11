@@ -20,10 +20,14 @@ exports.handler = async (event) => {
   
   
     if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/patchNew/:userID') {
+      const userID = event.queryStringParameters.userID;
+      event.path = `/user/patchNew/${userID}`;
       return patchNew(event)
     }
   
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/user/progress/:userID') {
+      const userID = event.queryStringParameters.userID;
+      event.path = `/user/progress/${userID}`;
       return getProgress(event)
     }
   

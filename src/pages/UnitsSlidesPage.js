@@ -26,25 +26,30 @@ const UnitsSlidesPage = ({isLoggedIn}) => {
 
 
   useEffect(() => {
-    //if no unitId and ONLY id param, then they're on page to select specific Section
-    if (sectionID) {   
-     setSectionLevel('units')
-     const getUnitDetails = async () => {
-       try {
-        const [unitData, currentProgress] = await Promise.all([
-            axios.get(`http://localhost:8080/chapters/units/${currentUser}/${sectionID}`),
-            axios.get(`http://localhost:8080/users/progress/${currentUser}`)
-        ])
-         setContentToLoad(unitData.data)
-         setContentTitle(unitData.data[0].title)
-         setUserProgress(currentProgress.data.userProgress)
-       } catch(err) {
-         console.log('Error in getting new data' + err);
-       }
-     }
-     getUnitDetails()
-   }
-}, [chapterID, sectionID])
+    // if no unitId and ONLY id param, then they're on page to select specific Section
+    if (sectionID) {
+      setSectionLevel('units');
+      const getUnitDetails = async () => {
+        try {
+          const [unitData, currentProgress] = await Promise.all([
+            axios.get(`/.netlify/functions/chapters/units/${currentUser}/${sectionID}`, {
+              params: {
+                userID: currentUser,
+                sectionID: sectionID
+              }
+            }),
+            axios.get(`/.netlify/functions/users/progress?userID=${currentUser}`)
+          ]);
+          setContentToLoad(unitData.data);
+          setContentTitle(unitData.data[0].title);
+          setUserProgress(currentProgress.data.userProgress);
+        } catch (err) {
+          console.log('Error in getting new data' + err);
+        }
+      };
+      getUnitDetails();
+    }
+  }, [chapterID, sectionID]);
 
     if (!contentToLoad) {
         return <Loader/>
