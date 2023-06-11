@@ -38,7 +38,7 @@ const UnitsSlidesPage = ({isLoggedIn}) => {
                 sectionID: sectionID
               }
             }),
-            axios.get(`/.netlify/functions/users/progress?userID=${currentUser}`)
+            axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`)
           ]);
           setContentToLoad(unitData.data);
           setContentTitle(unitData.data[0].title);
