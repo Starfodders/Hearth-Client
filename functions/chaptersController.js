@@ -2,10 +2,12 @@ const knex = require("knex")(require("./knexfile"));
 require("mysql2");
 
 const getChapters = async (event, context) => {
+    const userID = event.queryStringParameters.userID;
+
   try {
     const chapterList = await knex("chapters").select("*");
     const userAccess = await knex("users")
-      .where({ id: event.queryStringParameters.userID })
+      .where({ id: userID })
       .first();
 
     chapterList.forEach((chapter) => {
@@ -27,13 +29,15 @@ const getChapters = async (event, context) => {
 };
 
 const getSections = async (event, context) => {
+    const userID = event.queryStringParameters.userID;
+        const chapterID = event.queryStringParameters.chapterID;
   try {
     const sectionList = await knex("sections")
       .select("*")
-      .where({ chapter_id: event.queryStringParameters.chapterID });
+      .where({ chapter_id: chapterID });
 
     const userAccess = await knex("users")
-      .where({ id: event.queryStringParameters.userID })
+      .where({ id: userID })
       .first();
 
     sectionList.forEach((section) => {
@@ -54,13 +58,15 @@ const getSections = async (event, context) => {
   }
 };
 const getUnits = async (event, context) => {
+    const userID = event.queryStringParameters.userID;
+    const sectionID = event.queryStringParameters.sectionID;
   try {
     const unitList = await knex("units")
       .select("*")
-      .where({ section_id: event.queryStringParameters.sectionID });
+      .where({ section_id: sectionID });
 
     const userAccess = await knex("users")
-      .where({ id: event.queryStringParameters.userID })
+      .where({ id: userID })
       .first();
 
     unitList.forEach((unit) => {

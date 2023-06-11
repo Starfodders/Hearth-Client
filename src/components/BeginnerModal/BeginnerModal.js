@@ -14,9 +14,8 @@ import listExample from "../../assets/tutorial/listexample.gif"
 
 const BeginnerModal = ({ change }) => {
   function handleConfirm() {
-    axios.patch(
-      `/.netlify/functions/user/patchNew?userID=${sessionStorage.getItem("userId")}`
-    );
+    axios.patch(`/.netlify/functions/user/patchNew?userID=${sessionStorage.getItem("userId")}`);
+
     change(false);
   }
 

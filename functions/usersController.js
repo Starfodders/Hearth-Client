@@ -124,9 +124,10 @@ const checkNew = async (event, context) => {
 };
 
 const patchNew = async (event, context) => {
+  const userID = event.queryStringParameters.userID;
   try {
     const user = await knex("users")
-      .where({ id: event.params.userID })
+      .where({ id: userID })
       .first()
       .update({ newbie: false });
     return {
@@ -143,8 +144,9 @@ const patchNew = async (event, context) => {
 };
 
 const getProgress = async (event, context) => {
+  const userID = event.queryStringParameters.userID;
   try {
-    const user = await knex("users").where({ id: event.params.userID }).first();
+    const user = await knex("users").where({ id: userID }).first();
     const completedChapters = await knex("units")
       .select("sections.chapter_id", knex.raw("count(*) as units_complete"))
       .join("sections", "units.section_id", "=", "sections.id")
