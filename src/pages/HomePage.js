@@ -57,8 +57,8 @@ const HomePage = ({ isLoggedIn, name }) => {
   useEffect(() => {
     if (homepageState || mainFireOn) {
       axios
-        .get(`.netlify/functions/user/checkNew/${currUser}`)
-        .then(({ data }) => {
+      .get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
+      .then(({ data }) => {
           setCurrUserProgress(data.progress);
           setCurrUserNavigateUnit(data.currentUnitToNav);
           if (data.isNew === 1) {
