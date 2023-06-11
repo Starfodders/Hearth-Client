@@ -33,8 +33,3 @@ exports.handler = async (event) => {
       body: JSON.stringify({ message: 'Not found' }),
     };
   };
-
-  // [[redirects]]
-  //   from = "/api/*"
-  //   to = "/.netlify/functions/:splat"
-  //   status = 200

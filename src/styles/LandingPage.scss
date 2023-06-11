@@ -52,12 +52,12 @@
     @include tablet {
         width: 65%;
         max-width: 450px;
-        margin-top: 8rem;
+        margin-top: 4rem;
     }
 
     @include mobile {
         width: 100%;
-        margin-top: 5rem;
+        margin-top: 2rem;
         padding: 0 1rem;
     }
   }
