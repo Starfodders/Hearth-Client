@@ -32,7 +32,7 @@ const UnitsSlidesPage = ({isLoggedIn}) => {
       const getUnitDetails = async () => {
         try {
           const [unitData, currentProgress] = await Promise.all([
-            axios.get(`/.netlify/functions/chapters/units/${currentUser}/${sectionID}`, {
+            axios.get(`/.netlify/functions/chapters/units`, {
               params: {
                 userID: currentUser,
                 sectionID: sectionID
