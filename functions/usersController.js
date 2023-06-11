@@ -1,6 +1,7 @@
 const knex = require("knex")(require("./knexfile"));
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require('mysql2')
 
 const signUp = async (event, context) => {
   const { given_name, email, password } = JSON.parse(event.body);

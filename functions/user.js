@@ -1,4 +1,7 @@
 const {signUp, login, checkNew, patchNew, getProgress, update} = require('./usersController')
+const bcrypt = require("bcrypt");
+require('mysql2')
+
 
 exports.handler = async (event) => {
     if (event.httpMethod === 'POST' && event.path === '/.netlify/functions/user/signup') {

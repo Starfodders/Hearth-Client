@@ -106,8 +106,7 @@ const Login = ({
     if (formValid) {
       const { email, password } = inputFields;
       //login, posts to back end to check for an existing account
-      axios
-        .post("/.netlify/functions/user/login", {
+      axios.post('/.netlify/functions/user/login', {
           email,
           password,
         })
