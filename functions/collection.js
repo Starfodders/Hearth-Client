@@ -6,7 +6,7 @@ exports.handler = async (event) => {
     event.httpMethod === "GET" &&
     event.path === "/.netlify/functions/collection"
   ) {
-    const userID = event.queryStringParameters.id;
+    const userID = event.queryStringParameters.userID;
     try {
       const retrieveSave = await knex("saved")
         .where({ user_id: userID })

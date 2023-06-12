@@ -3,7 +3,7 @@ import {getUnit, getUnitList, getTranscript, getCloser, savePage, delSavedPage} 
 
 exports.handler = async(event) => {
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/single') {
-        const unitID = event.queryStringParameters.id;
+        const unitID = event.queryStringParameters.unitID;
         event.path = `/units/single/${unitID}`
         return getUnit(event)
     }
@@ -14,7 +14,7 @@ exports.handler = async(event) => {
         return
     }
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/closer') {
-        const unitID = event.queryStringParameters.id;
+        const unitID = event.queryStringParameters.unitID;
         event.path = `/units/closer/${unitID}`
         return getCloser(event)
     }

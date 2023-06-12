@@ -2,7 +2,7 @@ const knex = require("knex")(require("./knexfile"));
 require("mysql2");
 
 const getUnit = async (event, context) => {
-  const unitID = event.queryStringParameters.id;
+  const unitID = event.queryStringParameters.unitID;
   try {
     const unit = await knex("pages").where({ unit_id: unitID });
 
@@ -23,7 +23,7 @@ const getUnitList = async (event, context) => {};
 const getTranscript = async (event, context) => {};
 
 const getCloser = async (event, context) => {
-  const unitID = event.queryStringParameters.id;
+  const unitID = event.queryStringParameters.unitID;
   try {
     const closerInfo = await knex("finishData").where({ id: unitID }).first();
     return {
