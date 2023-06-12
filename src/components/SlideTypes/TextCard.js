@@ -2,7 +2,7 @@ import "../UnitSlide/UnitSlide.scss";
 import savedOff from "../../assets/icons/savedEmpty.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
 import axios from "axios";
-import textIcon from "../../assets/icons/textIcon.svg";
+// import textIcon from "../../assets/icons/textIcon.svg";
 
 const TextCard = ({ slide, format, saveState, saveFunc }) => {
   const { content, title, type } = slide;
@@ -12,9 +12,12 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     if (!saveState) {
       const savePage = async () => {
         try {
-          const response = await axios.post(
-            `http://localhost:8080/units/${userID}/${slide.id}`
-          );
+          const response = await axios.post("/.netlify/functions/units/save", {
+            params: {
+              userID: userID,
+              slideID: slide.id,
+            },
+          });
           saveFunc(true);
         } catch (err) {
           console.log(err);
@@ -26,7 +29,13 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
       const removeSavedPage = async () => {
         try {
           const response = await axios.delete(
-            `http://localhost:8080/units/${userID}/${slide.id}`
+            "/.netlify/functions/units/unsave",
+            {
+              params: {
+                userID: userID,
+                slideID: slide.id,
+              },
+            }
           );
           saveFunc(false);
         } catch (err) {
@@ -44,8 +53,10 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
   return (
     <div className="slide__container">
       <div className="slide__container__top">
-      <div className="slide__container__top--left">
-          <span className="material-symbols-outlined card-icon"><span aria-hidden="true">description</span></span>
+        <div className="slide__container__top--left">
+          <span className="material-symbols-outlined card-icon">
+            <span aria-hidden="true">description</span>
+          </span>
           <p className="slide__type">{format(type)} Card</p>
         </div>
         <div className="slide__top--right">
@@ -53,7 +64,11 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}
             onClick={() => handleSave()}
-            alt = {saveState ? 'slide is saved, interact to remove save': 'slide is not saved, interact to save'}
+            alt={
+              saveState
+                ? "slide is saved, interact to remove save"
+                : "slide is not saved, interact to save"
+            }
           />
         </div>
       </div>
