@@ -13,7 +13,7 @@ const FeedbackPage = () => {
             return;
         }
         else {
-            axios.post('http://localhost:8080/feedback', {
+            axios.post('/.netlify/functions/feedback', {
                 message: feedbackInput
             })
             .then((data) => {
