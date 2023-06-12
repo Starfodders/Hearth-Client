@@ -154,7 +154,7 @@ const HomePage = ({ isLoggedIn, name }) => {
   function navigateToUnit() {
     //%20 for spaces
     axios
-      .get(`http://localhost:8080/units/${currUserNavigateUnit}/all`)
+      .get(`/.netlify/functions/units/list?currUnit=${currUserNavigateUnit}`)
       .then((response) => {
         //replace the spaces in the response with '%20' to match URL string, then navigate there
         const modifyUnitName = response.data[0].name.replace(" ", "%20");

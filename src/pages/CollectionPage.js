@@ -39,7 +39,7 @@ const CollectionPage = ({ isLoggedIn }) => {
       const getData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/collections/${userId}`
+            `/.netlify/functions/collection?userID=${userId}`
           );
           setSavedData(response.data);
           if (response) {

@@ -18,7 +18,21 @@ const getUnit = async (event, context) => {
   }
 };
 
-const getUnitList = async (event, context) => {};
+const getUnitList = async (event, context) => {
+  const currUnit = event.queryStringParameters.currUnit;
+  try {
+    const unitList = await knex("units").where({ id: currUnit });
+    return {
+      statusCode: 200,
+      body: JSON.stringify(unitList),
+    };
+  } catch (error) {
+    return {
+      statusCode: 404,
+      body: JSON.stringify({ message: `Cannot retrive unit list` }),
+    };
+  }
+};
 
 const getTranscript = async (event, context) => {
   const unitID = event.queryStringParameters.unitID;

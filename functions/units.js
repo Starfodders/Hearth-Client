@@ -8,7 +8,9 @@ exports.handler = async(event) => {
         return getUnit(event)
     }
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/list') {
-        return
+        const currUnit = event.queryStringParameters.currUnit;
+        event.path = `/units/list/${currUnit}`
+        return getUnitList(event)
     }
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/transcript') {
         const unitID = event.queryStringParameters.unitID;
