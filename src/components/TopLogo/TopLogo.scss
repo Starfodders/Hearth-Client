@@ -11,9 +11,15 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 2rem;
+    animation: scroll-appear 0.2s ease-out forwards;
 
     @include tablet {
         padding: 0.5rem 1rem;
+    }
+
+    &--hidden {
+      display: none;
+      transition: all 0.3s;
     }
 
   }
@@ -80,6 +86,7 @@
 
     &__opened {
       color: $off-white;
+      background-color: $background-faded;
       display: flex;
       justify-content: flex-end;
       z-index: -5;
@@ -133,3 +140,13 @@
   }
 }
 
+@keyframes scroll-appear {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+transform: translateY(0);
+opacity: 1
+  }
+}

@@ -75,7 +75,7 @@ const HomePage = ({ isLoggedIn, name }) => {
   const [animationState, setAnimationState] = useState(true);
 
   //for sound states
-  const [soundState, setSoundState] = useState(true);
+  const [soundState, setSoundState] = useState(false);
   const [fireLoopAudio, setFireLoopAudio] = useState(new Audio(campfireSound));
 
   const playMatches = function () {

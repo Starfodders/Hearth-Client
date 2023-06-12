@@ -28,9 +28,13 @@
   z-index: -20;
   animation: pan-across 45s infinite alternate;
   position: fixed;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   @include mobile {
     width: 200vw;
+    animation: pan-across-mobile 45s infinite alternate;
   }
 
   &--disappear {
@@ -175,6 +179,15 @@
     }
     to {
       transform: translateX(-25%);
+    }
+  }
+
+  @keyframes pan-across-mobile {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
     }
   }
 

@@ -17,7 +17,7 @@
   z-index: 5;
 
   @include mobile {
-    top: 35%;
+    top: 25%;
   }
 
   &__upper {
@@ -90,7 +90,7 @@
     background-color: rgba(0, 0, 0, 0.8);
 
     @include mobile {
-      top: 40%;
+      top: 30%;
       padding: 0.5rem;
     }
 
@@ -98,7 +98,6 @@
       color: $off-white-reduced;
 
       @include mobile {
-        display: none;
       }
     }
 

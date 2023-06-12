@@ -7,6 +7,8 @@ const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
 
+  const [isScrolled, setIsScrolled] = useState(false); 
+
   const [mobileWindow, setMobileWindow] = useState(
     window.innerWidth <= 425 ? true : false
   );
@@ -25,6 +27,22 @@ const TopLogo = ({ name, login }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const isScrollingUp = prevScrollPos > currentScrollPos;
+
+      setIsScrolled(isScrollingUp);
+      prevScrollPos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   function handleLogOut() {
     sessionStorage.removeItem("authToken");
     login(false);
@@ -32,7 +50,7 @@ const TopLogo = ({ name, login }) => {
   }
 
   return (
-    <div className="top__container">
+    <div className={isScrolled ? "top__container": "top__container--hidden"}>
       <div className="spacer"></div>
       <Link to="/home" className="top__link" aria-label = "Link to Homepage" tabIndex={0}>
         <h2 className="top__title">Hearth</h2>

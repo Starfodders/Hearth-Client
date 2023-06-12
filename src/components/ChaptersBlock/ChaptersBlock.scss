@@ -27,17 +27,15 @@
     @include desktop {
       margin: 9rem 5rem 3rem 0;
       max-width: 580px;
-      // max-width: 580px;
     }
     @include tablet {
-      // margin: 9rem 5rem 3rem 0;
       padding: 0 1rem;
       max-width: 375px;
     }
 
     @include mobile {
       justify-content: flex-start;
-      margin: 9rem 5rem 0 0;
+      margin: 4rem 5rem 0 0;
       padding-left: 3rem;
       padding-right: 0;
       max-width: 300px;
