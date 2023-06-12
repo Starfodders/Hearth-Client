@@ -45,7 +45,7 @@ const savePage = async (event, context) => {
   const slideID = event.queryStringParameters.slideID;
   try {
     const newSaved = {
-      userID: userID,
+      user_id: userID,
       pages_id: slideID,
     };
 
@@ -58,7 +58,7 @@ const savePage = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: `${errpr} Unable to save slide ${slideID}`, object: newSaved }),
+      body: JSON.stringify({ message: `${error} Unable to save slide ${slideID}`, object: newSaved }),
     };
   }
 };
