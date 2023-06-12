@@ -31,7 +31,10 @@ exports.handler = async (event) => {
       return getProgress(event)
     }
   
-    if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/update/:userID/:unitID') {
+    if (event.httpMethod === 'PATCH' && event.path === '/.netlify/functions/user/update') {
+      const userID = event.queryStringParameters.userID;
+      const unitID = event.queryStringParameters.unitID;
+      event.path = `/user/update/${userID}/${unitID}`
       return update(event)
     }
   

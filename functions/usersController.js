@@ -176,7 +176,8 @@ const getProgress = async (event, context) => {
 };
 
 const update = async (event, context) => {
-  const { userID, unitID } = event.params;
+  const userID = event.queryStringParameters.userID;
+  const unitID = event.queryStringParameters.unitID;  
   const updateUnit = parseInt(unitID) + 1;
   try {
     const getUser = await knex("users").where({ id: userID }).first();

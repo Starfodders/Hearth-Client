@@ -10,7 +10,12 @@ const FinishCard = ({ details }) => {
 
   function handleUnitComplete() {
     axios
-      .patch(`http://localhost:8080/users/update/${userID}/${id}`)
+      .patch("/.netlify/functions/user/update", {
+        params: {
+          userID,
+          unitID: id,
+        },
+      })
       .then((response) => {
         if (response) {
           navigate(-1);
@@ -53,7 +58,7 @@ const FinishCard = ({ details }) => {
               {image ? (
                 <>
                   <img
-                    src= {require(`../../assets/chapterAssets/${image}.png`)}
+                    src={require(`../../assets/chapterAssets/${image}.png`)}
                     alt="Congratulations on finishing the unit"
                     className="finish__image--el"
                   />

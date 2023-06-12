@@ -24,10 +24,10 @@ exports.handler = async(event) => {
         event.path = `/units/save/${userID}/${slideID}`
         return savePage(event)
     }
-    if (event.httpMethod === 'DEL' && event.path === '/.netlify/functions/units/unsave') {
+    if (event.httpMethod === 'DELETE' && event.path === '/.netlify/functions/units/unsave') {
         const userID = event.queryStringParameters.userID;
         const slideID = event.queryStringParameters.slideID;
-        event.path = `/units/save/${userID}/${slideID}`
+        event.path = `/units/unsave/${userID}/${slideID}`
         return delSavedPage(event)
     }
     return {
