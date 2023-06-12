@@ -1,9 +1,18 @@
 import "../Card/Card.scss";
 import { useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 
-const ChapterButton = ({details}) => {
+const ChapterButton = ({details, progress}) => {
   const {id, available, overall_available} = details;
   const navigate = useNavigate();
+
+  const [buttonName, setButtonName] = useState('Continue')
+
+  useEffect(() => {
+    if (progress.completedChapters[0].chapter_id >= id) {
+      setButtonName('Review')
+    }
+  }, [])
 
     if (!overall_available) {
       return (
@@ -15,7 +24,7 @@ const ChapterButton = ({details}) => {
     }
     return (
         <button className={available ? "card__button" : "card__button--disabled"} onClick = {() => navigate(`/chapters/${id}`)} aria-label = {`To ${details.name} Chapter`}>
-        {available ? "Continue" : "Locked"}
+        {available ? buttonName : "Locked"}
       </button>
     );
 };

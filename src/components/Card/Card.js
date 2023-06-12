@@ -30,11 +30,11 @@ const Card = ({ details, level, progress }) => {
 
 let button;
   if (level === 'chapters') {
-    button = <ChapterButton details={details}/>;
+    button = <ChapterButton details={details} progress = {progress}/>;
   } else if (level === 'sections') {
-    button = <SectionButton details={details} />;
+    button = <SectionButton details={details} progress = {progress}/>;
   } else if (level === 'units') {
-    button = <UnitButton details={details} />;
+    button = <UnitButton details={details} progress = {progress} />;
   }
 
   //styling for chapter cards that are not yet completed

@@ -1,5 +1,5 @@
 require('mysql2')
-import {getUnit, getUnitList, getTranscript, getCloser, savePage, delSavedPage} from "./unitsController"
+const {getUnit, getUnitList, getTranscript, getCloser, savePage, delSavedPage} = require("./unitsController")
 
 exports.handler = async(event) => {
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/single') {

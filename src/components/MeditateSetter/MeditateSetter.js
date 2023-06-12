@@ -77,7 +77,7 @@ const MeditateSetter = ({
               <option value="campfire">Campfire</option>
               <option value="rainforest">Rainforest</option>
               <option value="waves">Waves</option>
-              <option value="minecraft">Minecraft</option>
+              {/* <option value="minecraft">Minecraft</option> */}
             </select>
           </div>
         )}
