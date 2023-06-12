@@ -20,7 +20,25 @@ const getUnit = async (event, context) => {
 
 const getUnitList = async (event, context) => {};
 
-const getTranscript = async (event, context) => {};
+const getTranscript = async (event, context) => {
+  const unitID = event.queryStringParameters.unitID;
+  const pageNum = event.queryStringParameters.pageNum;
+  try {
+    const transcript = await knex("transcripts").where({ id: pageNum }).first();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(transcript),
+    };
+  } catch (error) {
+    return {
+      statusCode: 404,
+      body: JSON.stringify({
+        message: `Error retrieving transcript at unit ${unitID} and page ${pageNum}`,
+      }),
+    };
+  }
+};
 
 const getCloser = async (event, context) => {
   const unitID = event.queryStringParameters.unitID;
@@ -32,7 +50,7 @@ const getCloser = async (event, context) => {
     };
   } catch (error) {
     return {
-      statusCode: 400,
+      statusCode: 404,
       body: JSON.stringify({
         message: `Error retrieving closer unit ${unitID}`,
       }),
@@ -58,7 +76,10 @@ const savePage = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: `${error} Unable to save slide ${slideID}`, object: newSaved }),
+      body: JSON.stringify({
+        message: `${error} Unable to save slide ${slideID}`,
+        object: newSaved,
+      }),
     };
   }
 };

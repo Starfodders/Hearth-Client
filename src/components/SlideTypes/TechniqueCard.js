@@ -43,9 +43,8 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
     if (!saveState) {
       const savePage = async () => {
         try {
-          const response = await axios.post(
-            `http://localhost:8080/units/${userID}/${slide.id}`
-          );
+          await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
+
           saveFunc(true);
         } catch (err) {
           console.log(err);
@@ -56,9 +55,8 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
     if (saveState) {
       const removeSavedPage = async () => {
         try {
-          const response = await axios.delete(
-            `http://localhost:8080/units/${userID}/${slide.id}`
-          );
+          await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
+
           saveFunc(false);
         } catch (err) {
           console.log(err);
@@ -74,7 +72,7 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
       if (!transcriptData) {
         axios
           .get(
-            `http://localhost:8080/units/transcript/${unitID}/${page_number}`
+            `/.netlify/functions/units/transcript?unitID=${unitID}&pageNum=${page_number}`
           )
           .then((response) => {
             setTranscriptData(response.data);

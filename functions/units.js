@@ -11,7 +11,10 @@ exports.handler = async(event) => {
         return
     }
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/transcript') {
-        return
+        const unitID = event.queryStringParameters.unitID;
+        const pageNum = event.queryStringParameters.pageNum;
+        event.path = `/units/transcript/${unitID}/${pageNum}`
+        return getTranscript(event)
     }
     if (event.httpMethod === 'GET' && event.path === '/.netlify/functions/units/closer') {
         const unitID = event.queryStringParameters.unitID;
