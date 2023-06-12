@@ -30,4 +30,8 @@ exports.handler = async(event) => {
         event.path = `/units/save/${userID}/${slideID}`
         return delSavedPage(event)
     }
+    return {
+        statusCode: 404,
+        body: JSON.stringify({ message: 'Not found' }),
+      };
 }

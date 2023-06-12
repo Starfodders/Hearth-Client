@@ -8,7 +8,7 @@ const getUnit = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ unit }),
+      body: JSON.stringify(unit),
     };
   } catch (error) {
     return {
@@ -23,12 +23,12 @@ const getUnitList = async (event, context) => {};
 const getTranscript = async (event, context) => {};
 
 const getCloser = async (event, context) => {
-  const unitID = event.queryStringParameters;
+  const unitID = event.queryStringParameters.id;
   try {
     const closerInfo = await knex("finishData").where({ id: unitID }).first();
     return {
       statusCode: 200,
-      body: JSON.stringify({ closerInfo }),
+      body: JSON.stringify(closerInfo),
     };
   } catch (error) {
     return {
@@ -64,10 +64,10 @@ const savePage = async (event, context) => {
 };
 
 const delSavedPage = async (event, context) => {
-    const userID = event.queryStringParameters.userID;
+  const userID = event.queryStringParameters.userID;
   const slideID = event.queryStringParameters.slideID;
   try {
-    await knex("saved").where({pages_id: slideID, user_id: userID}).del()
+    await knex("saved").where({ pages_id: slideID, user_id: userID }).del();
 
     return {
       statusCode: 204,
@@ -76,7 +76,9 @@ const delSavedPage = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 404,
-      body: JSON.stringify({ message: `Unable to find saved slide ${slideID}` }),
+      body: JSON.stringify({
+        message: `Unable to find saved slide ${slideID}`,
+      }),
     };
   }
 };
