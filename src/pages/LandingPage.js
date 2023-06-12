@@ -44,7 +44,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             postLogin ? "landing__slogan--disappear" : "landing__slogan"
           }
         >
-          Learn, grow, thrive
+          Dialectical Behaviour Therapy
         </h2>
         <p className="landing__footer" aria-hidden = "True">Michael Deng © 2023 | Version 1.0 Beta</p>
         {SignUpPage ? (

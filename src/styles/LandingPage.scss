@@ -94,11 +94,16 @@
 
   &__slogan {
     color: white;
-    font-size: 1.5rem;
+    min-width: 370px;
+    font-size: 1.2rem;
     text-align: right;
     margin-top: -1rem;
 
-    @include tablet {
+    @include mobile {
+      min-width: none;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: -0.5rem;
     }
 
     &--disappear {
