@@ -9,13 +9,8 @@ const FinishCard = ({ details }) => {
   const userID = sessionStorage.getItem("userId");
 
   function handleUnitComplete() {
-    axios.patch("/.netlify/functions/user/update", {
-        params: {
-          userID: userID,
-          unitID: id,
-        }
-      })
-      .then((response) => {
+    axios.patch(`/.netlify/functions/user/update?userID=${userID}&unitID=${id}`)
+    .then((response) => {
         if (response) {
           navigate(-1);
         }
