@@ -28,20 +28,16 @@ const TopLogo = ({ name, login }) => {
   }, []);
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
-
     const handleScroll = () => {
+      const scrollThreshold = window.innerHeight * 0.1; // Calculate 10% of the viewport height
       const currentScrollPos = window.pageYOffset;
-      const isScrollingUp = prevScrollPos > currentScrollPos;
-
-      setIsScrolled(isScrollingUp);
-      prevScrollPos = currentScrollPos;
+  
+      setIsScrolled(currentScrollPos > scrollThreshold);
     };
-
+  
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   function handleLogOut() {
     sessionStorage.removeItem("authToken");
@@ -50,7 +46,7 @@ const TopLogo = ({ name, login }) => {
   }
 
   return (
-    <div className={isScrolled ? "top__container": "top__container--hidden"}>
+    <div className={isScrolled ? "top__container--hidden": "top__container"}>
       <div className="spacer"></div>
       <Link to="/home" className="top__link" aria-label = "Link to Homepage" tabIndex={0}>
         <h2 className="top__title">Hearth</h2>

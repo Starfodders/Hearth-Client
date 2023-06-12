@@ -50,7 +50,9 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
           destination="/home"
         />
       ) : (
+        <div className="loader__container">
         <Loader />
+        </div>
       )}
     </div>
   );
