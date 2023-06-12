@@ -12,11 +12,11 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     if (!saveState) {
       const savePage = async () => {
         try {
-          const response = await axios.post("/.netlify/functions/units/save", {
+          await axios.post("/.netlify/functions/units/save", {
             params: {
               userID: userID,
               slideID: slide.id,
-            },
+            }
           });
           saveFunc(true);
         } catch (err) {
@@ -28,13 +28,13 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     if (saveState) {
       const removeSavedPage = async () => {
         try {
-          const response = await axios.delete(
+          await axios.delete(
             "/.netlify/functions/units/unsave",
             {
               params: {
                 userID: userID,
                 slideID: slide.id,
-              },
+              }
             }
           );
           saveFunc(false);
