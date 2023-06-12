@@ -1,5 +1,7 @@
 require('mysql2')
 const nodemailer = require("nodemailer");
+const smtpUser = process.env.SMTP_USER;
+const smtpPassword = process.env.SMTP_PASSWORD;
 
 exports.handler = async (event) => {
     const { text } = JSON.parse(event.body);
@@ -10,8 +12,8 @@ exports.handler = async (event) => {
         port: 465,
         secure: true, 
         auth: {
-          user: "hearth.feedback@gmail.com", 
-          pass: "ernhhexgexhsjlfb"
+          user: smtpUser, 
+          pass: smtpPassword
         },
       });
 

@@ -1,5 +1,5 @@
 import "../styles/FeedbackPage.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const FeedbackPage = () => {
