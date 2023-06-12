@@ -45,8 +45,8 @@ const savePage = async (event, context) => {
   const slideID = event.queryStringParameters.slideID;
   try {
     const newSaved = {
+      userID: userID,
       pages_id: slideID,
-      userID,
     };
 
     await knex("saved").insert(newSaved);
@@ -58,7 +58,7 @@ const savePage = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: `Unable to save slide ${slideID}` }),
+      body: JSON.stringify({ message: `${errpr} Unable to save slide ${slideID}`, object: newSaved }),
     };
   }
 };
