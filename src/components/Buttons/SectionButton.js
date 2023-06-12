@@ -11,11 +11,11 @@ const SectionButton = ({details, progress}) => {
 
   const [buttonName, setButtonName] = useState('Continue')
 
-  useEffect(() => {
-    if (section[section.length-1].section_id >= id) {
-      setButtonName('Review')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (section[section.length-1].section_id >= id) {
+  //     setButtonName('Review')
+  //   }
+  // }, [])
 
 
     return (
