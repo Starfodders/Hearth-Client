@@ -4,7 +4,7 @@ const smtpUser = process.env.SMTP_USER;
 const smtpPassword = process.env.SMTP_PASSWORD;
 
 exports.handler = async (event) => {
-    const { text } = JSON.parse(event.body);
+    const { message } = JSON.parse(event.body);
     const currentTime = new Date().toLocaleDateString()
 
     let transporter = nodemailer.createTransport({
@@ -21,7 +21,7 @@ exports.handler = async (event) => {
         from: 'hearth.feedback@gmail.com',
         to: 'hearth.feedback@gmail.com',
         subject: 'App Feedback ' + currentTime,
-        text: 'Feedback message: ' + text 
+        text: 'Feedback message: ' + message 
     };
 
     try {

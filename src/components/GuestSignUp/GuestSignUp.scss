@@ -19,7 +19,6 @@
 
     @include mobile {
       padding: 1.5rem;
-      margin-top: 1rem;
     }
 
     &--form {
@@ -84,13 +83,17 @@
 
 .toggle__guest {
   color: $off-white-reduced;
-  width: 100%;
   text-align: center;
   margin-top: 1rem;
   padding: 0.2rem;
   border-radius: 4px;
   font-size: 0.7rem;
   cursor: pointer;
+
+  @include mobile {
+    color: $off-white;
+    background-color: $background-faded;
+  }
 
   &:hover {
     background-color: $turquoise;
