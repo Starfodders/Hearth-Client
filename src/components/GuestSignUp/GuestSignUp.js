@@ -20,9 +20,9 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
     localStorage.setItem("guest-profile-name", name);
     localStorage.setItem("guest-profile-id", generateGuestUUID());
     localStorage.setItem("guest-profile-pw", generateGuestPW());
-
-    axios
-      .post("/.netlify/functions/user/signup", {
+    
+    axios.post('http://localhost:8080/users/signup', {
+    // axios.post("/.netlify/functions/user/signup", {
         given_name: localStorage.getItem("guest-profile-name"),
         email: localStorage.getItem("guest-profile-id"),
         password: localStorage.getItem("guest-profile-pw"),

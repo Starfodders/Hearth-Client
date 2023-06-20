@@ -40,6 +40,28 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
 10. 😀 DONE - Feedback page is no longer working
 11. Lists can repeat a suggestion, need to track which have already appeared
+12. Visual bugs tied to the sizing of the landing page image as well as the main fireplace visual
+13. Cannot alter the sound of meditation or the initial start up matchsticks on mobile, different method of adjustment
+
+### API Calls
+1. (POST) Login
+2. (POST) Guest Login
+3. (POST) Sign Up
+4. (POST) Guest Sign Up - same route as regular sign up, different headers
+5. (GET) CHeck if user is new (GET)
+6. (GET) All Units for specific navigation (GET)
+7. (GET) Chapters filtered based on user progress
+8. (GET) User Current Progress through Hearth
+9. (GET) Sections filtered based on user progress
+10. (GET) Units filtered based on user progress
+11. (GET) Retrieve specific unit
+12. (GET) Retrieve User's Collection Data
+13. (GET) Specific unit closing slide
+14. (PATCH) Finishing the unit and updating DB
+15. (POST) Save a specific slide
+16. (DELETE) Delete a specific slide
+17. (PATCH) Confirm or Skip going through the tutorial 
+18. (POST) Submit feedback form
 
 <!-- 
   //austin bray

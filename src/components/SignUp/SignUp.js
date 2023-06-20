@@ -66,8 +66,8 @@ const SignUp = ({ toggle, getUser }) => {
     }
     if (formValid) {
       const { given_name, email, password } = inputFields;
-      axios
-      .post("/.netlify/functions/user/signup", {
+      axios.post('http://localhost:8080/users/signup', {
+      // axios.post("/.netlify/functions/user/signup", {
           given_name,
           email,
           password,

@@ -56,8 +56,8 @@ const HomePage = ({ isLoggedIn, name }) => {
   //checks if the user is new, display beginner modal for intro
   useEffect(() => {
     if (homepageState || mainFireOn) {
-      axios
-      .get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
+      axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
+      // axios.get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
       .then(({ data }) => {
           setCurrUserProgress(data.progress);
           setCurrUserNavigateUnit(data.currentUnitToNav);
@@ -153,8 +153,8 @@ const HomePage = ({ isLoggedIn, name }) => {
 
   function navigateToUnit() {
     //%20 for spaces
-    axios
-      .get(`/.netlify/functions/units/list?currUnit=${currUserNavigateUnit}`)
+    axios.get(`http://localhost:8080/units/${currUserNavigateUnit}/all`)
+    // axios.get(`/.netlify/functions/units/list?currUnit=${currUserNavigateUnit}`)
       .then((response) => {
         //replace the spaces in the response with '%20' to match URL string, then navigate there
         const modifyUnitName = response.data[0].name.replace(" ", "%20");

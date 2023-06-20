@@ -52,13 +52,16 @@ const UnitsPage = ({ isLoggedIn }) => {
     const getData = async () => {
       try {
         const [unitResponse, savedResponse, finishData] = await Promise.all([
-          axios.get(`/.netlify/functions/units/single?unitID=${id}`),
-          axios.get(
-            `/.netlify/functions/collection?userID=${sessionStorage.getItem(
-              "userId"
-            )}`
-          ),
-          axios.get(`/.netlify/functions/units/closer?unitID=${id}`),
+          axios.get(`http://localhost:8080/units/${id}`),
+          axios.get(`http://localhost:8080/collections/${id}`),
+          axios.get(`http://localhost:8080/units/finish/${id}`),
+          // axios.get(`/.netlify/functions/units/single?unitID=${id}`),
+          // axios.get(
+          //   `/.netlify/functions/collection?userID=${sessionStorage.getItem(
+          //     "userId"
+          //   )}`
+          // ),
+          // axios.get(`/.netlify/functions/units/closer?unitID=${id}`)
         ]);
         setUnitData(unitResponse.data);
         setUnitSavedData(savedResponse.data);
