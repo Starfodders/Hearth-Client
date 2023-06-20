@@ -1,0 +1,73 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.log {
+    &__container {
+        position: absolute;
+        top: 5rem;
+        left: 2rem;
+        width: 30%;
+        min-width: 450px;
+        height: 600px;
+        background-color: rgba(22,58,68,0.95);
+        z-index: 10;
+        border-radius: 4px;
+        padding: 1rem;
+        color: $off-white;
+        transition: all 0.5s ease-in-out;
+
+        @include tablet {
+            min-width: 0;
+            width: 90%;
+            left: 1rem;
+        }
+
+        &--off {
+            @extend .log__container;
+            opacity: 0;
+            left: -100%;
+            transition: all 0.5s ease-in-out;
+        }
+    }
+
+    &__nav {
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        top: 1rem;
+        left: 0;
+        width: 100%;
+    }
+
+    &__version {
+        text-align: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $off-white;
+    }
+
+    &__list {
+        &-item {
+            padding: 0.2rem 0;
+        }
+    }
+    &__button {
+        position: absolute;
+        bottom: 4rem;
+
+        &-el {
+            color: $off-white;
+            background-color: $dark-green;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $turquoise;
+                transition: all 0.3s;
+            }
+        }
+    }
+}

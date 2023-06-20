@@ -2,12 +2,13 @@ import React from "react";
 import "../styles/LandingPage.scss";
 import bgForest from "../assets/images/homepage/homeBG.png"
 import transition from "../assets/images/transitionForest.png"
-import transitionBot from "../assets/images/transitionBottom.png"
+// import transitionBot from "../assets/images/transitionBottom.png"
 import transitionFire from "../assets/images/transitionFire.png"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
+import Changelog from "../components/Changelog/Changelog";
 
 const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         >
           Dialectical Behaviour Therapy
         </h2>
+        <Changelog/>
         <p className="landing__footer" aria-hidden = "True">Michael Deng © 2023 | Version 1.0 Beta</p>
         {SignUpPage ? (
           <SignUp toggle={toggleState} getUser={getNewUserSignUp} />
