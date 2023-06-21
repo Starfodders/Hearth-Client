@@ -11,12 +11,15 @@ const SectionButton = ({details, progress}) => {
 
   const [buttonName, setButtonName] = useState('Continue')
 
-  // useEffect(() => {
-  //   if (section[section.length-1].section_id >= id) {
-  //     setButtonName('Review')
-  //   }
-  // }, [])
-
+  useEffect(() => {
+    progress.completedSections.forEach((section) => {
+      if (section.section_id === id) { 
+        if (section.units_complete === details.units) {
+          setButtonName('Review')
+        }
+      }
+    })
+  }, [])
 
     return (
         <button className={available ? "card__button": "card__button--disabled"} onClick = {() => navigate(`/chapters/units/${id}`)} aria-label = {`To ${details.name} section`}>

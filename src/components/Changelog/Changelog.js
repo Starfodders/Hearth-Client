@@ -26,7 +26,10 @@ const Changelog = () => {
           <li className="log__list-item">Background animation disabled</li>
           <li className="log__list-item">Notification for account creation success added</li>
           <li className="log__list-item">Homepage image clipping fixed</li>
-          
+          <li className="log__list-item">Button text to access content changes based on progress</li>
+          <li className="log__list-item">Bottom Navigation shifting turned off on mobile due to visibility issues</li>
+          <li className="log__list-item">Added 'Go To Newest Unit' button for fewer clicks between content</li>
+          <li className="log__list-item">Mobile slide scroll buttons adjusted to prevent blocking text</li>
         </ul>
       </>
     );

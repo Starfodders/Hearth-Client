@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import stokingFire from "../assets/images/homepage/fireMedium.gif";
 import noFire from "../assets/images/homepage/noFireBase1.png";
@@ -23,14 +23,18 @@ import Options from "../components/Options/Options";
 import BotNav from "../components/BotNav/BotNav";
 import BeginnerModal from "../components/BeginnerModal/BeginnerModal";
 
+import ProgressContext from "../components/ProgressContext/ProgressContext";
+
 import "../styles/HomePage.scss";
 import axios from "axios";
 
 const HomePage = ({ isLoggedIn, name }) => {
   const navigate = useNavigate();
   const currUser = sessionStorage.getItem("userId");
-  const [currUserProgress, setCurrUserProgress] = useState();
-  const [currUserNavigateUnit, setCurrUserNavigateUnit] = useState();
+  // const [currUserProgress, setCurrUserProgress] = useState();
+  // const [currUserNavigateUnit, setCurrUserNavigateUnit] = useState();
+  const { progress, navigateUnit, setProgress, setNavigateUnit } =
+    useContext(ProgressContext);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -59,10 +63,16 @@ const HomePage = ({ isLoggedIn, name }) => {
       axios.get(`http://localhost:8080/users/checkNew/${currUser}`)
       // axios.get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
       .then(({ data }) => {
-          setCurrUserProgress(data.progress);
-          setCurrUserNavigateUnit(data.currentUnitToNav);
+          setProgress(data.progress)
+          setNavigateUnit(data.currentUnitToNav)
+          // setCurrUserProgress(data.progress);
+          // setCurrUserNavigateUnit(data.currentUnitToNav);
           if (data.isNew === 1) {
             setDisplayModal(true);
+          }
+          //stores this value in session in case of refresh and memory is lost
+          if (!sessionStorage.getItem('user-progress')) {
+            sessionStorage.setItem('user-progress', data.currentUnitToNav)
           }
         })
         .catch((err) => {
@@ -116,20 +126,20 @@ const HomePage = ({ isLoggedIn, name }) => {
   useEffect(() => {
     if (homepageState || mainFireOn) {
       if (animationState) {
-        if (currUserProgress === 3) {
+        if (progress === 3) {
           setFireSrc(fireGifOne);
         } else {
           setFireSrc(fireGif);
         }
       } else {
-        if (currUserProgress === 3) {
+        if (progress === 3) {
           setFireSrc(fireStaticOne);
         } else {
           setFireSrc(fireStatic);
         }
       }
     }
-  }, [animationState, currUserProgress, homepageState, mainFireOn]);
+  }, [animationState, progress, homepageState, mainFireOn]);
 
   //main loading loop, fires only on first click on page
   useEffect(() => {
@@ -153,12 +163,12 @@ const HomePage = ({ isLoggedIn, name }) => {
 
   function navigateToUnit() {
     //%20 for spaces
-    axios.get(`http://localhost:8080/units/${currUserNavigateUnit}/all`)
-    // axios.get(`/.netlify/functions/units/list?currUnit=${currUserNavigateUnit}`)
+    axios.get(`http://localhost:8080/units/${navigateUnit}/all`)
+    // axios.get(`/.netlify/functions/units/list?currUnit=${navigateUnit}`)
       .then((response) => {
         //replace the spaces in the response with '%20' to match URL string, then navigate there
         const modifyUnitName = response.data[0].name.replace(" ", "%20");
-        navigate(`/unit/${modifyUnitName}/${currUserNavigateUnit}`);
+        navigate(`/unit/${modifyUnitName}/${navigateUnit}`);
       })
       .catch((err) => {
         console.log(err);
@@ -204,7 +214,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           <img src={inactiveBgBot} className="home__image--bot--off" onClick={() => handleInitialClick()}
           alt="" />
         )}
-        {currUserNavigateUnit !== 1 && homepageState ? (
+        {navigateUnit !== 1 && homepageState ? (
           <div className="resume-container">
             <button className="resume-btn" onClick={() => navigateToUnit()} aria-label = "Resume progress at most recent unit">
               <span aria-hidden = "True">Continue Journey{" "}</span>

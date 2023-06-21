@@ -5,19 +5,18 @@ import "./BotNav.scss";
 const BotNav = () => {
   const [userScrollDown, setUserScrollDown] = useState(false);
 
-  let lastScrollPosition = window.scrollY;
+  // let lastScrollPosition = window.scrollY;
 
-  window.addEventListener("scroll", (e) => {
-    const currentScrollPosition = window.scrollY;
-    if (currentScrollPosition > lastScrollPosition) {
-      // console.log('User scrolled down');
-      setUserScrollDown(true);
-    } else {
-      // console.log('User scrolled up');
-      setUserScrollDown(false);
-    }
-    lastScrollPosition = currentScrollPosition;
-  });
+  // window.addEventListener("scroll", (e) => {
+  //   const currentScrollPosition = window.scrollY;
+  //   if (currentScrollPosition > lastScrollPosition) {
+  //     setUserScrollDown(true);
+  //   } else {
+  //     // console.log('User scrolled up');
+  //     setUserScrollDown(false);
+  //   }
+  //   lastScrollPosition = currentScrollPosition;
+  // });
 
   return userScrollDown ? (
     <>

@@ -1,0 +1,62 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.resume-container-chapters {
+    width: 100%;
+    position: absolute;
+    bottom: 11.5rem;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 8;
+    animation: title-fade-in 0.2s;
+    transition: all 0.35s;
+  
+  
+    @include mobile {
+        width: initial;
+    position: fixed;
+      justify-content: flex-end;
+      bottom: 8rem;
+      transition: all 0.3s;
+    }
+  }
+  
+  .resume-btn-chapters {
+    background: transparent;
+    color: $off-white-reduced;
+    font-size: 1.5rem;
+    padding: 0.8rem 1rem 0.8rem 1.6rem;
+    border: 2px solid $turquoise;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.35s;
+  
+  
+    @include mobile {
+      background: $turquoise;
+      padding: 0.5rem 1rem 0.5rem 1.3rem;
+      color: $off-white;
+      font-size: 1.2rem;
+      border: none;
+      transition: all 0.3s;
+    }
+  
+    &:hover {
+      cursor: pointer;
+      border-right: 4px solid $off-white;
+      background-color: $turquoise;
+      letter-spacing: 0.5px;
+      padding: 0.8rem 1rem 0.8rem 1.6rem;
+      margin-left: -4px;
+      color: $off-white;
+      transition: all 0.35s;
+    }
+  }
+
+  .resume-icon {
+    font-size: 2rem;
+  }

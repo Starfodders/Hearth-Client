@@ -8,11 +8,15 @@ const ChapterButton = ({details, progress}) => {
 
   const [buttonName, setButtonName] = useState('Continue')
 
-  // useEffect(() => {
-  //   if (progress.completedChapters[0].chapter_id >= id) {
-  //     setButtonName('Review')
-  //   }
-  // }, [])
+  useEffect(() => {
+    progress.completedChapters.forEach((chapter) => {
+      if (chapter.chapter_id === id) {
+        if (chapter.units_complete === details.units) {
+          setButtonName('Review')
+        }
+      }
+    })
+  }, [])
 
     if (!overall_available) {
       return (

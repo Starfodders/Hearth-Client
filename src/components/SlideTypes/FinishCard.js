@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import ProgressContext from "../ProgressContext/ProgressContext";
+
 import "./FinishCard.scss";
 
 const FinishCard = ({ details }) => {
   const navigate = useNavigate();
+  const { setNavigateUnit } = useContext(ProgressContext);
 
   const { id, content, image, caption } = details;
   const userID = sessionStorage.getItem("userId");
@@ -12,7 +16,11 @@ const FinishCard = ({ details }) => {
     axios.patch(`http://localhost:8080/users/update/${userID}/${id}`)
     // axios.patch(`/.netlify/functions/user/update?userID=${userID}&unitID=${id}`)
     .then((response) => {
-        if (response) {
+        if (response.data !== 1) {
+          navigate(-1);
+        }
+        else {
+          setNavigateUnit(prev => prev + 1)
           navigate(-1);
         }
       })

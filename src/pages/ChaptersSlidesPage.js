@@ -1,9 +1,10 @@
 import "../styles/ChaptersPage.scss";
 import ChaptersBlock from "../components/ChaptersBlock/ChaptersBlock";
+import GoNextContent from "../components/GoNextContent/GoNextContent";
 import Loader from "../components/Loader/Loader";
 
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ChaptersSlidesPage = ({ isLoggedIn }) => {
@@ -44,6 +45,7 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
   return (
     <div>
       {isLoaded ? (
+        <>
         <ChaptersBlock
           content={initialContent}
           progress={userProgress}
@@ -51,6 +53,8 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
           level="chapters"
           destination="/home"
         />
+        <GoNextContent/>
+        </>
       ) : (
         <div className="loader__container">
         <Loader />

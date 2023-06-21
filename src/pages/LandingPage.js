@@ -70,7 +70,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
               onClick={() => setChangeLogOn((prev) => !prev)}
               className="log__button-el"
             >
-              View Changelog
+              {changeLogOn ? 'Close Changelog' : 'View Changelog'}
             </button>
           </div>
         </footer>}

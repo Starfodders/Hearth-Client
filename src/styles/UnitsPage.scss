@@ -31,7 +31,7 @@
         }
 
         @include mobile {
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 1rem 3rem;
         }
         
       }
@@ -126,14 +126,14 @@
       align-items: flex-end;
       position: fixed;
       top:auto;
-      bottom: 3rem;
+      bottom: 1rem;
       gap: 5rem;
       
     }
     
     &--el {
       @include mobile {
-        background-color: $black;
+        background-color: $background-faded;
         border-radius: 50%;
       }
 
