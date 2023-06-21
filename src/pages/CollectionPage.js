@@ -38,8 +38,8 @@ const CollectionPage = ({ isLoggedIn }) => {
     if (!savedData || !insideBlock) {
       const getData = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/collections/${userId}`)
-          // const response = await axios.get(`/.netlify/functions/collection?userID=${userId}`);
+          // const response = await axios.get(`http://localhost:8080/collections/${userId}`)
+          const response = await axios.get(`/.netlify/functions/collection?userID=${userId}`);
           setSavedData(response.data);
           if (response) {
             setIsLoaded(true);

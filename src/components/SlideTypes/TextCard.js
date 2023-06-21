@@ -12,8 +12,8 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     if (!saveState) {
       const savePage = async () => {
         try {
-          await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
-          // await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
+          // await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
+          await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
           saveFunc(true);
         } catch (err) {
           console.log(err);
@@ -24,8 +24,8 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     if (saveState) {
       const removeSavedPage = async () => {
         try {
-          await axios.delete(`http://localhost:8080/units/${userID}/${slide.id}`)
-          // await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
+          // await axios.delete(`http://localhost:8080/units/${userID}/${slide.id}`)
+          await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
           saveFunc(false);
         } catch (err) {
           console.log(err);
