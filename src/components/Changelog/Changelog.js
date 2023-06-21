@@ -1,8 +1,7 @@
 import "./Changelog.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Changelog = () => {
-  const [logOn, setLogOn] = useState(false);
 
   const patch1 = () => {
     return (
@@ -25,6 +24,8 @@ const Changelog = () => {
         <ul className="log__list">
           <li className="log__list-item">Added changelog</li>
           <li className="log__list-item">Background animation disabled</li>
+          <li className="log__list-item">Notification for account creation success added</li>
+          <li className="log__list-item">Homepage image clipping fixed</li>
           
         </ul>
       </>
@@ -32,7 +33,7 @@ const Changelog = () => {
   };
 
   const patches = [patch1, patch2];
-  const [currentPatch, setCurrentPatch] = useState(0);
+  const [currentPatch, setCurrentPatch] = useState(1);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {
@@ -48,9 +49,7 @@ const Changelog = () => {
   const PatchComponent = patches[currentPatch];
 
   return (
-    <>
-      {logOn ? (
-        <>
+    <><div className="log__bg"></div>
           <section className="log__container">
             <div className="log__nav">
               <span
@@ -71,19 +70,6 @@ const Changelog = () => {
             <PatchComponent />
           </section>
         </>
-      ) : (
-        <section className="log__container--off" aria-hidden="true"></section>
-      )}
-      <div className="log__button">
-        <button
-          onClick={() => setLogOn((prev) => !prev)}
-          className="log__button-el"
-        >
-          View Changelog
-        </button>
-      </div>
-    </>
-  );
-};
+  )}
 
 export default Changelog;

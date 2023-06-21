@@ -7,7 +7,7 @@ import ErrorIcon from "../ErrorIcon/ErrorIcon";
 import GuestSignUp from "../GuestSignUp/GuestSignUp";
 import "./SignUp.scss";
 
-const SignUp = ({ toggle, getUser }) => {
+const SignUp = ({ toggle, getUser, notif }) => {
   const [errorMessage, setErrorMessage] = useState("Error");
 
   const [isGuestSignUp, setIsGuestSignUp] = useState(false);
@@ -93,7 +93,7 @@ const SignUp = ({ toggle, getUser }) => {
   return (
     <>
       {isGuestSignUp ? (
-        <GuestSignUp toggle = {setIsGuestSignUp} resetLogin = {toggle}/>
+        <GuestSignUp toggle = {setIsGuestSignUp} resetLogin = {toggle} notif = {notif}/>
       ) : (
         <form className="sign__container" onSubmit={(e) => handleSubmit(e)} aria-hidden = "false">
           <label htmlFor="given_name" className="sign__container--label">

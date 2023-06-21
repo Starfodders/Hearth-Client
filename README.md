@@ -26,6 +26,10 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 22. Mobile Site header needs to disappear on scrolldown
 23. Pagination for beginner tutorial (maybe)
 24. Font resizing option
+25. Mobile slide scrolling buttons block the text
+26. Modify flow of content so that finishing the unit gives the option to go to next lesson
+27. Also modify the button text to better reflect the state of the unit (complete or in progress)
+28. Overhaul tutorial to take place when the piece of relevant content appears, not all at once
 
 
 ### Bugs
@@ -42,6 +46,8 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 11. Lists can repeat a suggestion, need to track which have already appeared
 12. Visual bugs tied to the sizing of the landing page image as well as the main fireplace visual
 13. Cannot alter the sound of meditation or the initial start up matchsticks on mobile, different method of adjustment
+14. Bot Nav adjusts state too much in response to scrolling, add minimum move
+15. Unclear how to navigate from Feedback/Meditation page? Improve tutorial
 
 ### API Calls
 1. (POST) Login

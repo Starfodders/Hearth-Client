@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
-const GuestSignUp = ({ toggle, resetLogin }) => {
+const GuestSignUp = ({ toggle, resetLogin, notif }) => {
   const [name, setName] = useState("");
   const [notifyExists, setNotifyExists] = useState(true);
 
@@ -28,7 +28,10 @@ const GuestSignUp = ({ toggle, resetLogin }) => {
         password: localStorage.getItem("guest-profile-pw"),
       })
       .then((response) => {
-        console.log("Guest Profile Creation Successful");
+        notif(true)
+        setTimeout(() => {
+          notif(false)
+        }, 3000)
         toggle(false);
         resetLogin();
       })

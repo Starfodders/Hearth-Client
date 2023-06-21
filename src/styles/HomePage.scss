@@ -79,7 +79,7 @@
 
       @include mobile {
         width: 170%;
-        margin-bottom: 15rem;
+        margin-bottom: 5rem;
       }
     }
 
@@ -137,7 +137,7 @@
 
 
   @include mobile {
-    bottom: 14.5rem;
+    // bottom: 14.5rem;
     transition: all 0.3s;
   }
 }
