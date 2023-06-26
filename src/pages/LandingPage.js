@@ -1,14 +1,17 @@
-import React from "react";
-import "../styles/LandingPage.scss";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { createPortal } from 'react-dom';
+
 import bgForest from "../assets/images/homepage/homeBG.png";
 import transition from "../assets/images/transitionForest.png";
 // import transitionBot from "../assets/images/transitionBottom.png"
 import transitionFire from "../assets/images/transitionFire.png";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 import Changelog from "../components/Changelog/Changelog";
+
+import "../styles/LandingPage.scss";
 
 const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const navigate = useNavigate();
@@ -44,7 +47,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
 
   return (
     <div className="wrapper">
-      {changeLogOn ? <Changelog /> : null}
+      {changeLogOn && createPortal(<Changelog/>, document.body)}
       <section className="landing__container">
         <h1
           className={postLogin ? "landing__title--disappear" : "landing__title"}

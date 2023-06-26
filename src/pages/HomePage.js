@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { createPortal } from 'react-dom';
 import { useState, useEffect, useContext } from "react";
+
+import TutorialHome from "../components/Tutorials/TutorialHome"
 
 import stokingFire from "../assets/images/homepage/fireMedium.gif";
 import noFire from "../assets/images/homepage/noFireBase1.png";
@@ -179,6 +182,7 @@ const HomePage = ({ isLoggedIn, name }) => {
     <>
       <div className="home__container">
         {displayModal ? <BeginnerModal change={setDisplayModal} /> : null}
+        {createPortal(<TutorialHome/>, document.body)}
         <div className="home__container__welcome">
           <h1 className="home__container__title">
             {homepageState ? (

@@ -1,0 +1,158 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.tutorial {
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #030b11aa;
+    z-index: 500;
+  }
+
+  &__container {
+    background-color: #030b11ee;
+    border: 3px solid $off-white;
+    z-index: 501;
+    width: 100%;
+    color: $off-white;
+    padding: 1.5rem;
+    max-width: 30rem;
+    border-radius: 4px;
+    line-height: 190%;
+    font-size: 130%;
+    text-align: center;
+    position: absolute;
+
+    @include mobile {
+      padding: 1;
+      font-size: 100%;
+      line-height: 180%;
+    }
+
+    &--welcome {
+      @extend .tutorial__container;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--botnav {
+      @extend .tutorial__container;
+      bottom: 0;
+      left: 0;
+      transform: translate(35%, -120%);
+
+      @include tablet {
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, 120%);
+      }
+
+      @include mobile {
+        transform: translate(-50%, 150%);
+      }
+    }
+
+    &--tophome {
+      @extend .tutorial__container;
+      top: 0;
+      left: 0;
+      transform: translate(60%, 105%);
+
+      @include tablet {
+        top: 20%;
+        left: 0%;
+        right: 0%;
+        transform: translate(0%, 0%);
+      }
+    }
+
+    &--options {
+        @extend .tutorial__container;
+        right: 20%;
+        top: 60%;
+        transform: translate(20%, 0%);
+        @include mobile {
+            top: 45%;
+        }
+
+    }
+  }
+
+  //stylings for all the supporting arrows
+
+  &__arrow {
+    width: 4rem;
+    position: absolute;
+
+    &--botnav {
+      @extend .tutorial__arrow;
+      bottom: 15%;
+      left: 40%;
+      transform: translate(0, -50%) rotate(90deg);
+      animation: arrow-down 1s infinite;
+    }
+
+    &--tophome {
+      @extend .tutorial__arrow;
+      top: 5%;
+      left: 47%;
+      transform: translate(0, -50%) rotate(90deg) scaleX(-1);
+      animation: arrow-up 1s infinite;
+      @include mobile {
+        left: 40%;
+      }
+    }
+
+    &--options {
+        @extend .tutorial__arrow;
+        top: 50%;
+        right: 20%;
+        animation: arrow-right 1s infinite;
+        @include mobile {
+            top: 30%;
+        }
+    }
+  }
+}
+
+@keyframes arrow-down {
+  0% {
+    transform: translateY(0) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes arrow-up {
+  0% {
+    transform: translate(0, 0) rotate(90deg) scaleX(-1);
+  }
+  50% {
+    transform: translateY(50%) rotate(90deg) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) rotate(90deg) scaleX(-1);
+  }
+}
+
+@keyframes arrow-right {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  

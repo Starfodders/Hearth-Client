@@ -79,6 +79,17 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
   //james suresh -->
 
 
-  <!-- to add: 
-  'Continue Journey' CTA
-  Create new settings/cogwheel option that contains anchor links as well as toggle options -->
+ <!-- New Tutorial
+ - Detect if user is new, each tutorial tooltip needs its own state to determine if it is 'completed'. I can just save to localStorage, easier
+ - Home page needs tutorials for bottom nav, return to homepage, log out, additional navigation options bar
+ - Chapters page needs a tutorial for chapter progression, also what the new Go To Next Button does
+ - Unit slides need tutorials for navigation, saving. Also on additional resources when needed -->
+
+ <!-- newUser? Then toggle flag and run through tooltip component? Click anywhere on screen and it moves onto next. Add this onclick to the portal's parent since it'll bubble up anyways
+
+ Using a separate component for each 'area', have this component render child Portal Modals and once they finish, save to LocalStorage and keep them closed. 
+
+ HomePage -> localStorage no item || newUser -> TutorialModals On -> createPortals on body -> TutorialModals off -> localStorage createItem
+
+ * May have to patchNew API call later, when they have successfully reached techniques to see all content
+ * or have seperate localStorage tracking for main user and guest user -->
