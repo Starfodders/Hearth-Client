@@ -60,14 +60,14 @@ const TopLogo = ({ name, login }) => {
   return (
     <div className={isScrolled ? "top__container--hidden" : "top__container"}>
       <div className="spacer"></div>
-      <Link
+      {/* <Link
         to="/home"
         className="top__link"
         aria-label="Link to Homepage"
         tabIndex={0}
-      >
-        <h2 className="top__title">Hearth</h2>
-      </Link>
+      > */}
+        <h2 className="top__title" onClick = {() => navigate('/home')}>Hearth</h2>
+      {/* </Link> */}
       <div
         className="top__profile"
         onMouseEnter={() => setMenuHover(true)}

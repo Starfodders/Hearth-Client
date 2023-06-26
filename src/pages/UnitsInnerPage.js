@@ -1,13 +1,14 @@
 import "../styles/UnitsPage.scss";
 import topwave from "../assets/images/top-wave.svg";
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { createPortal } from 'react-dom';
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";
 import FinishCard from "../components/SlideTypes/FinishCard";
 import TutorialSlide from "../components/Tutorials/TutorialSlides";
+import TutorialList from "../components/Tutorials/TutorialList";
 
 //Swiper Components
 import { register } from "swiper/element/bundle";
@@ -22,6 +23,8 @@ const UnitsPage = ({ isLoggedIn }) => {
       }
     }
   }, [isLoggedIn]);
+
+  const location = useLocation();
 
   const params = useParams();
   const { id, name } = params;
@@ -50,6 +53,8 @@ const UnitsPage = ({ isLoggedIn }) => {
   const [pageTitle, setPageTitle] = useState("Title");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+
+  const [listTutorial, setListTutorial] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -89,8 +94,15 @@ const UnitsPage = ({ isLoggedIn }) => {
     }
   }, [unitData]);
 
+  //toggle tutorial when user reaches this specific slide
+  useEffect(() => {
+    if (currentPage === 3 && location.pathname === '/unit/Basic%20DT%20II/4' && !localStorage.getItem('list-tutorial')) {
+      setListTutorial(true)
+    }
+  }, [currentPage])
+
+  //when fired, updates currentPage to the current active index
   function handleTransition() {
-    //when fired, updates currentPage to the current active index
     const activeIndex = carouselElRef.current.swiper.realIndex + 1;
     setCurrentPage(activeIndex);
   }
@@ -110,6 +122,7 @@ const UnitsPage = ({ isLoggedIn }) => {
         <img src={topwave} className="units__bg--img" alt="" />
       </div>
       {slideTutorial && createPortal(<TutorialSlide toggle = {setSlideTutorial}/>, document.body)}
+      {listTutorial && createPortal(<TutorialList toggle = {setListTutorial}/>, document.body)}
       {isCloser ? <FinishCard details={finishData} /> : null}
       <main className="units__container" aria-label="Unit Slides">
         <div

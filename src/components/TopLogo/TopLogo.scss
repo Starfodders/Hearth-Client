@@ -44,6 +44,13 @@
     justify-content: center;
     min-width: 8rem;
     color: $off-white;
+    cursor: pointer;
+
+    &:hover {
+      color: $off-white-highlighted;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
   }
 
   &__profile {

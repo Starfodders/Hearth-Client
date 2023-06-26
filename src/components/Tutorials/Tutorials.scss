@@ -4,7 +4,7 @@
 
 .tutorial {
   &__wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -169,6 +169,16 @@
         width: 2.5rem;
         margin-right: 0;
       }
+    }
+    &--resource {
+        @extend .tutorial__arrow;
+        top: 25%;
+        left: 60%;
+        animation: arrow-right 1s infinite;
+        @include tablet {
+            left: 50%;
+            width: 3rem;
+        }
     }
   }
 }
