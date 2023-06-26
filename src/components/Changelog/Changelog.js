@@ -40,6 +40,7 @@ const Changelog = () => {
         <h2 className="log__version">Version 1.2</h2>
         <ul className="log__list">
           <li className="log__list-item">New Tutorials generated at relevant times</li>
+          <li className="log__list-item">Styling updates to Hearth top icon, sign out button</li>
         </ul>
       </>
     );

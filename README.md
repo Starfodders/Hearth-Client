@@ -24,14 +24,13 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 20. Re: stat tracking, create separate user profile to handle this
 21. 😀 DONE - Website ARIA completion
 22. 😀 DONE - Mobile Site header needs to disappear on scrolldown
-23. Pagination for beginner tutorial (maybe)
-24. Font resizing option
-25. 😀 DONE - Mobile slide scrolling buttons block the text
-26. 😀 DONE - Modify flow of content so that finishing the unit gives the option to go to next lesson
-27. 😀 DONE - Also modify the button text to better reflect the state of the unit (complete or in progress)
-28. Overhaul tutorial to take place when the piece of relevant content appears, not all at once
-29. Infographic for what each unit covers
-30. Alter seed data to have text decorations for significant words
+23. Font resizing option
+24. 😀 DONE - Mobile slide scrolling buttons block the text
+25. 😀 DONE - Modify flow of content so that finishing the unit gives the option to go to next lesson
+26. 😀 DONE - Also modify the button text to better reflect the state of the unit (complete or in progress)
+27. 😀 DONE - Overhaul tutorial to take place when the piece of relevant content appears, not all at once
+28. Infographic for what each unit covers
+29. Alter seed data to have text decorations for significant words
 
 
 ### Bugs
@@ -49,7 +48,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 12. Visual bugs tied to the sizing of the landing page image as well as the main fireplace visual
 13. Cannot alter the sound of meditation or the initial start up matchsticks on mobile, different method of adjustment
 14. 😉 DISABLED - Bot Nav adjusts state too much in response to scrolling, add minimum move
-15. Unclear how to navigate from Feedback/Meditation page? Improve tutorial
+15. 😀 DONE - Unclear how to navigate from Feedback/Meditation page? Improve tutorial
 
 ### API Endpoints
 1. (POST) Login
