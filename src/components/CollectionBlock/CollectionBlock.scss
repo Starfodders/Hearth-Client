@@ -110,7 +110,7 @@
     }
     &--expand {
       padding: 1rem 0;
-      animation: slide-down 0.25s;
+      animation: slide-down 0.25s ease-in-out;
 
       @include tablet {
         font-size: 1.2rem;
@@ -171,11 +171,12 @@
 }
 
 @keyframes slide-down {
-  from {
-    transform: translateX(-50%);
+  0% {
+    transform: translateX(-10%);
     opacity: 0;
   }
-  to {
+  
+  100% {
     transform: translateX(0);
     opacity: 1;
   }

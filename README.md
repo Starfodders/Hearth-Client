@@ -30,7 +30,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 26. 😀 DONE - Also modify the button text to better reflect the state of the unit (complete or in progress)
 27. 😀 DONE - Overhaul tutorial to take place when the piece of relevant content appears, not all at once
 28. Infographic for what each unit covers
-29. Alter seed data to have text decorations for significant words
+29. 😀 DONE - Alter seed data to have text decorations for significant words
 
 
 ### Bugs

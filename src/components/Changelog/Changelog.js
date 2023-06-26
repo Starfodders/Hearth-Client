@@ -41,6 +41,7 @@ const Changelog = () => {
         <ul className="log__list">
           <li className="log__list-item">New Tutorials generated at relevant times</li>
           <li className="log__list-item">Styling updates to Hearth top icon, sign out button</li>
+          <li className="log__list-item">Added bolding for certain words throughout content for emphasis</li>
         </ul>
       </>
     );

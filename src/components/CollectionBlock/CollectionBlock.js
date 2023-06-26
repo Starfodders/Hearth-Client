@@ -52,6 +52,9 @@ const CollectionBlock = ({ type, content }) => {
 
   //truncates the text, the syntax is very confusing please don't ask me
   function shortenText(text) {
+    if (text.length <= 8) {
+      return text;
+    }
     if (text.indexOf(";") !== -1) {
       const colonIndex = text.split("").indexOf(";");
       const newShortenString =
@@ -64,9 +67,7 @@ const CollectionBlock = ({ type, content }) => {
           .join(" ") + "...";
       return newShortenString;
     }
-    if (text.length <= 8) {
-      return text;
-    }
+    
     return text.split(" ").slice(0, 8).join(" ") + "...";
   }
 
