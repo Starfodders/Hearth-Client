@@ -15,7 +15,27 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
   const [currentPlaying, setCurrentPlaying] = useState(currentListMascot);
 
   function formatContent(content) {
-    return content.split(";");
+    const paragraphs = content.split(";");
+
+    const formattedParagraphs = paragraphs.map((paragraph) => {
+      const words = paragraph.split(" ");
+
+      const formattedWords = words.map((word, index) => {
+        if (word.indexOf("|") === 0) {
+          const removeTag = word.substring(1); // Remove the '|' character
+          return (
+            <span key={index} className="content-bold">
+              {removeTag}{" "}
+            </span>
+          );
+        }
+        return word + " ";
+      });
+
+      return <>{formattedWords}</>;
+    });
+
+    return formattedParagraphs;
   }
 
   function toggleSuggestion() {

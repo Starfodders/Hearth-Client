@@ -376,6 +376,11 @@
   }
 }
 
+.content-bold {
+  font-weight: 500;
+  color: $turquoise;
+}
+
 @keyframes slide-in {
   from {
     transform: translateX(100%);

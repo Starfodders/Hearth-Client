@@ -14,8 +14,30 @@ const TechniqueCard = ({ slide, format, saveState, saveFunc, unitID, notifyChang
   const [transcriptState, setTranscriptState] = useState(false);
   const [transcriptData, setTranscriptData] = useState(null);
   const [transcriptLoaded, setTranscriptLoaded] = useState(false);
+  
+  
   function formatContent(content) {
-    return content.split(";");
+    const paragraphs = content.split(";");
+
+    const formattedParagraphs = paragraphs.map((paragraph) => {
+      const words = paragraph.split(" ");
+
+      const formattedWords = words.map((word, index) => {
+        if (word.indexOf("|") === 0) {
+          const removeTag = word.substring(1); // Remove the '|' character
+          return (
+            <span key={index} className="content-bold">
+              {removeTag}{" "}
+            </span>
+          );
+        }
+        return word + " ";
+      });
+
+      return <>{formattedWords}</>;
+    });
+
+    return formattedParagraphs;
   }
   
   //toggles transcript on and off which also renders specific content below the card

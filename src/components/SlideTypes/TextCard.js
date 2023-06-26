@@ -15,7 +15,9 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
       const savePage = async () => {
         try {
           // await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
-          await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
+          await axios.post(
+            `/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`
+          );
           saveFunc(true);
         } catch (err) {
           console.log(err);
@@ -27,7 +29,9 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
       const removeSavedPage = async () => {
         try {
           // await axios.delete(`http://localhost:8080/units/${userID}/${slide.id}`)
-          await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
+          await axios.delete(
+            `/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`
+          );
           saveFunc(false);
         } catch (err) {
           console.log(err);
@@ -37,8 +41,30 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
     }
   }
 
+  //also need to apply a bold effect to any word with '|'
+
   function formatContent(content) {
-    return content.split(";");
+    const paragraphs = content.split(";");
+
+    const formattedParagraphs = paragraphs.map((paragraph) => {
+      const words = paragraph.split(" ");
+
+      const formattedWords = words.map((word, index) => {
+        if (word.indexOf("|") === 0) {
+          const removeTag = word.substring(1); // Remove the '|' character
+          return (
+            <span key={index} className="content-bold">
+              {removeTag}{" "}
+            </span>
+          );
+        }
+        return word + " ";
+      });
+
+      return <>{formattedWords}</>;
+    });
+
+    return formattedParagraphs;
   }
 
   return (
@@ -51,17 +77,21 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
           <p className="slide__type">{format(type)} Card</p>
         </div>
         <div className="slide__container__top--right">
-        {slide.links ? <a href={`${process.env.PUBLIC_URL}/pdfs/${slide.links}.pdf`} target="_blank" rel="noreferrer">
+          {slide.links ? (
+            <a
+              href={`${process.env.PUBLIC_URL}/pdfs/${slide.links}.pdf`}
+              target="_blank"
+              rel="noreferrer"
+            >
               <img
                 src={resourceIcon}
                 className="resource-link"
                 alt="Interact to Access External Resource For Current Unit Content"
               />
-            </a> : <img
-                src={resourceIconOff}
-                className="resource-link-off"
-                alt=""
-              />}
+            </a>
+          ) : (
+            <img src={resourceIconOff} className="resource-link-off" alt="" />
+          )}
           <img
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}
@@ -76,8 +106,8 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
       </div>
       <div className="slide__container__middle">
         {title && <h1 className="slide__title">{title}</h1>}
-        {formatContent(content).map((paragraph) => (
-          <p className="slide__content" key={paragraph}>
+        {formatContent(content).map((paragraph, index) => (
+          <p className="slide__content" key={index}>
             {paragraph}
           </p>
         ))}
