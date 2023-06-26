@@ -3,7 +3,7 @@ import TutorialSlide from "./TutorialSlide";
 import arrow from "../../assets/icons/tutorialArrow.svg";
 import { useState } from "react";
 
-const TutorialHome = () => {
+const TutorialHome = ({toggle}) => {
   const Modal1 = () => {
     return (
       <TutorialSlide
@@ -55,6 +55,10 @@ const TutorialHome = () => {
     if (currentModal !== modals.length - 1) {
       setCurrentModal((prev) => prev + 1);
     }
+    else {
+        toggle(false)
+        localStorage.setItem('home-tutorial', true)
+    }
   };
 
   return (
@@ -66,4 +70,3 @@ const TutorialHome = () => {
 
 export default TutorialHome;
 
-//will run through four sets of tutorial modals, loaded incrementally

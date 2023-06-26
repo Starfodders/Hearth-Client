@@ -1,13 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./TopLogo.scss";
 
 const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
+  // const location = useLocation();
+  // console.log(location);
 
-  const [isScrolled, setIsScrolled] = useState(false); 
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const [mobileWindow, setMobileWindow] = useState(
     window.innerWidth <= 425 ? true : false
@@ -31,24 +33,39 @@ const TopLogo = ({ name, login }) => {
     const handleScroll = () => {
       const scrollThreshold = window.innerHeight * 0.1; // Calculate 10% of the viewport height
       const currentScrollPos = window.pageYOffset;
-  
+
       setIsScrolled(currentScrollPos > scrollThreshold);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   function handleLogOut() {
     sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("user-progress");
     login(false);
     navigate("/");
   }
+  
+  // const toggleHelp = () => {
+  //   if (location.pathname === '/home') {
+  //     localStorage.removeItem('home-tutorial')
+  //   }
+  //   else {
+  //     return
+  //   }
+  // }
 
   return (
-    <div className={isScrolled ? "top__container--hidden": "top__container"}>
+    <div className={isScrolled ? "top__container--hidden" : "top__container"}>
       <div className="spacer"></div>
-      <Link to="/home" className="top__link" aria-label = "Link to Homepage" tabIndex={0}>
+      <Link
+        to="/home"
+        className="top__link"
+        aria-label="Link to Homepage"
+        tabIndex={0}
+      >
         <h2 className="top__title">Hearth</h2>
       </Link>
       <div
@@ -58,7 +75,11 @@ const TopLogo = ({ name, login }) => {
       >
         <div className="top__profile__preview">
           <div className="top__profile__primary">
-            <span className="material-symbols-outlined top__icon" aria-hidden = 'true'>
+            {/* <span className="material-symbols-outlined" aria-label = "toggle help" onClick = {() => toggleHelp()}>help</span> */}
+            <span
+              className="material-symbols-outlined top__icon"
+              aria-hidden="true"
+            >
               account_circle
             </span>
             <p className={mobileWindow ? "top__name--hidden" : "top__name"}>
@@ -67,7 +88,10 @@ const TopLogo = ({ name, login }) => {
           </div>
           {menuHover ? (
             <div className="top__profile__opened">
-              <span className="material-symbols-outlined logout-icon" aria-hidden='true'>
+              <span
+                className="material-symbols-outlined logout-icon"
+                aria-hidden="true"
+              >
                 logout
               </span>
               <p className="top__signout" onClick={() => handleLogOut()}>

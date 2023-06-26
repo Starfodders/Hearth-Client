@@ -54,6 +54,8 @@ const HomePage = ({ isLoggedIn, name }) => {
     sessionStorage.getItem("homepageState")
   );
   const [displayModal, setDisplayModal] = useState(false);
+  const [homeTutorial, setHomeTutorial] = useState(false);
+
   function handleInitialClick() {
     if (!homepageState) {
       setFireOn(true);
@@ -68,10 +70,11 @@ const HomePage = ({ isLoggedIn, name }) => {
       .then(({ data }) => {
           setProgress(data.progress)
           setNavigateUnit(data.currentUnitToNav)
-          // setCurrUserProgress(data.progress);
-          // setCurrUserNavigateUnit(data.currentUnitToNav);
-          if (data.isNew === 1) {
-            setDisplayModal(true);
+          // if (data.isNew === 1) {
+          //   setDisplayModal(true);
+          // }
+          if (!localStorage.getItem('home-tutorial')) {
+            setHomeTutorial(true)
           }
           //stores this value in session in case of refresh and memory is lost
           if (!sessionStorage.getItem('user-progress')) {
@@ -182,7 +185,7 @@ const HomePage = ({ isLoggedIn, name }) => {
     <>
       <div className="home__container">
         {displayModal ? <BeginnerModal change={setDisplayModal} /> : null}
-        {createPortal(<TutorialHome/>, document.body)}
+        {homeTutorial && createPortal(<TutorialHome toggle = {setHomeTutorial}/>, document.body)}
         <div className="home__container__welcome">
           <h1 className="home__container__title">
             {homepageState ? (
@@ -238,7 +241,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           setTutorial = {setDisplayModal}
         />
       ) : null}
-      {homepageState ? <BotNav /> : null}
+      {homepageState && <BotNav />}
     </>
   );
 };

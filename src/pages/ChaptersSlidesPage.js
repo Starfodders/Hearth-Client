@@ -1,11 +1,14 @@
 import "../styles/ChaptersPage.scss";
 import ChaptersBlock from "../components/ChaptersBlock/ChaptersBlock";
 import GoNextContent from "../components/GoNextContent/GoNextContent";
+
 import Loader from "../components/Loader/Loader";
 
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
+import { createPortal } from 'react-dom';
 import { useNavigate } from "react-router-dom";
+import TutorialChapters from "../components/Tutorials/TutorialChapters";
 
 const ChaptersSlidesPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialContent, setInitialContent] = useState(null);
   const [userProgress, setUserProgress] = useState(null);
+  const [chaptersTutorial, setChaptersTutorial] = useState(false)
   const currentUser = sessionStorage.getItem("userId");
 
   //handles initial content which is overall chapters
@@ -35,6 +39,9 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
         setInitialContent(chapterData.data);
         setUserProgress(currentProgress.data.userProgress);
         setIsLoaded(true);
+        if (!localStorage.getItem('chapters-tutorial')) {
+          setChaptersTutorial(true)
+        }
       } catch (error) {
         console.log(error + "Error retrieving chapter data");
       }
@@ -46,6 +53,7 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
     <div>
       {isLoaded ? (
         <>
+        {chaptersTutorial && createPortal(<TutorialChapters toggle = {setChaptersTutorial}/>, document.body)}
         <ChaptersBlock
           content={initialContent}
           progress={userProgress}

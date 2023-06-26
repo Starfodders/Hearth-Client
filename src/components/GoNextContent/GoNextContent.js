@@ -16,8 +16,8 @@ const GoNextContent = () => {
     }, [])
 
   function navigateToUnit() {
-    //   axios.get(`http://localhost:8080/units/${navigateUnit}/all`)
-      axios.get(`/.netlify/functions/units/list?currUnit=${navigateUnit}`)
+      axios.get(`http://localhost:8080/units/${navigateUnit}/all`)
+      // axios.get(`/.netlify/functions/units/list?currUnit=${navigateUnit}`)
         .then((response) => {
           const modifyUnitName = response.data[0].name.replace(" ", "%20");
           navigate(`/unit/${modifyUnitName}/${navigateUnit}`);

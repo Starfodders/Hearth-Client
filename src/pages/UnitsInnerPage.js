@@ -2,10 +2,12 @@ import "../styles/UnitsPage.scss";
 import topwave from "../assets/images/top-wave.svg";
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { createPortal } from 'react-dom';
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";
 import FinishCard from "../components/SlideTypes/FinishCard";
+import TutorialSlide from "../components/Tutorials/TutorialSlides";
 
 //Swiper Components
 import { register } from "swiper/element/bundle";
@@ -29,6 +31,7 @@ const UnitsPage = ({ isLoggedIn }) => {
   const forwardElRef = useRef(null);
 
   const [isCloser, setIsCloser] = useState(false);
+  const [slideTutorial, setSlideTutorial] = useState(false)
 
   function handleForward() {
     carouselElRef.current.swiper.slideNext();
@@ -66,6 +69,9 @@ const UnitsPage = ({ isLoggedIn }) => {
         setUnitData(unitResponse.data);
         setUnitSavedData(savedResponse.data);
         setFinishData(finishData.data);
+        if (!localStorage.getItem('slide-tutorial')) {
+          setSlideTutorial(true)
+        }
       } catch (err) {
         console.log(err + " Error retrieving unit data");
       }
@@ -98,10 +104,12 @@ const UnitsPage = ({ isLoggedIn }) => {
   }
 
   return (
+
     <div className="wrapper">
       <div className="units__bg">
         <img src={topwave} className="units__bg--img" alt="" />
       </div>
+      {slideTutorial && createPortal(<TutorialSlide toggle = {setSlideTutorial}/>, document.body)}
       {isCloser ? <FinishCard details={finishData} /> : null}
       <main className="units__container" aria-label="Unit Slides">
         <div

@@ -33,9 +33,7 @@
       &--left {
         @extend .slide__container;
         width: 65%;
-        @include desktop {
-          padding: 2rem;
-        }
+        padding: 2rem;
         @include tablet {
           padding: 1rem;
         }

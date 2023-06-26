@@ -137,7 +137,7 @@ const Options = ({
                   arrow_right_alt
                 </span>
                 <p className="options__credits--text" aria-hidden="true">
-                  Open Tutorial
+                  Open Help Panel
                 </p>
               </div>
             </section>

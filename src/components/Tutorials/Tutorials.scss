@@ -72,14 +72,33 @@
     }
 
     &--options {
-        @extend .tutorial__container;
-        right: 20%;
-        top: 60%;
-        transform: translate(20%, 0%);
-        @include mobile {
-            top: 45%;
-        }
+      @extend .tutorial__container;
+      right: 20%;
+      top: 60%;
+      transform: translate(20%, 0%);
+      @include mobile {
+        top: 45%;
+      }
+    }
+    &--navigate {
+      @extend .tutorial__container--welcome;
+      top: 70%;
 
+      @include mobile {
+        top: 60%;
+      }
+    }
+    &--save {
+      @extend .tutorial__container;
+      right: 5rem;
+      top: 0%;
+      @include tablet {
+        right: 0;
+      }
+      @include mobile {
+        top: 2%;
+        right: 0;
+      }
     }
   }
 
@@ -109,13 +128,47 @@
     }
 
     &--options {
-        @extend .tutorial__arrow;
-        top: 50%;
-        right: 20%;
-        animation: arrow-right 1s infinite;
-        @include mobile {
-            top: 30%;
-        }
+      @extend .tutorial__arrow;
+      top: 50%;
+      right: 20%;
+      animation: arrow-right 1s infinite;
+      @include mobile {
+        top: 30%;
+      }
+    }
+    &--navigate-left {
+      @extend .tutorial__arrow;
+      top: 40%;
+      left: 25%;
+      transform: scaleX(-1);
+      animation: arrow-left 1s infinite;
+      @include mobile {
+        animation: arrow-down 1s infinite;
+        top: 80%;
+      }
+    }
+    &--navigate-right {
+      @extend .tutorial__arrow;
+      top: 40%;
+      right: 25%;
+      animation: arrow-right 1s infinite;
+      @include mobile {
+        top: 80%;
+        animation: arrow-down 1s infinite;
+      }
+    }
+    &--save {
+      @extend .tutorial__arrow;
+      top: 15%;
+      right: 20%;
+      animation: arrow-left-2 1s infinite;
+      margin-top: 3rem;
+      margin-right: 5rem;
+      @include mobile {
+        margin-top: 4rem;
+        width: 2.5rem;
+        margin-right: 0;
+      }
     }
   }
 }
@@ -145,14 +198,36 @@
 }
 
 @keyframes arrow-right {
-    0% {
-      transform: translate(0, 0);
-    }
-    50% {
-      transform: translateX(50%);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
   }
-  
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes arrow-left {
+  0% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+  50% {
+    transform: translateX(-50%) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+}
+@keyframes arrow-left-2 {
+  0% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+}

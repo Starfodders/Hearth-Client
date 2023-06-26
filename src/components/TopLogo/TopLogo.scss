@@ -86,17 +86,24 @@
 
     &__opened {
       color: $off-white;
+      min-width: 200px;
       background-color: $background-faded;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       z-index: -5;
       gap: 0.5rem;
       position: absolute;
-      right: 3rem;
       top: 0em;
-      padding: 3.5rem 0.5rem 1rem;
+      margin: 3.5rem 0rem 1rem;
+      padding: 0.5rem;
       @include mobile {
         right: 0;
+      }
+
+      &:hover{
+        background-color: $black;
+        transition: all 0.3s;
+
       }
       
     }

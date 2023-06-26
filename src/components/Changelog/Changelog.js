@@ -34,9 +34,19 @@ const Changelog = () => {
       </>
     );
   };
+  const patch3 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.2</h2>
+        <ul className="log__list">
+          <li className="log__list-item">New Tutorials generated at relevant times</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2];
-  const [currentPatch, setCurrentPatch] = useState(1);
+  const patches = [patch1, patch2, patch3];
+  const [currentPatch, setCurrentPatch] = useState(2);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {

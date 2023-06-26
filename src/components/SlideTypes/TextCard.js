@@ -2,6 +2,8 @@ import "../UnitSlide/UnitSlide.scss";
 import savedOff from "../../assets/icons/savedEmpty.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
 import axios from "axios";
+import resourceIcon from "../../assets/icons/access-resource.svg";
+import resourceIconOff from "../../assets/icons/access-resource-none.svg";
 // import textIcon from "../../assets/icons/textIcon.svg";
 
 const TextCard = ({ slide, format, saveState, saveFunc }) => {
@@ -48,7 +50,18 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
           </span>
           <p className="slide__type">{format(type)} Card</p>
         </div>
-        <div className="slide__top--right">
+        <div className="slide__container__top--right">
+        {slide.links ? <a href={`${process.env.PUBLIC_URL}/pdfs/${slide.links}.pdf`} target="_blank" rel="noreferrer">
+              <img
+                src={resourceIcon}
+                className="resource-link"
+                alt="Interact to Access External Resource For Current Unit Content"
+              />
+            </a> : <img
+                src={resourceIconOff}
+                className="resource-link-off"
+                alt=""
+              />}
           <img
             src={saveState ? savedOn : savedOff}
             className={saveState ? "units__saved" : "units__saved--off"}
@@ -62,7 +75,7 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
         </div>
       </div>
       <div className="slide__container__middle">
-        <h1 className="slide__title">{title}</h1>
+        {title && <h1 className="slide__title">{title}</h1>}
         {formatContent(content).map((paragraph) => (
           <p className="slide__content" key={paragraph}>
             {paragraph}
