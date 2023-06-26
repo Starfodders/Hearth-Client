@@ -27,10 +27,10 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
     const getChapters = async () => {
       try {
         const [chapterData, currentProgress] = await Promise.all([
-          // axios.get(`http://localhost:8080/chapters/${currentUser}`),
-          // axios.get(`http://localhost:8080/users/progress/${currentUser}`),
-          axios.get(`/.netlify/functions/chapters?userID=${currentUser}`),
-          axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`),
+          axios.get(`http://localhost:8080/chapters/${currentUser}`),
+          axios.get(`http://localhost:8080/users/progress/${currentUser}`),
+          // axios.get(`/.netlify/functions/chapters?userID=${currentUser}`),
+          // axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`),
         ]);
         setInitialContent(chapterData.data);
         setUserProgress(currentProgress.data.userProgress);

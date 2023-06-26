@@ -31,6 +31,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 27. 😀 DONE - Also modify the button text to better reflect the state of the unit (complete or in progress)
 28. Overhaul tutorial to take place when the piece of relevant content appears, not all at once
 29. Infographic for what each unit covers
+30. Alter seed data to have text decorations for significant words
 
 
 ### Bugs
@@ -50,7 +51,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 14. 😉 DISABLED - Bot Nav adjusts state too much in response to scrolling, add minimum move
 15. Unclear how to navigate from Feedback/Meditation page? Improve tutorial
 
-### API Calls
+### API Endpoints
 1. (POST) Login
 2. (POST) Guest Login
 3. (POST) Sign Up
