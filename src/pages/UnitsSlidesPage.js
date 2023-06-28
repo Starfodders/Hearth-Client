@@ -32,17 +32,17 @@ const UnitsSlidesPage = ({ isLoggedIn }) => {
       const getUnitDetails = async () => {
         try {
           const [unitData, currentProgress] = await Promise.all([
-            // axios.get(
-            //   `http://localhost:8080/chapters/units/${currentUser}/${sectionID}`
-            // ),
-            // axios.get(`http://localhost:8080/users/progress/${currentUser}`),
-            axios.get(`/.netlify/functions/chapters/units`, {
-              params: {
-                userID: currentUser,
-                sectionID: sectionID
-              }
-            }),
-            axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`)
+            axios.get(
+              `http://localhost:8080/chapters/units/${currentUser}/${sectionID}`
+            ),
+            axios.get(`http://localhost:8080/users/progress/${currentUser}`),
+          //   axios.get(`/.netlify/functions/chapters/units`, {
+          //     params: {
+          //       userID: currentUser,
+          //       sectionID: sectionID
+          //     }
+          //   }),
+          //   axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`)
           ]);
           setContentToLoad(unitData.data);
           setContentTitle(unitData.data[0].title);
