@@ -49,7 +49,7 @@ const CollectionItem = ({ type, content, shorten, expand }) => {
     <div className="block__center--text">
       {expand ? (
         <>
-          {formatContent(content.content).map((paragraph)=>  <p className="block__content--expand" key ={paragraph}>{paragraph}</p>)}
+          {formatContent(content.content).map((paragraph, index)=>  <p className="block__content--expand" key ={index}>{paragraph}</p>)}
           {isList ? <CollectionExpandList content = {content}/> : null }
           {isTechnique && content.transcript === '1' ? <CollectionExpandTech content = {content}/> : null }
         </>

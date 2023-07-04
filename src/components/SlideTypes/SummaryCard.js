@@ -105,8 +105,8 @@ const SummaryCard = ({ slide, format, saveState, saveFunc }) => {
       <h1 className="slide__title" aria-label={title}>
         {title}
       </h1>
-      {formatContent(content).map((paragraph) => (
-        <p className="slide__content" key={paragraph}>
+      {formatContent(content).map((paragraph, index) => (
+        <p className="slide__content" key={index}>
           {paragraph}
         </p>
       ))}

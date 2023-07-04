@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 const ListCard = ({ slide, format, saveState, saveFunc }) => {
   const { content, title, type, list, images } = slide;
+  // console.log(images);
 
   const [currentSuggestion, setCurrentSuggestion] = useState(null);
   const [currentListMascot, setCurrentListMascot] = useState(null);
@@ -67,8 +68,8 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
     if (!saveState) {
       const savePage = async () => {
         try {
-          // await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
-          await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
+          await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
+          // await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
           saveFunc(true);
         } catch (err) {
           console.log(err);
@@ -79,8 +80,8 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
     if (saveState) {
       const removeSavedPage = async () => {
         try {
-          // await axios.delete(`http://localhost:8080/units/${userID}/${slide.id}`)
-          await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
+          await axios.delete(`http://localhost:8080/units/${userID}/${slide.id}`)
+          // await axios.delete(`/.netlify/functions/units/unsave?userID=${userID}&slideID=${slide.id}`);
           saveFunc(false);
         } catch (err) {
           console.log(err);
@@ -119,8 +120,8 @@ const ListCard = ({ slide, format, saveState, saveFunc }) => {
           </div>
         </div>
         {title !== "null" ? <h1 className="slide__title">{title}</h1> : null}
-        {formatContent(content).map((paragraph) => (
-          <p className="slide__content" key={paragraph}>
+        {formatContent(content).map((paragraph, index) => (
+          <p className="slide__content" key={index}>
             {paragraph}
           </p>
         ))}

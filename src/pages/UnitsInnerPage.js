@@ -89,8 +89,6 @@ const UnitsPage = ({ isLoggedIn }) => {
       setTotalPages(unitData.length);
       setPageLoaded(true);
       setPageTitle(name);
-      // console.log(unitData);
-      // console.log(unitSavedData);
     }
   }, [unitData]);
 
@@ -183,7 +181,7 @@ const UnitsPage = ({ isLoggedIn }) => {
             const isActiveSlide = index === currentPage - 1;
             return (
               <swiper-slide
-                key={index}
+                key={slide.page_number}
                 aria-hidden={!isActiveSlide || isCloser}
               >
                 <UnitSlide

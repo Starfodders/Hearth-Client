@@ -146,8 +146,8 @@ const Login = ({
 
   function handleGuestLogin() {
     if (guestProfile) {
-      // axios.post('http://localhost:8080/users/login', {
-      axios.post(`/.netlify/functions/user/login`, {
+      axios.post('http://localhost:8080/users/login', {
+      // axios.post(`/.netlify/functions/user/login`, {
           email: localStorage.getItem("guest-profile-id"),
           password: localStorage.getItem("guest-profile-pw"),
         })

@@ -55,14 +55,15 @@ const Transcript = ({ text }) => {
     return <Loader />;
   }
 
-  console.log(text.content);
-
   return (
     <div className="transcript__container">
       {text.audio ? (
         <div className="transcript__audio">
           {voiceoverObject.length > 0 && (
-            <audio src={require(`../../assets/transcript/${text.audio}.mp3`)} ref={audioRef} />
+            <audio
+              src={require(`../../assets/transcript/${text.audio}.mp3`)}
+              ref={audioRef}
+            />
           )}
           <div className="transcript__buttons">
             <div className="transcript__buttons__block">
@@ -97,7 +98,7 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el--off"
                 }
                 onClick={() => handleVolumeUp(audioRef)}
-                aria-label = "Increase volume by 1 increment"
+                aria-label="Increase volume by 1 increment"
               >
                 <span aria-hidden="true">add</span>
               </span>
@@ -108,8 +109,7 @@ const Transcript = ({ text }) => {
                     : "material-symbols-outlined button-el--off"
                 }
                 onClick={() => handleVolumeDown(audioRef)}
-                aria-label = "Decrease volume by 1 increment"
-
+                aria-label="Decrease volume by 1 increment"
               >
                 <span aria-hidden="true">remove</span>
               </span>
@@ -130,7 +130,9 @@ const Transcript = ({ text }) => {
           </p>
         );
       })} */}
-      {text.content.split(';').map((paragraph) => <p className="transcript__paragraph">{paragraph}</p>)}
+      {text.content.split(";").map((paragraph, index) => (
+        <p className="transcript__paragraph" key = {index}>{paragraph}</p>
+      ))}
     </div>
   );
 };

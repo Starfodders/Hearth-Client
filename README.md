@@ -31,6 +31,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 27. 😀 DONE - Overhaul tutorial to take place when the piece of relevant content appears, not all at once
 28. Infographic for what each unit covers
 29. 😀 DONE - Alter seed data to have text decorations for significant words
+30. May need to redo guest log in to be more apparent/immediate for people who want to get into the App instantly
 
 
 ### Bugs
@@ -49,6 +50,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 13. Cannot alter the sound of meditation or the initial start up matchsticks on mobile, different method of adjustment
 14. 😉 DISABLED - Bot Nav adjusts state too much in response to scrolling, add minimum move
 15. 😀 DONE - Unclear how to navigate from Feedback/Meditation page? Improve tutorial
+16. Radical Acceptance Worksheet (Advanced TD II) links to the entire workbook, not the single sheet
 
 ### API Endpoints
 1. (POST) Login
