@@ -1,5 +1,6 @@
 import "./CollectionBlock.scss";
 import CollectionItem from "../CollectionItem/CollectionItem";
+import CollectionCategory from "./CollectionCategory";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,6 +13,12 @@ const CollectionBlock = ({ type, content }) => {
   //filter content depending on which saved data user is accessing
   const [filteredContent, setFilteredContent] = useState([]);
   const [contentLoad, setContentLoad] = useState(false);
+
+  const [introLoad, setIntroLoad] = useState(false)
+  const [DTLoad, setDTLoad] = useState(false)
+  const [MFLoad, setMFLoad] = useState(false)
+  const [ERLoad, setERLoad] = useState(false)
+  const [IELoad, setIELoad] = useState(false)
 
   useEffect(() => {
     if (type) {
@@ -90,8 +97,8 @@ const CollectionBlock = ({ type, content }) => {
   }
 
   function handleDelete(id) {
-    // axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
-    axios.delete(`/.netlify/functions/units/unsave?userID=${sessionStorage.getItem("userId")}&slideID=${id}`)
+    axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
+    // axios.delete(`/.netlify/functions/units/unsave?userID=${sessionStorage.getItem("userId")}&slideID=${id}`)
       .then((response) => {
         if (response.status === 204) {
           setFilteredContent(filteredContent.filter((item) => item.id !== id));
@@ -112,9 +119,28 @@ const CollectionBlock = ({ type, content }) => {
     );
   }
 
+  //Array to track if a unit in a specific chapter is saved, if so, render a unique component
+  const renderedChapters = [];
+
   return (
     <>
-      {filteredContent.map((page, index) => {
+    {/* <CollectionCategory content = {filteredContent}/> */}
+    {filteredContent.map((page, index) => {
+      if (page.unit_id <= 2 && !renderedChapters.includes('intro')) {
+        renderedChapters.push('intro')
+        return <CollectionCategory chapter = 'intro' key = {index} content = {filteredContent}/>
+      }
+      if (page.unit_id > 2 && page.unit_id <= 10 && !renderedChapters.includes('DT')) {
+        renderedChapters.push('DT')
+        return <CollectionCategory chapter = 'DT' key = {index} content = {filteredContent}/>
+      }
+      if (page.unit_id > 10 && page.unit_id <= 18 && !renderedChapters.includes('MF')) {
+        renderedChapters.push('MF')
+        return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent}/>
+      }
+      return null
+    })}
+      {/* {filteredContent.map((page, index) => {
         return (
           <div className="block__container" key={page.id} aria-label = {`${type} number ${index + 1}`}>
             <div className="block__left">
@@ -151,9 +177,16 @@ const CollectionBlock = ({ type, content }) => {
             </div>
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };
 
 export default CollectionBlock;
+
+//Specific category is selected, it renders CollectionBlock
+//Displays a component that has the specific chapters categorized for easier access
+//Only render the chapter component if the user has something saved there
+
+//get data, filter the data, generate components
+//if within filteredContent, there are units within certain chapters, create specific component for this
