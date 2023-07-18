@@ -154,11 +154,20 @@
     z-index: 10;
     object-fit: contain;
     filter: drop-shadow(0 1px 1px black);
+    min-width: 50px;
+
+    @include mobile {
+      width: 15%;
+    }
   }
 
   &__total {
     font-size: 1.4rem;
     margin: 0.3rem 0 0 1rem;
+    @include mobile {
+      font-size: 1.1rem;
+      margin: 0.1rem 0 0;
+    }
   }
 
   &__results {

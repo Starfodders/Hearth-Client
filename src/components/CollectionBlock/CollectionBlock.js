@@ -1,14 +1,10 @@
 import "./CollectionBlock.scss";
-import CollectionItem from "../CollectionItem/CollectionItem";
 import CollectionCategory from "./CollectionCategory";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Loader from "../Loader/Loader";
 
 const CollectionBlock = ({ type, content }) => {
-  //init a state var, object full of expand false equal to the content length
-  const [blocks, setBlocks] = useState(content.map(() => ({ expand: false })));
 
   //filter content depending on which saved data user is accessing
   const [filteredContent, setFilteredContent] = useState([]);
@@ -57,12 +53,6 @@ const CollectionBlock = ({ type, content }) => {
     }
   }, [content, type]);
 
-
-  //formats the title to remove 'card' from text
-  function shortenTitle(title) {
-    return title.split(" ").slice(0, -1);
-  }
-
   //passes block's index, takes the current state of blocks, maps over it. If index matches clicked index, reverse the state
   //OLD CODE, KEEP IN CASE BUT NOT BEING USED RIGHT NOW
   // function handleTextExpand(index) {
@@ -77,20 +67,6 @@ const CollectionBlock = ({ type, content }) => {
   //   });
   // }
 
-  function handleDelete(id) {
-    axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
-    // axios.delete(`/.netlify/functions/units/unsave?userID=${sessionStorage.getItem("userId")}&slideID=${id}`)
-      .then((response) => {
-        if (response.status === 204) {
-          setFilteredContent(filteredContent.filter((item) => item.id !== id));
-          setBlocks(content.map(() => ({ expand: false })));
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   if (!contentLoad) {
     return (
       <div className="loader__wrapper">
@@ -102,6 +78,8 @@ const CollectionBlock = ({ type, content }) => {
 
   //Array to track if a unit in a specific chapter is saved, if so, render a unique component
   const renderedChapters = [];
+
+  //Sort to mutate array to always have the order remain consistent
   filteredContent.sort((a, b) => a.unit_id - b.unit_id)
 
   return (
