@@ -102,6 +102,7 @@ const CollectionBlock = ({ type, content }) => {
 
   //Array to track if a unit in a specific chapter is saved, if so, render a unique component
   const renderedChapters = [];
+  filteredContent.sort((a, b) => a.unit_id - b.unit_id)
 
   return (
     <>
@@ -120,53 +121,8 @@ const CollectionBlock = ({ type, content }) => {
       }
       return null
     })}
-      {/* {filteredContent.map((page, index) => {
-        return (
-          <div className="block__container" key={page.id} aria-label = {`${type} number ${index + 1}`}>
-            <div className="block__left">
-              <span
-                className="material-symbols-outlined block__delete"
-                onClick={() => handleDelete(page.id)}
-                aria-label = "Delete saved card"
-              >
-                <span aria-hidden="true">delete</span>
-              </span>
-            </div>
-            <div className="block__center">
-              <p
-                className="block__title"
-                onClick={() => handleTextExpand(index)}
-              >
-                {page.title}
-              </p>
-              <CollectionItem
-                type={type}
-                content={page}
-                shorten={shortenText}
-                expand={blocks[index].expand}
-              />
-            </div>
-            <div
-              className="block__expand"
-              onClick={() => handleTextExpand(index)}
-              aria-label = "Interact to expand card"
-            >
-              <span className="material-symbols-outlined block__expand--btn">
-                <span aria-hidden = "true">unfold_more</span>
-              </span>
-            </div>
-          </div>
-        );
-      })} */}
     </>
   );
 };
 
 export default CollectionBlock;
-
-//Specific category is selected, it renders CollectionBlock
-//Displays a component that has the specific chapters categorized for easier access
-//Only render the chapter component if the user has something saved there
-
-//get data, filter the data, generate components
-//if within filteredContent, there are units within certain chapters, create specific component for this
