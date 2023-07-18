@@ -3,7 +3,9 @@ import CollectionExpandList from "../CollectionExpand/CollectionExpandList";
 import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
 
-const CollectionItem = ({ type, content, shorten, expand }) => {
+const CollectionItem = ({ page, shorten, expand }) => {
+
+  const { type, content } = page
 
   function formatContent(content) {
     const paragraphs = content.split(";");
@@ -28,6 +30,28 @@ const CollectionItem = ({ type, content, shorten, expand }) => {
 
     return formattedParagraphs;
   }
+
+   //truncates the text, the syntax is very confusing please don't ask me
+   function shortenText(text) {
+    if (text.length <= 8) {
+      return text;
+    }
+    if (text.indexOf(";") !== -1) {
+      const colonIndex = text.split("").indexOf(";");
+      const newShortenString =
+        text
+          .split("")
+          .splice(0, colonIndex)
+          .join("")
+          .split(" ")
+          .slice(0, 8)
+          .join(" ") + "...";
+      return newShortenString;
+    }
+    
+    return text.split(" ").slice(0, 8).join(" ") + "...";
+  }
+  
 
   const [isList, setIsList] = useState(false)
   const [isTechnique, setIsTechnique] = useState(false)
@@ -54,7 +78,7 @@ const CollectionItem = ({ type, content, shorten, expand }) => {
           {isTechnique && content.transcript === '1' ? <CollectionExpandTech content = {content}/> : null }
         </>
       ) : (
-        <p className="block__content">{shorten(content.content)}</p>
+        <p className="block__content">{shortenText(content)}</p>
       )}
     </div>
   );

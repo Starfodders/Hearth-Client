@@ -124,7 +124,6 @@ const CollectionBlock = ({ type, content }) => {
 
   return (
     <>
-    {/* <CollectionCategory content = {filteredContent}/> */}
     {filteredContent.map((page, index) => {
       if (page.unit_id <= 2 && !renderedChapters.includes('intro')) {
         renderedChapters.push('intro')
