@@ -129,6 +129,7 @@
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
+    animation: slide-in 0.5s forwards;
   }
 
   &__left {
@@ -158,6 +159,17 @@
   &__total {
     font-size: 1.4rem;
     margin: 0.3rem 0 0 1rem;
+  }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--on  {
+      @extend .subchapter__results;
+      margin-bottom: 3rem;
+    }
   }
 
   &__expand {

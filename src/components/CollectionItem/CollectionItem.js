@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import CollectionExpandList from "../CollectionExpand/CollectionExpandList";
 import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
+const CollectionItem = ({ page, deletePage }) => {
+  const { type, content } = page;
 
-const CollectionItem = ({ page, shorten, expand }) => {
+  const [isList, setIsList] = useState(false);
+  const [isTechnique, setIsTechnique] = useState(false);
+  const [expand, setExpand] = useState(false)
 
-  const { type, content } = page
 
   function formatContent(content) {
     const paragraphs = content.split(";");
@@ -31,8 +34,8 @@ const CollectionItem = ({ page, shorten, expand }) => {
     return formattedParagraphs;
   }
 
-   //truncates the text, the syntax is very confusing please don't ask me
-   function shortenText(text) {
+  //truncates the text, the syntax is very confusing please don't ask me
+  function shortenText(text) {
     if (text.length <= 8) {
       return text;
     }
@@ -48,39 +51,67 @@ const CollectionItem = ({ page, shorten, expand }) => {
           .join(" ") + "...";
       return newShortenString;
     }
-    
+
     return text.split(" ").slice(0, 8).join(" ") + "...";
-  }
-  
-
-  const [isList, setIsList] = useState(false)
-  const [isTechnique, setIsTechnique] = useState(false)
-
+  } 
 
   useEffect(() => {
-    if (type === 'List Cards') {
-      setIsList(true)
-      setIsTechnique(false)
+    if (type === "List Cards") {
+      setIsList(true);
+      setIsTechnique(false);
+    }
+    if (type === "Technique Cards") {
+      setIsTechnique(true);
+      setIsList(false);
+    }
+  }, [type, expand]);
 
-    }
-    if (type === 'Technique Cards') {
-      setIsTechnique(true)
-      setIsList(false)
-    }
-  }, [type, expand])
 
   return (
-    <div className="block__center--text">
-      {expand ? (
-        <>
-          {formatContent(content.content).map((paragraph, index)=>  <p className="block__content--expand" key ={index}>{paragraph}</p>)}
-          {isList ? <CollectionExpandList content = {content}/> : null }
-          {isTechnique && content.transcript === '1' ? <CollectionExpandTech content = {content}/> : null }
-        </>
-      ) : (
-        <p className="block__content">{shortenText(content)}</p>
-      )}
-    </div>
+    <>
+      <div className="block__container">
+        <div className="block__left">
+          <span
+            className="material-symbols-outlined block__delete"
+            onClick={() => deletePage(page.id)}
+            aria-label="Delete saved card"
+          >
+            <span aria-hidden="true">delete</span>
+          </span>
+        </div>
+        <div className="block__center">
+          <p className="block__title" onClick={() => setExpand((prev) => !prev)}>
+            {page.title}
+          </p>
+          <div className="block__center--text">
+            {expand ? (
+              <>
+                {formatContent(content).map((paragraph, index) => (
+                  <p className="block__content--expand" key={index}>
+                    {paragraph}
+                  </p>
+                ))}
+                {isList ? <CollectionExpandList content={content} /> : null}
+                {isTechnique && content.transcript === "1" ? (
+                  <CollectionExpandTech content={content} />
+                ) : null}
+              </>
+            ) : (
+              <p className="block__content">{shortenText(content)}</p>
+            )}
+          </div>
+        </div>
+        <div
+            className="block__expand"
+            onClick={() => setExpand((prev) => !prev)}
+            aria-label="Interact to expand card"
+          >
+            <span className="material-symbols-outlined block__expand--btn">
+              <span aria-hidden="true">unfold_more</span>
+            </span>
+          </div>
+      </div>
+    </>
   );
 };
 

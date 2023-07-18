@@ -57,26 +57,6 @@ const CollectionBlock = ({ type, content }) => {
     }
   }, [content, type]);
 
-  //truncates the text, the syntax is very confusing please don't ask me
-  function shortenText(text) {
-    if (text.length <= 8) {
-      return text;
-    }
-    if (text.indexOf(";") !== -1) {
-      const colonIndex = text.split("").indexOf(";");
-      const newShortenString =
-        text
-          .split("")
-          .splice(0, colonIndex)
-          .join("")
-          .split(" ")
-          .slice(0, 8)
-          .join(" ") + "...";
-      return newShortenString;
-    }
-    
-    return text.split(" ").slice(0, 8).join(" ") + "...";
-  }
 
   //formats the title to remove 'card' from text
   function shortenTitle(title) {
@@ -84,17 +64,18 @@ const CollectionBlock = ({ type, content }) => {
   }
 
   //passes block's index, takes the current state of blocks, maps over it. If index matches clicked index, reverse the state
-  function handleTextExpand(index) {
-    setBlocks((prevState) => {
-      return prevState.map((block, i) => {
-        if (i === index) {
-          return { ...block, expand: !block.expand };
-        } else {
-          return block;
-        }
-      });
-    });
-  }
+  //OLD CODE, KEEP IN CASE BUT NOT BEING USED RIGHT NOW
+  // function handleTextExpand(index) {
+  //   setBlocks((prevState) => {
+  //     return prevState.map((block, i) => {
+  //       if (i === index) {
+  //         return { ...block, expand: !block.expand };
+  //       } else {
+  //         return block;
+  //       }
+  //     });
+  //   });
+  // }
 
   function handleDelete(id) {
     axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
@@ -127,15 +108,15 @@ const CollectionBlock = ({ type, content }) => {
     {filteredContent.map((page, index) => {
       if (page.unit_id <= 2 && !renderedChapters.includes('intro')) {
         renderedChapters.push('intro')
-        return <CollectionCategory chapter = 'intro' key = {index} content = {filteredContent}/>
+        return <CollectionCategory chapter = 'intro' key = {index} content = {filteredContent} />
       }
       if (page.unit_id > 2 && page.unit_id <= 10 && !renderedChapters.includes('DT')) {
         renderedChapters.push('DT')
-        return <CollectionCategory chapter = 'DT' key = {index} content = {filteredContent}/>
+        return <CollectionCategory chapter = 'DT' key = {index} content = {filteredContent} />
       }
       if (page.unit_id > 10 && page.unit_id <= 18 && !renderedChapters.includes('MF')) {
         renderedChapters.push('MF')
-        return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent}/>
+        return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent} />
       }
       return null
     })}
