@@ -46,9 +46,21 @@ const Changelog = () => {
       </>
     );
   };
+  const patch4 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.3</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Mindfulness chapters have been added, Mana joins the roster!</li>
+          <li className="log__list-item">Artwork and Voiceover is not complete for this chapter, focus will be on completing the rest of the book's content. </li>
+          <li className="log__list-item">Collections have been reworked to specify which chapter the page was saved from for easier access</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3];
-  const [currentPatch, setCurrentPatch] = useState(2);
+  const patches = [patch1, patch2, patch3, patch4];
+  const [currentPatch, setCurrentPatch] = useState(3);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {

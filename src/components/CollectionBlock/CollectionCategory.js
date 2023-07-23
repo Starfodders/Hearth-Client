@@ -12,8 +12,8 @@ const CollectionCategory = ({ chapter, content}) => {
   const [filteredContent, setFilteredContent] = useState([]);
 
   function handleDelete(id) {
-    axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
-    // axios.delete(`/.netlify/functions/units/unsave?userID=${sessionStorage.getItem("userId")}&slideID=${id}`)
+    // axios.delete(`http://localhost:8080/units/${sessionStorage.getItem('userId')}/${id}`)
+    axios.delete(`/.netlify/functions/units/unsave?userID=${sessionStorage.getItem("userId")}&slideID=${id}`)
       .then((response) => {
         if (response.status === 204) {
           setFilteredContent(filteredContent.filter((item) => item.id !== id));
