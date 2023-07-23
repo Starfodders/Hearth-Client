@@ -10,12 +10,6 @@ const CollectionBlock = ({ type, content }) => {
   const [filteredContent, setFilteredContent] = useState([]);
   const [contentLoad, setContentLoad] = useState(false);
 
-  const [introLoad, setIntroLoad] = useState(false)
-  const [DTLoad, setDTLoad] = useState(false)
-  const [MFLoad, setMFLoad] = useState(false)
-  const [ERLoad, setERLoad] = useState(false)
-  const [IELoad, setIELoad] = useState(false)
-
   useEffect(() => {
     if (type) {
       if (type === "Text Cards") {
