@@ -38,23 +38,23 @@ const HomePage = ({ isLoggedIn, name }) => {
 
   //checks if the user is new, display beginner modal for intro
   useEffect(() => {
-      axios
-        .get(`http://localhost:8080/users/checkNew/${currUser}`)
-        // axios.get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
-        .then(({ data }) => {
-          setProgress(data.progress);
-          setNavigateUnit(data.currentUnitToNav);
-          if (!localStorage.getItem("home-tutorial")) {
-            setHomeTutorial(true);
-          }
-          //stores this value in session in case of refresh and memory is lost
-          if (!sessionStorage.getItem("user-progress")) {
-            sessionStorage.setItem("user-progress", data.currentUnitToNav);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    axios
+      .get(`http://localhost:8080/users/checkNew/${currUser}`)
+      // axios.get(`/.netlify/functions/user/checkNew?userID=${currUser}`)
+      .then(({ data }) => {
+        setProgress(data.progress);
+        setNavigateUnit(data.currentUnitToNav);
+        if (!localStorage.getItem("home-tutorial")) {
+          setHomeTutorial(true);
+        }
+        //stores this value in session in case of refresh and memory is lost
+        if (!sessionStorage.getItem("user-progress")) {
+          sessionStorage.setItem("user-progress", data.currentUnitToNav);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   //for animation states
@@ -66,20 +66,20 @@ const HomePage = ({ isLoggedIn, name }) => {
 
   //this works, loops without taking up too much memory
   useEffect(() => {
-      if (soundState) {
-        fireLoopAudio.play();
-        fireLoopAudio.volume = 0.2;
-        fireLoopAudio.loop = true;
-      } else if (!soundState && fireLoopAudio) {
+    if (soundState) {
+      fireLoopAudio.play();
+      fireLoopAudio.volume = 0.2;
+      fireLoopAudio.loop = true;
+    } else if (!soundState && fireLoopAudio) {
+      fireLoopAudio.pause();
+    } else {
+      return;
+    }
+    return () => {
+      if (fireLoopAudio && !fireLoopAudio.paused) {
         fireLoopAudio.pause();
-      } else {
-        return;
       }
-      return () => {
-        if (fireLoopAudio && !fireLoopAudio.paused) {
-          fireLoopAudio.pause();
-        }
-      };
+    };
   }, [soundState]);
 
   function toggleAnimation() {
@@ -115,20 +115,16 @@ const HomePage = ({ isLoggedIn, name }) => {
             document.body
           )}
         <div className="home__container__welcome">
-          <h1 className="home__container__title">
-              {`Welcome back, ${name}`}
-            </h1>
+          <h1 className="home__container__title">{`Welcome back, ${name}`}</h1>
         </div>
         <div className="home__image">
-          <HomePageVisual state = {animationState} progress = {progress}/>
+          <HomePageVisual state={animationState} progress={progress} />
         </div>
-      
-          <img src={bgLeavesTop} className="home__image--top" alt="" />
-      
-       
-          <img src={bgLeavesBot} className="home__image--bot" alt="" />
-      
-       
+
+        <img src={bgLeavesTop} className="home__image--top" alt="" />
+
+        <img src={bgLeavesBot} className="home__image--bot" alt="" />
+
         {navigateUnit !== 1 ? (
           <div className="resume-container">
             <button
@@ -144,7 +140,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           </div>
         ) : null}
       </div>
-      {!displayModal &&
+      {!displayModal && (
         <Options
           animToggle={toggleAnimation}
           animState={animationState}
@@ -152,7 +148,7 @@ const HomePage = ({ isLoggedIn, name }) => {
           soundState={soundState}
           setTutorial={setDisplayModal}
         />
-}
+      )}
       <BotNav />
     </>
   );

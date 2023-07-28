@@ -161,7 +161,6 @@ const Login = ({
 
           setTimeout(() => {
             setToggleStart(true)
-            console.log('here');
           }, 2500)
 
           setTimeout(() => {
