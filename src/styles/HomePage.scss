@@ -23,7 +23,7 @@
     }
 
     &__title {
-      animation: title-fade-in 1s forwards;
+      animation: title-fade-in 2s forwards;
       opacity: 1;
       color: $off-white-reduced;
       font-size: 3rem;
@@ -71,6 +71,7 @@
       width: 80%;
       object-fit: contain;
       transition: width 0.5s;
+      z-index: -15;
 
       @include tablet {
         width: 100%;
@@ -132,7 +133,7 @@
   display: flex;
   justify-content: center;
   z-index: 8;
-  animation: title-fade-in 1s;
+  animation: fade-in 1s;
   transition: all 0.35s;
 
 
@@ -187,6 +188,18 @@
 }
 
 @keyframes title-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-200%)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+
+  }
+}
+
+@keyframes fade-in {
   from {
     opacity: 0;
   }

@@ -16,6 +16,7 @@ const Login = ({
   setDisplayName,
   postLogin,
   postLoginState,
+  setToggleStart
 }) => {
   const navigate = useNavigate();
   const [passwordHidden, setPasswordHidden] = useState(true);
@@ -121,6 +122,10 @@ const Login = ({
           }
 
           setTimeout(() => {
+            setToggleStart(true)
+          }, 5000)
+
+          setTimeout(() => {
             const { token } = data;
             sessionStorage.setItem("authToken", token);
             const decodedToken = jwt_decode(token);
@@ -129,8 +134,8 @@ const Login = ({
             setDisplayName(sessionStorage.getItem("currentName"));
 
             setIsLoggedIn(true);
-            navigate("/home");
-          }, 5000);
+            // navigate("/home");
+          }, 7000);
         })
         .catch((error) => {
           console.log(error.response.data.message);
@@ -153,6 +158,12 @@ const Login = ({
         })
         .then(({ data }) => {
           postLogin(true);
+
+          setTimeout(() => {
+            setToggleStart(true)
+            console.log('here');
+          }, 2500)
+
           setTimeout(() => {
             const { token } = data;
             sessionStorage.setItem("authToken", token);

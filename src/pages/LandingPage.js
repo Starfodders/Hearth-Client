@@ -6,6 +6,7 @@ import bgForest from "../assets/images/homepage/homeBG.png";
 import transition from "../assets/images/transitionForest.png";
 // import transitionBot from "../assets/images/transitionBottom.png"
 import transitionFire from "../assets/images/transitionFire.png";
+import stokingFire from '../assets/images/homepage/fireMedium.gif'
 
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
@@ -18,8 +19,11 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const [SignUpPage, setSignUpPage] = useState(false);
   const [newSignUp, setNewSignUp] = useState({});
   const [postLogin, setPostLogin] = useState(false);
+  const [toggleStartAnimation, setToggleStartAnimation] = useState(false)
+  const [fireAnimationSrc, setFireAnimationSrc] = useState(transitionFire)
   const [accountSuccess, setAccountSuccess] = useState(false);
   const [changeLogOn, setChangeLogOn] = useState(false);
+
 
   function toggleState() {
     setSignUpPage(!SignUpPage);
@@ -35,6 +39,12 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
       navigate("/home");
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (toggleStartAnimation) {
+      setFireAnimationSrc(stokingFire)
+    }
+  }, [toggleStartAnimation])
 
   useEffect(() => {
     if (Object.keys(newSignUp).length > 0) {
@@ -91,6 +101,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             setDisplayName={setDisplayName}
             postLogin={setPostLogin}
             postLoginState={postLogin}
+            setToggleStart = {setToggleStartAnimation}
           />
         )}
         <img
@@ -105,7 +116,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         />
         {/* <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/> */}
         <img
-          src={transitionFire}
+          src= {fireAnimationSrc}
           className={
             postLogin ? "transition__fire--moving" : "transition__fire"
           }
