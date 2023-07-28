@@ -25,4 +25,4 @@ const UnitButton = ({details, progress, level}) => {
 export default UnitButton;
 
 
-//current click gets the unit id + name of unit
+//current click gets the unit id + name of unit 
