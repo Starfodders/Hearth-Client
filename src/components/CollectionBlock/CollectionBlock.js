@@ -91,6 +91,10 @@ const CollectionBlock = ({ type, content }) => {
         renderedChapters.push('MF')
         return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent} />
       }
+      if (page.unit_id > 18 && page.unit_id <= 23 && !renderedChapters.includes('ER')) {
+        renderedChapters.push('ER')
+        return <CollectionCategory chapter = 'ER' key = {index} content = {filteredContent} />
+      }
       return null
     })}
     </>

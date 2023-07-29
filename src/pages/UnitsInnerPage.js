@@ -28,7 +28,6 @@ const UnitsPage = ({ isLoggedIn }) => {
 
   const params = useParams();
   const { id, name } = params;
-  console.log(name);
 
   const carouselElRef = useRef(null);
   const backElRef = useRef(null);

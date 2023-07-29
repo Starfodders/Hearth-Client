@@ -56,6 +56,16 @@ const CollectionCategory = ({ chapter, content}) => {
       setTotalSaved(mfContent.length);
       setFilteredContent(mfContent);
     }
+    if (chapter === "ER") {
+      setChapterName("Emotional Regulation");
+      import("../../assets/chapterAssets/edo1.png").then((img) =>
+        setChapterIcon(img.default)
+      );
+      setTotalSaved(0)
+      const erContent = content.filter((page) => page.unit_id > 18 && page.unit_id <= 23);
+      setTotalSaved(erContent.length);
+      setFilteredContent(erContent);
+    }
   }, []);
 
   return (
