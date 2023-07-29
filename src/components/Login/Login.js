@@ -122,10 +122,6 @@ const Login = ({
           }
 
           setTimeout(() => {
-            setToggleStart(true)
-          }, 5000)
-
-          setTimeout(() => {
             const { token } = data;
             sessionStorage.setItem("authToken", token);
             const decodedToken = jwt_decode(token);
@@ -135,7 +131,7 @@ const Login = ({
 
             setIsLoggedIn(true);
             // navigate("/home");
-          }, 7000);
+          }, 1000);
         })
         .catch((error) => {
           console.log(error.response.data.message);
@@ -160,10 +156,6 @@ const Login = ({
           postLogin(true);
 
           setTimeout(() => {
-            setToggleStart(true)
-          }, 2500)
-
-          setTimeout(() => {
             const { token } = data;
             sessionStorage.setItem("authToken", token);
             const decodedToken = jwt_decode(token);
@@ -175,7 +167,7 @@ const Login = ({
 
             setIsLoggedIn(true);
             navigate("/home");
-          }, 5000);
+          }, 1000);
         })
         .catch((error) => {
           console.log(error.response.data.message);

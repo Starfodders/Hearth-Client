@@ -14,7 +14,7 @@
 
   &--disappear {
     @extend .bg-wrapper;
-    animation: bg-slide-up 2s linear;
+    animation: bg-slide-up 1s linear;
     opacity: 0;
   }
 }
@@ -37,7 +37,7 @@
 
   &--disappear {
     @extend .bg-solid;
-    animation: bg-slide-up 2s linear;
+    animation: bg-slide-up 1s linear;
     opacity: 0;
   }
 }
@@ -151,46 +151,46 @@
   }
 }
 
-.transition__bg {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -10;
-  transform: translateY(-500%);
+// .transition__bg {
+//   width: 100%;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index: -10;
+//   transform: translateY(-500%);
 
-  &--moving {
-    @extend .transition__bg;
-    animation: transition-slide-up 4.5s forwards;
-    transform: translateY(-25%);
-    z-index: 5;
-    opacity: 1;
+//   &--moving {
+//     @extend .transition__bg;
+//     animation: transition-slide-up 2.5s forwards;
+//     transform: translateY(-25%);
+//     z-index: 5;
+//     opacity: 1;
 
-    @include desktop {
-      animation: transition-slide-up-5 4.5s forwards;
-    transform: translateY(-30%);
-    z-index: 5;
+//     @include desktop {
+//       animation: transition-slide-up-5 2.5s forwards;
+//     transform: translateY(-30%);
+//     z-index: 5;
 
 
-    }
-  }
-}
+//     }
+//   }
+// }
 
-.transition__bot {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: -10;
-  transform: translateY(-500%);
+// .transition__bot {
+//   width: 100%;
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   z-index: -10;
+//   transform: translateY(-500%);
 
-  &--moving {
-    @extend .transition__bg;
-    animation: transition-slide-up-4 4.5s;
-    transform: translateY(35%);
-    opacity: 1;
-  }
-}
+//   &--moving {
+//     @extend .transition__bg;
+//     animation: transition-slide-up-4 4.5s;
+//     transform: translateY(35%);
+//     opacity: 1;
+//   }
+// }
 
 .transition__fire {
   width: 100%;
@@ -202,30 +202,12 @@
 
   &--moving {
     @extend .transition__fire;
-    animation: transition-slide-up-2 5s forwards;
+    animation: transition-slide-up-2 3s forwards;
     opacity: 1;
     z-index: -10;
   }
 }
-
-// @keyframes pan-across {
-//     from {
-//       transform: skew(2deg, 0deg)
-//     }
-//     to {
-//       transform: skew(0, 0)
-//     }
-//   }
-
-//   @keyframes pan-across-mobile {
-//     from {
-//       transform: translateX(0);
-//     }
-//     to {
-//       transform: translateX(0);
-//     }
-//   }
-
+  
 @keyframes slide-out {
   0% {
     transform: translateY(0);

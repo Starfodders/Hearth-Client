@@ -9,7 +9,7 @@ const Changelog = () => {
         <h2 className="log__version">Version 1.0</h2>
         <ul className="log__list">
           <li className="log__list-item">Initial app deployment</li>
-          <li className="log__list-item">Content available up to chapter 2</li>
+          <li className="log__list-item">Content available up to chapter 2 (distress tolerance)</li>
           <li className="log__list-item">User Testing</li>
           <li className="log__list-item">Bug Reporting</li>
           <li className="log__list-item">Database stress test</li>
@@ -65,7 +65,7 @@ const Changelog = () => {
         <ul className="log__list">
           <li className="log__list-item">Emotional Regulation Chapters added, Edo joins the roster!</li>
           <li className="log__list-item">Illustrations will be done when Hearth's content is complete, better use of timing</li>
-          <li className="log__list-item">One less click to get into the application, login modification</li>
+          <li className="log__list-item">Removed distracting animation at login, reduce time to get into actual app to 1 second.</li>
         </ul>
       </>
     );

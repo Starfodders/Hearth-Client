@@ -109,19 +109,19 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
           className={postLogin ? "bg-solid--disappear" : "bg-solid"}
           alt=""
         />
-        <img
+        {/* <img
           src={transition}
           className={postLogin ? "transition__bg--moving" : "transition__bg"}
           alt=""
-        />
+        /> */}
         {/* <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/> */}
-        <img
+        {/* <img
           src= {fireAnimationSrc}
           className={
             postLogin ? "transition__fire--moving" : "transition__fire"
           }
           alt=""
-        />
+        /> */}
       </section>
     </div>
   );

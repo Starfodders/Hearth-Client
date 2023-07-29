@@ -7,6 +7,8 @@
     width: 100%;
     height: 100vh;
     position: fixed;
+    background: rgb(6,24,37);
+background: linear-gradient(180deg, rgba(6,24,37,1) 0%, rgba(2,11,17,1) 35%);
 
 
     &__welcome {
@@ -23,7 +25,7 @@
     }
 
     &__title {
-      animation: title-fade-in 2s forwards;
+      animation: title-fade-in 1.5s forwards;
       opacity: 1;
       color: $off-white-reduced;
       font-size: 3rem;
@@ -72,6 +74,7 @@
       object-fit: contain;
       transition: width 0.5s;
       z-index: -15;
+      animation: fade-in 0.35s forwards;
 
       @include tablet {
         width: 100%;
@@ -91,6 +94,7 @@
       top: 9rem;
       left: 0;
       z-index: 0;
+      animation: fade-in 0.35s forwards;
       
     }
 
@@ -101,11 +105,13 @@
       bottom: 0;
       left: 0;
       z-index: 1;
-   user-select: none;
-   -moz-user-select: none;
-   -webkit-user-drag: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
+     user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      animation: fade-in 0.55s forwards;
+
 
       &--off {
         width: 100%;
