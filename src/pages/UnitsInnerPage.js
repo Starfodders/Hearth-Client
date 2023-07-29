@@ -41,9 +41,11 @@ const UnitsPage = ({ isLoggedIn }) => {
     if (currentPage === totalPages) {
       setIsCloser(true);
     }
+    window.scrollTo(0,0)
   }
   function handleBack() {
     carouselElRef.current.swiper.slidePrev();
+    window.scrollTo(0,0)
   }
 
   const [unitData, setUnitData] = useState([]);
@@ -175,7 +177,6 @@ const UnitsPage = ({ isLoggedIn }) => {
           ref={carouselElRef}
           onTransitionEnd={() => handleTransition()}
           aria-hidden={isCloser ? "true" : "false"}
-          // auto-height = "true"
         >
           {unitData.map((slide, index) => {
             const isActiveSlide = index === currentPage - 1;
