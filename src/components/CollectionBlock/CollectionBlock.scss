@@ -130,6 +130,10 @@
     display: flex;
     justify-content: space-between;
     animation: slide-in 0.5s forwards;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__left {

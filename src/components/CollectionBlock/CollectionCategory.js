@@ -60,7 +60,7 @@ const CollectionCategory = ({ chapter, content}) => {
 
   return (
     <>
-      <div className="subchapter__container">
+      <div className="subchapter__container" onClick = {() => setSubPagesOpen((prev) => !prev)}>
         <div className="subchapter__left">
           <img src={chapterIcon} className="subchapter__icon" alt="" />
           <p>{chapterName}</p>

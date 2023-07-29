@@ -58,9 +58,21 @@ const Changelog = () => {
       </>
     );
   };
+  const patch5 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.4</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Emotional Regulation Chapters added, Edo joins the roster!</li>
+          <li className="log__list-item">Illustrations will be done when Hearth's content is complete, better use of timing</li>
+          <li className="log__list-item">One less click to get into the application, login modification</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3, patch4];
-  const [currentPatch, setCurrentPatch] = useState(3);
+  const patches = [patch1, patch2, patch3, patch4, patch5];
+  const [currentPatch, setCurrentPatch] = useState(4);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {
