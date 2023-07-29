@@ -47,15 +47,6 @@ const TopLogo = ({ name, login }) => {
     login(false);
     navigate("/");
   }
-  
-  // const toggleHelp = () => {
-  //   if (location.pathname === '/home') {
-  //     localStorage.removeItem('home-tutorial')
-  //   }
-  //   else {
-  //     return
-  //   }
-  // }
 
   return (
     <div className={isScrolled ? "top__container--hidden" : "top__container"}>

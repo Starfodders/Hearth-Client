@@ -32,15 +32,15 @@ const SectionsSlidesPage = ({ isLoggedIn }) => {
       const getNewDetails = async () => {
         try {
           const [sectionData, currentProgress] = await Promise.all([
-            axios.get(
-              `http://localhost:8080/chapters/sections/${currentUser}/${chapterID}`),
-            axios.get(`http://localhost:8080/users/progress/${currentUser}`),
-            // axios.get('/.netlify/functions/chapters/sections', {
-            //   params: {
-            //     userID: currentUser,
-            //     chapterID: chapterID
-            //   }
-            // }),axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`)
+            // axios.get(
+            //   `http://localhost:8080/chapters/sections/${currentUser}/${chapterID}`),
+            // axios.get(`http://localhost:8080/users/progress/${currentUser}`),
+            axios.get('/.netlify/functions/chapters/sections', {
+              params: {
+                userID: currentUser,
+                chapterID: chapterID
+              }
+            }),axios.get(`/.netlify/functions/user/progress?userID=${currentUser}`)
           ]);
           setContentToLoad(sectionData.data);
           setContentTitle(sectionData.data[0].title);
