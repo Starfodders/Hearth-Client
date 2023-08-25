@@ -66,6 +66,16 @@ const CollectionCategory = ({ chapter, content}) => {
       setTotalSaved(erContent.length);
       setFilteredContent(erContent);
     }
+    if (chapter === "IE") {
+      setChapterName("Interpersonal Effectiveness");
+      import("../../assets/chapterAssets/igo1.png").then((img) =>
+        setChapterIcon(img.default)
+      );
+      setTotalSaved(0)
+      const erContent = content.filter((page) => page.unit_id > 24 && page.unit_id <= 29);
+      setTotalSaved(erContent.length);
+      setFilteredContent(erContent);
+    }
   }, []);
 
   return (

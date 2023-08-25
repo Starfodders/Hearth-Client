@@ -16,7 +16,6 @@ const FinishCard = ({ details }) => {
     axios.patch(`http://localhost:8080/users/update/${userID}/${id}`)
     // axios.patch(`/.netlify/functions/user/update?userID=${userID}&unitID=${id}`)
     .then((response) => {
-      console.log(response);
         if (response.data !== 1) {
           navigate(-1);
         }
