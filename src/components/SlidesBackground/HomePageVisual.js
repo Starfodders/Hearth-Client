@@ -28,6 +28,10 @@ const HomePageVisual = ({state, progress}) => {
             import(`../../assets/images/homepage/yesFireTwo.png`).then((image) => setCurrentBackgroundImage(image.default))
             import(`../../assets/images/homepage/fireOnTwo.gif`).then((gif) => setCurrentBackgroundGIF(gif.default))
         }
+        if (progress === 5) {
+            import(`../../assets/images/homepage/yesFireThree.png`).then((image) => setCurrentBackgroundImage(image.default))
+            import(`../../assets/images/homepage/fireOnThree.gif`).then((gif) => setCurrentBackgroundGIF(gif.default))
+        }
     }, [progress])
 
 
