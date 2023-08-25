@@ -70,9 +70,19 @@ const Changelog = () => {
       </>
     );
   };
+  const patch6 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.5</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Interpersonal Effectiveness chapter added, Igo & Ewa join the roster</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3, patch4, patch5];
-  const [currentPatch, setCurrentPatch] = useState(4);
+  const patches = [patch1, patch2, patch3, patch4, patch5, patch6];
+  const [currentPatch, setCurrentPatch] = useState(5);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {
