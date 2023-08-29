@@ -198,7 +198,19 @@ const update = async (event, context) => {
           }),
         };
       } else {
+        if (updateUnit === 32) {
+          const finishedUser = await knex("users")
+            .where({ id: userID })
+            .update({
+              current_progress: 31,
+              unit: 31,
+              section: 11,
+              chapter: 6,
+            });
+          return res.status(200).json(finishedUser);
+        }
         //if completed unit is newest available, update their progress and unlock access to next unit
+        else {
         const getSection = await knex("units")
           .where({ id: updateUnit })
           .first();
@@ -221,6 +233,7 @@ const update = async (event, context) => {
         };
       }
     }
+  }
   } catch (error) {
     return {
       statusCode: 500,

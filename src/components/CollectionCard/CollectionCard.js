@@ -9,7 +9,7 @@ const CollectionCard = ({ name, image, count, setBlock, setPage }) => {
   return (
     <div className="collection-card__container">
       <p className="collection-card__name">{name}</p>
-      <img src={image} className="collection-card__image" aria-hidden="true" />
+      <img src={image} className="collection-card__image" aria-hidden="true"  alt = ""/>
       <p
         className="collection-card__count"
         aria-label={`${count} ${name} saved`}

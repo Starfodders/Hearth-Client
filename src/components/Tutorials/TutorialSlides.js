@@ -1,7 +1,6 @@
 import "./Tutorials.scss";
 import TutorialSlide from "./TutorialSlide";
 import arrow from "../../assets/icons/tutorialArrow.svg";
-import arrowStraight from "../../assets/icons/tutorialArrowStraight.svg";
 import { useState } from "react";
 
 const TutorialSlides = ({ toggle }) => {

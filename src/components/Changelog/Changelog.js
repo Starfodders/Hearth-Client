@@ -80,9 +80,20 @@ const Changelog = () => {
       </>
     );
   };
+  const patch7 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.6</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Conclusion Chapter added!</li>
+          <li className="log__list-item">Final release planned, working on user types (student vs facilitator) and password recovery</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3, patch4, patch5, patch6];
-  const [currentPatch, setCurrentPatch] = useState(5);
+  const patches = [patch1, patch2, patch3, patch4, patch5, patch6, patch7];
+  const [currentPatch, setCurrentPatch] = useState(6);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {

@@ -1,5 +1,4 @@
 import axios from "axios";
-import React, { useEffect } from "react";
 import { useState } from "react";
 import passwordHide from "../../assets/icons/passwordHide.svg";
 import passwordShow from "../../assets/icons/passwordShow.svg";

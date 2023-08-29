@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 const SectionButton = ({details, progress}) => {
   
   const {id, available} = details
-  const {completedSections: section} = progress
   
   const navigate = useNavigate();
 

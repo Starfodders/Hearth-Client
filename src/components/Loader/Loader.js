@@ -5,7 +5,7 @@ import "./Loader.scss"
 const Loader = () => {
     return (
         <div className = "loader__container">
-            <img src = {loaderGif} className = "loader__img"/>
+            <img src = {loaderGif} className = "loader__img" alt = ""/>
         </div>
     );
 };

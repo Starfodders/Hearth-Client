@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createPortal } from 'react-dom';
 
 import bgForest from "../assets/images/homepage/homeBG.png";
-import transition from "../assets/images/transitionForest.png";
+// import transition from "../assets/images/transitionForest.png";
 // import transitionBot from "../assets/images/transitionBottom.png"
 import transitionFire from "../assets/images/transitionFire.png";
 import stokingFire from '../assets/images/homepage/fireMedium.gif'

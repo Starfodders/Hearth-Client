@@ -12,7 +12,7 @@ import textIcon from "../assets/icons/textIcon.svg";
 
 const CollectionPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
-  const location = useLocation();
+
   useEffect(() => {
     if (!isLoggedIn) {
       if (!sessionStorage.getItem("authToken")) {

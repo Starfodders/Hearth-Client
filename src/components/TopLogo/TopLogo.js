@@ -1,14 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./TopLogo.scss";
 
 const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
-  // const location = useLocation();
-  // console.log(location);
-
+ 
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [mobileWindow, setMobileWindow] = useState(
