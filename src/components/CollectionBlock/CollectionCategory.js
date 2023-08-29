@@ -72,7 +72,17 @@ const CollectionCategory = ({ chapter, content}) => {
         setChapterIcon(img.default)
       );
       setTotalSaved(0)
-      const erContent = content.filter((page) => page.unit_id > 24 && page.unit_id <= 29);
+      const erContent = content.filter((page) => page.unit_id > 23 && page.unit_id <= 29);
+      setTotalSaved(erContent.length);
+      setFilteredContent(erContent);
+    }
+    if (chapter === "final") {
+      setChapterName("Conclusion");
+      import("../../assets/chapterAssets/all1.png").then((img) =>
+        setChapterIcon(img.default)
+      );
+      setTotalSaved(0)
+      const erContent = content.filter((page) => page.unit_id > 29 && page.unit_id <= 31);
       setTotalSaved(erContent.length);
       setFilteredContent(erContent);
     }
