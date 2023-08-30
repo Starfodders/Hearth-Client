@@ -97,6 +97,13 @@
     &--technique {
       @extend .slide__container;
 
+      &--dark {
+        @extend .slide__container;
+        background-color: $dark-mode-bg;
+        color: $off-white;
+        border: 1px solid $off-white-reduced;
+      }
+
       @include tablet {
         padding-bottom: 0;
       }
@@ -132,6 +139,11 @@
 
       &--none {
         display: none;
+      }
+
+      &--dark {
+        @extend .slide__container__bottom;
+        border-top: 1px solid $off-white-reduced;
       }
 
       &__block {
@@ -211,10 +223,18 @@
   &__start--less {
     font-size: 3rem;
     color: $medium-blue;
+
+    &--dark {
+      color: $turquoise;
+    }
   }
 
   &__start--more {
     @extend .slide__start--less;
+
+    &--dark {
+      color: $turquoise;
+    }
 
     &--small {
       font-size: 1.5rem;
@@ -312,6 +332,15 @@
       font-size: 1.5em;
       line-height: 2.2rem;
       border-radius: 4px;
+
+      &--dark {
+        @extend .list__appear--box;
+        background-color: $dark-mode-bg;
+        color: $off-white;
+        border: 1px solid $off-white-reduced;
+      }
+
+
       @include tablet {
         padding: 1rem 1.5rem;
         font-size: 1.5rem;

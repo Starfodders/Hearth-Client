@@ -5,6 +5,7 @@ import savedOn from "../../assets/icons/savedFull.svg";
 import savedOnDark from "../../assets/icons/savedFullDark.svg";
 import axios from "axios";
 import resourceIcon from "../../assets/icons/access-resource.svg";
+import resourceIconDark from "../../assets/icons/access-resource-dark.svg"
 import resourceIconOff from "../../assets/icons/access-resource-none.svg";
 import resourceIconOffDark from "../../assets/icons/access-resource-none-dark.svg";
 
@@ -86,7 +87,7 @@ const TextCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
               rel="noreferrer"
             >
               <img
-                src={resourceIcon}
+                src={darkMode ? resourceIconDark: resourceIcon}
                 className={darkMode ? "resource-link--dark" : "resource-link"}
                 alt="Interact to Access External Resource For Current Unit Content"
               />
