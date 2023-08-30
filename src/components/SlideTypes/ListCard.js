@@ -17,6 +17,7 @@ const ListCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
   const [currentListMascot, setCurrentListMascot] = useState(null);
   const [currentListMascotGIF, setCurrentListMascotGIF] = useState(null);
   const [currentPlaying, setCurrentPlaying] = useState(currentListMascot);
+  const [unusedIndices, setUnusedIndices] = useState([]);
 
   function formatContent(content) {
     const paragraphs = content.split(";");
@@ -45,16 +46,33 @@ const ListCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
   function toggleSuggestion() {
     if (list) {
       setCurrentPlaying(currentListMascotGIF);
+  
       setTimeout(() => {
         setCurrentPlaying(currentListMascot);
       }, 480);
-      const splitList = list.split("; ");
-      let randomIndex = Math.floor(Math.random() * splitList.length);
-      let currentWord = `"${splitList[randomIndex]}"`;
+  
+      if (unusedIndices.length === 0) {
+        const splitList = list.split('; ');
+        setUnusedIndices(Array.from({ length: splitList.length }, (_, i) => i));
+        return;
+      }
+  
+      const randomIndexPosition = Math.floor(Math.random() * unusedIndices.length);
+      const randomIndex = unusedIndices[randomIndexPosition];
+  
+      setUnusedIndices(prev => prev.filter(index => index !== randomIndex));
+  
+      const splitList = list.split('; ');
+      const currentWord = `"${splitList[randomIndex]}"`;
       setCurrentSuggestion(currentWord);
     }
   }
+  
   useEffect(() => {
+    if (list) {
+      const splitList = list.split('; ');
+      setUnusedIndices(Array.from({ length: splitList.length }, (_, i) => i));
+    }
     if (list && images) {
       import(`../../assets/images/${images}.gif`).then((gif) =>
         setCurrentListMascotGIF(gif.default)
