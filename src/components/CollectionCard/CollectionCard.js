@@ -1,17 +1,17 @@
 import "./CollectionCard.scss";
 
-const CollectionCard = ({ name, image, count, setBlock, setPage }) => {
+const CollectionCard = ({ name, image, count, setBlock, setPage, darkMode }) => {
   function handleBlockState() {
     setBlock(true);
     setPage(name);
   }
 
   return (
-    <div className="collection-card__container">
-      <p className="collection-card__name">{name}</p>
+    <div className={darkMode ? "collection-card__container--dark":"collection-card__container"}>
+      <p className={darkMode ? "collection-card__name--dark" : "collection-card__name"}>{name}</p>
       <img src={image} className="collection-card__image" aria-hidden="true" />
       <p
-        className="collection-card__count"
+        className={darkMode ? "collection-card__count--dark":"collection-card__count"}
         aria-label={`${count} ${name} saved`}
       >
         <span aria-hidden="true">{count} saved</span>

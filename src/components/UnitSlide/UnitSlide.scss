@@ -19,7 +19,7 @@
       @extend .slide__container;
       background-color: $dark-mode-bg;
       color: $off-white;
-      border: 1px solid $off-white-reduced;
+      border: 1px solid $dark-mode-border
     }
 
 
@@ -101,7 +101,7 @@
         @extend .slide__container;
         background-color: $dark-mode-bg;
         color: $off-white;
-        border: 1px solid $off-white-reduced;
+        border: 1px solid $dark-mode-border;
       }
 
       @include tablet {
@@ -137,13 +137,17 @@
       justify-content: space-between;
       border-top: 1px solid black;
 
+      &--dark {
+        border-top: 1px solid $off-white;
+      }
+
       &--none {
         display: none;
       }
 
       &--dark {
         @extend .slide__container__bottom;
-        border-top: 1px solid $off-white-reduced;
+        border-top: 1px solid $dark-mode-border;
       }
 
       &__block {

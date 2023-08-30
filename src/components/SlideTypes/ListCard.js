@@ -71,8 +71,8 @@ const ListCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
     if (!saveState) {
       const savePage = async () => {
         try {
-          // await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
-          await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
+          await axios.post(`http://localhost:8080/units/${userID}/${slide.id}`)
+          // await axios.post(`/.netlify/functions/units/save?userID=${userID}&slideID=${slide.id}`);
           saveFunc(true);
         } catch (err) {
           console.log(err);

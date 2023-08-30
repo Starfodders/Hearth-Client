@@ -1,5 +1,5 @@
 import "./_App.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
@@ -24,7 +24,14 @@ function App() {
 
   const [progress, setProgress] = useState(null);
   const [navigateUnit, setNavigateUnit] = useState(null);
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem("darkMode")) || false
+  );
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
 
   return (
     <BrowserRouter>

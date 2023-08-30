@@ -35,6 +35,17 @@
         transition: transform 0.3s;
       }
     }
+
+    &--dark {
+      @extend .collection-card__container;
+      background-color: $dark-mode-bg;
+      border: 1px solid $dark-mode-border;
+
+      &:hover {
+        background-color: $dark-mode-bg-hover;
+        border: 1px solid $turquoise;
+      }
+    }
   }
 
   &__name {
@@ -42,6 +53,11 @@
     font-weight: 500;
     text-align: center;
     font-size: 1.2rem;
+
+    &--dark {
+      @extend .collection-card__name;
+      color: $off-white;
+    }
 
     @include mobile {
       font-size: 1.5rem;
@@ -68,6 +84,10 @@
   }
 
   &__count {
+
+    &--dark {
+      color: $off-white;
+    }
     @include mobile {
       font-size: 1.3rem;
     }

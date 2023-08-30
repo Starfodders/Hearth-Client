@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import CollectionItem from "../CollectionItem/CollectionItem";
 import axios from "axios";
 
-const CollectionCategory = ({ chapter, content}) => {
+const CollectionCategory = ({ chapter, content, darkMode}) => {
   const [chapterName, setChapterName] = useState(null);
   const [chapterIcon, setChapterIcon] = useState(null);
   const [totalSaved, setTotalSaved] = useState(0)
@@ -90,7 +90,7 @@ const CollectionCategory = ({ chapter, content}) => {
 
   return (
     <>
-      <div className="subchapter__container" onClick = {() => setSubPagesOpen((prev) => !prev)}>
+      <div className={darkMode ? "subchapter__container--dark" : "subchapter__container"} onClick = {() => setSubPagesOpen((prev) => !prev)}>
         <div className="subchapter__left">
           <img src={chapterIcon} className="subchapter__icon" alt="" />
           <p>{chapterName}</p>
@@ -98,13 +98,13 @@ const CollectionCategory = ({ chapter, content}) => {
         </div>
         <div className="subchapter__right">
           <span className="material-symbols-outlined subchapter__expand" onClick = {() => setSubPagesOpen((prev) => !prev)}>
-            <span aria-hidden="true">unfold_more</span>
+            <span aria-hidden="true" onClick = {() => setSubPagesOpen((prev) => !prev)}>unfold_more</span>
           </span>
         </div>
       </div>
       <div className= {subPagesOpen ? "subchapter__results--on" : "subchapter__results"}>
         {subPagesOpen ? filteredContent.map((page, index) => {
-            return <CollectionItem page = {page} deletePage = {handleDelete} key = {index}/>
+            return <CollectionItem page = {page} deletePage = {handleDelete} key = {index} darkMode = {darkMode}/>
         }): null}
       </div>
     </>

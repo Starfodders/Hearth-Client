@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Transcript from "../Transcript/Transcript";
 
-const CollectionExpandTech = ({ content }) => {
+const CollectionExpandTech = ({ content, darkMode }) => {
   const { transcript, audio, unit_id, page_number } = content;
 
   const [transcriptState, setTranscriptState] = useState(false);
@@ -22,10 +22,11 @@ const CollectionExpandTech = ({ content }) => {
   useEffect(() => {
     if (transcript && transcriptState) {
       if (!transcriptData) {
-        axios
-          .get(
-            `/.netlify/functions/units/transcript?unitID=${unit_id}&pageNum=${page_number}`
-          )
+        // axios
+        //   .get(
+        //     `/.netlify/functions/units/transcript?unitID=${unit_id}&pageNum=${page_number}`
+        //   )
+        axios.get(`http://localhost:8080/units/transcript/${unit_id}/${page_number}`)
           .then((response) => {
             setTranscriptData(response.data);
             setTranscriptLoaded(true);
@@ -39,7 +40,7 @@ const CollectionExpandTech = ({ content }) => {
 
   return (
     <>
-      <div className="slide__container__bottom">
+      <div className={darkMode ? "slide__container__bottom--dark":"slide__container__bottom"}>
         <div className="slide__container__bottom__block--small">
           {transcriptState ? (
             <span
@@ -70,7 +71,7 @@ const CollectionExpandTech = ({ content }) => {
         </div>
       </div>
       {transcriptLoaded && transcriptState ? (
-        <Transcript text={transcriptData} state={transcriptState} />
+        <Transcript text={transcriptData} darkMode={darkMode}/>
       ) : null}
     </>
   );

@@ -46,7 +46,7 @@
         &--dark {
             @extend .card__container;
             background-color: $dark-mode-bg;
-            border: 1px solid $off-white-reduced;
+            border: 1px solid $dark-mode-border;
 
             &:hover {
                 background-color: $dark-mode-bg-hover;
