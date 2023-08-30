@@ -46,7 +46,7 @@ This app is intended to learn Dialetical Behaviour Therapy (DBT). Created and de
 8. 😀 DONE - Logout menu is hard-coded, doesn't align with actual name length
 9. 😀 DONE - Fix meditate timer when it resets, it subtracts time
 10. 😀 DONE - Feedback page is no longer working
-11. Lists can repeat a suggestion, need to track which have already appeared
+11. 😀 DONE - Lists can repeat a suggestion, need to track which have already appeared
 12. Visual bugs tied to the sizing of the landing page image as well as the main fireplace visual
 13. Cannot alter the sound of meditation or the initial start up matchsticks on mobile, different method of adjustment
 14. 😉 DISABLED - Bot Nav adjusts state too much in response to scrolling, add minimum move

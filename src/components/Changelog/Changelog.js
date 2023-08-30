@@ -97,7 +97,8 @@ const Changelog = () => {
         <h2 className="log__version">Version 1.7</h2>
         <ul className="log__list">
           <li className="log__list-item">Dark Mode added at request.</li>
-          <li className="log__list-item">Fixed bug with saved techniques and lists not showing up properly in the collections</li>
+          <li className="log__list-item">Fixed bug with saved techniques and lists not showing up properly in the collections.</li>
+          <li className="log__list-item">Fixed bug with list suggestions repeating after already being seen.</li>
         </ul>
       </>
     );

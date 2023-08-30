@@ -59,9 +59,14 @@
     justify-content: space-between;
     flex-wrap: wrap;
     color: $off-white;
-    padding: 0.5rem 1rem 1.5rem;
-    border-radius: 0 0 4px 4px;
+    padding: 0.5rem 1rem 0.7rem;
+    border-radius: 4px 4px 0 0;
     min-width: 10rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $background-faded;
+    }
 
     @include tablet {
         padding-right: 0.5rem;
@@ -90,28 +95,41 @@
         gap: 0.5rem;
       }
     }
-
-    &__opened {
-      color: $off-white;
-      min-width: 200px;
-      background-color: $background-faded;
-      display: flex;
-      justify-content: center;
-      z-index: -5;
-      gap: 0.5rem;
-      position: absolute;
-      top: 0em;
-      margin: 3.5rem 0rem 1rem;
-      padding: 0.5rem;
-      @include mobile {
-        right: 0;
-      }
-
+    &-segment {
+      display : flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.3rem;
+      border-radius: 4px;
       &:hover{
         background-color: $black;
         transition: all 0.3s;
 
       }
+    }
+
+    &__opened {
+      color: $off-white;
+      min-width: 10rem;
+      background-color: $background-faded;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: -5;
+      gap: 0.5rem;
+      position: absolute;
+      top: -0.3em;
+      margin: 3.5rem 0rem 1rem;
+      padding: 0.5rem;
+
+      @include mobile {
+        background-color: rgba(22,58,68,1);
+        right: 0;
+      }
+
+
+  
       
     }
   }
