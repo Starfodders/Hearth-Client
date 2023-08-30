@@ -70,9 +70,41 @@ const Changelog = () => {
       </>
     );
   };
+  const patch6 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.5</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Interpersonal Effectiveness chapter added, Igo & Ewa join the roster</li>
+        </ul>
+      </>
+    );
+  };
+  const patch7 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.6</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Conclusion Chapter added!</li>
+          <li className="log__list-item">Final release planned, working on user types (student vs facilitator) and password recovery</li>
+        </ul>
+      </>
+    );
+  };
+  const patch8 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 1.7</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Dark Mode added at request.</li>
+          <li className="log__list-item">Fixed bug with saved techniques and lists not showing up properly in the collections</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3, patch4, patch5];
-  const [currentPatch, setCurrentPatch] = useState(4);
+  const patches = [patch1, patch2, patch3, patch4, patch5, patch6, patch7, patch8];
+  const [currentPatch, setCurrentPatch] = useState(7);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {

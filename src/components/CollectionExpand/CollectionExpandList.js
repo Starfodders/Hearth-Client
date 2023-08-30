@@ -1,9 +1,14 @@
 import "./CollectionExpand.scss"
-import iconAsset from "../../assets/icons/tal-icon.png"
-import { useState } from "react";
+// import iconAsset from "../../assets/icons/tal-icon.png"
+import { useState, useEffect } from "react";
 
 
 const CollectionExpandList = ({content, darkMode}) => {
+
+    const [iconAsset, setIconAsset] = useState()
+    useEffect(() => {
+        setIconAsset(require(`../../assets/collectionListPrompt/${content.images}.png`))
+    }, [content])
 
     const [currentSuggestion, setCurrentSuggestion] = useState(null)
 
