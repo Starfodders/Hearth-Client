@@ -7,7 +7,7 @@ import CardImageImports from "./CardImageImports"
 
 import {useEffect, useState} from "react"
 
-const Card = ({ details, level, progress }) => {
+const Card = ({ details, level, progress, images }) => {
   const {available, overall_available} = details
 
   const [display, setDisplay] = useState('In Development')
@@ -42,7 +42,7 @@ let button;
     return (
       <div className="card__container--off">
         <h2 className="card__name">{details.name}</h2>
-        <CardImageImports src = {details}/>
+        <CardImageImports images = {images}/>
         <p>{display}</p>
        {button}
       </div>
@@ -52,7 +52,7 @@ let button;
   return (
     <div className={available ? "card__container" : "card__container--off"}>
       <h2 className="card__name">{details.name}</h2>
-      <CardImageImports src = {details}/>
+      <CardImageImports images = {images} />
       {available ? <ProgressBar details = {details} level = {level} progress = {progress}/> :  <p>{display}</p>}
      {button}
     </div>

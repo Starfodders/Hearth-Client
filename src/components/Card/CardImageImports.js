@@ -1,10 +1,10 @@
 import "./Card.scss";
 
-const CardImageImports = ({ src }) => {
-  const imageSource = require(`../../assets/chapterAssets/${src.images}.png`);
-
+const CardImageImports = ({ images }) => {
+  // const imageSource = require(`../../assets/chapterAssets/${src.images}.png`);
+  
   return (
-    <img src={imageSource} alt="" aria-hidden="true" className="card__image"></img>
+    <img src={images.src} alt="" aria-hidden="true" className="card__image" ></img>
   );
 };
 

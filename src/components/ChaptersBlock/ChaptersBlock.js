@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./ChaptersBlock.scss";
 import { useNavigate } from "react-router-dom";
 
-const ChaptersBlock = ({ content, title, level, progress, destination }) => {
+const ChaptersBlock = ({ content, title, level, progress, destination, imagesArray }) => {
   const navigate = useNavigate();
 
   return (
@@ -21,13 +21,14 @@ const ChaptersBlock = ({ content, title, level, progress, destination }) => {
         <h2 className="chapters__title">{title}</h2>
       </div>
       <main className="chapters__main" aria-label="Choose content to view">
-        {content.map((details) => {
+        {content.map((details, index) => {
           return (
             <Card
               details={details}
               level={level}
               key={details.id}
               progress={progress}
+              images = {imagesArray[index]}
             />
           );
         })}

@@ -1,0 +1,85 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.skeleton {
+  &__main {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    padding: 2rem 0;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+
+    @include desktop {
+      max-width: 580px;
+      transition: all 0.3s;
+    }
+
+    @include tablet {
+      max-width: 400px;
+    }
+
+    @include mobile {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-bottom: 15rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $light-black;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $turquoise;
+    }
+  }
+  &__name {
+    width: 100%;
+    background-color: $background-faded;
+    min-height: 4.5rem;
+  }
+
+  &__title {
+    color: $off-white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    visibility: hidden;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+    @include mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    min-width: 270px;
+    background-color: $off-white-reduced;
+    border-radius: 4px;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 385px;
+  }
+  &__circle {
+    background-color: $background-faded;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+  }
+  &__button {
+        background-color: $background-faded;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem;
+        height: 3rem;
+        width: 100%;
+        margin-top: 1rem;
+  }
+}
