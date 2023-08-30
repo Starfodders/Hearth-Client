@@ -15,6 +15,13 @@
     animation: slide-in 0.5s;
     transition: all 0.3s;
 
+    &--dark {
+      @extend .slide__container;
+      background-color: $dark-mode-bg;
+      color: $off-white;
+      border: 1px solid $off-white-reduced;
+    }
+
 
     @include desktop {
       padding: 0.5rem 2rem 1rem;
@@ -34,6 +41,11 @@
         @extend .slide__container;
         width: 65%;
         padding: 2rem;
+
+        &--dark {
+          @extend .slide__container--special--left;
+          background-color: $dark-mode-bg;
+        }
         @include tablet {
           padding: 1rem;
         }
@@ -49,6 +61,11 @@
         animation: slide-in 0.6s;
         z-index: 10;
         right: 1rem;
+
+        &--dark {
+          @extend .slide__container--special--right;
+          border: 5px solid $dark-mode-bg;
+        }
         @include desktop {
           max-height: 500px;
         }
@@ -146,12 +163,22 @@
     font-size: 2rem;
     padding-bottom: 1rem;
 
+    &--dark {
+      color: $off-white;
+    }
+
     @include mobile {
       font-size: 1.5rem;
     }
 
     &--special {
       @extend .slide__title;
+
+      &--dark {
+        @extend .slide__title;
+        color: $off-white;
+      }
+
     }
   }
 
@@ -160,6 +187,11 @@
     font-size: 2rem;
     line-height: 4rem;
     padding: 1rem 0;
+
+    &--dark {
+      @extend .slide__content;
+      color: $off-white;
+    }
 
     @include desktop {
       padding: 0.5rem 0;
@@ -314,6 +346,11 @@
   width: 2.5rem;
   padding-top: 0.4rem;
 
+  &--dark {
+    @extend .resource-link;
+    color: $off-white-reduced;
+  }
+
   @include mobile {
     width: 1.5rem;
     padding-top: 0.25rem;
@@ -326,6 +363,10 @@
   &-off {
     @extend .resource-link;
     padding: 0;
+
+    &--dark{
+      @extend .resource-link-off;
+    }
 
     &:hover {
       cursor: auto;

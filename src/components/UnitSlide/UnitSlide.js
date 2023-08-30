@@ -1,14 +1,16 @@
 import "./UnitSlide.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import TextCard from "../SlideTypes/TextCard";
 import TechniqueCard from "../SlideTypes/TechniqueCard";
 import ListCard from "../SlideTypes/ListCard";
 import SpecialCard from "../SlideTypes/SpecialCard";
 import SummaryCard from "../SlideTypes/SummaryCard";
+import ProgressContext from "../ProgressContext/ProgressContext";
 
 const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
   const { type } = slide;
   const [isSaved, setIsSaved] = useState(false);
+  const { darkMode } = useContext(ProgressContext);
 
   //capitalizes the 'Type' for display
   function formatType(string) {
@@ -27,7 +29,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
   }, [currentSaved]);
 
   if (type === "special") {
-    return <SpecialCard slide={slide} />;
+    return <SpecialCard slide={slide} darkMode = {darkMode} />;
   }
   if (type === "technique") {
     return (
@@ -38,6 +40,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
         saveFunc={setIsSaved}
         unitID={unitID}
         notifyChange={notifyChange}
+        darkMode={darkMode}
       />
     );
   }
@@ -48,6 +51,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
         format={formatType}
         saveState={isSaved}
         saveFunc={setIsSaved}
+        darkMode={darkMode}
       />
     );
   }
@@ -58,6 +62,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
         format={formatType}
         saveState={isSaved}
         saveFunc={setIsSaved}
+        darkMode={darkMode}
       />
     );
   }
@@ -68,6 +73,7 @@ const UnitSlide = ({ slide, unitID, currentSaved, notifyChange }) => {
       format={formatType}
       saveState={isSaved}
       saveFunc={setIsSaved}
+      darkMode={darkMode}
     />
   );
 };

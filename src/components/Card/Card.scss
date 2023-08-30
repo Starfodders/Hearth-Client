@@ -16,13 +16,6 @@
         justify-content: space-between;
         min-height: 385px;
 
-        &--off {
-            @extend .card__container;
-            filter: grayscale(100%);
-            opacity: 0.5;
-           
-        }
-
         &:hover {
             background-color: $off-white-highlighted;
             transition: background-color 0.3s;
@@ -31,6 +24,36 @@
                 transform: scale(1.1);
                 transition: transform 0.3s;
             }
+        }
+
+
+        &--off {
+            @extend .card__container;
+            filter: grayscale(100%);
+            opacity: 0.5;
+           
+            &--dark {
+                @extend .card__container--off;
+                background-color: $dark-mode-bg;
+
+                &:hover {
+                    background-color: $dark-mode-bg-hover;
+                }
+            }
+        }
+
+        
+        &--dark {
+            @extend .card__container;
+            background-color: $dark-mode-bg;
+            border: 1px solid $off-white-reduced;
+
+            &:hover {
+                background-color: $dark-mode-bg-hover;
+                border: 1px solid $turquoise;
+                transition: all 0.3s;
+            }
+
         }
         
     }
@@ -43,6 +66,11 @@
         text-align: center;
         min-height: 4.5rem;
         font-weight: 500;
+
+        &--dark {
+            @extend .card__name;
+            color: $off-white;
+        }
     }
 
     &__image {
@@ -74,6 +102,11 @@
             cursor: pointer;
 
         }
+
+        &--dark {
+            @extend .card__button;
+            
+        }
     }
     &__image-placeholder {
         background-color: $background-faded;
@@ -81,6 +114,9 @@
         height: 10rem;
         border-radius: 50%;
         margin-bottom: 2rem;
+    }
+    &__display {
+        color: $off-white;
     }
 }
 

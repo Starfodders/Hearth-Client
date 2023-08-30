@@ -24,10 +24,11 @@ function App() {
 
   const [progress, setProgress] = useState(null);
   const [navigateUnit, setNavigateUnit] = useState(null);
+  const [darkMode, setDarkMode] = useState(false)
 
   return (
     <BrowserRouter>
-      <ProgressContext.Provider value = {{progress, setProgress, navigateUnit, setNavigateUnit}}>
+      <ProgressContext.Provider value = {{progress, setProgress, navigateUnit, setNavigateUnit, darkMode, setDarkMode}}>
         <Routes>
           <Route
             path="/"

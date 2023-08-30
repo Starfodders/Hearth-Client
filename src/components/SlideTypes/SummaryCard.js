@@ -1,11 +1,14 @@
 import "../UnitSlide/UnitSlide.scss";
 import savedOff from "../../assets/icons/savedEmpty.svg";
+import savedOffDark from "../../assets/icons/savedEmptyDark.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
+import savedOnDark from "../../assets/icons/savedFullDark.svg";
 import resourceIcon from "../../assets/icons/access-resource.svg";
 import resourceIconOff from "../../assets/icons/access-resource-none.svg";
+import resourceIconOffDark from "../../assets/icons/access-resource-none-dark.svg";
 import axios from "axios";
 
-const SummaryCard = ({ slide, format, saveState, saveFunc }) => {
+const SummaryCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
   const { content, title, type } = slide;
 
   function handleSave() {
@@ -63,7 +66,7 @@ const SummaryCard = ({ slide, format, saveState, saveFunc }) => {
   }
 
   return (
-    <div className="slide__container">
+    <div className={darkMode ? "slide__container--dark" : "slide__container"}>
       <div className="slide__container__top">
         <div className="slide__container__top--left">
           <span
@@ -88,10 +91,10 @@ const SummaryCard = ({ slide, format, saveState, saveFunc }) => {
               />
             </a>
           ) : (
-            <img src={resourceIconOff} className="resource-link-off" alt="" />
+            <img src={darkMode ? resourceIconOffDark : resourceIconOff} className="resource-link-off" alt="" />
           )}
           <img
-            src={saveState ? savedOn : savedOff}
+            src={saveState ? (darkMode ? savedOnDark : savedOn) : (darkMode ? savedOffDark : savedOff)}
             className={saveState ? "units__saved" : "units__saved--off"}
             onClick={() => handleSave()}
             alt={
@@ -106,7 +109,7 @@ const SummaryCard = ({ slide, format, saveState, saveFunc }) => {
         {title}
       </h1>
       {formatContent(content).map((paragraph, index) => (
-        <p className="slide__content" key={index}>
+          <p className={darkMode ? "slide__content--dark" : "slide__content"} key={index}>
           {paragraph}
         </p>
       ))}

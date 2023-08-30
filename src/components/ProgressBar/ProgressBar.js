@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./ProgressBar.scss"
+import ProgressContext from "../ProgressContext/ProgressContext";
 
 const ProgressBar = ({ details, level, progress }) => {
   const { current, unit, completedChapters, completedSections } = progress;
 
   const [currentContent, setCurrentContent] = useState(0);
+  const { darkMode } = useContext(ProgressContext);
+
 
   useEffect(() => {
     if (level === "chapters") {
@@ -25,9 +28,9 @@ const ProgressBar = ({ details, level, progress }) => {
 
   if (level === "units") {
     if (details.id <= current) {
-      return <div className="progress__box" aria-label ="Unit is Complete"><p className="progress__notif" aria-hidden="true">Complete</p></div>;
+      return <div className="progress__box" aria-label ="Unit is Complete"><p className={darkMode ? "progress__notif--dark" : "progress__notif"} aria-hidden="true">Complete</p></div>;
     } else if (details.id === unit) {
-      return <div className="progress__box" aria-label="Unit is Currently in Progress"><p className="progress__notif--progress"  aria-hidden="true">In Progress</p></div>;
+      return <div className="progress__box" aria-label="Unit is Currently in Progress"><p className={darkMode ? "progress__notif--progress--dark":"progress__notif--progress"}  aria-hidden="true">In Progress</p></div>;
     }
   }
 

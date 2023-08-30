@@ -1,13 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import ProgressContext from "../ProgressContext/ProgressContext";
 import "./TopLogo.scss";
 
 const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
-  // const location = useLocation();
-  // console.log(location);
+
+  const { darkMode, setDarkMode } =
+    useContext(ProgressContext);
+
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -46,6 +49,11 @@ const TopLogo = ({ name, login }) => {
     sessionStorage.removeItem("user-progress");
     login(false);
     navigate("/");
+  }
+
+  function toggleDarkMode() {
+    setDarkMode((prev) => !prev)
+
   }
   
   // const toggleHelp = () => {
@@ -96,6 +104,9 @@ const TopLogo = ({ name, login }) => {
               </span>
               <p className="top__signout" onClick={() => handleLogOut()}>
                 Sign Out
+              </p>
+              <p className="top__signout" onClick={() => toggleDarkMode()}>
+                Dark Mode
               </p>
             </div>
           ) : null}
