@@ -50,7 +50,7 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
   }, []);
 
   return (
-    <div>
+    <>
       {isLoaded ? (
         <>
         {chaptersTutorial && createPortal(<TutorialChapters toggle = {setChaptersTutorial}/>, document.body)}
@@ -68,7 +68,7 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
         <Loader />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

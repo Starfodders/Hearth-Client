@@ -4,7 +4,7 @@ import CollectionCategory from "./CollectionCategory";
 import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 
-const CollectionBlock = ({ type, content }) => {
+const CollectionBlock = ({ type, content, darkMode }) => {
 
   //filter content depending on which saved data user is accessing
   const [filteredContent, setFilteredContent] = useState([]);
@@ -81,27 +81,27 @@ const CollectionBlock = ({ type, content }) => {
     {filteredContent.map((page, index) => {
       if (page.unit_id <= 2 && !renderedChapters.includes('intro')) {
         renderedChapters.push('intro')
-        return <CollectionCategory chapter = 'intro' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'intro' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       if (page.unit_id > 2 && page.unit_id <= 10 && !renderedChapters.includes('DT')) {
         renderedChapters.push('DT')
-        return <CollectionCategory chapter = 'DT' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'DT' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       if (page.unit_id > 10 && page.unit_id <= 18 && !renderedChapters.includes('MF')) {
         renderedChapters.push('MF')
-        return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'MF' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       if (page.unit_id > 18 && page.unit_id <= 23 && !renderedChapters.includes('ER')) {
         renderedChapters.push('ER')
-        return <CollectionCategory chapter = 'ER' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'ER' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       if (page.unit_id > 23 && page.unit_id <= 29 && !renderedChapters.includes('IE')) {
         renderedChapters.push('IE')
-        return <CollectionCategory chapter = 'IE' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'IE' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       if (page.unit_id > 29 && page.unit_id <= 31 && !renderedChapters.includes('final')) {
         renderedChapters.push('final')
-        return <CollectionCategory chapter = 'final' key = {index} content = {filteredContent} />
+        return <CollectionCategory chapter = 'final' key = {index} content = {filteredContent} darkMode = {darkMode}/>
       }
       return null
     })}

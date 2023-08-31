@@ -68,6 +68,18 @@ progress {
     padding: 0.3rem 1rem;
     border-radius: 4px;
 
+    &--dark {
+      @extend .progress__notif;
+      background: $dark-mode-bg;
+      background: linear-gradient(
+      90deg,
+      $dark-mode-bg 0%,
+      rgba(82, 182, 154, 1) 30%,
+      rgba(82, 182, 154, 1) 70%,
+      $dark-mode-bg 100%
+    );
+    }
+
     &--progress {
       @extend .progress__notif;
       background: rgb(246, 255, 244);
@@ -78,6 +90,18 @@ progress {
       #168AAD 70%,
       rgba(246, 255, 244, 1) 100%
     );
+
+    &--dark {
+      @extend .progress__notif--progress;
+      background: $dark-mode-bg;
+      background: linear-gradient(
+      90deg,
+      $dark-mode-bg 0%,
+      #168AAD 30%,
+      #168AAD 70%,
+      $dark-mode-bg 100%
+    );
+    }
     }
   }
 }

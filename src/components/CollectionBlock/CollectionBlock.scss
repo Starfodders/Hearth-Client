@@ -20,6 +20,13 @@
       padding: 1rem;
       transition: all 0.3s;
     }
+
+    &--dark {
+      @extend .block__container;
+      background-color: $dark-mode-bg;
+      color: $off-white;
+      border: 1px solid $dark-mode-border;
+    }
   }
 
   &__left {
@@ -130,6 +137,13 @@
     display: flex;
     justify-content: space-between;
     animation: slide-in 0.5s forwards;
+
+    &--dark {
+      @extend .subchapter__container;
+      background-color: $dark-mode-bg;
+      color: $off-white;
+      border: 1px solid $dark-mode-border;
+    }
 
     &:hover {
       cursor: pointer;

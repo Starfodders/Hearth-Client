@@ -1,14 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/CollectionPage.scss";
 import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import CollectionBlock from "../components/CollectionBlock/CollectionBlock";
-import TechniqueIcon from "../assets/icons/techniqueIcon.svg";
-import ListIcon from "../assets/icons/listIcon.svg";
+import techniqueIcon from "../assets/icons/techniqueIcon.svg";
+import techniqueIconDark from "../assets/icons/techniqueIconDark.svg";
+import listIcon from "../assets/icons/listIcon.svg";
+import listIconDark from "../assets/icons/listIconDark.svg";
 import summaryIcon from "../assets/icons/summaryIcon.svg";
+import summaryIconDark from "../assets/icons/summaryIconDark.svg";
 import textIcon from "../assets/icons/textIcon.svg";
+import textIconDark from "../assets/icons/textIconDark.svg";
+import ProgressContext from "../components/ProgressContext/ProgressContext";
 
 const CollectionPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
@@ -20,6 +25,8 @@ const CollectionPage = ({ isLoggedIn }) => {
       }
     }
   }, [isLoggedIn]);
+
+  const { darkMode } = useContext(ProgressContext);
 
   const [savedData, setSavedData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -109,37 +116,41 @@ const CollectionPage = ({ isLoggedIn }) => {
       </div>
       {insideBlock ? (
         <section className="collections__content--list">
-          <CollectionBlock type={pageState} content={savedData} />
+          <CollectionBlock type={pageState} content={savedData} darkMode = {darkMode} />
         </section>
       ) : (
         <section className="collections__content">
           <CollectionCard
             name="Summary Cards"
-            image={summaryIcon}
+            image={darkMode ? summaryIconDark:summaryIcon}
             count={summaryCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
+            darkMode = {darkMode}
           />
           <CollectionCard
             name="Technique Cards"
-            image={TechniqueIcon}
+            image={darkMode ? techniqueIconDark:techniqueIcon}
             count={techniqueCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
+            darkMode = {darkMode}
           />
           <CollectionCard
             name="List Cards"
-            image={ListIcon}
+            image={darkMode ? listIconDark:listIcon}
             count={listCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
+            darkMode = {darkMode}
           />
           <CollectionCard
             name="Text Cards"
-            image={textIcon}
+            image={darkMode ? textIconDark:textIcon}
             count={textCount}
             setBlock={setInsideBlock}
             setPage={setPageState}
+            darkMode = {darkMode}
           />
         </section>
       )}

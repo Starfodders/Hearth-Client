@@ -1,12 +1,14 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import ProgressContext from "../ProgressContext/ProgressContext";
 import "./TopLogo.scss";
 
 const TopLogo = ({ name, login }) => {
   const [menuHover, setMenuHover] = useState(false);
   const navigate = useNavigate();
- 
+
+  const { darkMode, setDarkMode } = useContext(ProgressContext);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [mobileWindow, setMobileWindow] = useState(
@@ -46,6 +48,19 @@ const TopLogo = ({ name, login }) => {
     navigate("/");
   }
 
+  function toggleDarkMode() {
+    setDarkMode((prev) => !prev);
+  }
+
+  // const toggleHelp = () => {
+  //   if (location.pathname === '/home') {
+  //     localStorage.removeItem('home-tutorial')
+  //   }
+  //   else {
+  //     return
+  //   }
+  // }
+
   return (
     <div className={isScrolled ? "top__container--hidden" : "top__container"}>
       <div className="spacer"></div>
@@ -55,11 +70,13 @@ const TopLogo = ({ name, login }) => {
         aria-label="Link to Homepage"
         tabIndex={0}
       > */}
-        <h2 className="top__title" onClick = {() => navigate('/home')}>Hearth</h2>
+      <h2 className="top__title" onClick={() => navigate("/home")}>
+        Hearth
+      </h2>
       {/* </Link> */}
       <div
         className="top__profile"
-        onMouseEnter={() => setMenuHover(true)}
+        onMouseDown={() => setMenuHover(true)}
         onMouseLeave={() => setMenuHover(false)}
       >
         <div className="top__profile__preview">
@@ -77,15 +94,23 @@ const TopLogo = ({ name, login }) => {
           </div>
           {menuHover ? (
             <div className="top__profile__opened">
-              <span
-                className="material-symbols-outlined logout-icon"
-                aria-hidden="true"
-              >
-                logout
-              </span>
-              <p className="top__signout" onClick={() => handleLogOut()}>
-                Sign Out
-              </p>
+              <div className="top__profile-segment">
+                <span className="material-symbols-outlined">{darkMode ? 'radio_button_checked' : 'radio_button_unchecked'}</span>
+                <p className="top__signout" onClick={() => toggleDarkMode()}>
+                  Dark Mode
+                </p>
+              </div>
+              <div className="top__profile-segment">
+                <span
+                  className="material-symbols-outlined logout-icon"
+                  aria-hidden="true"
+                >
+                  logout
+                </span>
+                <p className="top__signout" onClick={() => handleLogOut()}>
+                  Sign Out
+                </p>
+              </div>
             </div>
           ) : null}
         </div>

@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import CollectionExpandList from "../CollectionExpand/CollectionExpandList";
 import CollectionExpandTech from "../CollectionExpand/CollectionExpandTech";
 
-const CollectionItem = ({ page, deletePage }) => {
+const CollectionItem = ({ page, deletePage, darkMode }) => {
   const { type, content } = page;
 
   const [isList, setIsList] = useState(false);
   const [isTechnique, setIsTechnique] = useState(false);
   const [expand, setExpand] = useState(false)
-
 
   function formatContent(content) {
     const paragraphs = content.split(";");
@@ -56,11 +55,11 @@ const CollectionItem = ({ page, deletePage }) => {
   } 
 
   useEffect(() => {
-    if (type === "List Cards") {
+    if (type === "list") {
       setIsList(true);
       setIsTechnique(false);
     }
-    if (type === "Technique Cards") {
+    if (type === "technique") {
       setIsTechnique(true);
       setIsList(false);
     }
@@ -69,7 +68,7 @@ const CollectionItem = ({ page, deletePage }) => {
 
   return (
     <>
-      <div className="block__container">
+      <div className={darkMode ? "block__container--dark" : "block__container"}>
         <div className="block__left">
           <span
             className="material-symbols-outlined block__delete"
@@ -91,9 +90,9 @@ const CollectionItem = ({ page, deletePage }) => {
                     {paragraph}
                   </p>
                 ))}
-                {isList ? <CollectionExpandList content={content} /> : null}
-                {isTechnique && content.transcript === "1" ? (
-                  <CollectionExpandTech content={content} />
+                {isList ? <CollectionExpandList content={page} darkMode={darkMode}/> : null}
+                {isTechnique && page.transcript === "1" ? (
+                  <CollectionExpandTech content={page} darkMode={darkMode}/>
                 ) : null}
               </>
             ) : (

@@ -76,7 +76,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         ) : null}
         {postLogin ? null : <footer className="landing__footer">
           <p className="landing__version" aria-hidden="True">
-            Michael Deng © 2023 | Version 1.5 Beta
+            Michael Deng © 2023 | Version 1.7 Beta
           </p>
           <div className="log__button">
             <button

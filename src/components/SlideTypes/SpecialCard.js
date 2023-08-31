@@ -1,6 +1,6 @@
 import React from "react";
 
-const SpecialCard = ({ slide }) => {
+const SpecialCard = ({ slide, darkMode }) => {
   const { title, content, images } = slide;
   const mascotPath = require(`../../assets/chapterAssets/${images}.png`);
 
@@ -30,15 +30,15 @@ const SpecialCard = ({ slide }) => {
 
   return (
     <div className="slide__container--special">
-      <div className="slide__container--special--left">
-        <h1 className="slide__title--special">{title}</h1>
+      <div className={darkMode ? "slide__container--special--left--dark" :"slide__container--special--left"}>
+        <h1 className={darkMode ? "slide__title--special--dark":"slide__title--special"}>{title}</h1>
         {formatContent(content).map((paragraph, index) => (
-          <p className="slide__content" key={index}>
-            {paragraph}
+          <p className={darkMode ? "slide__content--dark" : "slide__content"} key={index}>
+          {paragraph}
           </p>
         ))}
       </div>
-      <div className="slide__container--special--right">
+      <div className={darkMode ? "slide__container--special--right--dark" :"slide__container--special--right"}>
         <img
           src={mascotPath}
           className="slide__container--special--mascot"

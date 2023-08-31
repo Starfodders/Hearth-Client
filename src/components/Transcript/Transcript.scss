@@ -5,6 +5,11 @@
 .transcript {
   &__container {
     border-top: 1px solid $black;
+
+    &--dark {
+      border-top: none;
+    }
+    
   }
 
   &__paragraph {
@@ -13,6 +18,11 @@
     padding-bottom: 1.5rem;
     padding-top: 2rem;
     background-color: $off-white;
+
+    &--dark {
+      @extend .transcript__paragraph;
+      background-color: $dark-mode-bg;
+    }
 
     @include mobile {
       font-size: 1rem;

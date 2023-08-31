@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Loader from "../Loader/Loader";
 import "./Transcript.scss";
 
-const Transcript = ({ text }) => {
+const Transcript = ({ text, darkMode }) => {
   const [voiceoverObject, setVoiceoverObject] = useState([]);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [currentVolumeValue, setCurrentVolumeValue] = useState(0.5);
@@ -56,7 +56,7 @@ const Transcript = ({ text }) => {
   }
 
   return (
-    <div className="transcript__container">
+    <div className={darkMode ? "transcript__container--dark" : "transcript__container" }>
       {text.audio ? (
         <div className="transcript__audio">
           {voiceoverObject.length > 0 && (
@@ -131,7 +131,7 @@ const Transcript = ({ text }) => {
         );
       })} */}
       {text.content.split(";").map((paragraph, index) => (
-        <p className="transcript__paragraph" key = {index}>{paragraph}</p>
+        <p className={darkMode ? "transcript__paragraph--dark": "transcript__paragraph"} key = {index}>{paragraph}</p>
       ))}
     </div>
   );

@@ -1,12 +1,15 @@
 import "../UnitSlide/UnitSlide.scss";
 import savedOff from "../../assets/icons/savedEmpty.svg";
+import savedOffDark from "../../assets/icons/savedEmptyDark.svg";
 import savedOn from "../../assets/icons/savedFull.svg";
+import savedOnDark from "../../assets/icons/savedFullDark.svg";
 import axios from "axios";
 import resourceIcon from "../../assets/icons/access-resource.svg";
+import resourceIconDark from "../../assets/icons/access-resource-dark.svg"
 import resourceIconOff from "../../assets/icons/access-resource-none.svg";
-// import textIcon from "../../assets/icons/textIcon.svg";
+import resourceIconOffDark from "../../assets/icons/access-resource-none-dark.svg";
 
-const TextCard = ({ slide, format, saveState, saveFunc }) => {
+const TextCard = ({ slide, format, saveState, saveFunc, darkMode }) => {
   const { content, title, type } = slide;
 
   function handleSave() {
@@ -68,7 +71,7 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
   }
 
   return (
-    <div className="slide__container">
+    <div className={darkMode ? "slide__container--dark" : "slide__container"}>
       <div className="slide__container__top">
         <div className="slide__container__top--left">
           <span className="material-symbols-outlined card-icon">
@@ -84,16 +87,16 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
               rel="noreferrer"
             >
               <img
-                src={resourceIcon}
-                className="resource-link"
+                src={darkMode ? resourceIconDark: resourceIcon}
+                className={darkMode ? "resource-link--dark" : "resource-link"}
                 alt="Interact to Access External Resource For Current Unit Content"
               />
             </a>
           ) : (
-            <img src={resourceIconOff} className="resource-link-off" alt="" />
+            <img src={darkMode ? resourceIconOffDark : resourceIconOff} className="resource-link-off" alt="" />
           )}
           <img
-            src={saveState ? savedOn : savedOff}
+            src={saveState ? (darkMode ? savedOnDark : savedOn) : (darkMode ? savedOffDark : savedOff)}
             className={saveState ? "units__saved" : "units__saved--off"}
             onClick={() => handleSave()}
             alt={
@@ -105,9 +108,9 @@ const TextCard = ({ slide, format, saveState, saveFunc }) => {
         </div>
       </div>
       <div className="slide__container__middle">
-        {title && <h1 className="slide__title">{title}</h1>}
+        {title && <h1 className={darkMode ? "slide__title--dark" : "slide__title"}>{title}</h1>}
         {formatContent(content).map((paragraph, index) => (
-          <p className="slide__content" key={index}>
+          <p className={darkMode ? "slide__content--dark" : "slide__content"} key={index}>
             {paragraph}
           </p>
         ))}

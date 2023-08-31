@@ -46,6 +46,11 @@
     align-items: center;
     padding: 0 1rem;
     background-color: $off-white-highlighted;
+
+    &--dark {
+      @extend .expand__list--suggestion;
+      background-color: $dark-mode-border;
+    }
   }
 
   &--text {
