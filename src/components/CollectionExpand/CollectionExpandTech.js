@@ -22,11 +22,11 @@ const CollectionExpandTech = ({ content, darkMode }) => {
   useEffect(() => {
     if (transcript && transcriptState) {
       if (!transcriptData) {
-        // axios
-        //   .get(
-        //     `/.netlify/functions/units/transcript?unitID=${unit_id}&pageNum=${page_number}`
-        //   )
-        axios.get(`http://localhost:8080/units/transcript/${unit_id}/${page_number}`)
+        axios
+          .get(
+            `/.netlify/functions/units/transcript?unitID=${unit_id}&pageNum=${page_number}`
+          )
+        // axios.get(`http://localhost:8080/units/transcript/${unit_id}/${page_number}`)
           .then((response) => {
             setTranscriptData(response.data);
             setTranscriptLoaded(true);
