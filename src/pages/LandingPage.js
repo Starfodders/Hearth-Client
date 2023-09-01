@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { createPortal } from 'react-dom';
 
 import bgForest from "../assets/images/homepage/homeBG.png";
-// import transition from "../assets/images/transitionForest.png";
-// import transitionBot from "../assets/images/transitionBottom.png"
 import transitionFire from "../assets/images/transitionFire.png";
 import stokingFire from '../assets/images/homepage/fireMedium.gif'
+import hearthIcon from "../assets/icons/tal-icon.png"
+import hearthIcon2 from "../assets/images/mascot.gif"
 
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
+import SignUpNew from "../components/SignUpNew/SignUpNew";
+
 import Changelog from "../components/Changelog/Changelog";
 
 import "../styles/LandingPage.scss";
@@ -58,8 +60,32 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   return (
     <div className="wrapper">
       {changeLogOn && createPortal(<Changelog/>, document.body)}
-      <section className="landing__container">
-        <h1
+      <section className="landing__header">
+          <div className="landing__left">
+            <div className="landing__left-logo">
+              <img src = {hearthIcon} alt = "" className="landing__left-logo-img"/>
+            </div>
+            <h1 className="landing__left-title">HearthDBT</h1>
+          </div>
+          <section className="landing__right">
+            <div className="landing__right-signIn">Sign In</div>
+            <div className="landing__right-signUp">Sign Up</div>
+          </section>
+        </section>
+      <main className="landing__wrapper">
+        <section className="landing__container">
+          <h1 className="landing__slogan--main">Distress Tolerance</h1>
+          <h2 className="landing__slogan--simple">Simplified</h2>
+          <p className="landing__description">A free tool to learn Dialectical Behaviour Therapy on your own time.</p>
+          <SignUpNew/>
+          <p>New here?</p>
+        </section>
+
+    
+
+
+
+        {/* <h1
           className={postLogin ? "landing__title--disappear" : "landing__title"}
         >
           Hearth
@@ -103,26 +129,13 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             postLoginState={postLogin}
             setToggleStart = {setToggleStartAnimation}
           />
-        )}
+        )} */}
         <img
           src={bgForest}
           className={postLogin ? "bg-solid--disappear" : "bg-solid"}
           alt=""
         />
-        {/* <img
-          src={transition}
-          className={postLogin ? "transition__bg--moving" : "transition__bg"}
-          alt=""
-        /> */}
-        {/* <img src = {transitionBot} className ={postLogin ? "transition__bot--moving": "transition__bot"} alt = ""/> */}
-        {/* <img
-          src= {fireAnimationSrc}
-          className={
-            postLogin ? "transition__fire--moving" : "transition__fire"
-          }
-          alt=""
-        /> */}
-      </section>
+      </main>
     </div>
   );
 };

@@ -1,0 +1,45 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.SU {
+
+    &__container {
+
+        &--unselect {
+            pointer-events: none;
+        }
+    }
+
+    &__email {
+        display: flex;
+    }
+
+    &__password {
+        display: flex;
+        position: relative;
+        &--reveal {
+            width: 1rem;
+            position: absolute;
+            right: 3%;
+            top: 0.5rem;
+        }
+    }
+    
+}
+
+.loader {
+    position: absolute;
+    border: 5px solid $background-faded;
+    border-radius: 50%;
+    border-top: 5px solid $turquoise;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
