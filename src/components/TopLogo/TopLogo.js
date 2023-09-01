@@ -94,9 +94,9 @@ const TopLogo = ({ name, login }) => {
           </div>
           {menuHover ? (
             <div className="top__profile__opened">
-              <div className="top__profile-segment">
+              <div className="top__profile-segment" onClick={() => toggleDarkMode()}>
                 <span className="material-symbols-outlined">{darkMode ? 'radio_button_checked' : 'radio_button_unchecked'}</span>
-                <p className="top__signout" onClick={() => toggleDarkMode()}>
+                <p className="top__signout">
                   Dark Mode
                 </p>
               </div>
