@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
@@ -33,7 +33,7 @@ const GuestSignUpNew = ({
 
   function handleGuestProfile(e) {
     e.preventDefault();
-    localStorage.setItem("guest-profile-name", guestName || "Traveller");
+    localStorage.setItem("guest-profile-name", guestName || "Traveler");
     localStorage.setItem("guest-profile-id", generateGuestUUID());
     localStorage.setItem("guest-profile-pw", generateGuestPW());
 
@@ -74,23 +74,17 @@ const GuestSignUpNew = ({
       });
   }
 
-  //   useEffect(() => {
-  //     if (
-  //       localStorage.getItem(
-  //         "guest-profile-name" || localStorage.getItem("guest-profile-id")
-  //       )
-  //     ) {
-  //       setNotifyExists(true);
-  //     } else {
-  //       setNotifyExists(false);
-  //     }
-  //   }, []);
-
   return (
     <section className={postLogin ? "landing__container--disappear" : "landing__container"}>
       <div className="landing__slogan--container-small">
         <h1 className="landing__slogan--main-small">Create Guest</h1>
       </div>
+      {localStorage.getItem('guest-profile-id') ? 
+        <div className="guest__existing">
+          <p className="guest__existing--message">
+            A Guest Profile already exists on this device. Creating a new account will overrite the existing one.
+          </p>
+        </div> : null}
       <p className="landing__description">
         A<span className="landing__description--bolded"> guest account </span>
         is saved to your current device. Your progress will not be available
@@ -109,12 +103,6 @@ const GuestSignUpNew = ({
           </button>
         </form>
       </div>
-      {localStorage.getItem('guest-profile-id') ? 
-        <div className="guest__existing">
-          <p className="guest__existing--message">
-            A Guest Profile already exists on this device. Creating a new account will overrite the existing one.
-          </p>
-        </div> : null}
       <div className="landing__guest-adjust">
         <p className="landing__guest-toggle" onClick={() => toggle(false)}>
           Create a

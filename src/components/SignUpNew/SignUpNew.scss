@@ -13,6 +13,11 @@
     &--unselect {
       pointer-events: none;
     }
+
+    @include mobile {
+      padding-right: 0 2rem;
+      max-width: none;
+    }
   }
 
   &__email {
@@ -25,13 +30,16 @@
     animation: input_slide 0.35s forwards ease-out;
 
     &--input {
-      width: 50%;
       min-width: 20rem;
       padding: 0.7rem 1rem 0.7rem;
       background-color: $off-white-reduced;
       border: none;
       border-radius: 4px 0 0 4px;
       color: $extra-dark-blue;
+
+      @include mobile {
+        min-width: 15rem;
+      }
 
       &:focus {
         outline: 1px solid $extra-dark-blue;
@@ -51,6 +59,10 @@
         padding: 0.7rem 1rem 0.7rem;
         border: none;
         min-width: 7rem;
+
+        @include mobile {
+          min-width: 5rem;
+        }
 
         &:hover {
             cursor: pointer;

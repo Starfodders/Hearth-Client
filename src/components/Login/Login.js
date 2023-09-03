@@ -11,12 +11,10 @@ import "./Login.scss";
 
 const Login = ({
   toggle,
-  newUser,
   setIsLoggedIn,
   setDisplayName,
   postLogin,
   postLoginState,
-  setToggleStart
 }) => {
   const navigate = useNavigate();
   const [passwordHidden, setPasswordHidden] = useState(true);
@@ -51,10 +49,10 @@ const Login = ({
 
   //checks localStorage if user has a saved email from 'remember' option
   useEffect(() => {
-    if (localStorage.getItem("savedUserEmail")) {
+    if (localStorage.getItem("saved-user-email")) {
       setInputFields({
         ...inputFields,
-        email: localStorage.getItem("savedUserEmail"),
+        email: localStorage.getItem("saved-user-email"),
       });
       setRememberUser(true);
     }
@@ -74,17 +72,6 @@ const Login = ({
     localStorage.getItem("guest-profile-id"),
     localStorage.getItem("guest-profile-name"),
   ]);
-
-  //handles if the user is new, populates the fields with the new account details
-  useEffect(() => {
-    if (newUser && Object.keys(newUser).length > 0) {
-      //if new user exists (redirect from Sign Up), then populate these fields
-      setInputFields({
-        ...inputFields,
-        email: newUser.email,
-      });
-    }
-  }, [newUser]);
 
   function handleInput(e) {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value });
@@ -116,9 +103,9 @@ const Login = ({
         .then(({ data }) => {
           postLogin(true);
           if (rememberUser === true) {
-            localStorage.setItem("savedUserEmail", email);
+            localStorage.setItem("saved-user-email", email);
           } else {
-            localStorage.removeItem("savedUserEmail");
+            localStorage.removeItem("saved-user-email");
           }
 
           setTimeout(() => {
@@ -147,8 +134,8 @@ const Login = ({
 
   function handleGuestLogin() {
     if (guestProfile) {
-      // axios.post('http://localhost:8080/users/login', {
-      axios.post(`/.netlify/functions/user/login`, {
+      axios.post('http://localhost:8080/users/login', {
+      // axios.post(`/.netlify/functions/user/login`, {
           email: localStorage.getItem("guest-profile-id"),
           password: localStorage.getItem("guest-profile-pw"),
         })
@@ -268,10 +255,10 @@ const Login = ({
           </button>
           <p
             className="login__toggle"
-            onClick={() => toggle()}
+            onClick={() => toggle(false)}
             aria-label="Interact to toggle form for account creation"
           >
-            New to Hearth? Click here to make an account.
+            New to Hearth?  <span className="landing__guest-toggle--bold">Create an account.</span>
           </p>
           {guestProfile ? (
             <div className="login__guest">

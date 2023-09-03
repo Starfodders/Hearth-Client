@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import passwordHide from "../../assets/icons/passwordHide.svg";
 import passwordShow from "../../assets/icons/passwordShow.svg";
-import ErrorIcon from "../ErrorIcon/ErrorIcon";
-import GuestSignUp from "../GuestSignUp/GuestSignUp";
 import "./SignUpNew.scss";
 
 const SignUpNew = ({
@@ -75,7 +73,7 @@ const SignUpNew = ({
             setEmailLoaderState(false);
             setSignUpPWStage(true);
             setSignUpState(true);
-          }, 1500);
+          }, 1000);
         })
         .catch((err) => {
           console.log(err);
@@ -83,7 +81,7 @@ const SignUpNew = ({
           setTimeout(() => {
             setEmailLoaderState(false);
             setEmailError(true);
-          }, 1500);
+          }, 1000);
         });
     }
   };
@@ -114,17 +112,17 @@ const SignUpNew = ({
     e.preventDefault();
     axios.post("http://localhost:8080/users/signup", {
         // axios.post("/.netlify/functions/user/signup", {
-        given_name: name || "Traveller",
+        given_name: name || "Traveler",
         email,
         password,
       })
       .then((response) => {        
+        localStorage.setItem('saved-user-email', email)
         axios.post("http://localhost:8080/users/login", {
             email: response.data[0].email,
             password: password,
           })
           .then((response) => {
-            console.log(response, ' log in response');
             setPostLogin(true);
             setTimeout(() => {
                 const { token } = response.data;

@@ -103,9 +103,23 @@ const Changelog = () => {
       </>
     );
   };
+  const patch9 = () => {
+    return (
+      <>
+        <h2 className="log__version">Version 2.0</h2>
+        <ul className="log__list">
+          <li className="log__list-item">Hearth is in full release!</li>
+          <li className="log__list-item">Since initial deployment, every chapter is added to be perused and the log in/landing page has been reworked for improved access.</li>
+          <li className="log__list-item">Tutorials have been added for new users to understand the UI</li>
+          <li className="log__list-item">Future deployments are for bug fixes and content adjustments based on user feedback</li>
+          <li className="log__list-item">No current plans to complete verbal technique playback + complete visual assets for completing certain chapters. Unfortunately do not have the time to work on these.</li>
+        </ul>
+      </>
+    );
+  };
 
-  const patches = [patch1, patch2, patch3, patch4, patch5, patch6, patch7, patch8];
-  const [currentPatch, setCurrentPatch] = useState(7);
+  const patches = [patch1, patch2, patch3, patch4, patch5, patch6, patch7, patch8, patch9];
+  const [currentPatch, setCurrentPatch] = useState(8);
 
   function handleNextPatch() {
     if (currentPatch < patches.length - 1) {
