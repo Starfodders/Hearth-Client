@@ -38,7 +38,7 @@
       color: $extra-dark-blue;
 
       @include mobile {
-        // min-width: 15rem;
+        min-width: 15rem;
       }
 
       &:focus {
@@ -107,6 +107,10 @@
       width: 1rem;
       position: absolute;
       right: 1rem;
+
+      @include mobile {
+        right: 6rem;
+      }
 
       &:hover {
         cursor: pointer;

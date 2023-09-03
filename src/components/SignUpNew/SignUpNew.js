@@ -65,8 +65,8 @@ const SignUpNew = ({
     } else if (!emailPattern.test(email)) {
       setEmailError(true);
     } else {
-      // axios.post('/.netlify/functions/user/exists', {email})
-      axios.post("http://localhost:8080/users/exists", { email })
+      axios.post('/.netlify/functions/user/exists', {email})
+      // axios.post("http://localhost:8080/users/exists", { email })
         .then((res) => {
           setEmailLoaderState(true);
           setTimeout(() => {
