@@ -1,15 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import passwordHide from "../../assets/icons/passwordHide.svg";
 import passwordShow from "../../assets/icons/passwordShow.svg";
 import ErrorIcon from "../ErrorIcon/ErrorIcon";
 import GuestSignUp from "../GuestSignUp/GuestSignUp";
 import "./SignUpNew.scss";
 
-const SignUpNew = () => {
+const SignUpNew = ({
+  setSignUpState,
+  setPostLogin,
+  setDisplayName,
+  setIsLoggedIn,
+}) => {
+    const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailLoaderState, setEmailLoaderState] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const emailInputRef = useRef(null);
 
   const [signUpPWStage, setSignUpPWStage] = useState(false);
   const [password, setPassword] = useState("");
@@ -30,6 +39,12 @@ const SignUpNew = () => {
     setName(e.target.value);
   };
 
+  const removeEmailError = () => {
+    if (emailError) {
+      setEmailError(false);
+    }
+  };
+
   function toggleShowState() {
     if (!passwordHidden) {
       setPasswordType("password");
@@ -39,17 +54,19 @@ const SignUpNew = () => {
     setPasswordHidden(!passwordHidden);
   }
 
+  function capitalizeName(name) {
+    return name.charAt(0).toUpperCase() + name.substring(1, name.length);
+  }
+
   const checkEmailExists = (e) => {
     e.preventDefault();
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!email.length > 0) {
-      return
-    } 
-    else if (!emailPattern.test(email)) {
-        setEmailError(true)
-    }
-    else {
+      return;
+    } else if (!emailPattern.test(email)) {
+      setEmailError(true);
+    } else {
       axios
         .post("http://localhost:8080/users/exists", { email })
         .then((res) => {
@@ -57,6 +74,7 @@ const SignUpNew = () => {
           setTimeout(() => {
             setEmailLoaderState(false);
             setSignUpPWStage(true);
+            setSignUpState(true);
           }, 1500);
         })
         .catch((err) => {
@@ -69,7 +87,16 @@ const SignUpNew = () => {
         });
     }
   };
-  
+
+  //unfocuses the email field, QoL effect. Also hides the password when moving onto next step
+  useEffect(() => {
+    if (emailError && document.activeElement === emailInputRef.current) {
+      emailInputRef.current.blur(); // Unfocus the input
+    }
+    if (passwordType === "text" && nameStage) {
+      setPasswordType("password");
+    }
+  }, [emailError, nameStage]);
 
   const validatePassword = (e) => {
     e.preventDefault();
@@ -82,10 +109,42 @@ const SignUpNew = () => {
 
   const confirmAccount = (e) => {
     e.preventDefault();
-    if (!name.length > 0) {
-      setName("Traveler");
-    }
-    console.log(email, password, name);
+    axios.post("http://localhost:8080/users/signup", {
+        // axios.post("/.netlify/functions/user/signup", {
+        given_name: name || "Traveller",
+        email,
+        password,
+      })
+      .then((response) => {
+        console.log(response);
+        axios.post("http://localhost:8080/users/login", {
+            email: response.data[0].email,
+            password,
+          })
+          .then((response) => {
+            setPostLogin(true);
+            setTimeout(() => {
+                const { token } = response.data;
+                sessionStorage.setItem("authToken", token);
+                const decodedToken = jwt_decode(token);
+                sessionStorage.setItem("currentName", decodedToken.name);
+                sessionStorage.setItem("userId", decodedToken.id);
+                setDisplayName(
+                  capitalizeName(sessionStorage.getItem("currentName"))
+                );
+    
+                setIsLoggedIn(true);
+                navigate("/home");
+              }, 1000);
+
+          })
+          .catch((err) => {
+            console.log(err, " Unable to log in");
+          });
+      })
+      .catch((err) => {
+        console.log(err, " Unable to sign up");
+      });
   };
 
   return (
@@ -95,18 +154,26 @@ const SignUpNew = () => {
       >
         <form className="SU__email" onSubmit={(e) => checkEmailExists(e)}>
           <input
-            className="SU__email--input"
+            className={
+              emailError ? "SU__email--input--error" : "SU__email--input"
+            }
             placeholder="Email address"
-            // pattern="[A-Za-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            ref={emailInputRef}
             value={email}
             onChange={handleEmailValue}
+            onClick={() => removeEmailError()}
           ></input>
           {signUpPWStage ? (
             <div className="SU__email--button--done">
-              <span className="material-symbols-outlined">done</span>
+              <span className="material-symbols-outlined check-done">done</span>
             </div>
           ) : (
-            <button className="SU__email--button" type="submit">
+            <button
+              className={
+                emailError ? "SU__email--button--error" : "SU__email--button"
+              }
+              type="submit"
+            >
               Sign Up
             </button>
           )}
@@ -129,6 +196,8 @@ const SignUpNew = () => {
               placeholder="Create a password"
               value={password}
               onChange={handlePasswordValue}
+              pattern="\S{1,20}"
+              maxLength="20"
             ></input>
             {passwordHidden ? (
               <img

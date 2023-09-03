@@ -3,43 +3,143 @@
 @use "../../styles/partials/mixins" as *;
 
 .SU {
-
-    &__container {
-
-        &--unselect {
-            pointer-events: none;
-        }
-    }
-
-    &__email {
-        display: flex;
-    }
-
-    &__password {
-        display: flex;
-        position: relative;
-        &--reveal {
-            width: 1rem;
-            position: absolute;
-            right: 3%;
-            top: 0.5rem;
-        }
-    }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 50rem;
     
+    &--unselect {
+      pointer-events: none;
+    }
+  }
+
+  &__email {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 20rem;
+    margin-top: 1rem;
+    animation: input_slide 0.35s forwards ease-out;
+
+    &--input {
+      width: 50%;
+      min-width: 20rem;
+      padding: 0.7rem 1rem 0.7rem;
+      background-color: $off-white-reduced;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      color: $extra-dark-blue;
+
+      &:focus {
+        outline: 1px solid $extra-dark-blue;
+        background-color: $off-white;
+      }
+
+      &--error {
+        @extend .SU__email--input;
+        outline: 2px solid rgb(173, 28, 28);
+      }
+    }
+
+    &--button {
+        background-color: $dark-green;
+        border-radius: 0 4px 4px 0;
+        color: $off-white;
+        padding: 0.7rem 1rem 0.7rem;
+        border: none;
+        min-width: 7rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $turquoise;
+            transition: background-color 0.3s;
+        }
+
+        &--error {
+            @extend .SU__email--button;
+            border: 2px solid rgb(173, 28, 28);
+            border-left: none;
+        }
+        &--done {
+            @extend .SU__email--button;
+            max-height: 2.4rem;
+            min-width: 7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    &--error {
+        color: rgb(173, 28, 28);
+        font-size: 0.8rem;
+    }
+  }
+
+  &__password {
+    @extend .SU__email;
+    position: relative;
+
+    &--input {
+    @extend .SU__email--input;
+
+    }
+
+    &--button {
+        @extend .SU__email--button
+    }
+
+    &--reveal {
+      width: 1rem;
+      position: absolute;
+      right: 1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  &__name {
+    @extend .SU__email;
+
+    &--input {
+        @extend .SU__email--input;
+    }
+  }
 }
 
+
 .loader {
-    position: absolute;
-    border: 5px solid $background-faded;
-    border-radius: 50%;
-    border-top: 5px solid $turquoise;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
+  position: absolute;
+  border: 5px solid $background-faded;
+  border-radius: 50%;
+  border-top: 5px solid $turquoise;
+  width: 30px;
+  height: 30px;
+  left: -2.5rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
   }
-  
+}
+
+
+@keyframes input_slide {
+    0% {
+        opacity: 0;
+        transform: translateX(50%)
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0)
+
+    }
+}

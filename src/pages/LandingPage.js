@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 
 import bgForest from "../assets/images/homepage/homeBG.png";
 import transitionFire from "../assets/images/transitionFire.png";
-import stokingFire from '../assets/images/homepage/fireMedium.gif'
-import hearthIcon from "../assets/icons/tal-icon.png"
-import hearthIcon2 from "../assets/images/mascot.gif"
+import stokingFire from "../assets/images/homepage/fireMedium.gif";
+import hearthIcon from "../assets/icons/tal-icon.png";
+import hearthIcon2 from "../assets/images/mascot.gif";
 
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
@@ -21,11 +21,50 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const [SignUpPage, setSignUpPage] = useState(false);
   const [newSignUp, setNewSignUp] = useState({});
   const [postLogin, setPostLogin] = useState(false);
-  const [toggleStartAnimation, setToggleStartAnimation] = useState(false)
-  const [fireAnimationSrc, setFireAnimationSrc] = useState(transitionFire)
+  const [toggleStartAnimation, setToggleStartAnimation] = useState(false);
+  const [fireAnimationSrc, setFireAnimationSrc] = useState(transitionFire);
   const [accountSuccess, setAccountSuccess] = useState(false);
   const [changeLogOn, setChangeLogOn] = useState(false);
 
+  const [sloganWord, setSloganWord] = useState("Distress Tolerance,");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [animationClass, setAnimationClass] = useState(
+    "landing__slogan--main--up"
+  );
+
+  const [signUpState, setSignUpState] = useState(false);
+
+  //handles the sliding text effect
+  useEffect(() => {
+    const words = [
+      "Distress Tolerance,",
+      "Mindfulness,",
+      "Emotional Regulation,",
+      "Interpersonal Effectiveness,",
+      "Assertive Communication,",
+      "Radical Acceptance,",
+      "Overwhelming Emotion,",
+      "Self-Compassion,",
+      "Coping Skills,",
+    ];
+    setSloganWord(words[wordIndex]);
+
+    const intervalId = setInterval(() => {
+      setAnimationClass("landing__slogan--main--down");
+
+      setTimeout(() => {
+        setWordIndex((prevIndex) => {
+          const newIndex = (prevIndex + 1) % words.length;
+          setSloganWord(words[newIndex]);
+          setAnimationClass("landing__slogan--main--up");
+          return newIndex;
+        });
+      }, 700);
+    }, 2000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [wordIndex]);
 
   function toggleState() {
     setSignUpPage(!SignUpPage);
@@ -44,9 +83,9 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
 
   useEffect(() => {
     if (toggleStartAnimation) {
-      setFireAnimationSrc(stokingFire)
+      setFireAnimationSrc(stokingFire);
     }
-  }, [toggleStartAnimation])
+  }, [toggleStartAnimation]);
 
   useEffect(() => {
     if (Object.keys(newSignUp).length > 0) {
@@ -59,31 +98,51 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
 
   return (
     <div className="wrapper">
-      {changeLogOn && createPortal(<Changelog/>, document.body)}
+      {changeLogOn && createPortal(<Changelog />, document.body)}
       <section className="landing__header">
-          <div className="landing__left">
-            <div className="landing__left-logo">
-              <img src = {hearthIcon} alt = "" className="landing__left-logo-img"/>
-            </div>
-            <h1 className="landing__left-title">HearthDBT</h1>
+        <div className="landing__left">
+          <div className="landing__left-logo">
+            <img src={hearthIcon} alt="" className="landing__left-logo-img" />
           </div>
-          <section className="landing__right">
-            <div className="landing__right-signIn">Sign In</div>
-            <div className="landing__right-signUp">Sign Up</div>
-          </section>
+          <h1 className="landing__left-title">Hearth</h1>
+        </div>
+        <section className="landing__right">
+          <div className="landing__right-signIn">Sign In</div>
+          <div className="landing__right-signUp">Sign Up</div>
         </section>
+      </section>
       <main className="landing__wrapper">
-        <section className="landing__container">
-          <h1 className="landing__slogan--main">Distress Tolerance</h1>
-          <h2 className="landing__slogan--simple">Simplified</h2>
-          <p className="landing__description">A free tool to learn Dialectical Behaviour Therapy on your own time.</p>
-          <SignUpNew/>
-          <p>New here?</p>
+        <section className={postLogin ? "landing__container--disappear":"landing__container"}>
+          <div className="landing__slogan--container">
+            <h1 className={animationClass}>{sloganWord}</h1>
+          </div>
+          <h2 className="landing__slogan--simple">Simplified.</h2>
+          {signUpState ? null : (
+            <p className="landing__description">
+              A free tool to learn Dialectical Behaviour Therapy on your{" "}
+              <span className="landing__description--bolded">own time.</span>
+            </p>
+          )}
+          <SignUpNew
+            setSignUpState={setSignUpState}
+            setPostLogin={setPostLogin}
+            setDisplayName = {setDisplayName}
+            setIsLoggedIn = {setIsLoggedIn}
+          />
+          {signUpState ? null : (
+            <div className="landing__guest">
+              <p className="landing__guest-toggle">
+                No Email?{" "}
+                <span className="landing__guest-toggle--bold">
+                  Continue as Guest
+                </span>
+              </p>
+              <span className="material-symbols-outlined guest-arrow">
+                arrow_forward
+              </span>
+            </div>
+          )}
         </section>
-
-    
-
-
 
         {/* <h1
           className={postLogin ? "landing__title--disappear" : "landing__title"}

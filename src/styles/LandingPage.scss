@@ -69,10 +69,11 @@
     }
     &-title {
       color: $off-white;
-      font-family: "Paytone One", sans-serif;
+      // font-family: "Paytone One", sans-serif;
       font-size: 1.2rem;
       padding-bottom: 0.4rem;
-      letter-spacing: 1px;
+      font-weight: 500;
+      // letter-spacing: 1px;
       
       @include tablet {
         display: none;
@@ -116,9 +117,94 @@
     }
   }
 
-  &__container {
+
+    &__container {
+      display: flex;
+      min-width: 100%;
+      min-height: 30rem;
+      padding: 0 30%;
+      flex-direction: column;
+
+      &--disappear {
+        @extend .landing__container;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+    }
+
+    &__slogan--container {
+      max-width: 10rem;
+      min-height: 5rem;
+      max-height: 12rem;
+      margin-bottom: 1rem;
+    }
+
+
+    &__slogan--main {
+        color: $off-white;
+        font-family: "Paytone One", sans-serif;
+        font-size: 5rem;
+        height: 8rem;
+        line-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        &--down {
+          @extend .landing__slogan--main;
+          animation: slogan-slide-down 0.8s ease-in-out;
+
+        }
+
+        &--up {
+          @extend .landing__slogan--main;
+          animation: slogan-slide-up 0.8s ease-in-out;
+
+        }
+    }
+
+    &__slogan--simple{
+      color: $off-white;
+      font-size: 2.8rem;
+      padding-bottom: 1rem;
+  }
+
+  &__description {
+    font-size: 1.3rem;
+    color: $off-white;
+    max-width: 27rem;
+    padding-bottom: 1rem;
+    line-height: 175%;
+
+    &--bolded {
+      font-weight: 700;
+    }
+  }
+
+  &__guest {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+
+    &-toggle {
+      color: $off-white-reduced;
+      
+  
+      &--bold {
+        color: $off-white;
+      }
+  }
+
+  .guest-arrow {
+    color: $off-white;
+    font-size: 1rem;
+  }
+
 
   }
+
 
   &__title {
     font-family: "Paytone One", sans-serif;
@@ -202,45 +288,6 @@
   }
 }
 
-// .transition__bg {
-//   width: 100%;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   z-index: -10;
-//   transform: translateY(-500%);
-
-//   &--moving {
-//     @extend .transition__bg;
-//     animation: transition-slide-up 2.5s forwards;
-//     transform: translateY(-25%);
-//     z-index: 5;
-//     opacity: 1;
-
-//     @include desktop {
-//       animation: transition-slide-up-5 2.5s forwards;
-//     transform: translateY(-30%);
-//     z-index: 5;
-
-//     }
-//   }
-// }
-
-// .transition__bot {
-//   width: 100%;
-//   position: absolute;
-//   bottom: 0;
-//   left: 0;
-//   z-index: -10;
-//   transform: translateY(-500%);
-
-//   &--moving {
-//     @extend .transition__bg;
-//     animation: transition-slide-up-4 4.5s;
-//     transform: translateY(35%);
-//     opacity: 1;
-//   }
-// }
 
 .transition__fire {
   width: 100%;
@@ -255,6 +302,28 @@
     animation: transition-slide-up-2 3s forwards;
     opacity: 1;
     z-index: -10;
+  }
+}
+
+@keyframes slogan-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slogan-slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 
