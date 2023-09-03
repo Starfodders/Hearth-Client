@@ -77,7 +77,7 @@
         }
         &--done {
             @extend .SU__email--button;
-            max-height: 2.37rem;
+            max-height: 2.33rem;
             min-width: 7rem;
             display: flex;
             align-items: center;
@@ -136,6 +136,11 @@
   height: 30px;
   left: -2.5rem;
   animation: spin 1s linear infinite;
+
+  @include mobile {
+    left:auto;
+    right: -4rem;
+  }
 }
 
 @keyframes spin {
