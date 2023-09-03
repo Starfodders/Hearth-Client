@@ -27,6 +27,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const [accountSuccess, setAccountSuccess] = useState(false);
   const [changeLogOn, setChangeLogOn] = useState(false);
   const [guestSignUp, setGuestSignUp] = useState(false);
+  const [userSignInPage, setUserSignInPage] = useState(false)
 
   const [sloganWord, setSloganWord] = useState("Distress Tolerance,");
   const [wordIndex, setWordIndex] = useState(0);
@@ -109,10 +110,19 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
           <h1 className="landing__left-title">Hearth</h1>
         </div>
         <section className="landing__right">
-          <div className="landing__right-signIn">Sign In</div>
-          <div className="landing__right-signUp">Sign Up</div>
+          <div className="landing__right-signIn" onClick = {() => setUserSignInPage(true)}>Sign In</div>
+          <div className="landing__right-signUp" onClick = {() => setUserSignInPage(false)}>Sign Up</div>
         </section>
       </section>
+      {userSignInPage ? (
+      <main className="landing__wrapper">
+      <section
+            className={
+              postLogin ? "landing__container--disappear" : "landing__container"
+            }
+          >
+        </section>
+     </main> ) : (
       <main className="landing__wrapper">
         {guestSignUp ? (
           <GuestSignUpNew
@@ -180,6 +190,22 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         {accountSuccess ? (
           <p className="account-notif">Account Successfully Created</p>
         ) : null} */}
+        {/* {SignUpPage ? (
+          <SignUp
+            toggle={toggleState}
+            getUser={getNewUserSignUp}
+            notif={setAccountSuccess}
+          />
+        ) : (
+         
+        )} */}
+        
+      </main>)}
+      <img
+          src={bgForest}
+          className={postLogin ? "bg-solid--disappear" : "bg-solid"}
+          alt=""
+        />
         {postLogin ? null : <footer className="landing__footer">
           <p className="landing__version" aria-hidden="True">
             Michael Deng © 2023 | Version 1.7 Beta
@@ -193,29 +219,6 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             </button>
           </div>
         </footer>}
-        {/* {SignUpPage ? (
-          <SignUp
-            toggle={toggleState}
-            getUser={getNewUserSignUp}
-            notif={setAccountSuccess}
-          />
-        ) : (
-          <Login
-            toggle={toggleState}
-            newUser={newSignUp}
-            setIsLoggedIn={setIsLoggedIn}
-            setDisplayName={setDisplayName}
-            postLogin={setPostLogin}
-            postLoginState={postLogin}
-            setToggleStart = {setToggleStartAnimation}
-          />
-        )} */}
-        <img
-          src={bgForest}
-          className={postLogin ? "bg-solid--disappear" : "bg-solid"}
-          alt=""
-        />
-      </main>
     </div>
   );
 };
