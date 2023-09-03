@@ -69,11 +69,9 @@
     }
     &-title {
       color: $off-white;
-      // font-family: "Paytone One", sans-serif;
       font-size: 1.2rem;
       padding-bottom: 0.4rem;
       font-weight: 500;
-      // letter-spacing: 1px;
       
       @include tablet {
         display: none;
@@ -189,7 +187,7 @@
 
         @include mobile {
           font-size: 2.3rem;
-          height: 12rem;
+          height: 8rem;
         }
 
         &-small {
@@ -252,7 +250,7 @@
     align-items: center;
     margin-top: 1rem;
     padding: 0.2rem 0.1rem 0.2rem 0.2rem;
-    max-width: 13rem;
+    max-width: 14rem;
 
     &:hover {
       cursor: pointer;

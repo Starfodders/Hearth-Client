@@ -65,8 +65,8 @@ const SignUpNew = ({
     } else if (!emailPattern.test(email)) {
       setEmailError(true);
     } else {
-      axios.post('/.netlify/functions/user/exists', {email})
-      // axios.post("http://localhost:8080/users/exists", { email })
+      // axios.post('/.netlify/functions/user/exists', {email})
+      axios.post("http://localhost:8080/users/exists", { email })
         .then((res) => {
           setEmailLoaderState(true);
           setTimeout(() => {
@@ -120,7 +120,7 @@ const SignUpNew = ({
         localStorage.setItem('saved-user-email', email)
         axios.post('/.netlify/functions/user/login', {
         // axios.post("http://localhost:8080/users/login", {
-            email: response.data[0].email,
+            email: email,
             password: password,
           })
           .then((response) => {
@@ -141,11 +141,11 @@ const SignUpNew = ({
 
           })
           .catch((err) => {
-            console.log(err, " Unable to log in");
+            console.error(err, " Unable to log in");
           });
       })
       .catch((err) => {
-        console.log(err, " Unable to sign up");
+        console.error(err, " Unable to sign up");
       });
   };
 

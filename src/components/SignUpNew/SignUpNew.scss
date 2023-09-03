@@ -38,7 +38,7 @@
       color: $extra-dark-blue;
 
       @include mobile {
-        min-width: 15rem;
+        // min-width: 15rem;
       }
 
       &:focus {
@@ -61,7 +61,7 @@
         min-width: 7rem;
 
         @include mobile {
-          min-width: 5rem;
+          // min-width: 5rem;
         }
 
         &:hover {
@@ -77,7 +77,7 @@
         }
         &--done {
             @extend .SU__email--button;
-            max-height: 2.4rem;
+            max-height: 2.37rem;
             min-width: 7rem;
             display: flex;
             align-items: center;
