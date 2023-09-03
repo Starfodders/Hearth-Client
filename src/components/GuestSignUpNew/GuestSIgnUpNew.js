@@ -38,16 +38,16 @@ const GuestSignUpNew = ({
     localStorage.setItem("guest-profile-pw", generateGuestPW());
 
     axios
-      .post("http://localhost:8080/users/signup", {
-        // axios.post("/.netlify/functions/user/signup", {
+      // .post("http://localhost:8080/users/signup", {
+        axios.post("/.netlify/functions/user/signup", {
         given_name: localStorage.getItem("guest-profile-name"),
         email: localStorage.getItem("guest-profile-id"),
         password: localStorage.getItem("guest-profile-pw"),
       })
       .then((response) => {
         axios
-          .post("http://localhost:8080/users/login", {
-            // axios.post(`/.netlify/functions/user/login`, {
+          // .post("http://localhost:8080/users/login", {
+            axios.post(`/.netlify/functions/user/login`, {
             email: localStorage.getItem("guest-profile-id"),
             password: localStorage.getItem("guest-profile-pw"),
           })

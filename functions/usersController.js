@@ -47,6 +47,35 @@ const signUp = async (event, context) => {
   }
 };
 
+const exists = async (event, context) => {
+  const { email } = JSON.parse(event.body);
+  if (!email.length) {
+    return res.status(400).json({ message: "No email entered" });
+  }
+  try {
+    const checkUserExist = await knex("users").where({ email: email });
+    if (checkUserExist.length > 0) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Email is invalid or already taken" })
+      }        
+    } else {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: "User is clear to create an account with this email",
+        })
+      }
+    }
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({message: err + 'unable to query DB'})
+    }
+  }
+};
+
+
 const login = async (event, context) => {
   const { email, password } = JSON.parse(event.body);
 
@@ -242,4 +271,4 @@ const update = async (event, context) => {
   }
 };
 
-module.exports = { signUp, login, checkNew, patchNew, getProgress, update };
+module.exports = { signUp, login, exists, checkNew, patchNew, getProgress, update };

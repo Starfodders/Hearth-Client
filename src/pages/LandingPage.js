@@ -67,16 +67,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
       navigate("/home");
     }
   }, [isLoggedIn]);
-
-  // useEffect(() => {
-  //   if (Object.keys(newSignUp).length > 0) {
-  //     setAccountSuccess(true);
-  //     setTimeout(() => {
-  //       setAccountSuccess(false);
-  //     }, 3000);
-  //   }
-  // }, [newSignUp]);
-
+  
   return (
     <div className="wrapper">
       {changeLogOn && createPortal(<Changelog />, document.body)}
