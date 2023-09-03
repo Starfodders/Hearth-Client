@@ -121,6 +121,15 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
               postLogin ? "landing__container--disappear" : "landing__container"
             }
           >
+            <Login
+            toggle={toggleState}
+            newUser={newSignUp}
+            setIsLoggedIn={setIsLoggedIn}
+            setDisplayName={setDisplayName}
+            postLogin={setPostLogin}
+            postLoginState={postLogin}
+            setToggleStart = {setToggleStartAnimation}
+          />
         </section>
      </main> ) : (
       <main className="landing__wrapper">
