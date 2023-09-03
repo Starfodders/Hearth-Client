@@ -11,6 +11,7 @@ import hearthIcon2 from "../assets/images/mascot.gif";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 import SignUpNew from "../components/SignUpNew/SignUpNew";
+import GuestSignUpNew from "../components/GuestSignUpNew/GuestSIgnUpNew";
 
 import Changelog from "../components/Changelog/Changelog";
 
@@ -25,6 +26,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   const [fireAnimationSrc, setFireAnimationSrc] = useState(transitionFire);
   const [accountSuccess, setAccountSuccess] = useState(false);
   const [changeLogOn, setChangeLogOn] = useState(false);
+  const [guestSignUp, setGuestSignUp] = useState(false);
 
   const [sloganWord, setSloganWord] = useState("Distress Tolerance,");
   const [wordIndex, setWordIndex] = useState(0);
@@ -112,38 +114,57 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         </section>
       </section>
       <main className="landing__wrapper">
-        <section className={postLogin ? "landing__container--disappear":"landing__container"}>
-          <div className="landing__slogan--container">
-            <h1 className={animationClass}>{sloganWord}</h1>
-          </div>
-          <h2 className="landing__slogan--simple">Simplified.</h2>
-          {signUpState ? null : (
-            <p className="landing__description">
-              A free tool to learn Dialectical Behaviour Therapy on your{" "}
-              <span className="landing__description--bolded">own time.</span>
-            </p>
-          )}
-          <SignUpNew
-            setSignUpState={setSignUpState}
+        {guestSignUp ? (
+          <GuestSignUpNew
+            toggle={setGuestSignUp}
+            postLogin={postLogin}
             setPostLogin={setPostLogin}
-            setDisplayName = {setDisplayName}
-            setIsLoggedIn = {setIsLoggedIn}
+            setDisplayName={setDisplayName}
+            setIsLoggedIn={setIsLoggedIn}
           />
-          {signUpState ? null : (
-            <div className="landing__guest">
-              <p className="landing__guest-toggle">
-                No Email?{" "}
-                <span className="landing__guest-toggle--bold">
-                  Continue as Guest
-                </span>
-              </p>
-              <span className="material-symbols-outlined guest-arrow">
-                arrow_forward
-              </span>
+        ) : (
+          <section
+            className={
+              postLogin ? "landing__container--disappear" : "landing__container"
+            }
+          >
+            <div className="landing__slogan--container">
+              <h1 className={animationClass}>{sloganWord}</h1>
             </div>
-          )}
-        </section>
-
+            <h2 className="landing__slogan--simple">Simplified.</h2>
+            {signUpState ? null : (
+              <p className="landing__description">
+                A free tool to learn Dialectical Behaviour Therapy on your{" "}
+                <span className="landing__description--bolded">own time.</span>
+              </p>
+            )}
+            <SignUpNew
+              setSignUpState={setSignUpState}
+              setPostLogin={setPostLogin}
+              setDisplayName={setDisplayName}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+            {signUpState ? null : (
+              <div className="landing__guest">
+                <p
+                  className="landing__guest-toggle"
+                  onClick={() => setGuestSignUp(true)}
+                >
+                  No Email?{" "}
+                  <span className="landing__guest-toggle--bold">
+                    Continue as Guest
+                  </span>
+                </p>
+                <span
+                  className="material-symbols-outlined guest-arrow"
+                  onClick={() => setGuestSignUp(true)}
+                >
+                  arrow_forward
+                </span>
+              </div>
+            )}
+          </section>
+        )}
         {/* <h1
           className={postLogin ? "landing__title--disappear" : "landing__title"}
         >
@@ -158,7 +179,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
         </h2>
         {accountSuccess ? (
           <p className="account-notif">Account Successfully Created</p>
-        ) : null}
+        ) : null} */}
         {postLogin ? null : <footer className="landing__footer">
           <p className="landing__version" aria-hidden="True">
             Michael Deng © 2023 | Version 1.7 Beta
@@ -172,7 +193,7 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
             </button>
           </div>
         </footer>}
-        {SignUpPage ? (
+        {/* {SignUpPage ? (
           <SignUp
             toggle={toggleState}
             getUser={getNewUserSignUp}

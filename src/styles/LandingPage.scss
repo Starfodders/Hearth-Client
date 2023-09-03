@@ -124,6 +124,7 @@
       min-height: 30rem;
       padding: 0 30%;
       flex-direction: column;
+      animation: toggle-slide-in-right 0.3s;
 
       &--disappear {
         @extend .landing__container;
@@ -138,6 +139,10 @@
       min-height: 5rem;
       max-height: 12rem;
       margin-bottom: 1rem;
+      &-small {
+        @extend .landing__slogan--container;
+        max-width: 20rem;
+      }
     }
 
 
@@ -150,6 +155,11 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+
+        &-small {
+          @extend .landing__slogan--main;
+          font-size: 3rem;
+        }
 
         &--down {
           @extend .landing__slogan--main;
@@ -185,13 +195,28 @@
   &__guest {
     font-size: 0.8rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
+    margin-top: 1rem;
+    padding: 0.2rem 0.1rem 0.2rem 0.2rem;
+    max-width: 13rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $background-faded;
+      border-radius: 4px;
+      transition: background-color 0.5s;
+    }
+
+    &-adjust {
+      @extend .landing__guest;
+      max-width: 11.5rem;
+    }
 
     &-toggle {
       color: $off-white-reduced;
-      
-  
+
+     
       &--bold {
         color: $off-white;
       }
@@ -199,6 +224,7 @@
 
   .guest-arrow {
     color: $off-white;
+    padding-top: 0.1rem;
     font-size: 1rem;
   }
 

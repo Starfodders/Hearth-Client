@@ -90,13 +90,16 @@ const SignUpNew = ({
 
   //unfocuses the email field, QoL effect. Also hides the password when moving onto next step
   useEffect(() => {
+    if (signUpPWStage && document.activeElement === emailInputRef.current) {
+        emailInputRef.current.blur(); 
+    }
     if (emailError && document.activeElement === emailInputRef.current) {
-      emailInputRef.current.blur(); // Unfocus the input
+      emailInputRef.current.blur(); 
     }
     if (passwordType === "text" && nameStage) {
       setPasswordType("password");
     }
-  }, [emailError, nameStage]);
+  }, [emailError, nameStage, signUpPWStage]);
 
   const validatePassword = (e) => {
     e.preventDefault();
@@ -115,13 +118,13 @@ const SignUpNew = ({
         email,
         password,
       })
-      .then((response) => {
-        console.log(response);
+      .then((response) => {        
         axios.post("http://localhost:8080/users/login", {
             email: response.data[0].email,
-            password,
+            password: password,
           })
           .then((response) => {
+            console.log(response, ' log in response');
             setPostLogin(true);
             setTimeout(() => {
                 const { token } = response.data;
@@ -249,10 +252,3 @@ const SignUpNew = ({
 };
 
 export default SignUpNew;
-
-/* sign up component
-    input field that accepts an email
-    button that triggers state change, checks against DB if email exists
-    if email doesnt exist, generate the password input field
-    if email exists, flag an error
-    validate password */
