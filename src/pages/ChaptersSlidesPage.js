@@ -51,6 +51,10 @@ const ChaptersSlidesPage = ({ isLoggedIn }) => {
 
   return (
     <>
+    <Helmet>
+        <meta name = "description" content = "Choose from the available chapters: Introduction, Distress Tolerance, Mindfulness, Emotional Regulation, Interpersonal Effectiveness, or Conclusion"/>
+        <meta name = "keywords" content = "Distress Tolerance, Mindfulness, Emotional Regulation, Interpersonal Effectiveness, Chapters"/>
+      </Helmet>
       {isLoaded ? (
         <>
         {chaptersTutorial && createPortal(<TutorialChapters toggle = {setChaptersTutorial}/>, document.body)}

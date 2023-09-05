@@ -106,6 +106,10 @@ const HomePage = ({ isLoggedIn, name }) => {
   return (
     <>
       <div className="home__container">
+      <Helmet>
+        <meta name = "description" content = "Home page, adjust options, select chapters to view, meditate, or reference saved content"/>
+        <meta name = "keywords" content = "Chapters, Meditation, Saved, Collection, Dark Mode, Credits, Feedback"/>
+      </Helmet>
         {displayModal ? <BeginnerModal change={setDisplayModal} /> : null}
         {homeTutorial &&
           createPortal(

@@ -78,6 +78,10 @@ const MeditationPage = ({isLoggedIn}) => {
 
   return (
     <div className="meditate__wrapper">
+      <Helmet>
+        <meta name = "description" content = "Meditate for a set amount of time and select a sound to accompany you"/>
+        <meta name = "keywords" content = "Meditation, Mindfulness, Calming, Relaxing"/>
+      </Helmet>
       <MeditateSetter
         currentTime={inputTime}
         setTime={setInputTime}

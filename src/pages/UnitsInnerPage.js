@@ -118,6 +118,10 @@ const UnitsPage = ({ isLoggedIn }) => {
   return (
 
     <div className="wrapper">
+      <Helmet>
+        <meta name = "description" content = "Selected Units internal pages to learn the specific topics at hand. Read and save content that you find helpful, progress through the app."/>
+        <meta name = "keywords" content = "Pages, Slides, Saving, Reading, Learning"/>
+      </Helmet>
       <div className="units__bg">
         <img src={topwave} className="units__bg--img" alt="" />
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
+import { Helmet } from "react-helmet"
 
 import bgForest from "../assets/images/homepage/homeBG.png";
 import hearthIcon from "../assets/icons/tal-icon.png";
@@ -70,6 +71,10 @@ const LandingPage = ({ isLoggedIn, setIsLoggedIn, setDisplayName }) => {
   
   return (
     <div className="wrapper">
+      <Helmet>
+        <meta name = "description" content = "Hearth Dialectical Behaviour Therapy Sign Up and Sign In page"/>
+        <meta name = "keywords" content = "distress tolerance, mindfulness, emotional regulation, interpersonal effectiveness, radical acceptance, wise mind, self-compassion, overwhelming emotion, self-harm, assertive communication."/>
+      </Helmet>
       {changeLogOn && createPortal(<Changelog />, document.body)}
       <section className="landing__header">
         <div className="landing__left">

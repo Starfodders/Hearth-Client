@@ -5,6 +5,10 @@ import "../styles/CreditsPage.scss";
 const CreditsPage = () => {
   return (
     <div className="credits__wrapper">
+      <Helmet>
+        <meta name = "description" content = "Credits, content is pulled heavily from The Dialectical Behaviour Therapy skills workbook by Jeffrey Brantley, Jeffrey C. Wood, and Matthew McKay"/>
+        <meta name = "keywords" content = "Jeffrey Brantley, Jeffrey C. Wood, Matthew McKay, Michael Deng"/>
+      </Helmet>
       <section className="credits__block">
         <div className="credits__pic">
           <img className="credits__img" src={bioPic} alt = "Michael Deng" />

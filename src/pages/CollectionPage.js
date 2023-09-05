@@ -94,6 +94,10 @@ const CollectionPage = ({ isLoggedIn }) => {
 
   return (
     <main className="collections__wrapper" aria-label={insideBlock ? pageState :"Choice of Saved Content"}>
+      <Helmet>
+        <meta name = "description" content = "Reference your saved content, divided into text, list, techniques, and summary cards"/>
+        <meta name = "keywords" content = "Text, Technique, List, Summary, Saved"/>
+      </Helmet>
       <div className="collections__title">
         {insideBlock ? (
           <span

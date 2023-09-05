@@ -61,6 +61,10 @@ const UnitsSlidesPage = ({ isLoggedIn }) => {
 
   return (
     <div className="wrapper">
+      <Helmet>
+        <meta name = "description" content = "Choose from selected chapter's available units"/>
+        <meta name = "keywords" content = "Chapters, Sections, Units"/>
+      </Helmet>
       <ChaptersBlock
         content={contentToLoad}
         title={contentTitle}

@@ -33,6 +33,10 @@ const FeedbackPage = () => {
 
   return (
     <div className="feedback__wrapper">
+      <Helmet>
+        <meta name = "description" content = "Submit feedback for improvements, compliments, or report bugs"/>
+        <meta name = "keywords" content = "Feedback, bugs"/>
+      </Helmet>
       <form className="feedback__form" onSubmit = {(e) => submitForm(e)}>
         <h2 className="feedback__heading">Feedback</h2>
         <p className="feedback__paragraph">
