@@ -8,6 +8,7 @@ import MeditateComplete from "../components/MeditateComplete/MeditateComplete";
 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet"
 
 import bgFire from "../assets/images/homepage/fireOnLesser.gif";
 import bgStatic from "../assets/images/homepage/fireOnLesser.png"

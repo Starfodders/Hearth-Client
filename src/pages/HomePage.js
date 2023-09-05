@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useState, useEffect, useContext } from "react";
+import { Helmet } from "react-helmet"
 
 import TutorialHome from "../components/Tutorials/TutorialHome";
 

@@ -3,6 +3,7 @@ import topwave from "../assets/images/top-wave.svg";
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { createPortal } from 'react-dom';
+import { Helmet } from "react-helmet"
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import UnitSlide from "../components/UnitSlide/UnitSlide";

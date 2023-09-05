@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet"
 import "../styles/CollectionPage.scss";
 import CollectionCard from "../components/CollectionCard/CollectionCard";
 import axios from "axios";

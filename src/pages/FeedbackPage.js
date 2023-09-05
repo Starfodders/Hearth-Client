@@ -1,5 +1,6 @@
 import "../styles/FeedbackPage.scss";
 import { useState } from "react";
+import { Helmet } from "react-helmet"
 import axios from "axios";
 
 const FeedbackPage = () => {

@@ -6,6 +6,7 @@ import Loader from "../components/Loader/Loader";
 import ChaptersBlock from "../components/ChaptersBlock/ChaptersBlock";
 import GoNextContent from "../components/GoNextContent/GoNextContent";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet"
 
 const UnitsSlidesPage = ({ isLoggedIn }) => {
   const { chapterID, sectionID } = useParams();

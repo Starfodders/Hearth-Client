@@ -1,6 +1,7 @@
 import bioPic from "../assets/images/credits__bio.JPG";
 import textBook from "../assets/images/textbook-img.jpg";
 import "../styles/CreditsPage.scss";
+import { Helmet } from "react-helmet"
 
 const CreditsPage = () => {
   return (

@@ -1,6 +1,7 @@
 import "../styles/ChaptersPage.scss";
 import ChaptersBlock from "../components/ChaptersBlock/ChaptersBlock";
 import GoNextContent from "../components/GoNextContent/GoNextContent";
+import { Helmet } from "react-helmet"
 
 import Loader from "../components/Loader/Loader";
 
