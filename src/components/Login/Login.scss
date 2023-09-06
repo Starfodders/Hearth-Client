@@ -100,7 +100,7 @@
   &__lower {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin-top: 1rem;
     @include mobile {
       margin: 0;

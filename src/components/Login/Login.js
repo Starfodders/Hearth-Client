@@ -240,12 +240,12 @@ const Login = ({
                 Remember Me
               </label>
             </div>
-            <p
+            {/* <p
               className="login__reset"
               onClick={() => setForgotPasswordToggle(true)}
             >
               Forgot Password
-            </p>
+            </p> */}
           </div>
           <button
             className="login__btn"
